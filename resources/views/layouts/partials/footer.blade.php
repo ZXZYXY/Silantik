@@ -1,11 +1,7 @@
-<!-- Main Footer -->
-<footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-block">
-        Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>&copy; {{ konfigurasi()->tahun_pembuatan }} {{ konfigurasi()->nama_aplikasi }} </strong> All
-    rights
-    reserved.
-</footer>
+<!--footer -->
+<div class="footer">
+    <p class="mb-0">{{ konfigurasi()->nama_aplikasi }} @ {{ konfigurasi()->tahun_pembuatan }} | Developed By : <a
+            href="https://diskominfo.jambikota.go.id" target="_blank">Diskominfo Kota Jambi</a>
+    </p>
+</div>
+<!-- end footer -->

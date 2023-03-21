@@ -1,10 +1,13 @@
-<!-- jQuery -->
-<script src="{{ asset('theme') }}/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('theme') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('theme') }}/dist/js/adminlte.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="{{ asset('theme') }}/assets/js/bootstrap.bundle.min.js"></script>
 
+<!--plugins-->
+<script src="{{ asset('theme') }}/assets/js/jquery.min.js"></script>
+<script src="{{ asset('theme') }}/assets/plugins/simplebar/js/simplebar.min.js"></script>
+<script src="{{ asset('theme') }}/assets/plugins/metismenu/js/metisMenu.min.js"></script>
+<script src="{{ asset('theme') }}/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<!-- App JS -->
+<script src="{{ asset('theme') }}/assets/js/app.js"></script>
 <script src="{{ asset('theme/sweetalert/sweetalert.min.js') }}"></script>
 <script>
     @if (session()->has('success'))

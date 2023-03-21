@@ -12,7 +12,7 @@ if (!function_exists('setActive')) {
      */
     function setActive($path)
     {
-        return Request::is($path . '*') ? ' active' : '';
+        return Request::is($path . '*') ? ' mm-active' : '';
     }
 }
 
@@ -25,7 +25,7 @@ if (!function_exists('openMenu')) {
      */
     function openMenu($path)
     {
-        return Request::is($path . '*') ? ' menu-open' : '';
+        return Request::is($path . '*') ? ' mm-active' : '';
     }
 }
 if (!function_exists('TanggalID')) {
