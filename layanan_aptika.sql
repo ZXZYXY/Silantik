@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Feb 28, 2023 at 04:14 AM
+-- Generation Time: Mar 24, 2023 at 06:07 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.13
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravel9`
+-- Database: `layanan_aptika`
 --
 
 -- --------------------------------------------------------
@@ -298,8 +298,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `role`, `email`, `email_verified_at`, `password`, `remember_token`, `is_active`, `uuid`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'Nanang Maulana Syarip', 'superadmin', 'nanang.ms22@gmail.com', NULL, '$2y$10$JcLj19OIGihAxcJLGPJPzu0YYN1t1GLtK6N5XKhzkow6ldZffAoiW', NULL, '1', 'f9acc6ec-a304-4a70-adbc-e5a49982dae7', 'Nanang_Maulana_Syarip_MJ6KT.png', '2022-12-25 20:18:45', '2023-02-28 03:54:21'),
-(2, 'admin123', 'admin', 'admin@gmail.com', NULL, '$2y$10$7ZYsIdbJslvAjPkzvPgmUO0UIYxkHFIzbFqX8nuLzxQbMPdCXQ7oi', NULL, '1', '2b29931d-9bc5-457f-b60d-c072ee36a6aa', NULL, '2022-12-27 02:11:46', '2023-02-28 03:53:36');
+(1, 'Nanang Maulana Syarip', 'superadmin', 'nanang.ms22@gmail.com', NULL, '$2y$10$JcLj19OIGihAxcJLGPJPzu0YYN1t1GLtK6N5XKhzkow6ldZffAoiW', NULL, '1', 'f9acc6ec-a304-4a70-adbc-e5a49982dae7', 'Nanang_Maulana_Syarip_MJ6KT.png', '2022-12-25 20:18:45', '2023-03-21 07:30:06'),
+(2, 'admin123', 'admin', 'admin@gmail.com', NULL, '$2y$10$7ZYsIdbJslvAjPkzvPgmUO0UIYxkHFIzbFqX8nuLzxQbMPdCXQ7oi', NULL, '1', '2b29931d-9bc5-457f-b60d-c072ee36a6aa', NULL, '2022-12-27 02:11:46', '2023-03-21 07:30:50');
 
 --
 -- Indexes for dumped tables
