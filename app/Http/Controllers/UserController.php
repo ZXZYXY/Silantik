@@ -146,12 +146,17 @@ class UserController extends Controller
 
     public function dataTable()
     {
-        $user = User::orderby('id', 'desc')->get();
+        if (auth()->user()->role == 'superadmin') {
+            $user = User::orderby('id', 'desc')->get();
+        } else {
+            $user = User::orderby('id', 'desc')->whereNotIn('role', ['superadmin'])->get();
+        }
+
 
         return DataTables::of($user)
             ->addColumn('action', function ($user) {
-                $edit = '<a href="' . route('users.edit', $user->id) . '" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>';
-                $hapus = '<button class="btn btn-danger btn-sm hapus" user-name="' . $user->name . '" user-id="' . $user->id . '" title="Delete"><i class="fa fa-trash"></i></button>';
+                $edit = '<a href="' . route('users.edit', $user->id) . '" class="btn btn-warning btn-sm" title="Edit"><i class="lni lni-highlight-alt"></i></a>';
+                $hapus = '<button class="btn btn-danger btn-sm hapus" user-name="' . $user->name . '" user-id="' . $user->id . '" title="Delete"><i class="lni lni-trash"></i></button>';
                 if (auth()->user()->can('user-edit') and auth()->user()->can('user-delete')) {
                     return $edit . ' ' . $hapus;
                 } elseif (auth()->user()->can('user-edit')) {
@@ -174,16 +179,20 @@ class UserController extends Controller
                 return '<img src="' . $user->getAvatarProfil() . '" alt="avatar" style="object-fit: cover; position: relative; width: 40px; height: 40px; overflow: hidden; border-radius: 50%;"> | ' . $user->name;
             })
             ->addColumn('status', function ($user) {
-                if ($user->is_active == '1') {
-                    return '<div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input change_status" id="Switch' . $user->id . '" data-id="' . $user->id . '" checked>
-                      <label class="custom-control-label" for="Switch' . $user->id . '" id="aktif' . $user->id . '">Aktif</label>
-                    </div>';
+                if (auth()->user()->id == $user->id) {
+                    return 'Aktif';
                 } else {
-                    return '<div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input change_status" id="Switch' . $user->id . '" data-id="' . $user->id . '">
-                      <label class="custom-control-label" for="Switch' . $user->id . '" id="aktif' . $user->id . '">Nonaktif</label>
-                    </div>';
+                    if ($user->is_active == '1') {
+                        return '<div class="form-check form-switch">
+							    <input class="form-check-input change_status" id="Switch' . $user->id . '" data-id="' . $user->id . '" type="checkbox" checked>
+								<label class="form-check-label" for="Switch' . $user->id . '" id="aktif' . $user->id . '">Aktif</label>
+							</div>';
+                    } else {
+                        return '<div class="form-check form-switch">
+								input class="form-check-input change_status" id="Switch' . $user->id . '" data-id="' . $user->id . '" type="checkbox">
+								<label class="form-check-label" for="Switch' . $user->id . '" id="aktif' . $user->id . '">NonAktif</label>
+							</div>';
+                    }
                 }
             })
 

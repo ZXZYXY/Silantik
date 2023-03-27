@@ -1,4 +1,4 @@
-<div class="mb-3" {{ $errors->has($name) ? ' has-error' : '' }}">
+<div class="mb-3 {{ $errors->has($name) ? ' has-error' : '' }}">
     <label class="form-label">{{ $label }} @if ($isRequired == 'true')
             <span class="text-danger">*</span>
         @endif

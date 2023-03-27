@@ -141,8 +141,8 @@ class RoleController extends Controller
 
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
-                $edit = '<a href="' . route('roles.edit', $data->id) . '" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>';
-                $hapus = '<button class="btn btn-danger btn-sm hapus" role-name="' . $data->name . '" role-id="' . $data->id . '" title="Delete"><i class="fa fa-trash"></i></button>';
+                $edit = '<a href="' . route('roles.edit', $data->id) . '" class="btn btn-warning btn-sm" title="Edit"><i class="lni lni-highlight-alt"></i></a>';
+                $hapus = '<button class="btn btn-danger btn-sm hapus" role-name="' . $data->name . '" role-id="' . $data->id . '" title="Delete"><i class="lni lni-trash"></i></button>';
                 return $edit . ' ' . $hapus;
             })
 

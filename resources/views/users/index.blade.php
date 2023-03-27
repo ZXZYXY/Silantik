@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Dashboard
+    Data User
 @endsection
 @push('style')
     <!--Data Tables -->
@@ -129,7 +129,8 @@
         <div class="page-content">
             @can('user-create')
                 <div class="ms-auto mb-3">
-                    <a class="btn btn-primary" href="{{ route('users.create') }}"><i class="fa fa-plus-circle"></i> Tambah</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}"><i class="fa fa-plus-circle"></i>
+                        Tambah</a>
                 </div>
             @endcan
             <div class="card">
@@ -138,7 +139,7 @@
                     <hr>
 
                     <div class="table-responsive">
-                        <table id="datatable" class="table table-hover" style="width:100%">
+                        <table id="datatable" class="table table-hover table-striped" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>No</th>

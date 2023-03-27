@@ -85,7 +85,7 @@
     <div class="page-content-wrapper">
         <div class="page-content">
             @can('role-create')
-                <a class="btn btn-primary mb-3" href="{{ route('roles.create') }}"><i class="fa fa-plus-circle"></i>
+                <a class="btn btn-primary btn-sm mb-3" href="{{ route('roles.create') }}"><i class="fa fa-plus-circle"></i>
                     Tambah</a>
             @endcan
             <div class="card">
@@ -93,7 +93,7 @@
                     <h4 class="mb-0">Data Role</h4>
                     <hr>
 
-                    <table class="table table-hover" id="datatable">
+                    <table class="table table-hover table-striped" id="datatable">
                         <thead>
                             <tr>
                                 <th>No</th>

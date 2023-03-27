@@ -86,66 +86,34 @@
 @endpush
 
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Permission Management</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Permission</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            @can('permission-create')
+                <a class="btn btn-primary btn-sm mb-3" href="{{ route('permission.create') }}"><i
+                        class="fa fa-plus-circle"></i> Tambah</a>
+            @endcan
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mb-0">Data Permission</h4>
+                    <hr>
 
-        <!-- Main content -->
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Data Permission</h3>
+                    <table class="table table-hover table-striped" id="datatable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Guard Name</th>
+                                <th width="20%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                                <div class="card-tools">
-                                    @can('permission-create')
-                                        <a class="btn btn-primary btn-sm" href="{{ route('permission.create') }}"><i
-                                                class="fa fa-plus-circle"></i></a>
-                                    @endcan
-                                </div>
-                            </div>
+                        </tbody>
+                    </table>
 
-                            <div class="card-body">
-                                <table class="table table-bordered table-hover" id="datatable">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Name</th>
-                                            <th>Guard Name</th>
-                                            <th width="20%">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div><!-- /.card -->
-                    </div>
 
                 </div>
-                <!-- /.row -->
-            </div><!-- /.container-fluid -->
+            </div>
         </div>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 @endsection

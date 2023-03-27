@@ -11,7 +11,8 @@
 @section('content')
     <div class="page-content-wrapper">
         <div class="page-content">
-            <button class="btn btn-primary mb-3">Kembali</button>
+            <button class="btn btn-primary btn-sm mb-3" onclick="window.history.back();"><i class="fa fa-reply"></i>
+                Kembali</button>
             <div class="card">
                 <div class="card-body">
                     <h4 class="mb-0">Tambah User</h4>
@@ -62,7 +63,7 @@
                                         Aktif</option>
                                 </x-forms.select_v>
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary"><i class="lni lni-save"></i> Submit</button>
 
                             </div>
                         </div>
