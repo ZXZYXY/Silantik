@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\KonfigurasiwebController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BeritaController;
 
 
 /*
@@ -24,7 +25,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('auth.login');
 });
-
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 Auth::routes();
 
 Route::group(['middleware' => ['auth', 'CheckActive']], function () {
@@ -38,6 +41,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
 
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('berita', BeritaController::class);
 
     Route::group(['prefix' => 'setting'], function () {
         Route::resource('roles', RoleController::class);
@@ -56,4 +60,5 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/user', [UserController::class, 'dataTable'])->name('table.user');
     Route::get('/table/role', [RoleController::class, 'dataTable'])->name('table.role');
     Route::get('/table/permission', [PermissionController::class, 'dataTable'])->name('table.permission');
+    Route::get('/table/berita', [BeritaController::class, 'dataTable'])->name('table.berita');
 });

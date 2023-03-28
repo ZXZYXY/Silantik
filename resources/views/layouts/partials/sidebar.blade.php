@@ -14,9 +14,19 @@
     @can('user-list')
         <li class="{{ setActive('users') }}">
             <a href="{{ route('users.index') }}">
-                <div class="parent-icon icon-color-12"><i class="bx bx-group"></i>
+                <div class="parent-icon icon-color-3"><i class="bx bx-group"></i>
                 </div>
                 <div class="menu-title">Users</div>
+            </a>
+        </li>
+    @endcan
+
+    @can('berita-list')
+        <li class="{{ setActive('berita') }}">
+            <a href="{{ route('berita.index') }}">
+                <div class="parent-icon icon-color-5"><i class="bx bx-conversation"></i>
+                </div>
+                <div class="menu-title">Berita</div>
             </a>
         </li>
     @endcan

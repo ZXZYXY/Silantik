@@ -59,7 +59,7 @@
                         <div class="d-flex user-box align-items-center">
                             <div class="user-info">
                                 <p class="user-name mb-0">{{ auth()->user()->name }}</p>
-                                <p class="designattion mb-0">Available</p>
+                                <p class="designattion mb-0">{{ strtoupper(permission()->role) }}</p>
                             </div>
                             <img src="{{ auth()->user()->getAvatarProfil() }}" class="user-img" alt="user avatar">
                         </div>
