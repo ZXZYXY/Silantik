@@ -40,6 +40,10 @@
                         name: 'nama'
                     },
                     {
+                        data: 'username',
+                        name: 'username'
+                    },
+                    {
                         data: 'email',
                         name: 'email'
                     },
@@ -50,6 +54,14 @@
                     {
                         data: 'status',
                         name: 'status'
+                    },
+                    {
+                        data: 'last_login_at',
+                        name: 'last_login_at'
+                    },
+                    {
+                        data: 'last_login_ip',
+                        name: 'last_login_ip'
                     },
                     {
                         data: 'action',
@@ -144,9 +156,12 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>Username</th>
                                     <th>Email</th>
                                     <th>Hak Akses</th>
                                     <th>Status</th>
+                                    <th>Last Login at</th>
+                                    <th>Last Login IP</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

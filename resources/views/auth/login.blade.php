@@ -34,10 +34,11 @@
                                             <form class="row g-3" action="{{ route('login') }}" method="POST">
                                                 @csrf
                                                 <div class="col-12">
-                                                    <label for="inputEmailAddress" class="form-label">Email Address</label>
-                                                    <input type="email" name="email"
-                                                        class="form-control @error('email') is-invalid @enderror"
-                                                        id="email" placeholder="john@doe.com">
+                                                    <label for="inputEmailAddress" class="form-label">Username or
+                                                        Email</label>
+                                                    <input type="login" name="login"
+                                                        class="form-control @error('login') is-invalid @enderror"
+                                                        id="login" placeholder="Username or Email">
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="inputChoosePassword" class="form-label">Enter

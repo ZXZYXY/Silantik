@@ -58,6 +58,8 @@
     <!--page-content-wrapper-->
     <div class="page-content-wrapper">
         <div class="page-content">
+            <button class="btn btn-primary btn-sm mb-3" onclick="window.history.back();"><i class="fa fa-reply"></i>
+                Kembali</button>
             <div class="card">
                 <div class="card-body">
                     <h4 class="mb-0">Edit Berita</h4>
@@ -81,11 +83,6 @@
                                     isRequired="true" value="{{ $data->judul }}" isReadonly=""
                                     placeholder="Judul Berita" />
 
-                                <x-forms.textarea_v id="isi" type="text" name="isi" label="Isi Berita"
-                                    isRequired="true" value="{!! $data->isi !!}" isReadonly="" />
-
-                            </div>
-                            <div class="col-md-4">
                                 <x-forms.select_v id="kategori" name="kategori" label="Kategori" isRequired="true"
                                     isSelect2="false">
                                     <option value="">[Pilih]</option>
@@ -101,7 +98,21 @@
                                         AIDS Tuberculosis Malaria (ATM)</option>
                                 </x-forms.select_v>
 
-                                <x-forms.input_v id="gambar" type="file" name="gambar" label="Gambar"
+                                <x-forms.select_v id="published" name="published" label="Status" isRequired="true"
+                                    isSelect2="false">
+                                    <option value="">[Pilih]</option>
+                                    <option value="1" {{ $data->published == '1' ? ' selected' : '' }}>
+                                        Aktif</option>
+                                    <option value="0" {{ $data->published == '0' ? ' selected' : '' }}>
+                                        NonAktif</option>
+                                </x-forms.select_v>
+
+                                <x-forms.textarea_v id="isi" type="text" name="isi" label="Isi Berita"
+                                    isRequired="true" value="{!! $data->isi !!}" isReadonly="" />
+
+                            </div>
+                            <div class="col-md-4">
+                                <x-forms.input_v id="gambar" type="file" name="gambar" label="Cover"
                                     isRequired="false" placeholder="" value="" isReadonly="">
                                     <p class="m-2">
                                         <a href="{{ $data->getImageBerita() }}" target="_blank"><img
@@ -110,15 +121,7 @@
                                     </p>
                                 </x-forms.input_v>
 
-                                <x-forms.select_v id="published" name="published" label="Status" isRequired="true"
-                                    isSelect2="false">
-                                    <option value="">[Pilih]</option>
-                                    <option value="1" {{ $data->published == '1' ? ' selected' : '' }}>
-                                        Aktif</option>
-                                    <option value="0" {{ $data->published == '0' ? ' selected' : '' }}>
-                                        Non
-                                        Aktif</option>
-                                </x-forms.select_v>
+
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>
                                     Submit</button>
                             </div>

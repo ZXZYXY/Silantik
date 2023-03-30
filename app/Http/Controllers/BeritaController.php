@@ -130,6 +130,7 @@ class BeritaController extends Controller
         try {
             $berita = Berita::findOrFail($id);
             $berita->judul          = $request->judul;
+            $berita->slug           = null;
             $berita->published      = $request->published;
             $berita->kategori       = $request->kategori;
             $berita->isi            = $request->isi;
@@ -154,31 +155,10 @@ class BeritaController extends Controller
             DB::commit();
             return redirect()->route('berita.index')->with('success', 'Data Berhasil Ditambah');
         } catch (\Exception $e) {
-            dd($e);
+            //dd($e);
             DB::rollback();
             return redirect()->back()->with('gagal', 'Data Gagal Diinput');
         }
-
-
-
-
-
-
-
-        $this->validate($request, [
-            'judul' => 'required',
-            'isi' => 'required',
-            'status' => 'required'
-        ]);
-
-        $data = Berita::findOrFail($id);
-
-        $data->judul = $request->judul;
-        $data->isi = $request->isi;
-        $data->status = $request->status;
-        $data->update();
-
-        return redirect()->route('berita-informasi.index')->with('success', 'Data Berhasil Diedit');
     }
 
     /**
@@ -205,8 +185,8 @@ class BeritaController extends Controller
 
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
-                $edit = '<a href="' . route('berita.edit', $data->id) . '" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>';
-                $hapus = '<button class="btn btn-danger btn-sm hapus" berita-name="' . $data->judul . '" berita-id="' . $data->id . '" title="Delete"><i class="fa fa-trash"></i></button>';
+                $edit = '<a href="' . route('berita.edit', $data->id) . '" class="btn btn-warning btn-sm" title="Edit"><i class="lni lni-highlight-alt"></i></a>';
+                $hapus = '<button class="btn btn-danger btn-sm hapus" berita-name="' . $data->judul . '" berita-id="' . $data->id . '" title="Delete"><i class="lni lni-trash"></i></button>';
                 if (auth()->user()->can('berita-edit') and auth()->user()->can('berita-delete')) {
                     return $edit . ' ' . $hapus;
                 } elseif (auth()->user()->can('berita-edit')) {
@@ -224,9 +204,9 @@ class BeritaController extends Controller
 
             ->addColumn('status', function ($data) {
                 if ($data->published == '1') {
-                    return '<span class="badge badge-success">YA</span>';
+                    return '<span class="badge bg-success">YA</span>';
                 } else {
-                    return '<span class="badge badge-danger">TIDAK</span>';
+                    return '<span class="badge bg-danger">TIDAK</span>';
                 }
             })
 

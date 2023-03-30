@@ -35,6 +35,9 @@
                             <x-forms.input_v id="name" type="text" name="name" label="Nama" isRequired="true"
                                 value="{{ $user->name }}" isReadonly="" placeholder="Nama" />
 
+                            <x-forms.input_v id="username" type="text" name="username" label="Username"
+                                isRequired="true" value="{{ $user->username }}" isReadonly="" placeholder="Username" />
+
                             <x-forms.input_v id="email" type="email" name="email" label="Email" isRequired="true"
                                 value="{{ $user->email }}" isReadonly="" placeholder="Email" />
 

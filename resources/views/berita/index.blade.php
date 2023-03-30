@@ -122,7 +122,7 @@
                                     <th>No</th>
                                     <th>Judul Halaman</th>
                                     <th>Kategori</th>
-                                    <th>Gambar</th>
+                                    <th>Cover</th>
                                     <th>Publish</th>
                                     <th>Aksi</th>
                                 </tr>

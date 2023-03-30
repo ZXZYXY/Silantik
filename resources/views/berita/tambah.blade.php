@@ -58,6 +58,8 @@
     <!--page-content-wrapper-->
     <div class="page-content-wrapper">
         <div class="page-content">
+            <button class="btn btn-primary btn-sm mb-3" onclick="window.history.back();"><i class="fa fa-reply"></i>
+                Kembali</button>
             <div class="card">
                 <div class="card-body">
                     <h4 class="mb-0">Tambah Berita</h4>
@@ -79,12 +81,6 @@
                                 <x-forms.input_v id="judul" type="text" name="judul" label="Judul Berita"
                                     isRequired="true" value="" isReadonly="" placeholder="Judul Berita" />
 
-                                <x-forms.textarea_v id="isi" type="text" name="isi" label="Isi Berita"
-                                    isRequired="true" value="" isReadonly="" />
-
-
-                            </div>
-                            <div class="col-md-4">
                                 <x-forms.select_v id="kategori" name="kategori" label="Kategori" isRequired="true"
                                     isSelect2="false">
                                     <option value="">[Pilih]</option>
@@ -100,9 +96,6 @@
                                         AIDS Tuberculosis Malaria (ATM)</option>
                                 </x-forms.select_v>
 
-                                <x-forms.input_v id="gambar" type="file" name="gambar" label="Gambar"
-                                    isRequired="true" placeholder="" value="" isReadonly="" />
-
                                 <x-forms.select_v id="published" name="published" label="Status" isRequired="true"
                                     isSelect2="false">
                                     <option value="">[Pilih]</option>
@@ -112,6 +105,19 @@
                                         Non
                                         Aktif</option>
                                 </x-forms.select_v>
+
+                                <x-forms.textarea_v id="isi" type="text" name="isi" label="Isi Berita"
+                                    isRequired="true" value="" isReadonly="" />
+
+
+                            </div>
+                            <div class="col-md-4">
+
+
+                                <x-forms.input_v id="gambar" type="file" name="gambar" label="Cover"
+                                    isRequired="true" placeholder="" value="" isReadonly="" />
+
+
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>
                                     Submit</button>
                             </div>

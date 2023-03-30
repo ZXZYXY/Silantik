@@ -22,11 +22,9 @@
                             <div class="text-center mb-3">
                                 <img src="{{ auth()->user()->getAvatarProfil() }}" class="rounded-circle shadow"
                                     width="130" height="130" alt="User profile picture" />
-
                             </div>
 
                             <h4 class="profile-username text-center">{{ $data->name }}</h4>
-
                             <p class="text-muted text-center">
                                 @if (!empty($data->getRoleNames()))
                                     @foreach ($data->getRoleNames() as $v)
@@ -52,21 +50,16 @@
                                 @csrf
                                 <x-forms.input_h id="name" type="text" name="name" label="Nama Lengkap"
                                     isRequired="true" value="{{ $data->name }}" isReadonly="" placeholder="" />
-                                {{-- <x-forms.input_h id="username" type="text" name="username" label="Username"
-                                                isRequired="true" value="{{ $data->username }}" isReadonly=""
-                                                placeholder="" /> --}}
+                                <x-forms.input_h id="username" type="text" name="username" label="Username"
+                                    isRequired="true" value="{{ $data->username }}" isReadonly="" placeholder="" />
                                 <x-forms.input_h id="email" type="email" name="email" label="E-mail"
                                     isRequired="true" value="{{ $data->email }}" isReadonly="" placeholder="" />
-                                {{-- <x-forms.input_h id="no_hp" type="text" name="no_hp" label="No. Hp"
-                                                isRequired="false" value="{{ $data->no_hp }}" isReadonly=""
-                                                placeholder="" /> --}}
                                 <x-forms.input_h id="photo" type="file" name="photo" label="Foto Profil"
                                     isRequired="false" value="" isReadonly="" placeholder="">
                                     <span class="text-info"><i>Tipe File : jpeg, jpg, png <br> Ukuran
                                             Maksimal :
                                             5mb</i></span>
                                 </x-forms.input_h>
-
 
                                 <div class="form-group row">
                                     <label class="label-text col-lg-4 col-form-label text-md-right"></label>
@@ -88,12 +81,12 @@
                             <form action="{{ url('profil/ganti_password') }}" method="post">
                                 @csrf
                                 <x-forms.input_h id="" type="password" name="password_lama" label="Password Lama"
-                                    isRequired="false" value="" isReadonly="" placeholder="" />
+                                    isRequired="false" value="" isReadonly="" placeholder="Password Lama" />
                                 <x-forms.input_h id="" type="password" name="password" label="Password Baru"
-                                    isRequired="false" value="" isReadonly="" placeholder="" />
+                                    isRequired="false" value="" isReadonly="" placeholder="Password Baru" />
                                 <x-forms.input_h id="" type="password" name="password_baru"
                                     label="Konfirmasi Password Baru" isRequired="false" value="" isReadonly=""
-                                    placeholder="" />
+                                    placeholder="Konfirmasi Password Baru" />
 
                                 <div class="form-group row">
                                     <label class="label-text col-lg-4 col-form-label text-md-right"></label>
@@ -106,12 +99,6 @@
                             </form>
                         </div>
                     </div>
-
-
-
-
-
-
                 </div>
                 <!-- /.col -->
             </div>

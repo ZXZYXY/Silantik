@@ -28,6 +28,7 @@ class ProfilController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'username' => 'required',
             'email' => 'required|email',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:5048'
         ]);
@@ -36,6 +37,7 @@ class ProfilController extends Controller
         DB::beginTransaction();
         try {
             $user->name        = $request->name;
+            $user->username        = $request->username;
             $user->email       = $request->email;
 
             if ($request->hasFile('photo')) {

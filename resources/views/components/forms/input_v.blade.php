@@ -10,6 +10,7 @@
     @else
         value="{{ old('.$name.') }}" @endif
         @if ($isRequired == 'true') required @endif @if ($isReadonly == 'true') readonly @endif />
+    {{ $slot }}
     @if ($errors->has($name))
         <span class="text-danger">{{ $errors->first($name) }}</span>
     @endif
