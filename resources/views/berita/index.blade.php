@@ -104,7 +104,7 @@
             @can('berita-create')
                 <div class="ms-auto mb-3">
                     <a class="btn btn-primary btn-sm text-right" href="{{ route('berita.create') }}"><i
-                            class="fa fa-plus-circle"></i>
+                            class="fa fa-plus-circle"></i> Tambah
                     </a>
                 </div>
             @endcan

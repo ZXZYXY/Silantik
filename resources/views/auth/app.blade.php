@@ -5,9 +5,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>@yield('title')</title>
+    <title>@yield('title') - {{ konfigurasi()->nama_aplikasi }}</title>
     <!--favicon-->
-    <link rel="icon" href="{{ asset('theme') }}/assets/images/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="{{ asset('images/' . konfigurasi()->favicon) }}">
+
     <!-- loader-->
     <link href="{{ asset('theme') }}/assets/css/pace.min.css" rel="stylesheet" />
     <script src="{{ asset('theme') }}/assets/js/pace.min.js"></script>

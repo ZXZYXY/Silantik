@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>@yield('title')</title>
+    <title>@yield('title') - {{ konfigurasi()->nama_aplikasi }}</title>
+    <link rel="icon" href="{{ asset('images/' . konfigurasi()->favicon) }}">
+
     @include('layouts.partials.css')
     @stack('style')
 </head>
