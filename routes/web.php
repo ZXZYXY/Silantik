@@ -9,6 +9,8 @@ use App\Http\Controllers\KonfigurasiwebController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\DaftaraplikasiController;
+use App\Http\Controllers\PermohonanController;
 
 
 /*
@@ -42,6 +44,13 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::resource('berita', BeritaController::class);
+    Route::resource('daftaraplikasi', DaftaraplikasiController::class);
+
+    //Permohonan
+    Route::group(['prefix' => 'permohonan'], function () {
+        Route::get('/pembuatan', [PermohonanController::class, 'pembuatan']);
+        Route::get('/pembaharuan', [PermohonanController::class, 'pembaharuan']);
+    });
 
     Route::group(['prefix' => 'setting'], function () {
         Route::resource('roles', RoleController::class);
@@ -61,4 +70,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/role', [RoleController::class, 'dataTable'])->name('table.role');
     Route::get('/table/permission', [PermissionController::class, 'dataTable'])->name('table.permission');
     Route::get('/table/berita', [BeritaController::class, 'dataTable'])->name('table.berita');
+    Route::get('/table/daftaraplikasi', [DaftaraplikasiController::class, 'dataTable'])->name('table.daftaraplikasi');
+    Route::get('/table/pembuatan', [PermohonanController::class, 'dataTable_pembuatan'])->name('table.permohonan_pembuatan');
+    Route::get('/table/pembaharuan', [PermohonanController::class, 'dataTable_pembaharuan'])->name('table.permohonan_pembaharuan');
 });

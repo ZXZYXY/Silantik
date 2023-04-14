@@ -1,6 +1,7 @@
 <!--navigation-->
+
 <ul class="metismenu" id="menu">
-    <li class="menu-label">Menu</li>
+    <li class="menu-label">{{ TanggalID(now()) }}</li>
     @can('dashboard-index')
         <li {{ setActive('home') }}>
             <a href="{{ route('home') }}">
@@ -10,6 +11,65 @@
             </a>
         </li>
     @endcan
+
+    @can('daftaraplikasi-list')
+        <li class="{{ setActive('daftaraplikasi') }}">
+            <a href="{{ route('daftaraplikasi.index') }}">
+                <div class="parent-icon icon-color-4"><i class="bx bx-archive"></i>
+                </div>
+                <div class="menu-title">Daftar Aplikasi</div>
+            </a>
+        </li>
+    @endcan
+
+    <li class="{{ openMenu('permohonan') }}">
+        @if (auth()->user()->can('pembuatan-list') ||
+                auth()->user()->can('pembaharuan-list'))
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon icon-color-10"><i class="bx bx-comment-edit"></i>
+                </div>
+                <div class="menu-title">Permohonan</div>
+            </a>
+        @endif
+        <ul>
+            @can('pembuatan-list')
+                <li class="{{ setActive('permohonan/pembuatan') }}">
+                    <a href="{{ url('permohonan/pembuatan') }}"><i class="bx bx-right-arrow-alt"></i>Pembuatan Aplikasi</a>
+                </li>
+            @endcan
+
+            @can('pembaharuan-list')
+                <li class="{{ setActive('permohonan/pembaharuan') }}">
+                    <a href="{{ url('permohonan/pembaharuan') }}"><i class="bx bx-right-arrow-alt"></i>Pembaharuan
+                        Aplikasi</a>
+                </li>
+            @endcan
+        </ul>
+    </li>
+
+    <li class="{{ openMenu('pengaduan') }}">
+        @if (auth()->user()->can('pengaduan-aplikasi-list') ||
+                auth()->user()->can('pengaduan-jaringan-list'))
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon icon-color-11"><i class="bx bx-help-circle"></i>
+                </div>
+                <div class="menu-title">Pengaduan</div>
+            </a>
+        @endif
+        <ul>
+            @can('pembuatan-list')
+                <li class="{{ setActive('pengaduan/aplikasi') }}">
+                    <a href="{{ url('pengaduan/aplikasi') }}"><i class="bx bx-right-arrow-alt"></i>Aplikasi</a>
+                </li>
+            @endcan
+
+            @can('pembaharuan-list')
+                <li class="{{ setActive('pengaduan/jaringan') }}">
+                    <a href="{{ url('pengaduan/jaringan') }}"><i class="bx bx-right-arrow-alt"></i>Jaringan</a>
+                </li>
+            @endcan
+        </ul>
+    </li>
 
     @can('user-list')
         <li class="{{ setActive('users') }}">
