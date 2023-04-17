@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DaftaraplikasiController;
 use App\Http\Controllers\PermohonanController;
+use App\Http\Controllers\OpdController;
 
 
 /*
@@ -65,6 +66,11 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
         Route::post('/konfigurasi/gambar_sidebar', [KonfigurasiwebController::class, 'gambar_sidebar']);
     });
 
+    //Data Master
+    Route::group(['prefix' => 'data-master'], function () {
+        Route::resource('opd', OpdController::class);
+    });
+
     //Tabel
     Route::get('/table/user', [UserController::class, 'dataTable'])->name('table.user');
     Route::get('/table/role', [RoleController::class, 'dataTable'])->name('table.role');
@@ -73,4 +79,5 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/daftaraplikasi', [DaftaraplikasiController::class, 'dataTable'])->name('table.daftaraplikasi');
     Route::get('/table/pembuatan', [PermohonanController::class, 'dataTable_pembuatan'])->name('table.permohonan_pembuatan');
     Route::get('/table/pembaharuan', [PermohonanController::class, 'dataTable_pembaharuan'])->name('table.permohonan_pembaharuan');
+    Route::get('/table/opd', [OpdController::class, 'dataTable'])->name('table.opd');
 });

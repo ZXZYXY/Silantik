@@ -3,9 +3,26 @@
     Tambah User
 @endsection
 @push('style')
+    <link href="{{ asset('theme') }}/select2/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 @push('script')
+    <script src="{{ asset('theme') }}/select2/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select2').select2();
+            $('#opd').hide();
+        });
+    </script>
+    <script>
+        function showOpd(select) {
+            if (select.value == 'operator_opd') {
+                $('#opd').show();
+            } else {
+                $('#opd').hide();
+            }
+        }
+    </script>
 @endpush
 
 @section('content')
@@ -48,7 +65,7 @@
                                     placeholder="Confirm Password" />
 
                                 <x-forms.select_v id="roles" name="roles" label="Role" isRequired="true"
-                                    isSelect2="false">
+                                    isSelect2="true">
                                     <option value="" selected disabled>[Pilih]</option>
                                     @foreach ($roles as $list)
                                         <option value="{{ $list->name }}"

@@ -91,6 +91,24 @@
         </li>
     @endcan
 
+    <li class="{{ openMenu('data-master') }}">
+        @if (auth()->user()->can('opd-list'))
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon icon-color-8"><i class="bx bx-folder"></i>
+                </div>
+                <div class="menu-title">Master Data</div>
+            </a>
+        @endif
+        <ul>
+            @can('role-list')
+                <li class="{{ setActive('data-master/opd') }}">
+                    <a href="{{ route('opd.index') }}"><i class="bx bx-right-arrow-alt"></i>OPD</a>
+                </li>
+            @endcan
+
+        </ul>
+    </li>
+
     <li class="{{ openMenu('setting') }}">
         @if (auth()->user()->can('role-list') ||
                 auth()->user()->can('permission-list') ||

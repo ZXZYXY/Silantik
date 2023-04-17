@@ -3,8 +3,8 @@
     'method' => $model->exists ? 'PUT' : 'POST',
 ]) !!}
 
-<div class="form-group">
-    <label>Nama OPD <small style="color: red;">*</small></label>
+<div class="mb-3">
+    <label class="form-label">Nama OPD <small style="color: red;">*</small></label>
     {!! Form::text('nama_opd', null, [
         'class' => 'form-control form-control-sm',
         'id' => 'nama_opd',
@@ -12,8 +12,8 @@
     ]) !!}
 </div>
 
-<div class="form-group">
-    <label>Singkatan <small style="color: red;">*</small></label>
+<div class="mb-3">
+    <label class="form-label">Singkatan <small style="color: red;">*</small></label>
     {!! Form::text('singkatan', null, [
         'class' => 'form-control form-control-sm',
         'id' => 'singkatan',

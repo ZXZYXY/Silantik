@@ -3,9 +3,16 @@
     Tambah Aplikasi
 @endsection
 @push('style')
+    <link href="{{ asset('theme') }}/select2/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 @push('script')
+    <script src="{{ asset('theme') }}/select2/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 @endpush
 
 @section('content')
@@ -31,13 +38,24 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <x-forms.input_v id="name" type="text" name="name" label="Nama"
-                                    isRequired="true" value="" isReadonly="" placeholder="Nama" />
+                                <x-forms.input_v id="tahun_pembuatan" type="text" name="tahun_pembuatan"
+                                    label="Tahun Pembuatan" isRequired="true" value="" isReadonly=""
+                                    placeholder="Tahun Pembuatan" />
 
+                                <x-forms.input_v id="nama_aplikasi" type="text" name="nama_aplikasi" label="Nama"
+                                    isRequired="true" value="" isReadonly="" placeholder="Nama Aplikasi" />
 
+                                <x-forms.textarea_v id="deskripsi" type="text" name="deskripsi" label="Deskripsi"
+                                    isRequired="true" value="" isReadonly="" placeholder="Deskripsi" />
+
+                                <x-forms.input_v id="link_app" type="text" name="link_app" label="Link/URL"
+                                    isRequired="true" value="" isReadonly="" placeholder="Link/URL Aplikasi" />
+
+                                <x-forms.input_v id="jenis" type="text" name="jenis" label="Jenis Aplikasi"
+                                    isRequired="true" value="" isReadonly="" placeholder="Jenis Aplikasi" />
 
                                 <x-forms.select_v id="opd" name="opd" label="OPD" isRequired="true"
-                                    isSelect2="false">
+                                    isSelect2="true">
                                     <option value="" selected disabled>[Pilih]</option>
                                     @foreach ($opd as $list)
                                         <option value="{{ $list->nama_opd }}"
