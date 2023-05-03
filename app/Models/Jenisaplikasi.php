@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Uuid;
 
-class Permohonan extends Model
+class Jenisaplikasi extends Model
 {
     use Uuid;
     use HasFactory;
-    protected $table = 'permohonan';
-    protected $guard = [];
+
+    protected $table = 'jenis_aplikasi';
+    protected $fillable = ['nama_jenis'];
 }

@@ -134,7 +134,13 @@
     <!--page-content-wrapper-->
     <div class="page-content-wrapper">
         <div class="page-content">
-
+            @can('pembaharuan-create')
+                <div class="ms-auto mb-3">
+                    <a class="btn btn-primary btn-sm text-right" href="{{ url('permohonan/pembaharuan/create') }}"><i
+                            class="fa fa-plus-circle"></i> Tambah
+                    </a>
+                </div>
+            @endcan
             <div class="card">
                 <div class="card-body">
                     <h4 class="mb-0">Permohonan Pembaharuan Aplikasi</h4>

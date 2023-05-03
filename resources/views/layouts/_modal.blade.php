@@ -11,7 +11,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="modal-btn-save">SIMPAN</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
             </div>
         </div>
     </div>

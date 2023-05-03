@@ -12,6 +12,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DaftaraplikasiController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\OpdController;
+use App\Http\Controllers\JenisaplikasiController;
 
 
 /*
@@ -49,8 +50,15 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
 
     //Permohonan
     Route::group(['prefix' => 'permohonan'], function () {
+        //pembuatan
         Route::get('/pembuatan', [PermohonanController::class, 'pembuatan']);
+        Route::get('/pembuatan/create', [PermohonanController::class, 'create_pembuatan']);
+        Route::post('/pembuatan/store', [PermohonanController::class, 'store_pembuatan']);
+        Route::get('/pembuatan/detail/{id}', [PermohonanController::class, 'pembuatan_detail']);
+
+        //pembaharuan
         Route::get('/pembaharuan', [PermohonanController::class, 'pembaharuan']);
+        Route::get('/pembaharuan/create', [PermohonanController::class, 'create_pembaharuan']);
     });
 
     Route::group(['prefix' => 'setting'], function () {
@@ -69,6 +77,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     //Data Master
     Route::group(['prefix' => 'data-master'], function () {
         Route::resource('opd', OpdController::class);
+        Route::resource('jenisaplikasi', JenisaplikasiController::class);
     });
 
     //Tabel
@@ -80,4 +89,5 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/pembuatan', [PermohonanController::class, 'dataTable_pembuatan'])->name('table.permohonan_pembuatan');
     Route::get('/table/pembaharuan', [PermohonanController::class, 'dataTable_pembaharuan'])->name('table.permohonan_pembaharuan');
     Route::get('/table/opd', [OpdController::class, 'dataTable'])->name('table.opd');
+    Route::get('/table/jenisaplikasi', [JenisaplikasiController::class, 'dataTable'])->name('table.jenisaplikasi');
 });

@@ -100,9 +100,15 @@
             </a>
         @endif
         <ul>
-            @can('role-list')
+            @can('opd-list')
                 <li class="{{ setActive('data-master/opd') }}">
                     <a href="{{ route('opd.index') }}"><i class="bx bx-right-arrow-alt"></i>OPD</a>
+                </li>
+            @endcan
+
+            @can('jenisaplikasi-list')
+                <li class="{{ setActive('data-master/jenisaplikasi') }}">
+                    <a href="{{ route('jenisaplikasi.index') }}"><i class="bx bx-right-arrow-alt"></i>Jenis Aplikasi</a>
                 </li>
             @endcan
 
