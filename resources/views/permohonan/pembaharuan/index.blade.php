@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Pembuatan Aplikasi
+    Pembaharuan Aplikasi
 @endsection
 @push('style')
     <!--Data Tables -->
@@ -25,43 +25,38 @@
                 processing: true,
                 serverSide: true,
                 autoWidth: false,
-                ajax: "{{ route('table.permohonan_pembuatan') }}",
+                ajax: "{{ route('table.permohonan_pembaharuan') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'id'
                     },
                     {
-                        data: 'tahun_pembuatan',
-                        name: 'tahun_pembuatan'
+                        data: 'action',
+                        name: 'action'
+                    },
+                    {
+                        data: 'tanggal',
+                        name: 'tanggal'
                     },
                     {
                         data: 'nama_aplikasi',
                         name: 'nama_aplikasi'
                     },
                     {
-                        data: 'link_app',
-                        name: 'link_app'
+                        data: 'deskripsi',
+                        name: 'deskripsi'
                     },
                     {
-                        data: 'opd',
-                        name: 'opd'
+                        data: 'nama_opd',
+                        name: 'nama_opd'
                     },
+
                     {
-                        data: 'jenis',
-                        name: 'jenis'
-                    },
-                    {
-                        data: 'screenshoot',
-                        name: 'screenshoot'
-                    },
-                    {
-                        data: 'file_pendukung',
-                        name: 'file_pendukung'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action'
+                        data: 'status',
+                        name: 'status'
                     }
+
+
                 ]
             });
 
@@ -69,11 +64,11 @@
                 event.preventDefault();
 
                 var token = $("meta[name='csrf-token']").attr("content");
-                var user_name = $(this).attr('user-name'),
-                    title = user_name.replace(/\w\S*/g, function(txt) {
+                var pembaharuan_name = $(this).attr('pembaharuan-name'),
+                    title = pembaharuan_name.replace(/\w\S*/g, function(txt) {
                         return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
                     });
-                user_id = $(this).attr('user-id');
+                pembaharuan_id = $(this).attr('pembaharuan-id');
                 swal({
                         title: "Anda Yakin?",
                         text: "Mau Menghapus Data : " + title + "?",
@@ -85,7 +80,7 @@
                         if (result) {
 
                             $.ajax({
-                                url: "/users/" + user_id,
+                                url: "/permohonan/pembaharuan/delete/" + pembaharuan_id,
                                 type: "POST",
                                 data: {
                                     _method: "DELETE",
@@ -134,16 +129,16 @@
     <!--page-content-wrapper-->
     <div class="page-content-wrapper">
         <div class="page-content">
-            @can('pembuatan-create')
+            @can('pembaharuan-create')
                 <div class="ms-auto mb-3">
-                    <a class="btn btn-primary btn-sm text-right" href="{{ url('permohonan/pembuatan/create') }}"><i
+                    <a class="btn btn-primary btn-sm text-right" href="{{ url('permohonan/pembaharuan/create') }}"><i
                             class="fa fa-plus-circle"></i> Tambah
                     </a>
                 </div>
             @endcan
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Permohonan Pembuatan Aplikasi</h4>
+                    <h4 class="mb-0">Permohonan Pembaharuan Aplikasi</h4>
                     <hr>
 
                     <div class="table-responsive">
@@ -151,13 +146,12 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Aksi</th>
                                     <th>Tanggal</th>
                                     <th>Nama Aplikasi</th>
-                                    <th>Deskripsi Aplikasi</th>
+                                    <th>Detail Update</th>
                                     <th>OPD</th>
-                                    <th>Surat Permohonan</th>
                                     <th>Status</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

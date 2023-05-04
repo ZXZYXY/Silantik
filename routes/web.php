@@ -50,15 +50,22 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
 
     //Permohonan
     Route::group(['prefix' => 'permohonan'], function () {
+        Route::post('/store', [PermohonanController::class, 'store']);
+        Route::post('/update', [PermohonanController::class, 'update']);
+
         //pembuatan
         Route::get('/pembuatan', [PermohonanController::class, 'pembuatan']);
         Route::get('/pembuatan/create', [PermohonanController::class, 'create_pembuatan']);
-        Route::post('/pembuatan/store', [PermohonanController::class, 'store_pembuatan']);
-        Route::get('/pembuatan/detail/{id}', [PermohonanController::class, 'pembuatan_detail']);
+        Route::get('/pembuatan/edit/{id}', [PermohonanController::class, 'edit_pembuatan']);
+        Route::get('/pembuatan/detail/{id}', [PermohonanController::class, 'show_pembuatan']);
+        Route::delete('/pembuatan/delete/{id}', [PermohonanController::class, 'destroy_pembuatan']);
 
         //pembaharuan
         Route::get('/pembaharuan', [PermohonanController::class, 'pembaharuan']);
         Route::get('/pembaharuan/create', [PermohonanController::class, 'create_pembaharuan']);
+        Route::get('/pembaharuan/edit/{id}', [PermohonanController::class, 'edit_pembaharuan']);
+        Route::get('/pembaharuan/detail/{id}', [PermohonanController::class, 'show_pembaharuan']);
+        Route::delete('/pembaharuan/delete/{id}', [PermohonanController::class, 'destroy_pembaharuan']);
     });
 
     Route::group(['prefix' => 'setting'], function () {

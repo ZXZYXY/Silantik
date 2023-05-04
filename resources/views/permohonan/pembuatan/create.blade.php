@@ -37,7 +37,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ url('permohonan/pembuatan/store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('permohonan/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">

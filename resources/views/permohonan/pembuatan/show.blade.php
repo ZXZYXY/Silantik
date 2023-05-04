@@ -1,11 +1,20 @@
 @extends('layouts.master')
 @section('title')
-    Tambah Pembaharuan Aplikasi
+    Detail Pembuatan Aplikasi
 @endsection
 @push('style')
+    <link rel="stylesheet" href="{{ asset('theme') }}/select2/css/select2.min.css">
 @endpush
 
 @push('script')
+    <!-- Select2 -->
+    <script src="{{ asset('theme') }}/select2/js/select2.full.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 @endpush
 
 @section('content')
@@ -16,8 +25,9 @@
                 Kembali</button>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Tambah Permohonan Pembaharuan Aplikasi</h4>
+                    <h4 class="mb-0">Detail Permohonan Pembuatan Aplikasi</h4>
                     <hr>
+
 
 
                 </div>
