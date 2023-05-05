@@ -13,6 +13,7 @@ use App\Http\Controllers\DaftaraplikasiController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\OpdController;
 use App\Http\Controllers\JenisaplikasiController;
+use App\Http\Controllers\PengaduanController;
 
 
 /*
@@ -68,6 +69,12 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
         Route::delete('/pembaharuan/delete/{id}', [PermohonanController::class, 'destroy_pembaharuan']);
     });
 
+    Route::group(['prefix' => 'pengaduan'], function () {
+        Route::get('/{jenis_pengaduan}', [PengaduanController::class, 'index']);
+        Route::get('/{jenis_pengaduan}/create', [PengaduanController::class, 'create']);
+        Route::post('/store', [PengaduanController::class, 'store']);
+    });
+
     Route::group(['prefix' => 'setting'], function () {
         Route::resource('roles', RoleController::class);
         Route::resource('permission', PermissionController::class);
@@ -97,4 +104,5 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/pembaharuan', [PermohonanController::class, 'dataTable_pembaharuan'])->name('table.permohonan_pembaharuan');
     Route::get('/table/opd', [OpdController::class, 'dataTable'])->name('table.opd');
     Route::get('/table/jenisaplikasi', [JenisaplikasiController::class, 'dataTable'])->name('table.jenisaplikasi');
+    Route::get('/table/pengaduan/{jenis}', [PengaduanController::class, 'dataTable']);
 });
