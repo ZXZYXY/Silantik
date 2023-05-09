@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Pengaduan
+    Pengaduan {{ strtoupper($jenis) }}
 @endsection
 @push('style')
     <!-- DataTables -->
@@ -58,11 +58,11 @@
                 event.preventDefault();
 
                 var token = $("meta[name='csrf-token']").attr("content");
-                var berita_name = $(this).attr('berita-name'),
-                    title = berita_name.replace(/\w\S*/g, function(txt) {
+                var pengaduan_name = $(this).attr('pengaduan-name'),
+                    title = pengaduan_name.replace(/\w\S*/g, function(txt) {
                         return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
                     });
-                berita_id = $(this).attr('berita-id');
+                pengaduan_id = $(this).attr('pengaduan-id');
                 swal({
                         title: "Anda Yakin?",
                         text: "Mau Menghapus Data : " + title + "?",
@@ -74,7 +74,7 @@
                         if (result) {
 
                             $.ajax({
-                                url: "/berita/" + berita_id,
+                                url: "/pengaduan/delete/" + pengaduan_id,
                                 type: "POST",
                                 data: {
                                     _method: "DELETE",
@@ -113,26 +113,26 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Data Pengaduan</h4>
+                    <h4 class="mb-0">Data Pengaduan {{ strtoupper($jenis) }}</h4>
                     <hr>
 
-                    <div class="table-responsive">
-                        <table id="datatable" class="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Tanggal</th>
-                                    <th>Judul</th>
-                                    <th>Isi Pengaduan</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
-                            </tbody>
-                        </table>
-                    </div>
+                    <table id="datatable" class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Judul</th>
+                                <th>Isi Pengaduan</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>

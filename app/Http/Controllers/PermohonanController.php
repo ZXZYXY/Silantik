@@ -180,18 +180,9 @@ class PermohonanController extends Controller
         $data = Permohonan::orderby('id', 'desc')->where('jenis_permohonan', 'pembuatan')->get();
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
-                $edit = '<a href="' . url('permohonan/pembuatan/edit/' . $data->uuid) . '" class="btn btn-warning btn-sm" title="Edit"><i class="lni lni-highlight-alt"></i></a>';
-                $hapus = '<button class="btn btn-danger btn-sm hapus" pembuatan-name="' . $data->nama_aplikasi . '" pembuatan-id="' . $data->uuid . '" title="Delete"><i class="lni lni-trash"></i></button>';
-                $detail = '<a href="' . url('permohonan/pembuatan/detail/' . $data->uuid) . '" class="btn btn-info btn-sm" title="Detail"><i class="fa fa-eye"></i></a>';
-                if (auth()->user()->can('pembuatan-edit') and auth()->user()->can('pembuatan-delete')) {
-                    return $detail . ' ' . $edit . ' ' . $hapus;
-                } elseif (auth()->user()->can('pembuatan-edit')) {
-                    return $detail . ' ' . $edit;
-                } elseif (auth()->user()->can('pembuatan-delete')) {
-                    return $detail . ' ' . $hapus;
-                } else {
-                    return 'No Action';
-                }
+                return view('permohonan.pembuatan.aksi', [
+                    'data' => $data
+                ]);
             })
             ->addColumn('tanggal', function ($data) {
                 return TanggalAja($data->tanggal);
@@ -206,7 +197,11 @@ class PermohonanController extends Controller
             })
 
             ->addColumn('status', function ($data) {
-                return $data->status;
+                if ($data->status == NULL) {
+                    return 'Permohonan Baru';
+                } else {
+                    return $data->status;
+                }
             })
 
             ->addIndexColumn()
@@ -219,18 +214,9 @@ class PermohonanController extends Controller
         $data = Permohonan::orderby('id', 'desc')->where('jenis_permohonan', 'pembaharuan')->get();
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
-                $edit = '<a href="' . url('permohonan/pembaharuan/edit/' . $data->uuid) . '" class="btn btn-warning btn-sm" title="Edit"><i class="lni lni-highlight-alt"></i></a>';
-                $hapus = '<button class="btn btn-danger btn-sm hapus" pembaharuan-name="' . $data->nama_aplikasi . '" pembaharuan-id="' . $data->uuid . '" title="Delete"><i class="lni lni-trash"></i></button>';
-                $detail = '<a href="' . url('permohonan/pembaharuan/detail/' . $data->uuid) . '" class="btn btn-info btn-sm" title="Detail"><i class="fa fa-eye"></i></a>';
-                if (auth()->user()->can('pembaharuan-edit') and auth()->user()->can('pembaharuan-delete')) {
-                    return $detail . ' ' . $edit . ' ' . $hapus;
-                } elseif (auth()->user()->can('pembaharuan-edit')) {
-                    return $detail . ' ' . $edit;
-                } elseif (auth()->user()->can('pembaharuan-delete')) {
-                    return $detail . ' ' . $hapus;
-                } else {
-                    return 'No Action';
-                }
+                return view('permohonan.pembaharuan.aksi', [
+                    'data' => $data
+                ]);
             })
             ->addColumn('tanggal', function ($data) {
                 return TanggalAja($data->tanggal);
@@ -245,7 +231,11 @@ class PermohonanController extends Controller
             })
 
             ->addColumn('status', function ($data) {
-                return $data->status;
+                if ($data->status == NULL) {
+                    return 'Permohonan Baru';
+                } else {
+                    return $data->status;
+                }
             })
             ->addIndexColumn()
             ->rawColumns(['action', 'tanggal', 'surat', 'status'])

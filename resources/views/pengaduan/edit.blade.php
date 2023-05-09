@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Pengaduan {{ strtoupper($jenis) }}
+    Edit Pengaduan {{ strtoupper($jenis) }}
 @endsection
 @push('style')
     <link href="{{ asset('theme') }}/select2/css/select2.min.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
                 Kembali</button>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Form Pengaduan {{ strtoupper($jenis) }}</h4>
+                    <h4 class="mb-0">Form Edit Pengaduan {{ strtoupper($jenis) }}</h4>
                     <hr>
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -34,16 +34,17 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ url('pengaduan/store') }}" method="POST">
+                    <form action="{{ url('pengaduan/update') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="hidden" name="jenis_pengaduan" value="{{ $jenis }}">
+                                <input type="hidden" name="uuid" value="{{ $data->uuid }}">
                                 <x-forms.input_v id="judul" type="text" name="judul" label="Judul"
-                                    isRequired="true" value="" isReadonly="" placeholder="Judul" />
+                                    isRequired="true" value="{{ $data->judul }}" isReadonly="" placeholder="Judul" />
 
                                 <x-forms.textarea_v id="isi" type="text" name="isi" label="Detail Pengaduan"
-                                    isRequired="true" value="" isReadonly="" placeholder="" />
+                                    isRequired="true" value="{{ $data->isi }}" isReadonly="" placeholder="" />
 
                                 <button type="submit" class="btn btn-primary"><i class="lni lni-save"></i> Submit</button>
 

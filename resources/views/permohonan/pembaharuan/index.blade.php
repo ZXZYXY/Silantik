@@ -30,10 +30,7 @@
                         data: 'DT_RowIndex',
                         name: 'id'
                     },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    },
+
                     {
                         data: 'tanggal',
                         name: 'tanggal'
@@ -50,11 +47,14 @@
                         data: 'nama_opd',
                         name: 'nama_opd'
                     },
-
                     {
                         data: 'status',
                         name: 'status'
-                    }
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    },
 
 
                 ]
@@ -140,25 +140,23 @@
                 <div class="card-body">
                     <h4 class="mb-0">Permohonan Pembaharuan Aplikasi</h4>
                     <hr>
+                    <table id="datatable" class="table table-hover table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Nama Aplikasi</th>
+                                <th>Detail Update</th>
+                                <th>OPD</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    <div class="table-responsive">
-                        <table id="datatable" class="table table-hover table-striped" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Aksi</th>
-                                    <th>Tanggal</th>
-                                    <th>Nama Aplikasi</th>
-                                    <th>Detail Update</th>
-                                    <th>OPD</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        </tbody>
+                    </table>
 
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>

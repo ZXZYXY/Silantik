@@ -29,6 +29,73 @@ class PengaduanController extends Controller
         return view('pengaduan.tambah', compact('jenis'));
     }
 
+    public function edit($jenis_pengaduan, $id)
+    {
+        $jenis = $jenis_pengaduan;
+        $data = Pengaduan::where('uuid', $id)->first();
+        return view('pengaduan.edit', compact('jenis', 'data'));
+    }
+
+    public function show($jenis_pengaduan, $id)
+    {
+        $jenis = $jenis_pengaduan;
+        $data = Pengaduan::where('uuid', $id)->first();
+        return view('pengaduan.detail', compact('jenis', 'data'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'judul' => 'required',
+            'isi' => 'required',
+
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $data = new Pengaduan();
+            $data->opd_id           = auth()->user()->opd_id;
+            $data->pelapor_id       = auth()->user()->id;
+            $data->jenis_pengaduan  = $request->jenis_pengaduan;
+            $data->judul            = $request->judul;
+            $data->isi              = $request->isi;
+            $data->tanggal          = date('Y-m-d');
+            $data->save();
+
+            DB::commit();
+            return redirect('pengaduan/' . $request->jenis_pengaduan)->with('success', 'Pengaduan Terkirim');
+        } catch (\Exception $e) {
+            //dd($e);
+            DB::rollback();
+            return redirect()->back()->with('gagal', 'Data Gagal Diinput');
+        }
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'judul' => 'required',
+            'isi' => 'required',
+
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $data = Pengaduan::where('uuid', $request->uuid)->first();
+
+            $data->judul            = $request->judul;
+            $data->isi              = $request->isi;
+            $data->save();
+
+            DB::commit();
+            return redirect('pengaduan/' . $request->jenis_pengaduan)->with('success', 'Pengaduan Diubah');
+        } catch (\Exception $e) {
+            //dd($e);
+            DB::rollback();
+            return redirect()->back()->with('gagal', 'Data Gagal Diinput');
+        }
+    }
+
     public function dataTable($jenis)
     {
         $opd_id = auth()->user()->opd_id;
@@ -39,15 +106,36 @@ class PengaduanController extends Controller
         }
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
-                $detail = '<button data-toggle="modal" data-kategori="' . $data->judul . '" data-target-id="' . $data->uuid . '" data-target="#ShowDETAIL" class="btn btn-info btn-xs" title="Detail"><i class="fa fa-eye"></i></button>';
-                $edit = '<a href="' . url('pengaduan/' . $data->jenis_pengaduan . '/edit/' . $data->uuid) . '" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-edit"></i></a>';
-                $hapus = '<button class="btn btn-danger btn-xs hapus" pengaduan-name="' . $data->judul . '" pengaduan-id="' . $data->uuid . '" title="Delete"><i class="fa fa-trash"></i></button>';
+                return view('pengaduan.aksi', [
+                    'data' => $data
+                ]);
+            })
 
-                return $detail . ' ' . $edit . ' ' . $hapus;
+            ->addColumn('tanggal', function ($data) {
+                return TanggalAja($data->tanggal);
+            })
+
+            ->addColumn('status', function ($data) {
+                if ($data->status == NULL) {
+                    return 'Pengaduan Baru';
+                } else {
+                    return $data->status;
+                }
             })
 
             ->addIndexColumn()
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'pengaduan', 'tanggal'])
             ->make(true);
+    }
+
+    public function destroy($id)
+    {
+        $model = Pengaduan::where('uuid', $id);
+        $model->delete();
+
+        return response()->json([
+            'status' => 'true',
+            'messages' => 'Data Berhasil dihapus'
+        ]);
     }
 }

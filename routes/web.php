@@ -72,7 +72,11 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::group(['prefix' => 'pengaduan'], function () {
         Route::get('/{jenis_pengaduan}', [PengaduanController::class, 'index']);
         Route::get('/{jenis_pengaduan}/create', [PengaduanController::class, 'create']);
+        Route::get('/{jenis_pengaduan}/detail/{id}', [PengaduanController::class, 'show']);
+        Route::get('/{jenis_pengaduan}/edit/{id}', [PengaduanController::class, 'edit']);
         Route::post('/store', [PengaduanController::class, 'store']);
+        Route::post('/update', [PengaduanController::class, 'update']);
+        Route::delete('/delete/{id}', [PengaduanController::class, 'destroy']);
     });
 
     Route::group(['prefix' => 'setting'], function () {

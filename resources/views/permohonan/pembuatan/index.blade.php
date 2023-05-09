@@ -30,10 +30,7 @@
                         data: 'DT_RowIndex',
                         name: 'id'
                     },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    },
+
                     {
                         data: 'tanggal',
                         name: 'tanggal'
@@ -54,7 +51,11 @@
                     {
                         data: 'status',
                         name: 'status'
-                    }
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    },
 
 
                 ]
@@ -141,24 +142,24 @@
                     <h4 class="mb-0">Permohonan Pembuatan Aplikasi</h4>
                     <hr>
 
-                    <div class="table-responsive">
-                        <table id="datatable" class="table table-hover table-striped" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Aksi</th>
-                                    <th>Tanggal</th>
-                                    <th>Nama Aplikasi</th>
-                                    <th>Deskripsi Aplikasi</th>
-                                    <th>OPD</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
-                            </tbody>
-                        </table>
-                    </div>
+                    <table id="datatable" class="table table-hover table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Nama Aplikasi</th>
+                                <th>Deskripsi Aplikasi</th>
+                                <th>OPD</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
