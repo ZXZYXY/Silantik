@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Pembuatan Aplikasi
+    Data Permohonan {{ ucfirst($jenis) }} Aplikasi
 @endsection
 @push('style')
     <!--Data Tables -->
@@ -20,12 +20,13 @@
     <script src="{{ asset('theme/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
     <script>
         $(document).ready(function() {
+            var jenis = "{{ $jenis }}";
             $('#datatable').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
                 autoWidth: false,
-                ajax: "{{ route('table.permohonan_pembuatan') }}",
+                ajax: "{{ url('table/permohonan') }}" + "/" + jenis,
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'id'
@@ -68,11 +69,11 @@
                 event.preventDefault();
 
                 var token = $("meta[name='csrf-token']").attr("content");
-                var pembuatan_name = $(this).attr('pembuatan-name'),
-                    title = pembuatan_name.replace(/\w\S*/g, function(txt) {
+                var permohonan_name = $(this).attr('permohonan-name'),
+                    title = permohonan_name.replace(/\w\S*/g, function(txt) {
                         return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
                     });
-                pembuatan_id = $(this).attr('pembuatan-id');
+                permohonan_id = $(this).attr('permohonan-id');
                 swal({
                         title: "Anda Yakin?",
                         text: "Mau Menghapus Data : " + title + "?",
@@ -84,7 +85,7 @@
                         if (result) {
 
                             $.ajax({
-                                url: "/permohonan/pembuatan/delete/" + pembuatan_id,
+                                url: "/permohonan/delete/" + permohonan_id,
                                 type: "POST",
                                 data: {
                                     _method: "DELETE",
@@ -133,18 +134,17 @@
     <!--page-content-wrapper-->
     <div class="page-content-wrapper">
         <div class="page-content">
-            @can('pembuatan-create')
+            @can('permohonan-create')
                 <div class="ms-auto mb-3">
-                    <a class="btn btn-primary btn-sm text-right" href="{{ url('permohonan/pembuatan/create') }}"><i
+                    <a class="btn btn-primary btn-sm text-right" href="{{ url('permohonan/' . $jenis . '/create') }}"><i
                             class="fa fa-plus-circle"></i> Tambah
                     </a>
                 </div>
             @endcan
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Permohonan Pembuatan Aplikasi</h4>
+                    <h4 class="mb-0">Data Permohonan {{ ucfirst($jenis) }} Aplikasi</h4>
                     <hr>
-
 
                     <table id="datatable" class="table table-hover table-striped" style="width:100%">
                         <thead>
@@ -153,7 +153,7 @@
                                 <th>Kode Permohonan</th>
                                 <th>Tanggal</th>
                                 <th>Nama Aplikasi</th>
-                                <th>Deskripsi Aplikasi</th>
+                                <th>Deskripsi</th>
                                 <th>OPD</th>
                                 <th>Status</th>
                                 <th>Aksi</th>

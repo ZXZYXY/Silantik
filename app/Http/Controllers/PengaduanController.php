@@ -54,6 +54,7 @@ class PengaduanController extends Controller
         DB::beginTransaction();
         try {
             $data = new Pengaduan();
+            $data->kd_pengaduan     = time();
             $data->opd_id           = auth()->user()->opd_id;
             $data->pelapor_id       = auth()->user()->id;
             $data->jenis_pengaduan  = $request->jenis_pengaduan;

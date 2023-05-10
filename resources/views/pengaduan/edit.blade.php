@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Edit Pengaduan {{ strtoupper($jenis) }}
+    Edit Pengaduan {{ ucfirst($jenis) }}
 @endsection
 @push('style')
     <link href="{{ asset('theme') }}/select2/css/select2.min.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
                 Kembali</button>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Form Edit Pengaduan {{ strtoupper($jenis) }}</h4>
+                    <h4 class="mb-0">Form Edit Pengaduan {{ ucfirst($jenis) }}</h4>
                     <hr>
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">

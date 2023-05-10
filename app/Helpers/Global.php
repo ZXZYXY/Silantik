@@ -120,7 +120,7 @@ function cek_admin_sekolah($npsn)
 
 function kode_acak($panjang)
 {
-    $karakter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
+    $karakter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     $string = '';
     for ($i = 0; $i < $panjang; $i++) {
         $pos = rand(0, strlen($karakter) - 1);

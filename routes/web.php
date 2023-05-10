@@ -54,19 +54,11 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
         Route::post('/store', [PermohonanController::class, 'store']);
         Route::post('/update', [PermohonanController::class, 'update']);
 
-        //pembuatan
-        Route::get('/pembuatan', [PermohonanController::class, 'pembuatan']);
-        Route::get('/pembuatan/create', [PermohonanController::class, 'create_pembuatan']);
-        Route::get('/pembuatan/edit/{id}', [PermohonanController::class, 'edit_pembuatan']);
-        Route::get('/pembuatan/detail/{id}', [PermohonanController::class, 'show_pembuatan']);
-        Route::delete('/pembuatan/delete/{id}', [PermohonanController::class, 'destroy_pembuatan']);
-
-        //pembaharuan
-        Route::get('/pembaharuan', [PermohonanController::class, 'pembaharuan']);
-        Route::get('/pembaharuan/create', [PermohonanController::class, 'create_pembaharuan']);
-        Route::get('/pembaharuan/edit/{id}', [PermohonanController::class, 'edit_pembaharuan']);
-        Route::get('/pembaharuan/detail/{id}', [PermohonanController::class, 'show_pembaharuan']);
-        Route::delete('/pembaharuan/delete/{id}', [PermohonanController::class, 'destroy_pembaharuan']);
+        Route::get('/{jenis_permohonan}', [PermohonanController::class, 'index']);
+        Route::get('/{jenis_permohonan}/create', [PermohonanController::class, 'create']);
+        Route::get('/{jenis_permohonan}/edit/{id}', [PermohonanController::class, 'edit']);
+        Route::get('/{jenis_permohonan}/detail/{id}', [PermohonanController::class, 'show']);
+        Route::delete('/delete/{id}', [PermohonanController::class, 'destroy']);
     });
 
     Route::group(['prefix' => 'pengaduan'], function () {
@@ -104,8 +96,8 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/permission', [PermissionController::class, 'dataTable'])->name('table.permission');
     Route::get('/table/berita', [BeritaController::class, 'dataTable'])->name('table.berita');
     Route::get('/table/daftaraplikasi', [DaftaraplikasiController::class, 'dataTable'])->name('table.daftaraplikasi');
-    Route::get('/table/pembuatan', [PermohonanController::class, 'dataTable_pembuatan'])->name('table.permohonan_pembuatan');
-    Route::get('/table/pembaharuan', [PermohonanController::class, 'dataTable_pembaharuan'])->name('table.permohonan_pembaharuan');
+    Route::get('/table/permohonan/{jenis}', [PermohonanController::class, 'dataTable'])->name('table.permohonan');
+    //Route::get('/table/pembaharuan', [PermohonanController::class, 'dataTable_pembaharuan'])->name('table.permohonan_pembaharuan');
     Route::get('/table/opd', [OpdController::class, 'dataTable'])->name('table.opd');
     Route::get('/table/jenisaplikasi', [JenisaplikasiController::class, 'dataTable'])->name('table.jenisaplikasi');
     Route::get('/table/pengaduan/{jenis}', [PengaduanController::class, 'dataTable']);

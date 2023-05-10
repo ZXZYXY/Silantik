@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jenisaplikasi;
 use App\Models\Opd;
 use App\Models\Permohonan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
 use DataTables;
@@ -17,55 +18,54 @@ class PermohonanController extends Controller
         date_default_timezone_set('Asia/Jakarta');
 
         //Permohonan
-        $this->middleware('permission:pembuatan-list|pembuatan-create|pembuatan-edit|pembuatan-delete', ['only' => ['pembuatan', 'show_pembuatan']]);
-        $this->middleware('permission:pembuatan-create', ['only' => ['create_pembuatan', 'store_pembuatan']]);
-        $this->middleware('permission:pembuatan-edit', ['only' => ['edit_pembuatan', 'update_pembuatan']]);
-        $this->middleware('permission:pembuatan-delete', ['only' => ['destroy_pembuatan']]);
-
-        //Pembaharuan
-        $this->middleware('permission:pembaharuan-list|pembaharuan-create|pembaharuan-edit|pembaharuan-delete', ['only' => ['pembaharuan', 'show_pembaharuan']]);
-        $this->middleware('permission:pembaharuan-create', ['only' => ['create_pembaharuan', 'store_pembaharuan']]);
-        $this->middleware('permission:pembaharuan-edit', ['only' => ['edit_pembaharuan', 'update_pembaharuan']]);
-        $this->middleware('permission:pembaharuan-delete', ['only' => ['destroy_pembaharuan']]);
+        $this->middleware('permission:permohonan-list|permohonan-create|permohonan-edit|permohonan-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:permohonan-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:permohonan-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:permohonan-delete', ['only' => ['destroy']]);
     }
 
-    public function pembuatan()
+    public function index($jenis_permohonan)
     {
-        return view('permohonan.pembuatan.index');
+        $jenis = $jenis_permohonan;
+        return view('permohonan.index', compact('jenis'));
     }
 
-    public function create_pembuatan()
+    public function create($jenis_permohonan)
     {
         $jenisaplikasi = Jenisaplikasi::all();
         $opd = Opd::all();
-        return view('permohonan.pembuatan.create', compact('jenisaplikasi', 'opd'));
+        $jenis = $jenis_permohonan;
+        return view('permohonan.create', compact('jenisaplikasi', 'opd', 'jenis'));
     }
 
-    public function edit_pembuatan($id)
+    public function edit($jenis_permohonan, $id)
     {
         $jenisaplikasi = Jenisaplikasi::all();
         $opd = Opd::all();
         $data = Permohonan::where('uuid', $id)->first();
-        return view('permohonan.pembuatan.edit', compact('jenisaplikasi', 'opd', 'data'));
-    }
-    public function edit_pembaharuan($id)
-    {
-        $jenisaplikasi = Jenisaplikasi::all();
-        $opd = Opd::all();
-        $data = Permohonan::where('uuid', $id)->first();
-        return view('permohonan.pembaharuan.edit', compact('jenisaplikasi', 'opd', 'data'));
+        $jenis = $jenis_permohonan;
+        return view('permohonan.edit', compact('jenisaplikasi', 'opd', 'data', 'jenis'));
     }
 
-    public function show_pembuatan($id)
+
+    public function show($jenis_permohonan, $id)
     {
         $data = Permohonan::where('uuid', $id)->first();
-        return view('permohonan.pembuatan.show', compact('data'));
+        $jenis = $jenis_permohonan;
+        $pemohon = User::where('id', $data->pemohon_id)->first();
+        return view('permohonan.show', compact('data', 'jenis', 'pemohon'));
     }
 
-    public function show_pembaharuan($id)
+    public function destroy($id)
     {
-        $data = Permohonan::where('uuid', $id)->first();
-        return view('permohonan.pembaharuan.show', compact('data'));
+        $model = Permohonan::where('uuid', $id)->first();
+
+        $model->delete();
+        Storage::delete('public/file_surat/' . $model->file_surat);
+        return response()->json([
+            'status' => 'true',
+            'messages' => 'Data Berhasil dihapus'
+        ]);
     }
 
     public function store(Request $request)
@@ -81,6 +81,7 @@ class PermohonanController extends Controller
         DB::beginTransaction();
         try {
             $data = new Permohonan();
+            $data->kd_permohonan   = time();
             $data->opd_id          = $request->opd_id;
             $data->nama_opd        = $opd->nama_opd;
             $data->jenis_permohonan = $request->jenis_permohonan;
@@ -88,7 +89,7 @@ class PermohonanController extends Controller
             $data->jenis_aplikasi  = $request->jenis_aplikasi;
             $data->deskripsi       = $request->deskripsi;
             $data->tanggal         = date('Y-m-d');
-            $data->user_id         = auth()->user()->id;
+            $data->pemohon_id      = auth()->user()->id;
 
             if ($request->hasFile('file_surat')) {
                 $file = $request->file('file_surat');
@@ -99,11 +100,7 @@ class PermohonanController extends Controller
             $data->save();
 
             DB::commit();
-            if ($request->jenis_permohonan == 'pembuatan') {
-                return redirect('permohonan/pembuatan')->with('success', 'Data Berhasil Ditambah');
-            } elseif ($request->jenis_permohonan == 'pembaharuan') {
-                return redirect('permohonan/pembaharuan')->with('success', 'Data Berhasil Ditambah');
-            }
+            return redirect('permohonan/' . $request->jenis_permohonan)->with('success', 'Data Berhasil Ditambah');
         } catch (\Exception $e) {
             //dd($e);
             DB::rollback();
@@ -140,11 +137,7 @@ class PermohonanController extends Controller
             $data->save();
 
             DB::commit();
-            if ($request->jenis_permohonan == 'pembuatan') {
-                return redirect('permohonan/pembuatan')->with('success', 'Data Berhasil Dirubah');
-            } elseif ($request->jenis_permohonan == 'pembaharuan') {
-                return redirect('permohonan/pembaharuan')->with('success', 'Data Berhasil Dirubah');
-            }
+            return redirect('permohonan/' . $request->jenis_permohonan)->with('success', 'Data Berhasil Dirubah');
         } catch (\Exception $e) {
             //dd($e);
             DB::rollback();
@@ -152,35 +145,13 @@ class PermohonanController extends Controller
         }
     }
 
-    public function destroy_pembuatan($id)
-    {
-        $model = Permohonan::where('uuid', $id)->first();
-        $model->delete();
-        Storage::delete('public/file_surat/' . $model->file_surat);
-        return response()->json([
-            'status' => 'true',
-            'messages' => 'Data Berhasil dihapus'
-        ]);
-    }
 
-    public function pembaharuan()
+    public function dataTable($jenis)
     {
-        return view('permohonan.pembaharuan.index');
-    }
-
-    public function create_pembaharuan()
-    {
-        $jenisaplikasi = Jenisaplikasi::all();
-        $opd = Opd::all();
-        return view('permohonan.pembaharuan.create', compact('jenisaplikasi', 'opd'));
-    }
-
-    public function dataTable_pembuatan()
-    {
-        $data = Permohonan::orderby('id', 'desc')->where('jenis_permohonan', 'pembuatan')->get();
+        $data = Permohonan::orderby('id', 'desc')->where('jenis_permohonan', $jenis)->get();
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
-                return view('permohonan.pembuatan.aksi', [
+                return view('permohonan.aksi', [
                     'data' => $data
                 ]);
             })
@@ -204,39 +175,6 @@ class PermohonanController extends Controller
                 }
             })
 
-            ->addIndexColumn()
-            ->rawColumns(['action', 'tanggal', 'surat', 'status'])
-            ->make(true);
-    }
-
-    public function dataTable_pembaharuan()
-    {
-        $data = Permohonan::orderby('id', 'desc')->where('jenis_permohonan', 'pembaharuan')->get();
-        return DataTables::of($data)
-            ->addColumn('action', function ($data) {
-                return view('permohonan.pembaharuan.aksi', [
-                    'data' => $data
-                ]);
-            })
-            ->addColumn('tanggal', function ($data) {
-                return TanggalAja($data->tanggal);
-            })
-
-            ->addColumn('surat', function ($data) {
-                if ($data->file_surat == null) {
-                    return "Tidak Ada";
-                } else {
-                    return '<a href="' . Storage::url('public/file_surat/') . $data->file_surat . '" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-file"></i></a> ';
-                }
-            })
-
-            ->addColumn('status', function ($data) {
-                if ($data->status == NULL) {
-                    return 'Permohonan Baru';
-                } else {
-                    return $data->status;
-                }
-            })
             ->addIndexColumn()
             ->rawColumns(['action', 'tanggal', 'surat', 'status'])
             ->make(true);

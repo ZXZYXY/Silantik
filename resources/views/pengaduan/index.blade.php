@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Pengaduan {{ strtoupper($jenis) }}
+    Pengaduan {{ ucfirst($jenis) }}
 @endsection
 @push('style')
     <!-- DataTables -->
@@ -30,6 +30,10 @@
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'id'
+                    },
+                    {
+                        data: 'kd_pengaduan',
+                        name: 'kd_pengaduan'
                     },
                     {
                         data: 'tanggal',
@@ -113,7 +117,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Data Pengaduan {{ strtoupper($jenis) }}</h4>
+                    <h4 class="mb-0">Data Pengaduan {{ ucfirst($jenis) }}</h4>
                     <hr>
 
 
@@ -121,6 +125,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Kode Pengaduan</th>
                                 <th>Tanggal</th>
                                 <th>Judul</th>
                                 <th>Isi Pengaduan</th>
