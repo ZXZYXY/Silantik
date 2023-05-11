@@ -18,8 +18,33 @@
                 <div class="card-body">
                     <h4 class="mb-0">Detail Pengaduan {{ ucfirst($jenis) }}</h4>
                     <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-hover">
 
-
+                                <tr>
+                                    <th>Kode Permohonan</th>
+                                    <td>:</td>
+                                    <td>{{ $data->kd_pengaduan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <td>:</td>
+                                    <td>{{ TanggalAja($data->tanggal) }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Judul</th>
+                                    <td>:</td>
+                                    <td>{{ $data->judul }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Isi Pengaduan</th>
+                                    <td>:</td>
+                                    <td>{{ $data->isi }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
 
                 </div>
             </div>

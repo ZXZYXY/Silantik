@@ -11,4 +11,10 @@ class Daftaraplikasi extends Model
     use HasFactory;
     use Uuid;
     protected $table = 'daftaraplikasi';
+    protected $guard = [];
+
+    public function opd()
+    {
+        return $this->belongsTo('App\Models\Opd');
+    }
 }

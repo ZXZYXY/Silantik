@@ -14,8 +14,8 @@ class Opd extends Model
     protected $table = 'opd';
     protected $fillable = ['nama_opd', 'singkatan', 'uuid'];
 
-    public function program()
+    public function daftaraplikasi()
     {
-        return $this->hasMany('App\Models\Program');
+        return $this->hasMany('App\Models\Daftaraplikasi');
     }
 }

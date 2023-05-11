@@ -47,17 +47,10 @@
                         name: 'opd'
                     },
                     {
-                        data: 'jenis',
-                        name: 'jenis'
+                        data: 'jenis_aplikasi',
+                        name: 'jenis_aplikasi'
                     },
-                    {
-                        data: 'screenshoot',
-                        name: 'screenshoot'
-                    },
-                    {
-                        data: 'file_pendukung',
-                        name: 'file_pendukung'
-                    },
+
                     {
                         data: 'action',
                         name: 'action'
@@ -146,26 +139,24 @@
                     <h4 class="mb-0">Data Aplikasi</h4>
                     <hr>
 
-                    <div class="table-responsive">
-                        <table id="datatable" class="table table-hover table-striped" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Tahun Pembuatan</th>
-                                    <th>Nama Aplikasi</th>
-                                    <th>Link App</th>
-                                    <th>OPD</th>
-                                    <th>Jenis</th>
-                                    <th>Screenshoot Aplikasi</th>
-                                    <th>File Pendukung</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
-                            </tbody>
-                        </table>
-                    </div>
+                    <table id="datatable" class="table table-hover table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tahun Pembuatan</th>
+                                <th>Nama Aplikasi</th>
+                                <th>Link App</th>
+                                <th>OPD</th>
+                                <th>Jenis Aplikasi</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>

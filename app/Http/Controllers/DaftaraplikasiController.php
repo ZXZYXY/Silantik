@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Daftaraplikasi;
+use App\Models\Jenisaplikasi;
 use App\Models\Opd;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -37,7 +38,16 @@ class DaftaraplikasiController extends Controller
     public function create()
     {
         $opd = Opd::all();
-        return view('daftaraplikasi.create', compact('opd'));
+        $jenisaplikasi = Jenisaplikasi::all();
+        return view('daftaraplikasi.create', compact('opd', 'jenisaplikasi'));
+    }
+
+    public function edit($id)
+    {
+        $opd = Opd::all();
+        $jenisaplikasi = Jenisaplikasi::all();
+        $data = Daftaraplikasi::where('uuid', $id)->first();
+        return view('daftaraplikasi.edit', compact('opd', 'jenisaplikasi', 'data'));
     }
 
     /**
@@ -49,38 +59,84 @@ class DaftaraplikasiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required',
+            'nama_aplikasi' => 'required',
+            'tahun_pembuatan' => 'required',
+            'link_app' => 'required',
+            'opd_id' => 'required',
+            'jenis_aplikasi' => 'required'
         ]);
+        $opd = Opd::where('id', $request->opd_id)->first();
+        DB::beginTransaction();
+        try {
+            $data = new Daftaraplikasi();
 
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+            $data->nama_aplikasi        = $request->nama_aplikasi;
+            $data->tahun_pembuatan      = $request->tahun_pembuatan;
+            $data->link_app             = $request->link_app;
+            $data->opd_id               = $request->opd_id;
+            $data->nama_opd             = $opd->nama_opd;
+            $data->jenis_aplikasi                = $request->jenis_aplikasi;
+            $data->deskripsi                = $request->deskripsi;
+            $data->save();
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Role created successfully');
+            DB::commit();
+            return redirect('daftaraplikasi/')->with('success', 'Data Berhasil Ditambah');
+        } catch (\Exception $e) {
+            dd($e);
+            DB::rollback();
+            return redirect()->back()->with('gagal', 'Data Gagal Diinput');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nama_aplikasi' => 'required',
+            'tahun_pembuatan' => 'required',
+            'link_app' => 'required',
+            'opd_id' => 'required',
+            'jenis_aplikasi' => 'required'
+        ]);
+        $opd = Opd::where('id', $request->opd_id)->first();
+        DB::beginTransaction();
+        try {
+            $data = Daftaraplikasi::where('uuid', $id)->first();
+
+            $data->nama_aplikasi        = $request->nama_aplikasi;
+            $data->tahun_pembuatan      = $request->tahun_pembuatan;
+            $data->link_app             = $request->link_app;
+            $data->opd_id               = $request->opd_id;
+            $data->nama_opd             = $opd->nama_opd;
+            $data->jenis_aplikasi       = $request->jenis_aplikasi;
+            $data->deskripsi            = $request->deskripsi;
+            $data->save();
+
+            DB::commit();
+            return redirect()->route('daftaraplikasi.index')->with('success', 'Data Berhasil Dirubah');
+        } catch (\Exception $e) {
+            dd($e);
+            DB::rollback();
+            return redirect()->back()->with('gagal', 'Data Gagal Diinput');
+        }
     }
 
     public function dataTable()
     {
-        $data = Daftaraplikasi::orderby('id', 'desc');
+        $data = Daftaraplikasi::with('opd')->orderby('id', 'desc');
 
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
-                $edit = '<a href="' . route('daftaraplikasi.edit', $data->id) . '" class="btn btn-warning btn-sm" title="Edit"><i class="lni lni-highlight-alt"></i></a>';
-                $hapus = '<button class="btn btn-danger btn-sm hapus" daftaraplikasi-name="' . $data->judul . '" daftaraplikasi-id="' . $data->id . '" title="Delete"><i class="lni lni-trash"></i></button>';
-                if (auth()->user()->can('daftaraplikasi-edit') and auth()->user()->can('daftaraplikasi-delete')) {
-                    return $edit . ' ' . $hapus;
-                } elseif (auth()->user()->can('daftaraplikasi-edit')) {
-                    return $edit;
-                } elseif (auth()->user()->can('daftaraplikasi-delete')) {
-                    return $hapus;
-                } else {
-                    return 'No Action';
-                }
+                return view('daftaraplikasi.aksi', [
+                    'data' => $data
+                ]);
+            })
+
+            ->addColumn('opd', function ($data) {
+                return $data->opd->nama_opd;
             })
 
             ->addIndexColumn()
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'opd'])
             ->make(true);
     }
 }

@@ -64,7 +64,7 @@
                                     <option value="" selected disabled>[Pilih]</option>
                                     @foreach ($jenisaplikasi as $list)
                                         <option value="{{ $list->nama_jenis }}"
-                                            {{ old('roles') == $list->nama_jenis ? ' selected' : '' }}>
+                                            {{ old('jenis_aplikasi') == $list->nama_jenis ? ' selected' : '' }}>
                                             {{ $list->nama_jenis }} </option>
                                     @endforeach
                                 </x-forms.select_v>
