@@ -60,4 +60,9 @@ class User extends Authenticatable
 
         return asset('images/profil/' . $this->photo);
     }
+
+    public function opd()
+    {
+        return $this->belongsTo('App\Models\Opd');
+    }
 }

@@ -148,7 +148,13 @@ class PermohonanController extends Controller
 
     public function dataTable($jenis)
     {
-        $data = Permohonan::orderby('id', 'desc')->where('jenis_permohonan', $jenis)->get();
+        $opd_id = auth()->user()->opd_id;
+        if (auth()->user()->role == 'user') {
+            $data = Permohonan::orderby('id', 'desc')->where([['jenis_permohonan', '=', $jenis], ['opd_id', '=', $opd_id]]);
+        } else {
+            $data = Permohonan::orderby('id', 'desc')->where('jenis_permohonan', $jenis);
+        }
+
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
                 return view('permohonan.aksi', [

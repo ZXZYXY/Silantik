@@ -121,7 +121,7 @@ class PermissionController extends Controller
 
     public function dataTable()
     {
-        $data = Permission::orderby('id', 'desc')->get();
+        $data = Permission::orderby('id', 'desc');
 
         return DataTables::of($data)
             ->addColumn('action', function ($data) {

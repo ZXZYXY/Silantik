@@ -3,7 +3,7 @@
         aria-expanded="false"></button>
     <div class="dropdown-menu">
 
-        <a href="{{ url('daftaraplikasi/detail/' . $data->uuid) }}" class="dropdown-item" title="Detail"><i
+        <a href="{{ route('daftaraplikasi.show', $data->uuid) }}" class="dropdown-item" title="Detail"><i
                 class="fa fa-eye"></i> Detail</a>
 
         @if (auth()->user()->can('daftaraplikasi-edit'))

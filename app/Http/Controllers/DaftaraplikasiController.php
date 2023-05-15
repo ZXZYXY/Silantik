@@ -50,6 +50,12 @@ class DaftaraplikasiController extends Controller
         return view('daftaraplikasi.edit', compact('opd', 'jenisaplikasi', 'data'));
     }
 
+    public function show($id)
+    {
+        $data = Daftaraplikasi::with('opd')->where('uuid', $id)->first();
+        return view('daftaraplikasi.detail', compact('data'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

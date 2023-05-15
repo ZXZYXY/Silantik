@@ -23,8 +23,7 @@
     @endcan
 
     <li class="{{ openMenu('permohonan') }}">
-        @if (auth()->user()->can('pembuatan-list') ||
-                auth()->user()->can('pembaharuan-list'))
+        @if (auth()->user()->can('permohonan-list'))
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-10"><i class="bx bx-comment-edit"></i>
                 </div>
@@ -32,13 +31,13 @@
             </a>
         @endif
         <ul>
-            @can('pembuatan-list')
+            @can('permohonan-list')
                 <li class="{{ setActive('permohonan/pembuatan') }}">
                     <a href="{{ url('permohonan/pembuatan') }}"><i class="bx bx-right-arrow-alt"></i>Pembuatan Aplikasi</a>
                 </li>
             @endcan
 
-            @can('pembaharuan-list')
+            @can('permohonan-list')
                 <li class="{{ setActive('permohonan/pembaharuan') }}">
                     <a href="{{ url('permohonan/pembaharuan') }}"><i class="bx bx-right-arrow-alt"></i>Pembaharuan
                         Aplikasi</a>
@@ -48,8 +47,7 @@
     </li>
 
     <li class="{{ openMenu('pengaduan') }}">
-        @if (auth()->user()->can('pengaduan-aplikasi-list') ||
-                auth()->user()->can('pengaduan-jaringan-list'))
+        @if (auth()->user()->can('pengaduan-list'))
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-11"><i class="bx bx-help-circle"></i>
                 </div>
@@ -57,13 +55,13 @@
             </a>
         @endif
         <ul>
-            @can('pembuatan-list')
+            @can('pengaduan-list')
                 <li class="{{ setActive('pengaduan/aplikasi') }}">
                     <a href="{{ url('pengaduan/aplikasi') }}"><i class="bx bx-right-arrow-alt"></i>Aplikasi</a>
                 </li>
             @endcan
 
-            @can('pembaharuan-list')
+            @can('pengaduan-list')
                 <li class="{{ setActive('pengaduan/jaringan') }}">
                     <a href="{{ url('pengaduan/jaringan') }}"><i class="bx bx-right-arrow-alt"></i>Jaringan</a>
                 </li>

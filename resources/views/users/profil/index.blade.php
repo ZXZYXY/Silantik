@@ -32,6 +32,11 @@
                                     @endforeach
                                 @endif
                             </p>
+                            @if (auth()->user()->role == 'user')
+                                <p class="text-center">
+                                    {{ auth()->user()->opd->nama_opd }}
+                                </p>
+                            @endif
 
                         </div>
                         <!-- /.card-body -->

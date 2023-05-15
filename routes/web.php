@@ -30,6 +30,9 @@ use App\Http\Controllers\PengaduanController;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/beranda', function () {
+    return view('frontend.home');
+});
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
