@@ -1,4 +1,4 @@
-/* default color: #C762CB */
+/* default color: #5f4a99 */
 .feature-box i,
 .feature-box-small-icon i,
 #mainmenu li li a:hover,
@@ -12,9 +12,8 @@ span.overlay,
 .btn-primary,
 .bg-id-color,
 #mainmenu a:hover,
-.pricing-dark .pricing-box li.price-row
-{
-	background:#C762CB;
+.pricing-dark .pricing-box li.price-row {
+    background: #5f4a99;
 }
 
 #mainmenu li:hover > ul,
@@ -23,17 +22,17 @@ span.overlay,
 .id-color,
 .pricing-box li h1,
 .title span,
-a, a:visited,
-i.large:hover{
-	color:#C762CB;
+a,
+a:visited,
+i.large:hover {
+    color: #5f4a99;
 }
 
 #filters a:hover,
-#filters a.selected
-{
-	border-color:#C762CB;
+#filters a.selected {
+    border-color: #5f4a99;
 }
 
 .callbacks_nav {
-	background-color:#C762CB;
+    background-color: #5f4a99;
 }

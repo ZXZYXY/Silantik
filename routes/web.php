@@ -14,6 +14,7 @@ use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\OpdController;
 use App\Http\Controllers\JenisaplikasiController;
 use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\FrontendController;
 
 
 /*
@@ -27,12 +28,9 @@ use App\Http\Controllers\PengaduanController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-Route::get('/beranda', function () {
-    return view('frontend.home');
-});
+
+Route::get('/', [FrontendController::class, 'index']);
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
