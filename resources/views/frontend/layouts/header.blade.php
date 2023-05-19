@@ -1,37 +1,67 @@
-<!-- header begin -->
-<header>
-    <div class="container">
-        <div id="logo">
-            <div class="inner">
-                <a href="{{ url('') }}">
-                    <img src="{{ asset('images/' . konfigurasi()->favicon) }}" style="width: 100%;" width="100px"
-                        alt="logo"></a>
-            </div>
-        </div>
+<!-- Start header Area -->
+<header class="navbar-area nav-style-two">
+    <!-- menu for mobile device -->
+    <div class="mobile-nav">
+        <a href="#" class="logo">
+            <img src="assets/img/logos/logo_full_light.png" alt="logo_light" />
+            <img src="assets/img/logos/logo_dark.png" alt="logo-dark" />
+        </a>
+    </div>
 
-        <span class="menu-btn"></span>
+    <!-- Menu for desktop device-->
+    <div class="main-nav">
+        <nav class="navbar navbar-expand-md navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="index-2.html">
+                    <img src="assets/img/logos/logo_full_light.png" alt="logo_light" />
+                    <img src="assets/img/logos/logo_dark.png" alt="logo-dark" />
+                </a>
+                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a href="{{ url('/') }}" class="nav-link active">Beranda</a>
+                        </li>
 
-        <!-- mainmenu begin -->
-        <div class="de_menu">
-            <div id="mainmenu" class="mainmenu">
-                <li><a href="{{ url('/') }}">Beranda</a></li>
+                        <li class="nav-item">
+                            <a href="{{ url('/news') }}" class="nav-link">Berita</a>
+                        </li>
 
-                <li><a href="{{ url('news') }}">Berita</a></li>
+                        <li class="nav-item">
+                            <a href="{{ url('/news') }}" class="nav-link">Kegiatan</a>
+                        </li>
 
-                <li><a href="#">Galeri</a>
-                    <ul>
-                        <li><a href="{{ url('galeri/foto') }}">Foto</a></li>
-                        <li><a href="{{ url('galeri/video') }}">Video</a></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle">Galeri</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="{{ url('galeri/foto') }}" class="nav-link"> Foto </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('galeri/foto') }}" class="nav-link"> Video </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('/faq') }}" class="nav-link">FAQ</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('/team') }}" class="nav-link">Team</a>
+                        </li>
+
                     </ul>
-                </li>
-                <li><a href="{{ url('faq') }}">FAQ</a></li>
-                <li><a href="{{ url('/login') }}">Login</a></li>
 
-                </ul>
-                <!-- mainmenu close -->
-
+                    <div class="cta-btn">
+                        <a href="{{ url('/login') }}" class="btn btn-outline">
+                            <i class="envy envy-user"></i>
+                            log in
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
+        </nav>
     </div>
 </header>
-<!-- header close -->
+<!-- end header area -->

@@ -1,97 +1,84 @@
-@extends('auth.app')
+@extends('frontend.layouts.master')
 @section('title')
     Login
 @endsection
 @section('content')
-    <!-- wrapper -->
-    <div class="wrapper">
-        <div class="section-authentication-login d-flex align-items-center justify-content-center mt-4">
-            <div class="row">
-                <div class="col-12 col-lg-8 mx-auto">
-                    <div class="card radius-15 overflow-hidden">
-                        <div class="row g-0">
-                            <div class="col-xl-6">
-                                <div class="card-body p-5">
-                                    <div class="text-center">
-                                        <img src="{{ asset('theme') }}/assets/images/logo-icon.png" width="80"
-                                            alt="">
-                                        <h3 class="mt-4 font-weight-bold">Layanan TIK</h3>
-                                    </div>
-                                    <div class="">
-
-
-                                        <div class="form-body">
-                                            @if ($errors->any())
-                                                <div class="alert alert-danger">
-                                                    <ul
-                                                        style="margin-bottom:0px;list-style-type: none;margin:0px;padding:0px;">
-                                                        @foreach ($errors->all() as $error)
-                                                            <li><i class="fa fa-exclamation"></i> {{ $error }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
-                                            <form class="row g-3" action="{{ route('login') }}" method="POST">
-                                                @csrf
-                                                <div class="col-12">
-                                                    <label for="inputEmailAddress" class="form-label">Username or
-                                                        Email</label>
-                                                    <input type="login" name="login"
-                                                        class="form-control @error('login') is-invalid @enderror"
-                                                        id="login" placeholder="Username or Email">
-                                                </div>
-                                                <div class="col-12">
-                                                    <label for="inputChoosePassword" class="form-label">Enter
-                                                        Password</label>
-                                                    <div class="input-group" id="show_hide_password">
-                                                        <input type="password" name="password"
-                                                            class="form-control border-end-0 @error('password') is-invalid @enderror"
-                                                            id="password" value="" placeholder="Enter Password"> <a
-                                                            href="javascript:;" class="input-group-text bg-transparent"><i
-                                                                class="bx bx-hide"></i></a>
-                                                    </div>
-                                                </div>
-                                                {{-- <div class="col-md-6">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="flexSwitchCheckChecked" checked="">
-                                                        <label class="form-check-label"
-                                                            for="flexSwitchCheckChecked">Remember Me</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 text-end">
-                                                    @if (Route::has('password.request'))
-                                                        <a href="{{ route('password.request') }}">Forgot password?</a>
-                                                    @endif
-
-                                                </div> --}}
-                                                <div class="col-12">
-                                                    <div class="d-grid">
-                                                        <button type="submit" class="btn btn-primary"><i
-                                                                class="bx bxs-lock-open"></i>Sign in</button>
-                                                    </div>
-                                                </div>
-                                                {{-- <div class="col-12 text-center">
-                                                    <p>Don't have an account yet? <a href="authentication-signup.html">Sign
-                                                            up here</a></p>
-                                                </div> --}}
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 bg-login-color d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('theme') }}/assets/images/login-images/login-frent-img.jpg"
-                                    class="img-fluid" alt="...">
-                            </div>
-                        </div>
-                        <!--end row-->
-                    </div>
-                </div>
+    <!-- start page title area-->
+    <div class="page-title-area bg-thin">
+        <div class="container">
+            <div class="page-title-content">
+                <h1>sign in</h1>
+                <ul>
+                    <li class="item"><a href="index.html">Home</a></li>
+                    <li class="item"><a href="sign-in.html">Sign In</a></li>
+                </ul>
             </div>
         </div>
+        <div class="shape">
+            <span class="shape1"></span>
+            <span class="shape2"></span>
+            <span class="shape3"></span>
+            <span class="shape4"></span>
+        </div>
     </div>
-    <!-- end wrapper -->
+    <!-- end page title area -->
+
+    <!-- signin Section -->
+    <section class="signinup-section ptb-100 bg-thin">
+        <div class="container">
+            <div class="signin-box">
+                <!-- Title Box -->
+                <div class="title-box">
+                    <h2>Sign in</h2>
+
+                </div>
+
+                <!-- signin Form -->
+                <form class="signin-form" action="{{ route('login') }}" method="POST">
+                    @csrf
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul style="margin-bottom:0px;list-style-type: none;margin:0px;padding:0px;">
+                                @foreach ($errors->all() as $error)
+                                    <li><i class="fa fa-exclamation"></i> {{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control @error('login') is-invalid @enderror"
+                                    name="login" placeholder="Username or Email" required="required" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    name="password" placeholder="Password" required="required" />
+                            </div>
+                        </div>
+                        <div class="col-lg-12 form-check-box">
+
+                            @if (Route::has('password.request'))
+                                <p class="forgot-password"><a href="{{ route('password.request') }}">Forgot Password?</a>
+                                </p>
+                            @endif
+
+                        </div>
+                    </div>
+                    <div class="cta-btn">
+                        <button type="submit" class="btn btn-solid">sign in</button>
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                        <div class="users">Belum Punya akun?? <a href="{{ route('register') }}">Daftar Disini</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- end signin section -->
 
 
 @endsection

@@ -1,18 +1,20 @@
-<!-- Javascript Files
-    ================================================== -->
-<script src="{{ asset('frontend') }}/js/jquery.min.js"></script>
-<script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
-<script src="{{ asset('frontend') }}/js/jquery.isotope.min.js"></script>
-<script src="{{ asset('frontend') }}/js/jquery.prettyPhoto.js"></script>
-<script src="{{ asset('frontend') }}/js/easing.js"></script>
-<script src="{{ asset('frontend') }}/js/jquery.ui.totop.js"></script>
-<script src="{{ asset('frontend') }}/js/selectnav.js"></script>
-<script src="{{ asset('frontend') }}/js/ender.js"></script>
-<script src="{{ asset('frontend') }}/js/jquery.lazyload.js"></script>
-<script src="{{ asset('frontend') }}/rs-plugin/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
-<script src="{{ asset('frontend') }}/js/jquery.flexslider-min.js"></script>
-<script src="{{ asset('frontend') }}/js/responsiveslides.min.js"></script>
-<script src="{{ asset('frontend') }}/js/custom.js"></script>
-
-<!-- Javascript Files for current page only -->
-<script src="{{ asset('frontend') }}/js/rev-setting-1.js"></script>
+<!-- jequery JS -->
+<script src="{{ asset('aset') }}/js/jquery.min.js"></script>
+<!-- bootstrap JS -->
+<script src="{{ asset('aset') }}/js/bootstrap.min.js"></script>
+<!-- popper JS -->
+<script src="{{ asset('aset') }}/js/popper.min.js"></script>
+<!-- magnific popup JS -->
+<script src="{{ asset('aset') }}/js/jquery.magnific-popup.min.js"></script>
+<!-- owl carousel JS -->
+<script src="{{ asset('aset') }}/js/owl.carousel.min.js"></script>
+<!-- meanmenu JS -->
+<script src="{{ asset('aset') }}/js/meanmenu.min.js"></script>
+<!-- form validator -->
+<script src="{{ asset('aset') }}/js/form-validator.min.js"></script>
+<!-- contact form JS -->
+<script src="{{ asset('aset') }}/js/contact-form-script.js"></script>
+<!-- ajaxchimp JS -->
+<script src="{{ asset('aset') }}/js/jquery.ajaxchimp.min.js"></script>
+<!-- main JS -->
+<script src="{{ asset('aset') }}/js/main.js"></script>
