@@ -23,11 +23,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('/news') }}" class="nav-link">Berita</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{ url('/news') }}" class="nav-link">Kegiatan</a>
+                            <a href="{{ url('/kegiatan') }}" class="nav-link">Kegiatan</a>
                         </li>
 
                         <li class="nav-item">

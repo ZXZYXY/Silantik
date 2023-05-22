@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="form-group col-lg-12">
-                        <div class="users">Belum Punya akun?? <a href="{{ route('register') }}">Daftar Disini</a></div>
+                        <div class="users">Belum Punya akun?? <a href="{{ url('daftar') }}">Daftar Disini</a></div>
                     </div>
                 </form>
             </div>

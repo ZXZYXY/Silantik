@@ -15,6 +15,7 @@ use App\Http\Controllers\OpdController;
 use App\Http\Controllers\JenisaplikasiController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\DaftarController;
 
 
 /*
@@ -34,7 +35,12 @@ Route::get('/', [FrontendController::class, 'index']);
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
-Auth::routes();
+Auth::routes(['register' => false]);
+Route::get('/daftar', [DaftarController::class, 'index']);
+Route::post('/daftar/store', [DaftarController::class, 'store']);
+Route::get('/daftar/berhasil/{id}', [DaftarController::class, 'berhasil']);
+Route::get('/reload-captcha', [DaftarController::class, 'reloadCaptcha']);
+
 
 Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/changeStatus', [UserController::class, 'changeStatus']);
@@ -98,7 +104,6 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/berita', [BeritaController::class, 'dataTable'])->name('table.berita');
     Route::get('/table/daftaraplikasi', [DaftaraplikasiController::class, 'dataTable'])->name('table.daftaraplikasi');
     Route::get('/table/permohonan/{jenis}', [PermohonanController::class, 'dataTable'])->name('table.permohonan');
-    //Route::get('/table/pembaharuan', [PermohonanController::class, 'dataTable_pembaharuan'])->name('table.permohonan_pembaharuan');
     Route::get('/table/opd', [OpdController::class, 'dataTable'])->name('table.opd');
     Route::get('/table/jenisaplikasi', [JenisaplikasiController::class, 'dataTable'])->name('table.jenisaplikasi');
     Route::get('/table/pengaduan/{jenis}', [PengaduanController::class, 'dataTable']);

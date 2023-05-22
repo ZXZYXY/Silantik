@@ -1,5 +1,5 @@
 <!-- start footer area -->
-<footer class="footer-area pt-100 pb-70">
+{{-- <footer class="footer-area pt-100 pb-70">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-5 col-sm-6 col-12">
@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-</footer>
+</footer> --}}
 <!-- end footer area -->
 
 <!-- start copy right area -->
@@ -78,9 +78,9 @@
     <div class="container">
         <div class="copy-right-content">
             <p>
-                Copyright @2021 Solit. Designed By
-                <a href="https://hibootstrap.com/" target="_blank">
-                    HiBootstrap.com
+                Copyright @2023 Layanan APTIKA. Designed By
+                <a href="https://diskominfo.jambikota.go.id/" target="_blank">
+                    Diskominfo Kota Jambi
                 </a>
             </p>
         </div>
