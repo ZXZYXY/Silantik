@@ -3,8 +3,8 @@
     <!-- menu for mobile device -->
     <div class="mobile-nav">
         <a href="#" class="logo">
-            <img src="assets/img/logos/logo_full_light.png" alt="logo_light" />
-            <img src="assets/img/logos/logo_dark.png" alt="logo-dark" />
+            <img src="{{ asset('images') }}/logo_aptika_white.png" width="100px" alt="logo_light" />
+            <img src="{{ asset('images') }}/logo_aptika_black.png" width="100px" alt="logo-dark" />
         </a>
     </div>
 
@@ -13,38 +13,41 @@
         <nav class="navbar navbar-expand-md navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="index-2.html">
-                    <img src="assets/img/logos/logo_full_light.png" alt="logo_light" />
-                    <img src="assets/img/logos/logo_dark.png" alt="logo-dark" />
+                    <img src="{{ asset('images') }}/logo_aptika_white.png" width="150px" alt="logo_light" />
+                    <img src="{{ asset('images') }}/logo_aptika_black.png" width="150px" alt="logo-dark" />
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a href="{{ url('/') }}" class="nav-link active">Beranda</a>
+                            <a href="{{ url('/') }}" class="nav-link {{ setActive_frontend('/') }}">Beranda</a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('/kegiatan') }}" class="nav-link">Kegiatan</a>
+                            <a href="{{ url('/news') }}" class="nav-link {{ setActive_frontend('news') }}">Berita</a>
                         </li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle">Galeri</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a href="{{ url('galeri/foto') }}" class="nav-link"> Foto </a>
+                                    <a href="{{ url('galeri/foto') }}"
+                                        class="nav-link {{ setActive_frontend('galeri/foto') }}"> Foto </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('galeri/foto') }}" class="nav-link"> Video </a>
+                                    <a href="{{ url('galeri/video') }}"
+                                        class="nav-link {{ setActive_frontend('galeri/video') }}"> Video </a>
                                 </li>
 
                             </ul>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('/faq') }}" class="nav-link">FAQ</a>
+                            <a href="{{ url('/tanya-jawab') }}"
+                                class="nav-link {{ setActive_frontend('tanya-jawab') }}">FAQ</a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('/team') }}" class="nav-link">Team</a>
+                            <a href="{{ url('/team') }}" class="nav-link {{ setActive_frontend('team') }}">Team</a>
                         </li>
 
                     </ul>

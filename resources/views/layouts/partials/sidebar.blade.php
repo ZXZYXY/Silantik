@@ -89,6 +89,16 @@
         </li>
     @endcan
 
+    @can('faq-list')
+        <li class="{{ setActive('faq') }}">
+            <a href="{{ url('faq') }}">
+                <div class="parent-icon icon-color-9"><i class="bx bx-help-circle"></i>
+                </div>
+                <div class="menu-title">FAQ</div>
+            </a>
+        </li>
+    @endcan
+
     <li class="{{ openMenu('data-master') }}">
         @if (auth()->user()->can('opd-list'))
             <a class="has-arrow" href="javascript:;">

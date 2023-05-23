@@ -16,6 +16,19 @@ if (!function_exists('setActive')) {
     }
 }
 
+if (!function_exists('setActive_frontend')) {
+    /**
+     * setActive_frontend
+     *
+     * @param mixed $path
+     * @return void
+     */
+    function setActive_frontend($path)
+    {
+        return Request::is($path . '*') ? ' active' : '';
+    }
+}
+
 if (!function_exists('openMenu')) {
     /**
      * openMenu

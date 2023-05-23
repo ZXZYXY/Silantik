@@ -15,19 +15,18 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12">
                     <div class="banner-content">
-                        <h1>Best Digital Marketing Service For You</h1>
+                        <h1>Layanan APTIKA</h1>
                         <p>
-                            No more Search. World's No. 1 IT Solution Center for your better security. Loo car boot
-                            bodge smashing I up the duff!
+                            Kami dari Bidang APTIKA bla bla blabla bla blaa blaa bla
                         </p>
                         <div class="cta-btn">
-                            <a href="../../Solit-html/index.html" class="btn btn-solid">Try for free</a>
+                            <a href="../../Solit-html/index.html" class="btn btn-solid">Buat Permohonan/Pengaduan</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="banner-image">
-                        <img src="assets/img/banner/banner_2.png" alt="banner" />
+                        <img src="{{ asset('aset') }}/img/banner/banner_2.png" alt="banner" />
                     </div>
                 </div>
             </div>

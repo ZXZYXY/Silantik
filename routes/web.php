@@ -41,6 +41,8 @@ Route::post('/daftar/store', [DaftarController::class, 'store']);
 Route::get('/daftar/berhasil/{id}', [DaftarController::class, 'berhasil']);
 Route::get('/reload-captcha', [DaftarController::class, 'reloadCaptcha']);
 
+Route::get('/news', [FrontendController::class, 'news']);
+Route::get('/news/{slug}', [FrontendController::class, 'news_detail']);
 
 Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/changeStatus', [UserController::class, 'changeStatus']);
@@ -95,6 +97,16 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::group(['prefix' => 'data-master'], function () {
         Route::resource('opd', OpdController::class);
         Route::resource('jenisaplikasi', JenisaplikasiController::class);
+    });
+
+    //FAQ
+    Route::group(['prefix' => 'faq'], function () {
+        Route::get('/', [App\Http\Controllers\FaqController::class, 'index']);
+        Route::post('/tambah', [App\Http\Controllers\FaqController::class, 'store']);
+        Route::get('/table', [App\Http\Controllers\FaqController::class, 'dataTable'])->name('table.faq');
+        Route::get('/{id}/delete', [App\Http\Controllers\FaqController::class, 'delete']);
+        Route::get('/{id}/edit', [App\Http\Controllers\FaqController::class, 'edit']);
+        Route::post('/{id}/update', [App\Http\Controllers\FaqController::class, 'update']);
     });
 
     //Tabel
