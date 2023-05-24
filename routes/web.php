@@ -16,6 +16,7 @@ use App\Http\Controllers\JenisaplikasiController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DaftarController;
+use App\Http\Controllers\KategoriController;
 
 
 /*
@@ -97,6 +98,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::group(['prefix' => 'data-master'], function () {
         Route::resource('opd', OpdController::class);
         Route::resource('jenisaplikasi', JenisaplikasiController::class);
+        Route::resource('kategori', KategoriController::class);
     });
 
     //FAQ
@@ -119,4 +121,5 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/opd', [OpdController::class, 'dataTable'])->name('table.opd');
     Route::get('/table/jenisaplikasi', [JenisaplikasiController::class, 'dataTable'])->name('table.jenisaplikasi');
     Route::get('/table/pengaduan/{jenis}', [PengaduanController::class, 'dataTable']);
+    Route::get('/table/kategori', [KategoriController::class, 'dataTable'])->name('table.kategori');
 });

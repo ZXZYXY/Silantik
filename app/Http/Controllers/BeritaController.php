@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use App\Models\Kategori;
 use DB;
 use DataTables;
 use Illuminate\Support\Facades\File;
@@ -37,7 +38,8 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        return view('berita.tambah');
+        $kategori = Kategori::all();
+        return view('berita.tambah', compact('kategori'));
     }
 
     /**
@@ -59,7 +61,7 @@ class BeritaController extends Controller
             $berita = new Berita;
             $berita->judul          = $request->judul;
             $berita->published      = $request->published;
-            $berita->kategori       = $request->kategori;
+            $berita->kategori_id       = $request->kategori_id;
             $berita->user_id        = auth()->user()->id;
             $berita->isi            = $request->isi;
 
@@ -108,7 +110,8 @@ class BeritaController extends Controller
     public function edit($id)
     {
         $data = Berita::findOrFail($id);
-        return view('berita.edit', compact('data'));
+        $kategori = Kategori::all();
+        return view('berita.edit', compact('data', 'kategori'));
     }
 
     /**
@@ -132,7 +135,7 @@ class BeritaController extends Controller
             $berita->judul          = $request->judul;
             $berita->slug           = null;
             $berita->published      = $request->published;
-            $berita->kategori       = $request->kategori;
+            $berita->kategori_id    = $request->kategori_id;
             $berita->isi            = $request->isi;
 
             if ($request->hasFile('gambar')) {

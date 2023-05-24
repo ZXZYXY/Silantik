@@ -81,19 +81,14 @@
                                 <x-forms.input_v id="judul" type="text" name="judul" label="Judul Berita"
                                     isRequired="true" value="" isReadonly="" placeholder="Judul Berita" />
 
-                                <x-forms.select_v id="kategori" name="kategori" label="Kategori" isRequired="true"
+                                <x-forms.select_v id="kategori_id" name="kategori_id" label="Kategori" isRequired="true"
                                     isSelect2="false">
                                     <option value="">[Pilih]</option>
-                                    <option value="kemiskinan" {{ old('kategori') == 'kemiskinan' ? ' selected' : '' }}>
-                                        Kemiskinan</option>
-                                    <option value="stunting" {{ old('kategori') == 'stunting' ? ' selected' : '' }}>
-                                        Stunting</option>
-                                    <option value="kota-sehat" {{ old('kategori') == 'kota-sehat' ? ' selected' : '' }}>
-                                        Kota Sehat</option>
-                                    <option value="germas" {{ old('kategori') == 'germas' ? ' selected' : '' }}>
-                                        Germas</option>
-                                    <option value="atm" {{ old('kategori') == 'atm' ? ' selected' : '' }}>
-                                        AIDS Tuberculosis Malaria (ATM)</option>
+                                    @foreach ($kategori as $k)
+                                        <option value="{{ $k->id }}"
+                                            {{ old('kategori_id') == $k->id ? ' selected' : '' }}>
+                                            {{ $k->nama_kategori }}</option>
+                                    @endforeach
                                 </x-forms.select_v>
 
                                 <x-forms.select_v id="published" name="published" label="Status" isRequired="true"

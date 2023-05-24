@@ -120,6 +120,12 @@
                 </li>
             @endcan
 
+            @can('kategori-list')
+                <li class="{{ setActive('data-master/kategori') }}">
+                    <a href="{{ route('kategori.index') }}"><i class="bx bx-right-arrow-alt"></i>Kategori</a>
+                </li>
+            @endcan
+
         </ul>
     </li>
 

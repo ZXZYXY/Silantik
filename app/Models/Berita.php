@@ -40,4 +40,9 @@ class Berita extends Model
         }
         return asset('images/berita/thumb/' . $this->gambar);
     }
+
+    public function kategori()
+    {
+        return $this->belongsTo('App\Models\Kategori');
+    }
 }
