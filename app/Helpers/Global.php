@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Models\Konfigurasiweb;
+use App\Models\Berita;
 
 if (!function_exists('setActive')) {
     /**
@@ -154,4 +155,11 @@ function permission()
     $user = User::where('id', $id_user)->first();
 
     return $user;
+}
+
+function jml_berita($kategori_id)
+{
+    $kategori_jml = Berita::where('kategori_id', $kategori_id)->count();
+
+    return $kategori_jml;
 }

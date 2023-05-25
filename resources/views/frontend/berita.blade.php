@@ -38,9 +38,10 @@
                         <div class="blog-item-single">
                             <div class="blog-item-img">
                                 <a href="{{ url('news/' . $b->slug) }}">
-                                    <img src="{{ $b->getThumbnailBerita() }}" alt="blog-bg-image" />
+                                    <img src="{{ $b->getThumbnailBerita() }}" alt="blog-bg-image"
+                                        style="object-fit: cover; position: relative; width: 100%; height: 300px; overflow: hidden;" />
                                 </a>
-                                <p class="tag">{{ $b->kategori }}</p>
+                                <p class="tag">{{ $b->kategori->nama_kategori }}</p>
                             </div>
                             <div class="blog-item-content">
                                 <span> <i class="envy envy-calendar"></i> {{ TanggalAja($b->created_at) }} </span>

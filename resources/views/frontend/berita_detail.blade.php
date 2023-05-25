@@ -35,9 +35,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <div class="blog-details-desc">
-                        <div class="image">
-                            <img src="{{ $berita->getThumbnailBerita() }}" alt="image" />
-                        </div>
+
                         <ul class="post-meta">
                             <li><i class="envy envy-calendar"></i><a
                                     href="#">{{ TanggalAja($berita->created_at) }}</a></li>
@@ -45,12 +43,15 @@
                         </ul>
                         <div class="content">
                             <h2>{{ $berita->judul }}</h2>
+                            <div class="image">
+                                <img src="{{ $berita->getThumbnailBerita() }}" alt="image" />
+                            </div>
                             {!! $berita->isi !!}
                         </div>
 
 
 
-                        <div class="article-share">
+                        {{-- <div class="article-share">
                             <div class="tags pb-3">
                                 <span>tags:</span>
                                 <a href="#">Design</a>
@@ -65,7 +66,7 @@
                                 <a href="#" class="bg-pink" target="_blank"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
-                        <hr />
+                        <hr /> --}}
 
 
                     </div>
@@ -73,66 +74,42 @@
 
                 <div class="col-lg-4 col-md-12">
                     <aside class="widget-area">
-
-                        <section class="widget widget-article">
-                            <h5 class="widget-title">Recent articles</h5>
-                            <article class="article-item">
-                                <a href="#" class="article-img">
-                                    <img src="assets/img/blog/recent_article_1.png" alt="blog-image" />
-                                </a>
-                                <div class="info">
-                                    <span class="time"><i class="envy envy-calendar"></i>Sepetember 31, 2021</span>
-                                    <h6 class="title">
-                                        <a href="#">The Biggest Mistake When Setting New Goals. </a>
-                                    </h6>
-                                </div>
-                            </article>
-
-                            <article class="article-item">
-                                <a href="#" class="article-img">
-                                    <img src="assets/img/blog/recent_article_2.png" alt="blog-image" />
-                                </a>
-                                <div class="info">
-                                    <span class="time"><i class="envy envy-calendar"></i>Sepetember 31, 2021</span>
-                                    <h6 class="title">
-                                        <a href="#">The Biggest Mistake When Setting New Goals. </a>
-                                    </h6>
-                                </div>
-                            </article>
-
-                            <article class="article-item">
-                                <a href="#" class="article-img">
-                                    <img src="assets/img/blog/recent_article_3.png" alt="blog-image" />
-                                </a>
-                                <div class="info">
-                                    <span class="time"><i class="envy envy-calendar"></i>Sepetember 31, 2021</span>
-                                    <h6 class="title">
-                                        <a href="#">The Biggest Mistake When Setting New Goals. </a>
-                                    </h6>
-                                </div>
-                            </article>
-                        </section>
                         <section class="widget widget-categories">
                             <h5 class="widget-title">Categories</h5>
                             <ul class="categorie-list">
-                                <li>
-                                    <a href="#">Design</a>
-                                    <span class="total">17</span>
-                                </li>
-                                <li>
-                                    <a href="#">Development</a>
-                                    <span class="total">34</span>
-                                </li>
-                                <li>
-                                    <a href="#">Innovation</a>
-                                    <span class="total">10</span>
-                                </li>
-                                <li>
-                                    <a href="#">research</a>
-                                    <span class="total">35</span>
-                                </li>
+                                @foreach ($kategori as $k)
+                                    <li>
+                                        <a href="{{ url('news/kategori/' . $k->kategori_seo) }}">{{ $k->nama_kategori }}</a>
+                                        <span class="total">{{ jml_berita($k->id) }}</span>
+                                    </li>
+                                @endforeach
+
+
                             </ul>
                         </section>
+                        <section class="widget widget-article">
+                            <h5 class="widget-title">Recent articles</h5>
+                            @foreach ($recent_news as $rn)
+                                <article>
+                                    <a href="{{ url('news/' . $rn->slug) }}" class="article-img">
+                                        <img src="{{ $rn->getThumbnailBerita() }}" alt="blog-image"
+                                            style="object-fit: cover; position: relative; width: 100%; height: 160px; overflow: hidden;" />
+                                    </a>
+                                    <div class="info mt-3">
+                                        <span class="time"><i class="envy envy-calendar"></i>
+                                            {{ TanggalAja($rn->created_at) }}</span>
+                                        <h6 class="title">
+                                            <a href="{{ url('news/' . $rn->slug) }}">{{ $rn->judul }} </a>
+                                        </h6>
+                                    </div>
+                                </article>
+                                <hr>
+                            @endforeach
+
+
+
+                        </section>
+
 
 
                     </aside>

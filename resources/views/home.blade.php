@@ -6,43 +6,108 @@
     <!--page-content-wrapper-->
     <div class="page-content-wrapper">
         <div class="page-content">
-            <!--breadcrumb-->
-            <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
-                <div class="breadcrumb-title pr-3">FullCalendar</div>
-                <div class="pl-3">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-home-alt'></i></a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Fullcalender</li>
-                        </ol>
-                    </nav>
+            <div class="row">
+                <div class="col-12 col-lg-3">
+                    <div class="card radius-15 bg-voilet">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <h2 class="mb-0 text-white">{{ $data['jml_permohonan'] }}
+                                    </h2>
+                                </div>
+                                <div class="ms-auto font-35 text-white"><i class="bx bx-comment-edit"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-white">Permohonan</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="ml-auto">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary">Settings</button>
-                        <button type="button"
-                            class="btn btn-primary bg-split-primary dropdown-toggle dropdown-toggle-split"
-                            data-toggle="dropdown"> <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"> <a class="dropdown-item"
-                                href="javascript:;">Action</a>
-                            <a class="dropdown-item" href="javascript:;">Another action</a>
-                            <a class="dropdown-item" href="javascript:;">Something else here</a>
-                            <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated
-                                link</a>
+                <div class="col-12 col-lg-3">
+                    <div class="card radius-15 bg-primary-blue">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <h2 class="mb-0 text-white">{{ $data['jml_pengaduan'] }}
+                                    </h2>
+                                </div>
+                                <div class="ms-auto font-35 text-white"><i class="bx bx-help-circle"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-white">Pengaduan</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="card radius-15 bg-rose">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <h2 class="mb-0 text-white">{{ $data['jml_aplikasi'] }}
+                                    </h2>
+                                </div>
+                                <div class="ms-auto font-35 text-white"><i class="bx bx-archive"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-white">Jumlah Aplikasi</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="card radius-15 bg-sunset">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <h2 class="mb-0 text-white">{{ $data['jml_user'] }}
+                                    </h2>
+                                </div>
+                                <div class="ms-auto font-35 text-white"><i class="bx bx-user"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-white">Users</p>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--end breadcrumb-->
-            <div class="card">
-                <div class="card-header">Starter Page</div>
-                <div class="card-body">
-                    <h2>This is a Starter Page....</h2>
+            <!--end row-->
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card radius-15">
+                        <div class="card-header border-bottom-0">
+                            <div class="d-lg-flex align-items-center">
+                                <div>
+                                    <h5 class="mb-2 mb-lg-0">Permohonan/Pengaduan Terbaru</h5>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table></table>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
-    <!--end page-content-wrapper-->
 @endsection

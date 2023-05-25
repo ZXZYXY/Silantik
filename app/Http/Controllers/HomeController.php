@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Daftaraplikasi;
+use App\Models\Pengaduan;
+use App\Models\Permohonan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['jml_permohonan'] = Permohonan::count();
+        $data['jml_pengaduan'] = Pengaduan::count();
+        $data['jml_aplikasi'] = Daftaraplikasi::count();
+        $data['jml_user'] = User::count();
+        return view('home', [
+            'data' => $data,
+        ]);
     }
 }
