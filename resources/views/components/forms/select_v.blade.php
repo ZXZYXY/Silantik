@@ -4,7 +4,7 @@
         @endif
     </label>
     <select name="{{ $name }}" id="{{ $id }}" width="100%"
-        class="form-control form-control-sm @if ($isSelect2 == 'true') select2 @endif">
+        class="form-select form-select-sm @if ($isSelect2 == 'true') select2 @endif">
         {{ $slot }}
     </select>
     @if ($errors->has($name))

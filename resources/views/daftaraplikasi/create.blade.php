@@ -3,15 +3,61 @@
     Tambah Aplikasi
 @endsection
 @push('style')
-    <link href="{{ asset('theme') }}/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('theme') }}/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('theme') }}/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
+    <style>
+        #c_integrasi {
+            display: none;
+        }
+
+        #c_perwal {
+            display: none;
+        }
+    </style>
 @endpush
 
 @push('script')
-    <script src="{{ asset('theme') }}/select2/js/select2.min.js"></script>
+    <script src="{{ asset('theme') }}/plugins/select2/js/select2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.select2').select2();
+
+            $('.multiple-select').select2({
+                theme: 'bootstrap4',
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                    'style',
+                placeholder: $(this).data('placeholder'),
+                allowClear: Boolean($(this).data('allow-clear')),
+            });
         });
+
+        function changeIntegrasi() {
+            var selectElement = document.getElementById("integrasi");
+            var selectedValue = selectElement.value;
+            var divElement = document.getElementById("c_integrasi");
+
+            if (selectedValue === "Ya") {
+                divElement.style.display = "block";
+            } else if (selectedValue === "Tidak") {
+                divElement.style.display = "none";
+            } else {
+                divElement.style.display = "none";
+            }
+        }
+
+        function changePerwal() {
+            var selectElement = document.getElementById("ada_perwal");
+            var selectedValue = selectElement.value;
+            var divElement = document.getElementById("c_perwal");
+
+            if (selectedValue === "Ya") {
+                divElement.style.display = "block";
+            } else if (selectedValue === "Tidak") {
+                divElement.style.display = "none";
+            } else {
+                divElement.style.display = "none";
+            }
+        }
     </script>
 @endpush
 
@@ -37,7 +83,7 @@
                     <form action="{{ route('daftaraplikasi.store') }}" method="POST">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <x-forms.input_v id="tahun_pembuatan" type="text" name="tahun_pembuatan"
                                     label="Tahun Pembuatan" isRequired="true" value="" isReadonly=""
                                     placeholder="Tahun Pembuatan" />
@@ -45,23 +91,52 @@
                                 <x-forms.input_v id="nama_aplikasi" type="text" name="nama_aplikasi" label="Nama"
                                     isRequired="true" value="" isReadonly="" placeholder="Nama Aplikasi" />
 
-                                <x-forms.textarea_v id="deskripsi" type="text" name="deskripsi" label="Deskripsi"
+                                <x-forms.textarea_v id="deskripsi" type="text" name="deskripsi" label="Deskrip/Narasi"
                                     isRequired="true" value="" isReadonly="" placeholder="Deskripsi" />
 
                                 <x-forms.input_v id="link_app" type="text" name="link_app" label="Link/URL"
                                     isRequired="true" value="" isReadonly="" placeholder="Link/URL Aplikasi" />
 
-                                <x-forms.select_v id="jenis_aplikasi" name="jenis_aplikasi" label="Jenis Aplikasi"
-                                    isRequired="true" isSelect2="true">
+                                <div class="mb-3 {{ $errors->has('jenis_aplikasi') ? ' has-error' : '' }}">
+                                    <label class="form-label">Jenis Aplikasi
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    @foreach ($jenisaplikasi as $ktg)
+                                        <div class="form-check">
+                                            <span style='display:inline-block;'><input class=form-check-input
+                                                    type="checkbox" value='{{ $ktg->nama_jenis }}' name=jenis_aplikasi[]>
+                                                {{ $ktg->nama_jenis }} &nbsp; &nbsp; &nbsp; </span>
+                                        </div>
+                                    @endforeach
+
+                                    @if ($errors->has('jenis_aplikasi'))
+                                        <span class="text-danger">{{ $errors->first('jenis_aplikasi') }}</span>
+                                    @endif
+                                </div>
+
+
+
+
+                                <button type="submit" class="btn btn-primary"><i class="lni lni-save"></i>
+                                    Submit</button>
+
+                            </div>
+                            <div class="col-md-4">
+                                <x-forms.input_v id="nama_konsultan" type="text" name="nama_konsultan"
+                                    label="Nama Konsultan/Instansi Pengembang" isRequired="false" value=""
+                                    isReadonly="" placeholder="Nama Konsultan/Instansi Pengembang" />
+
+                                <x-forms.select_v id="opd_id" name="opd_id"
+                                    label="Unit Kerja/Perangkat Daerah Pengelola" isRequired="true" isSelect2="true">
                                     <option value="" selected disabled>[Pilih]</option>
-                                    @foreach ($jenisaplikasi as $list)
-                                        <option value="{{ $list->nama_jenis }}"
-                                            {{ old('roles') == $list->nama_jenis ? ' selected' : '' }}>
-                                            {{ $list->nama_jenis }} </option>
+                                    @foreach ($opd as $list)
+                                        <option value="{{ $list->id }}"
+                                            {{ old('opd_id') == $list->id ? ' selected' : '' }}>
+                                            {{ $list->nama_opd }} ({{ $list->singkatan }})</option>
                                     @endforeach
                                 </x-forms.select_v>
 
-                                <x-forms.select_v id="opd_id" name="opd_id" label="OPD" isRequired="true"
+                                <x-forms.select_v id="sektor_id" name="sektor_id" label="Sektor" isRequired="true"
                                     isSelect2="true">
                                     <option value="" selected disabled>[Pilih]</option>
                                     @foreach ($opd as $list)
@@ -71,10 +146,64 @@
                                     @endforeach
                                 </x-forms.select_v>
 
+                                <x-forms.select_v id="status_aktif" name="status_aktif" label="Status Aktif"
+                                    isRequired="true" isSelect2="true">
+                                    <option value="">[Pilih]</option>
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                                </x-forms.select_v>
 
 
-                                <button type="submit" class="btn btn-primary"><i class="lni lni-save"></i> Submit</button>
+                                <div class="mb-3 {{ $errors->has('integrasi') ? ' has-error' : '' }}">
+                                    <label class="form-label">Integrasi
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select name="integrasi" id="integrasi" width="100%"
+                                        class="form-select form-select-sm" onchange="changeIntegrasi()">
+                                        <option value="">[Pilih]</option>
+                                        <option value="Ya">Ya</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
+                                    @if ($errors->has('integrasi'))
+                                        <span class="text-danger">{{ $errors->first('integrasi') }}</span>
+                                    @endif
+                                </div>
 
+                                <div id="c_integrasi">
+                                    <div class="mb-3 {{ $errors->has('app_integrasi') ? ' has-error' : '' }}">
+                                        <label class="form-label">Aplikasi Terintegras</label>
+                                        <select name="app_integrasi" id="app_integrasi" width="100%"
+                                            class="form-control form-control-sm multiple-select"
+                                            data-placeholder="Pilih Aplikasi" multiple="multiple">
+                                            <option value="">[Pilih]</option>
+
+                                        </select>
+                                        @if ($errors->has('app_integrasi'))
+                                            <span class="text-danger">{{ $errors->first('integrasi') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3 {{ $errors->has('ada_perwal') ? ' has-error' : '' }}">
+                                    <label class="form-label">Ada Perwal</label>
+                                    <select name="ada_perwal" id="ada_perwal" width="100%"
+                                        class="form-select form-select-sm" onchange="changePerwal()">
+                                        <option value="">[Pilih]</option>
+                                        <option value="Ya">Ya</option>
+                                        <option value="Tidak">Tidak</option>
+                                    </select>
+                                    @if ($errors->has('ada_perwal'))
+                                        <span class="text-danger">{{ $errors->first('ada_perwal') }}</span>
+                                    @endif
+                                </div>
+
+                                <div id="c_perwal">
+                                    <x-forms.input_v id="file_perwal" type="file" name="file_perwal"
+                                        label="File Perwal/SK" isRequired="false" value="" isReadonly=""
+                                        placeholder="Integrasi" />
+                                </div>
                             </div>
                         </div>
                     </form>

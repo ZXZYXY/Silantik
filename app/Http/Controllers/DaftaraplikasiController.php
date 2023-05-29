@@ -39,6 +39,7 @@ class DaftaraplikasiController extends Controller
     {
         $opd = Opd::all();
         $jenisaplikasi = Jenisaplikasi::all();
+        $daftar_app = Daftaraplikasi::select('nama_aplikasi')->get();
         return view('daftaraplikasi.create', compact('opd', 'jenisaplikasi'));
     }
 
@@ -81,8 +82,8 @@ class DaftaraplikasiController extends Controller
             $data->link_app             = $request->link_app;
             $data->opd_id               = $request->opd_id;
             $data->nama_opd             = $opd->nama_opd;
-            $data->jenis_aplikasi                = $request->jenis_aplikasi;
-            $data->deskripsi                = $request->deskripsi;
+            $data->jenis_aplikasi       = implode(",", $request->jenis_aplikasi);
+            $data->deskripsi            = $request->deskripsi;
             $data->save();
 
             DB::commit();
@@ -141,8 +142,17 @@ class DaftaraplikasiController extends Controller
                 return $data->opd->nama_opd;
             })
 
+            ->addColumn('status_aktif', function ($data) {
+
+                if ($data->status_aktif == 'Aktif') {
+                    return '<span class="badge rounded-pill bg-primary">' . strtoupper($data->status_aktif) . '</span>';
+                } else {
+                    return '<span class="badge rounded-pill bg-danger">' . strtoupper($data->status_aktif) . '</span>';
+                }
+            })
+
             ->addIndexColumn()
-            ->rawColumns(['action', 'opd'])
+            ->rawColumns(['action', 'opd', 'status_aktif'])
             ->make(true);
     }
 }

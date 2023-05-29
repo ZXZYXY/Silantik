@@ -50,6 +50,10 @@
                         data: 'jenis_aplikasi',
                         name: 'jenis_aplikasi'
                     },
+                    {
+                        data: 'status_aktif',
+                        name: 'status_aktif'
+                    },
 
                     {
                         data: 'action',
@@ -149,6 +153,7 @@
                                 <th>Link App</th>
                                 <th>OPD</th>
                                 <th>Jenis Aplikasi</th>
+                                <th>Aktif</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>

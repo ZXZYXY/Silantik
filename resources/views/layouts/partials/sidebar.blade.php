@@ -126,6 +126,12 @@
                 </li>
             @endcan
 
+            @can('sektor-list')
+                <li class="{{ setActive('data-master/sektor') }}">
+                    <a href="{{ route('sektor.index') }}"><i class="bx bx-right-arrow-alt"></i>Sektor</a>
+                </li>
+            @endcan
+
         </ul>
     </li>
 

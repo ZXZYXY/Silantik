@@ -17,6 +17,7 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DaftarController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SektorController;
 
 
 /*
@@ -99,6 +100,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
         Route::resource('opd', OpdController::class);
         Route::resource('jenisaplikasi', JenisaplikasiController::class);
         Route::resource('kategori', KategoriController::class);
+        Route::resource('sektor', SektorController::class);
     });
 
     //FAQ
@@ -122,4 +124,5 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/jenisaplikasi', [JenisaplikasiController::class, 'dataTable'])->name('table.jenisaplikasi');
     Route::get('/table/pengaduan/{jenis}', [PengaduanController::class, 'dataTable']);
     Route::get('/table/kategori', [KategoriController::class, 'dataTable'])->name('table.kategori');
+    Route::get('/table/sektor', [SektorController::class, 'dataTable'])->name('table.sektor');
 });
