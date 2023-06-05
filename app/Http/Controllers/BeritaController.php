@@ -158,7 +158,7 @@ class BeritaController extends Controller
             DB::commit();
             return redirect()->route('berita.index')->with('success', 'Data Berhasil Ditambah');
         } catch (\Exception $e) {
-            //dd($e);
+            dd($e);
             DB::rollback();
             return redirect()->back()->with('gagal', 'Data Gagal Diinput');
         }
@@ -184,7 +184,7 @@ class BeritaController extends Controller
 
     public function dataTable()
     {
-        $data = Berita::orderby('id', 'desc');
+        $data = Berita::with('kategori')->orderby('id', 'desc');
 
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
@@ -213,9 +213,13 @@ class BeritaController extends Controller
                 }
             })
 
+            ->addColumn('kategori', function ($data) {
+                return $data->kategori->nama_kategori;
+            })
+
 
             ->addIndexColumn()
-            ->rawColumns(['action', 'status', 'gambar'])
+            ->rawColumns(['action', 'status', 'gambar', 'kategori'])
             ->make(true);
     }
 }

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Daftaraplikasi;
 use App\Models\Jenisaplikasi;
 use App\Models\Opd;
+use App\Models\Sektor;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use DB;
+use File;
 
 class DaftaraplikasiController extends Controller
 {
@@ -39,8 +41,9 @@ class DaftaraplikasiController extends Controller
     {
         $opd = Opd::all();
         $jenisaplikasi = Jenisaplikasi::all();
+        $sektor = Sektor::all();
         $daftar_app = Daftaraplikasi::select('nama_aplikasi')->get();
-        return view('daftaraplikasi.create', compact('opd', 'jenisaplikasi'));
+        return view('daftaraplikasi.create', compact('opd', 'jenisaplikasi', 'sektor'));
     }
 
     public function edit($id)
@@ -48,7 +51,8 @@ class DaftaraplikasiController extends Controller
         $opd = Opd::all();
         $jenisaplikasi = Jenisaplikasi::all();
         $data = Daftaraplikasi::where('uuid', $id)->first();
-        return view('daftaraplikasi.edit', compact('opd', 'jenisaplikasi', 'data'));
+        $sektor = Sektor::all();
+        return view('daftaraplikasi.edit', compact('opd', 'jenisaplikasi', 'data', 'sektor'));
     }
 
     public function show($id)
@@ -76,14 +80,26 @@ class DaftaraplikasiController extends Controller
         DB::beginTransaction();
         try {
             $data = new Daftaraplikasi();
-
-            $data->nama_aplikasi        = $request->nama_aplikasi;
             $data->tahun_pembuatan      = $request->tahun_pembuatan;
+            $data->nama_aplikasi        = $request->nama_aplikasi;
+            $data->deskripsi            = $request->deskripsi;
             $data->link_app             = $request->link_app;
+            $data->jenis_aplikasi       = implode(",", $request->jenis_aplikasi);
+            $data->nama_konsultan       = $request->nama_konsultan;
             $data->opd_id               = $request->opd_id;
             $data->nama_opd             = $opd->nama_opd;
-            $data->jenis_aplikasi       = implode(",", $request->jenis_aplikasi);
-            $data->deskripsi            = $request->deskripsi;
+            $data->sektor_id            = $request->sektor_id;
+            $data->status_aktif         = $request->status_aktif;
+            $data->integrasi            = $request->integrasi;
+            $data->app_integrasi        = $request->app_integrasi;
+            $data->ada_perwal           = $request->ada_perwal;
+
+            if ($request->hasFile('file_perwal')) {
+                $files = $request->file('file_perwal');
+                $file_name = $request->nama_aplikasi . '_PERWAL_' . kode_acak(5) . '.' . $files->getClientOriginalExtension();
+                $files->move('dokumen/perwal/', $file_name);
+                $data->file_perwal      = $file_name;
+            }
             $data->save();
 
             DB::commit();
@@ -109,13 +125,28 @@ class DaftaraplikasiController extends Controller
         try {
             $data = Daftaraplikasi::where('uuid', $id)->first();
 
-            $data->nama_aplikasi        = $request->nama_aplikasi;
             $data->tahun_pembuatan      = $request->tahun_pembuatan;
+            $data->nama_aplikasi        = $request->nama_aplikasi;
+            $data->deskripsi            = $request->deskripsi;
             $data->link_app             = $request->link_app;
+            $data->jenis_aplikasi       = implode(",", $request->jenis_aplikasi);
+            $data->nama_konsultan       = $request->nama_konsultan;
             $data->opd_id               = $request->opd_id;
             $data->nama_opd             = $opd->nama_opd;
-            $data->jenis_aplikasi       = $request->jenis_aplikasi;
-            $data->deskripsi            = $request->deskripsi;
+            $data->sektor_id            = $request->sektor_id;
+            $data->status_aktif         = $request->status_aktif;
+            $data->integrasi            = $request->integrasi;
+            $data->app_integrasi        = $request->app_integrasi;
+            $data->ada_perwal           = $request->ada_perwal;
+
+            if ($request->hasFile('file_perwal')) {
+                File::delete('dokumen/perwal/' . $data->file_perwal);
+                $files = $request->file('file_perwal');
+                $file_name = $request->nama_aplikasi . '_PERWAL_' . kode_acak(5) . '.' . $files->getClientOriginalExtension();
+                $files->move('dokumen/perwal/', $file_name);
+                $data->file_perwal      = $file_name;
+            }
+
             $data->save();
 
             DB::commit();

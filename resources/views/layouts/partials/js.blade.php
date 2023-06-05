@@ -24,5 +24,6 @@
             title: "GAGAL!",
             text: "{{ session('gagal') }}",
         });
+    @else
     @endif
 </script>

@@ -18,6 +18,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DaftarController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SektorController;
+use App\Http\Controllers\TeamController;
 
 
 /*
@@ -59,6 +60,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::resource('products', ProductController::class);
     Route::resource('berita', BeritaController::class);
     Route::resource('daftaraplikasi', DaftaraplikasiController::class);
+    Route::resource('team', TeamController::class);
 
     //Permohonan
     Route::group(['prefix' => 'permohonan'], function () {
@@ -125,4 +127,5 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/pengaduan/{jenis}', [PengaduanController::class, 'dataTable']);
     Route::get('/table/kategori', [KategoriController::class, 'dataTable'])->name('table.kategori');
     Route::get('/table/sektor', [SektorController::class, 'dataTable'])->name('table.sektor');
+    Route::get('/table/team', [TeamController::class, 'dataTable'])->name('table.team');
 });

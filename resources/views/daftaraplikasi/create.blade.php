@@ -80,7 +80,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ route('daftaraplikasi.store') }}" method="POST">
+                    <form action="{{ route('daftaraplikasi.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-4">
@@ -114,12 +114,6 @@
                                     @endif
                                 </div>
 
-
-
-
-                                <button type="submit" class="btn btn-primary"><i class="lni lni-save"></i>
-                                    Submit</button>
-
                             </div>
                             <div class="col-md-4">
                                 <x-forms.input_v id="nama_konsultan" type="text" name="nama_konsultan"
@@ -139,10 +133,10 @@
                                 <x-forms.select_v id="sektor_id" name="sektor_id" label="Sektor" isRequired="true"
                                     isSelect2="true">
                                     <option value="" selected disabled>[Pilih]</option>
-                                    @foreach ($opd as $list)
-                                        <option value="{{ $list->id }}"
-                                            {{ old('opd_id') == $list->id ? ' selected' : '' }}>
-                                            {{ $list->nama_opd }} ({{ $list->singkatan }})</option>
+                                    @foreach ($sektor as $sk)
+                                        <option value="{{ $sk->id }}"
+                                            {{ old('sektor_id') == $sk->id ? ' selected' : '' }}>
+                                            {{ $sk->nama_sektor }} </option>
                                     @endforeach
                                 </x-forms.select_v>
 
@@ -152,7 +146,6 @@
                                     <option value="Aktif">Aktif</option>
                                     <option value="Tidak Aktif">Tidak Aktif</option>
                                 </x-forms.select_v>
-
 
                                 <div class="mb-3 {{ $errors->has('integrasi') ? ' has-error' : '' }}">
                                     <label class="form-label">Integrasi
@@ -170,18 +163,9 @@
                                 </div>
 
                                 <div id="c_integrasi">
-                                    <div class="mb-3 {{ $errors->has('app_integrasi') ? ' has-error' : '' }}">
-                                        <label class="form-label">Aplikasi Terintegras</label>
-                                        <select name="app_integrasi" id="app_integrasi" width="100%"
-                                            class="form-control form-control-sm multiple-select"
-                                            data-placeholder="Pilih Aplikasi" multiple="multiple">
-                                            <option value="">[Pilih]</option>
-
-                                        </select>
-                                        @if ($errors->has('app_integrasi'))
-                                            <span class="text-danger">{{ $errors->first('integrasi') }}</span>
-                                        @endif
-                                    </div>
+                                    <x-forms.textarea_v id="app_integrasi" type="text" name="app_integrasi"
+                                        label="Aplikasi yang Terintegrasi" isRequired="false" value=""
+                                        isReadonly="" placeholder="Aplikasi Terintegrasi" />
                                 </div>
 
                             </div>
@@ -202,9 +186,19 @@
                                 <div id="c_perwal">
                                     <x-forms.input_v id="file_perwal" type="file" name="file_perwal"
                                         label="File Perwal/SK" isRequired="false" value="" isReadonly=""
-                                        placeholder="Integrasi" />
+                                        placeholder="Integrasi">
+                                        <i class="text-info">format file : pdf <br>
+                                            max size : 5mb</i>
+                                    </x-forms.input_v>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary"><i class="lni lni-save"></i>
+                                    Submit</button>
+                            </div>
+
                         </div>
                     </form>
 

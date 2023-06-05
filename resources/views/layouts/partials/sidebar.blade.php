@@ -69,6 +69,16 @@
         </ul>
     </li>
 
+    @can('team-list')
+        <li class="{{ setActive('team') }}">
+            <a href="{{ route('team.index') }}">
+                <div class="parent-icon icon-color-1"><i class="bx bx-group"></i>
+                </div>
+                <div class="menu-title">Team</div>
+            </a>
+        </li>
+    @endcan
+
     @can('user-list')
         <li class="{{ setActive('users') }}">
             <a href="{{ route('users.index') }}">
