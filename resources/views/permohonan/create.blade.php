@@ -41,7 +41,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="jenis_permohonan" value="{{ $jenis }}">
+                                <input type="hidden" name="jenis_permohonan" value="{{ $jenis }}">
                                 @if (auth()->user()->role == 'admin' or auth()->user()->role == 'superadmin')
                                     <x-forms.select_v id="opd_id" name="opd_id" label="OPD" isRequired="true"
                                         isSelect2="true">

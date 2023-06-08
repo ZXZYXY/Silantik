@@ -30,6 +30,7 @@
                     @endif
                     <form action="{{ route('team.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-8">
                                 <x-forms.input_v id="nama" type="text" name="nama" label="Nama"

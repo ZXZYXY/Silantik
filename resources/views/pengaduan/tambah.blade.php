@@ -28,31 +28,35 @@
     </script>
     <script type="text/javascript">
         var i = 0;
+        var max = 3;
 
         $("#add").click(function() {
-
             ++i;
 
-            $("#dynamicTable").append(`
-        <tr>
-          <td>
-            <select name="jenis_pelatihan[]" class="form-control form-control-sm">
-              <option value="" selected disabled>[Pilih Jenis Pelatihan]</option>
-              <option value="Kursus Orientasi" @if (old('jenis_pelatihan') == 'Kursus Orientasi') selected @endif>Kursus Orientasi</option>
-              <option value="KMD (Kursus Mahir Tingkat Dasar)" @if (old('jenis_pelatihan') == 'KMD (Kursus Mahir Tingkat Dasar)') selected @endif>KMD (Kursus Mahir Tingkat Dasar)</option>
-              <option value="KML (Kursus Mahir Tingkat Lanjutan)" @if (old('jenis_pelatihan') == 'KML (Kursus Mahir Tingkat Lanjutan)') selected @endif>KML (Kursus Mahir Tingkat Lanjutan)</option>
-              <option value="KPD (Kursus Pelatih Tingkat Dasar)" @if (old('jenis_pelatihan') == 'KPD (Kursus Pelatih Tingkat Dasar)') selected @endif>KPD (Kursus Pelatih Tingkat Dasar)</option>
-              <option value="KPL (Kursus Pelatih Tingkat Lanjutan)" @if (old('jenis_pelatihan') == 'KPL (Kursus Pelatih Tingkat Lanjutan)') selected @endif>KPL (Kursus Pelatih Tingkat Lanjutan)</option>
-            </select>
-          </td>
-          <td><input type="text" name="tahun_pelatihan[]" placeholder="Tahun" class="form-control form-control-sm" /></td>
-          <td><input type="file" name="file_sertifikat[]" placeholder="" class="form-control form-control-sm" /></td><td><button type="button" class="btn btn-danger btn-xs remove-tr"><i class="fa fa-trash"></i> Remove</button>
-          </td>
-        </tr>`);
+            if (i <= 3) {
+                console.log(i);
+                $("#dynamicTable").append(`
+                <tr>
+                    <td><input type="file" name="file_sertifikat[]" placeholder="" class="form-control form-control-sm" /></td>
+                    <td><button type="button" class="btn btn-danger btn-xs remove-tr" id="remove"><i class="fa fa-trash"></i> Remove</button></td>
+                </tr>`);
+            } else {
+                --i;
+            }
+
+
+
         });
+
+        // $("#remove").click(function() {
+        //     $(this).parents('tr').remove();
+        //     --i;
+        // });
 
         $(document).on('click', '.remove-tr', function() {
             $(this).parents('tr').remove();
+            --i;
+            console.log(i);
         });
     </script>
 @endpush

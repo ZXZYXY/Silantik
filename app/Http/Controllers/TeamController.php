@@ -112,20 +112,35 @@ class TeamController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nama_team' => 'required',
-            'singkatan' => 'required'
+            'nama' => 'required',
+            'jabatan' => 'required'
         ]);
 
-        $team = Team::findOrFail($id);
+        DB::beginTransaction();
+        try {
+            $data = Team::findOrFail($id);
 
-        $team->nama_team = $request->nama_team;
-        $team->singkatan = $request->singkatan;
-        $team->update();
+            $data->nama = $request->nama;
+            $data->jabatan = $request->jabatan;
+            if ($request->hasFile('foto')) {
+                File::delete('images/foto_team/' . $data->foto);
+                $foto = $request->file('foto');
+                $image_name1 = str_replace(' ', '_', $request->nama) . '_' . kode_acak(5) . '.' . $foto->getClientOriginalExtension();
+                // for save original image
+                $ImageUpload = Image::make($foto->getRealPath());
+                $ImageUpload->save(public_path('images/foto_team/') . $image_name1);
 
-        return response()->json([
-            'status' => 'true',
-            'messages' => 'Data Berhasil diedit'
-        ]);
+                $data->foto = $image_name1;
+            }
+            $data->update();
+
+            DB::commit();
+            return redirect()->route('team.index')->with('success', 'Data Berhasil Ditambah');
+        } catch (\Exception $e) {
+            dd($e);
+            DB::rollback();
+            return redirect()->back()->with('gagal', 'Data Gagal Diinput');
+        }
     }
 
     /**
@@ -137,6 +152,7 @@ class TeamController extends Controller
     public function destroy($id)
     {
         $model = Team::findOrFail($id);
+        File::delete('images/foto_team/' . $model->foto);
         $model->delete();
         return response()->json([
             'status' => 'true',
@@ -161,8 +177,11 @@ class TeamController extends Controller
                     return 'No Action';
                 }
             })
+            ->addColumn('foto', function ($data) {
+                return '<img src="' . $data->getImageTeam() . '" alt="avatar" style="object-fit: cover; position: relative; width: 50px; height: 50px; overflow: hidden; border-radius: 50%;">';
+            })
             ->addIndexColumn()
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'foto'])
             ->make(true);
     }
 }

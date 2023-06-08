@@ -43,6 +43,12 @@
                         Aplikasi</a>
                 </li>
             @endcan
+            @can('permohonan-list')
+                <li class="{{ setActive('permohonan/permintaan_domain') }}">
+                    <a href="{{ url('permohonan/permintaan_domain') }}"><i class="bx bx-right-arrow-alt"></i>Permintaan
+                        Domain</a>
+                </li>
+            @endcan
         </ul>
     </li>
 

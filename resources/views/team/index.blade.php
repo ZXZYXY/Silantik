@@ -47,6 +47,46 @@
                     }
                 ]
             });
+
+            $('body').on('click', '.hapus', function(event) {
+                event.preventDefault();
+
+                var token = $("meta[name='csrf-token']").attr("content");
+                var team_name = $(this).attr('team-name'),
+                    title = team_name.replace(/\w\S*/g, function(txt) {
+                        return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
+                    });
+                team_id = $(this).attr('team-id');
+                swal({
+                        title: "Anda Yakin?",
+                        text: "Mau Menghapus Data : " + title + "?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((result) => {
+                        if (result) {
+
+                            $.ajax({
+                                url: "/team/" + team_id,
+                                type: "POST",
+                                data: {
+                                    _method: "DELETE",
+                                    _token: token,
+                                },
+
+                                success: function(response) {
+                                    $('#datatable').DataTable().ajax.reload();
+                                    swal("Berhasil", "Data Berhasil Dihapus", "success");
+                                },
+                                error: function(xhr) {
+                                    swal("Oops...", "Terjadi Kesalahan", "error");
+
+                                }
+                            });
+                        }
+                    });
+            });
         });
     </script>
 @endpush
