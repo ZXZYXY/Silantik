@@ -12,4 +12,9 @@ class Sektor extends Model
     use HasFactory;
     protected $table = 'sektor';
     protected $fillable = ['nama_sektor'];
+
+    public function daftaraplikasi()
+    {
+        return $this->hasMany('App\Models\Daftaraplikasi');
+    }
 }

@@ -39,8 +39,8 @@
                         name: 'nama_aplikasi'
                     },
                     {
-                        data: 'link_app',
-                        name: 'link_app'
+                        data: 'link',
+                        name: 'link'
                     },
                     {
                         data: 'opd',
@@ -141,9 +141,15 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="mb-0">Data Aplikasi</h4>
+                    <div style="align-content: right">
+                        <p align="right">
+                            <button type="button" class="btn btn-secondary btn-sm mt-2 mb-2" data-bs-toggle="modal"
+                                data-bs-target="#laporan"><i
+                                    class="fa fa-print                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  "></i>
+                                Laporan</button>
+                        </p>
+                    </div>
                     <hr>
-
-
                     <table id="datatable" class="table table-hover table-striped" style="width:100%">
                         <thead>
                             <tr>
@@ -151,7 +157,7 @@
                                 <th>Tahun Pembuatan</th>
                                 <th>Nama Aplikasi</th>
                                 <th>Link App</th>
-                                <th>OPD</th>
+                                <th>Unit Kerja/Perangkat Daerah</th>
                                 <th>Jenis Aplikasi</th>
                                 <th>Aktif</th>
                                 <th>Aksi</th>
@@ -167,4 +173,23 @@
         </div>
     </div>
     <!--end page-content-wrapper-->
+    <!-- Modal -->
+    <div class="modal fade" id="laporan" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Laporan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Cooming Soon
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

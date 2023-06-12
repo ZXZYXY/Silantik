@@ -17,4 +17,9 @@ class Daftaraplikasi extends Model
     {
         return $this->belongsTo('App\Models\Opd');
     }
+
+    public function sektor()
+    {
+        return $this->belongsTo('App\Models\Sektor');
+    }
 }

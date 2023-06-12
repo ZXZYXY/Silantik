@@ -95,7 +95,7 @@
                                     isRequired="true" value="{{ $data->nama_aplikasi }}" isReadonly=""
                                     placeholder="Nama Aplikasi" />
 
-                                <x-forms.textarea_v id="deskripsi" type="text" name="deskripsi" label="Deskrip/Narasi"
+                                <x-forms.textarea_v id="deskripsi" type="text" name="deskripsi" label="Deskripsi/Narasi"
                                     isRequired="true" value="{{ $data->deskripsi }}" isReadonly=""
                                     placeholder="Deskripsi" />
 
@@ -205,17 +205,33 @@
                                     <x-forms.input_v id="file_perwal" type="file" name="file_perwal"
                                         label="File Perwal/SK" isRequired="false" value="" isReadonly=""
                                         placeholder="Integrasi">
-
-
                                         <i class="text-info">format file : pdf <br>
                                             max size : 5mb</i><br>
-                                        <a href="{{ asset('dokumen/perwal/' . $data->file_perwal) }}"
-                                            class="btn btn-info btn-sm mt-2 mb-2" target="_blank"><i
-                                                class="fa fa-eye"></i>
-                                            Lihat
-                                            File</a>
+                                        @if ($data->file_perwal != null)
+                                            <button type="button" class="btn btn-info btn-sm mt-2 mb-2"
+                                                data-bs-toggle="modal" data-bs-target="#exampleLargeModal"><i
+                                                    class="fa fa-eye"></i> Lihat Perwal</button>
+                                        @else
+                                            <i class="text-danger">Belum ada File</i>
+                                        @endif
                                     </x-forms.input_v>
                                 </div>
+                                <x-forms.input_v id="logo_aplikasi" type="file" name="logo_aplikasi"
+                                    label="Logo Aplikasi" isRequired="false" value="" isReadonly=""
+                                    placeholder="Logo Aplikasi">
+                                    <i class="text-info">format file : jpeg, jpg, png <br>
+                                        max size : 5mb</i><br>
+                                    @if ($data->logo_aplikasi != null)
+                                        <p class="m-2">
+                                            <a href="{{ asset('images/logo_aplikasi/' . $data->logo_aplikasi) }}"
+                                                target="_blank"><img
+                                                    src="{{ asset('images/logo_aplikasi/' . $data->logo_aplikasi) }}"
+                                                    width="100px"></a>
+                                        </p>
+                                    @else
+                                        <i class="text-danger">Belum ada File</i>
+                                    @endif
+                                </x-forms.input_v>
                             </div>
                         </div>
                         <div class="row">
@@ -232,5 +248,24 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleLargeModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Preview Perwal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
+                    <embed src="{{ asset('dokumen/perwal/' . $data->file_perwal) }}" type="application/pdf"
+                        frameBorder="0" height="720px" width="100%"></embed>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

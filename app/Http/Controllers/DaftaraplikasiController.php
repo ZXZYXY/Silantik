@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use DB;
 use File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class DaftaraplikasiController extends Controller
 {
@@ -57,7 +58,7 @@ class DaftaraplikasiController extends Controller
 
     public function show($id)
     {
-        $data = Daftaraplikasi::with('opd')->where('uuid', $id)->first();
+        $data = Daftaraplikasi::with('opd', 'sektor')->where('uuid', $id)->first();
         return view('daftaraplikasi.detail', compact('data'));
     }
 
@@ -147,6 +148,15 @@ class DaftaraplikasiController extends Controller
                 $data->file_perwal      = $file_name;
             }
 
+            if ($request->hasFile('logo_aplikasi')) {
+                File::delete('images/logo_aplikasi/' . $data->logo_aplikasi);
+                $foto = $request->file('logo_aplikasi');
+                $image_name = $request->nama_aplikasi . '_PERWAL_' . kode_acak(5) . '.' . $foto->getClientOriginalExtension();
+                $ImageUpload = Image::make($foto->getRealPath());
+                $ImageUpload->save(public_path('images/logo_aplikasi/') . $image_name);
+                $data->logo_aplikasi      = $image_name;
+            }
+
             $data->save();
 
             DB::commit();
@@ -170,7 +180,11 @@ class DaftaraplikasiController extends Controller
             })
 
             ->addColumn('opd', function ($data) {
-                return $data->opd->nama_opd;
+                return $data->opd->singkatan;
+            })
+
+            ->addColumn('link', function ($data) {
+                return '<a href="' . $data->link_app . '" target="_blank">' . $data->link_app . '</a>';
             })
 
             ->addColumn('status_aktif', function ($data) {
@@ -183,7 +197,7 @@ class DaftaraplikasiController extends Controller
             })
 
             ->addIndexColumn()
-            ->rawColumns(['action', 'opd', 'status_aktif'])
+            ->rawColumns(['action', 'opd', 'status_aktif', 'link'])
             ->make(true);
     }
 }

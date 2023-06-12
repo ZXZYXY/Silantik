@@ -91,7 +91,7 @@
                                 <x-forms.input_v id="nama_aplikasi" type="text" name="nama_aplikasi" label="Nama"
                                     isRequired="true" value="" isReadonly="" placeholder="Nama Aplikasi" />
 
-                                <x-forms.textarea_v id="deskripsi" type="text" name="deskripsi" label="Deskrip/Narasi"
+                                <x-forms.textarea_v id="deskripsi" type="text" name="deskripsi" label="Deskripsi/Narasi"
                                     isRequired="true" value="" isReadonly="" placeholder="Deskripsi" />
 
                                 <x-forms.input_v id="link_app" type="text" name="link_app" label="Link/URL"
