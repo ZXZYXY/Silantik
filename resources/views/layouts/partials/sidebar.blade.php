@@ -80,7 +80,7 @@
             <a href="{{ route('team.index') }}">
                 <div class="parent-icon icon-color-1"><i class="bx bx-group"></i>
                 </div>
-                <div class="menu-title">Team</div>
+                <div class="menu-title">Team APTIKA</div>
             </a>
         </li>
     @endcan
@@ -145,6 +145,19 @@
             @can('sektor-list')
                 <li class="{{ setActive('data-master/sektor') }}">
                     <a href="{{ route('sektor.index') }}"><i class="bx bx-right-arrow-alt"></i>Sektor</a>
+                </li>
+            @endcan
+
+            @can('jabatan-list')
+                <li class="{{ setActive('data-master/jabatan') }}">
+                    <a href="{{ route('jabatan.index') }}"><i class="bx bx-right-arrow-alt"></i>Jabatan</a>
+                </li>
+            @endcan
+
+            @can('statuspermohonan-list')
+                <li class="{{ setActive('data-master/statuspermohonan') }}">
+                    <a href="{{ route('statuspermohonan.index') }}"><i class="bx bx-right-arrow-alt"></i>Status
+                        Permohonan</a>
                 </li>
             @endcan
 

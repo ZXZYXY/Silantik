@@ -15,7 +15,7 @@ class Team extends Model
     public function getImageTeam()
     {
         if (!$this->foto) {
-            return asset('images/foto_team/no-berita.jpg');
+            return asset('images/foto_team/no-image.png');
         }
         return asset('images/foto_team/' . $this->foto);
     }

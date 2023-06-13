@@ -4,7 +4,7 @@
     <div class="dropdown-menu">
 
         <a href="{{ url('permohonan/' . $data->jenis_permohonan . '/detail/' . $data->uuid) }}" class="dropdown-item"
-            title="Detail"><i class="fa fa-eye"></i> Detail</a>
+            title="Detail"><i class="fa fa-eye"></i> Detail/Proses</a>
 
         @if (auth()->user()->can('permohonan-edit'))
             <a href="{{ url('permohonan/' . $data->jenis_permohonan . '/edit/' . $data->uuid) }}" class="dropdown-item"

@@ -19,6 +19,8 @@ use App\Http\Controllers\DaftarController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SektorController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\StatuspermohonanController;
 
 
 /*
@@ -66,6 +68,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::group(['prefix' => 'permohonan'], function () {
         Route::post('/store', [PermohonanController::class, 'store']);
         Route::post('/update', [PermohonanController::class, 'update']);
+        Route::post('/proses', [PermohonanController::class, 'proses']);
 
         Route::get('/{jenis_permohonan}', [PermohonanController::class, 'index']);
         Route::get('/{jenis_permohonan}/create', [PermohonanController::class, 'create']);
@@ -103,6 +106,8 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
         Route::resource('jenisaplikasi', JenisaplikasiController::class);
         Route::resource('kategori', KategoriController::class);
         Route::resource('sektor', SektorController::class);
+        Route::resource('jabatan', JabatanController::class);
+        Route::resource('statuspermohonan', StatuspermohonanController::class);
     });
 
     //FAQ
@@ -128,4 +133,6 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/kategori', [KategoriController::class, 'dataTable'])->name('table.kategori');
     Route::get('/table/sektor', [SektorController::class, 'dataTable'])->name('table.sektor');
     Route::get('/table/team', [TeamController::class, 'dataTable'])->name('table.team');
+    Route::get('/table/jabatan', [JabatanController::class, 'dataTable'])->name('table.jabatan');
+    Route::get('/table/statuspermohonan', [StatuspermohonanController::class, 'dataTable'])->name('table.statuspermohonan');
 });

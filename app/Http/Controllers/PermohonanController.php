@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Historipermohonan;
 use App\Models\Jenisaplikasi;
 use App\Models\Opd;
 use App\Models\Permohonan;
+use App\Models\Statuspermohonan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
@@ -53,7 +55,9 @@ class PermohonanController extends Controller
         $data = Permohonan::where('uuid', $id)->first();
         $jenis = $jenis_permohonan;
         $pemohon = User::where('id', $data->pemohon_id)->first();
-        return view('permohonan.show', compact('data', 'jenis', 'pemohon'));
+        $status = Statuspermohonan::select('nama_status')->get();
+        $histori = Historipermohonan::where('permohonan_id', $data->id)->orderBy('id', 'desc')->get();
+        return view('permohonan.show', compact('data', 'jenis', 'pemohon', 'status', 'histori'));
     }
 
     public function destroy($id)
@@ -99,10 +103,16 @@ class PermohonanController extends Controller
             }
             $data->save();
 
+            //Histori
+            $status = new Historipermohonan();
+            $status->permohonan_id      = $data->id;
+            $status->status             = 'Permohonan Baru';
+            $status->save();
+
             DB::commit();
             return redirect('permohonan/' . $request->jenis_permohonan)->with('success', 'Data Berhasil Ditambah');
         } catch (\Exception $e) {
-            //dd($e);
+            dd($e);
             DB::rollback();
             return redirect()->back()->with('gagal', 'Data Gagal Diinput');
         }
@@ -145,6 +155,37 @@ class PermohonanController extends Controller
         }
     }
 
+    public function proses(Request $request)
+    {
+        $this->validate($request, [
+            'status' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $data = Permohonan::where('uuid', $request->uuid)->first();
+            $data->status               = $request->status;
+            $data->keterangan_status    = $request->keterangan_status;
+            $data->petugas_id           = auth()->user()->id;
+            $data->save();
+
+            //Histori
+            $status = new Historipermohonan();
+            $status->permohonan_id      = $data->id;
+            $status->status             = $request->status;
+            $status->keterangan_status    = $request->keterangan_status;
+            $status->petugas_id           = auth()->user()->id;
+            $status->save();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Data Berhasil Dirubah');
+        } catch (\Exception $e) {
+            //dd($e);
+            DB::rollback();
+            return redirect()->back()->with('gagal', 'Data Gagal Diinput');
+        }
+    }
+
 
     public function dataTable($jenis)
     {
@@ -174,11 +215,7 @@ class PermohonanController extends Controller
             })
 
             ->addColumn('status', function ($data) {
-                if ($data->status == NULL) {
-                    return 'Permohonan Baru';
-                } else {
-                    return $data->status;
-                }
+                return '<span class="badge bg-dark">' . $data->status . '</span>';
             })
 
             ->addIndexColumn()

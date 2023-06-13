@@ -35,8 +35,15 @@
                                 <x-forms.input_v id="nama" type="text" name="nama" label="Nama"
                                     isRequired="true" value="" isReadonly="" placeholder="Nama" />
 
-                                <x-forms.input_v id="jabatan" type="text" name="jabatan" label="Jabatan"
-                                    isRequired="true" value="" isReadonly="" placeholder="Jabatan" />
+                                <x-forms.select_v id="jabatan_id" name="jabatan_id" label="Jabatan" isRequired="true"
+                                    isSelect2="true">
+                                    <option value="">[Pilih]</option>
+                                    @foreach ($jabatan as $list)
+                                        <option value="{{ $list->id }}"
+                                            {{ old('jabatan_id') == $list->id ? ' selected' : '' }}>
+                                            {{ $list->nama_jabatan }}</option>
+                                    @endforeach
+                                </x-forms.select_v>
 
                                 <x-forms.input_v id="foto" type="file" name="foto" label="Foto"
                                     isRequired="false" value="" isReadonly="" placeholder="Foto" />

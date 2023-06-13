@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Data Team APTIKA
+    Data Status Permohonan
 @endsection
 @push('style')
     <!--Data Tables -->
@@ -27,65 +27,20 @@
                 processing: true,
                 serverSide: true,
                 autoWidth: false,
-                ajax: "{{ route('table.team') }}",
+                ajax: "{{ route('table.statuspermohonan') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'id'
                     },
                     {
-                        data: 'nama'
+                        data: 'nama_status'
                     },
-                    {
-                        data: 'jabatan'
-                    },
-                    {
-                        data: 'foto'
-                    },
+
                     {
                         data: 'action',
                         name: 'action'
                     }
                 ]
-            });
-
-            $('body').on('click', '.hapus', function(event) {
-                event.preventDefault();
-
-                var token = $("meta[name='csrf-token']").attr("content");
-                var team_name = $(this).attr('team-name'),
-                    title = team_name.replace(/\w\S*/g, function(txt) {
-                        return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
-                    });
-                team_id = $(this).attr('team-id');
-                swal({
-                        title: "Anda Yakin?",
-                        text: "Mau Menghapus Data : " + title + "?",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((result) => {
-                        if (result) {
-
-                            $.ajax({
-                                url: "/team/" + team_id,
-                                type: "POST",
-                                data: {
-                                    _method: "DELETE",
-                                    _token: token,
-                                },
-
-                                success: function(response) {
-                                    $('#datatable').DataTable().ajax.reload();
-                                    swal("Berhasil", "Data Berhasil Dihapus", "success");
-                                },
-                                error: function(xhr) {
-                                    swal("Oops...", "Terjadi Kesalahan", "error");
-
-                                }
-                            });
-                        }
-                    });
             });
         });
     </script>
@@ -96,16 +51,15 @@
     <div class="page-content-wrapper">
         <div class="page-content">
 
-            @can('team-create')
+            @can('statuspermohonan-create')
                 <p>
-                    <a class="btn btn-primary btn-sm text-right" href="{{ route('team.create') }}"><i
-                            class="fa fa-plus-circle"></i> Tambah
-                    </a>
+                    <a href="{{ route('statuspermohonan.create') }}" class="btn btn-primary btn-sm modal-show"
+                        title="Tambah Status Permohonan"><i class="fa fa-plus-circle"></i> Tambah</a>
                 </p>
             @endcan
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Data Team APTIKA</h4>
+                    <h4 class="mb-0">Data Status Permohonan</h4>
                     <hr>
 
                     <div class="table-responsive">
@@ -113,9 +67,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Jabatan</th>
-                                    <th>Foto</th>
+                                    <th>Nama Status Permohonan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

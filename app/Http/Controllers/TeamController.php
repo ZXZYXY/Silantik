@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use App\Models\Jabatan;
 use DB;
 use DataTables;
 use Illuminate\Support\Facades\File;
@@ -38,7 +39,8 @@ class TeamController extends Controller
     public function create()
     {
         $model = new Team();
-        return view('team.tambah', compact('model'));
+        $jabatan = Jabatan::all();
+        return view('team.tambah', compact('model', 'jabatan'));
     }
 
     /**
@@ -51,14 +53,16 @@ class TeamController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'jabatan' => 'required'
+            'jabatan_id' => 'required'
         ]);
 
+        $jabatan = Jabatan::where('id', $request->jabatan_id)->first();
         DB::beginTransaction();
         try {
             $data = new Team;
-            $data->nama          = $request->nama;
-            $data->jabatan      = $request->jabatan;
+            $data->nama         = $request->nama;
+            $data->jabatan_id   = $request->jabatan_id;
+            $data->jabatan      = $jabatan->nama_jabatan;
 
             if ($request->hasFile('foto')) {
                 $foto = $request->file('foto');
@@ -74,7 +78,7 @@ class TeamController extends Controller
             DB::commit();
             return redirect()->route('team.index')->with('success', 'Data Berhasil Ditambah');
         } catch (\Exception $e) {
-            dd($e);
+            //dd($e);
             DB::rollback();
             return redirect()->back()->with('gagal', 'Data Gagal Diinput');
         }
@@ -99,7 +103,8 @@ class TeamController extends Controller
     public function edit($id)
     {
         $data = Team::findOrFail($id);
-        return view('team.edit', compact('data'));
+        $jabatan = Jabatan::all();
+        return view('team.edit', compact('data', 'jabatan'));
     }
 
     /**
@@ -113,15 +118,18 @@ class TeamController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'jabatan' => 'required'
+            'jabatan_id' => 'required'
         ]);
 
+        $jabatan = Jabatan::where('id', $request->jabatan_id)->first();
         DB::beginTransaction();
         try {
             $data = Team::findOrFail($id);
 
-            $data->nama = $request->nama;
-            $data->jabatan = $request->jabatan;
+            $data->nama         = $request->nama;
+            $data->jabatan_id   = $request->jabatan_id;
+            $data->jabatan      = $jabatan->nama_jabatan;
+
             if ($request->hasFile('foto')) {
                 File::delete('images/foto_team/' . $data->foto);
                 $foto = $request->file('foto');
@@ -162,7 +170,7 @@ class TeamController extends Controller
 
     public function dataTable()
     {
-        $data = Team::query();
+        $data = Team::orderBy('id', 'desc');
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
                 $edit = '<a href="' . route('team.edit', $data->id) . '" class="btn btn-warning btn-sm" title="Edit"><i class="lni lni-highlight-alt"></i></a>';
