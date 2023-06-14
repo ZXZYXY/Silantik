@@ -1,5 +1,4 @@
 <!--navigation-->
-
 <ul class="metismenu" id="menu">
     <li class="menu-label">{{ TanggalID(now()) }}</li>
     @can('dashboard-index')
@@ -27,26 +26,46 @@
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-10"><i class="bx bx-comment-edit"></i>
                 </div>
-                <div class="menu-title">Permohonan</div>
+                <div class="menu-title">Permohonan
+                    @if (jml_permohonan_baru() > '0')
+                        &nbsp; <span class="badge bg-danger">{{ jml_permohonan_baru() }}
+                        </span>
+                    @endif
+                </div>
             </a>
         @endif
         <ul>
             @can('permohonan-list')
                 <li class="{{ setActive('permohonan/pembuatan') }}">
-                    <a href="{{ url('permohonan/pembuatan') }}"><i class="bx bx-right-arrow-alt"></i>Pembuatan Aplikasi</a>
+                    <a href="{{ url('permohonan/pembuatan') }}"><i class="bx bx-right-arrow-alt"></i>Pembuatan Aplikasi
+                        @if (jml_jenis_permohonan_baru('pembuatan') > '0')
+                            &nbsp; <span class="badge bg-info text-danger">*
+                            </span>
+                        @endif
+                    </a>
                 </li>
             @endcan
 
             @can('permohonan-list')
                 <li class="{{ setActive('permohonan/pembaharuan') }}">
                     <a href="{{ url('permohonan/pembaharuan') }}"><i class="bx bx-right-arrow-alt"></i>Pembaharuan
-                        Aplikasi</a>
+                        Aplikasi
+                        @if (jml_jenis_permohonan_baru('pembaharuan') > '0')
+                            &nbsp; <span class="text-danger">*
+                            </span>
+                        @endif
+                    </a>
                 </li>
             @endcan
             @can('permohonan-list')
                 <li class="{{ setActive('permohonan/permintaan_domain') }}">
                     <a href="{{ url('permohonan/permintaan_domain') }}"><i class="bx bx-right-arrow-alt"></i>Permintaan
-                        Domain</a>
+                        Domain
+                        @if (jml_jenis_permohonan_baru('permintaan_domain') > '0')
+                            &nbsp; <span class="badge bg-info text-danger">*
+                            </span>
+                        @endif
+                    </a>
                 </li>
             @endcan
         </ul>
@@ -57,7 +76,11 @@
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-11"><i class="bx bx-help-circle"></i>
                 </div>
-                <div class="menu-title">Pengaduan</div>
+                <div class="menu-title">Pengaduan @if (jml_pengaduan_baru() > '0')
+                        &nbsp; <span class="badge bg-info">{{ jml_pengaduan_baru() }}
+                        </span>
+                    @endif
+                </div>
             </a>
         @endif
         <ul>
@@ -189,7 +212,8 @@
 
             @can('konfigurasiweb-list')
                 <li class="{{ setActive('setting/konfigurasi-web') }}">
-                    <a href="{{ url('setting/konfigurasi-web') }}"><i class="bx bx-right-arrow-alt"></i>Konfigurasi Web</a>
+                    <a href="{{ url('setting/konfigurasi-web') }}"><i class="bx bx-right-arrow-alt"></i>Konfigurasi
+                        Web</a>
                 </li>
             @endcan
 

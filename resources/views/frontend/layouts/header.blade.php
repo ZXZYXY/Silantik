@@ -23,10 +23,21 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ url('/news') }}" class="nav-link {{ setActive_frontend('news') }}">Berita</a>
+                            <a href="{{ url('/tentang') }}"
+                                class="nav-link {{ setActive_frontend('tentang') }}">Tentang</a>
                         </li>
 
                         <li class="nav-item">
+                            <a href="{{ url('/informasi') }}"
+                                class="nav-link {{ setActive_frontend('informasi') }}">Informasi</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('/portofolio') }}"
+                                class="nav-link {{ setActive_frontend('portofolio') }}">Portofolio</a>
+                        </li>
+
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle">Galeri</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
@@ -39,11 +50,24 @@
                                 </li>
 
                             </ul>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item">
-                            <a href="{{ url('/tanya-jawab') }}"
-                                class="nav-link {{ setActive_frontend('tanya-jawab') }}">FAQ</a>
+                            <a href="#" class="nav-link dropdown-toggle">Layanan</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="{{ url('layanan/pembuatan-aplikasi') }}"
+                                        class="nav-link {{ setActive_frontend('layanan/pembuatan-aplikasi') }}">
+                                        Pembuatan
+                                        Aplikasi </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('layanan/pembaruan') }}"
+                                        class="nav-link {{ setActive_frontend('layanan/pembaruan') }}"> Pembaruan
+                                        Aplikasi </a>
+                                </li>
+
+                            </ul>
                         </li>
 
                         <li class="nav-item">

@@ -10,7 +10,18 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.home');
+        $berita = Berita::with('kategori')->orderBy('id', 'desc')->limit(3)->get();
+        return view('frontend.home', compact('berita'));
+    }
+
+    public function tentang()
+    {
+        return view('frontend.tentang');
+    }
+
+    public function layanan_pembuatan_aplikasi()
+    {
+        return view('frontend.layanan_pembuatan_aplikasi');
     }
 
     public function news()

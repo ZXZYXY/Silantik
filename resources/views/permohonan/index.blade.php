@@ -137,7 +137,7 @@
             @can('permohonan-create')
                 <div class="ms-auto mb-3">
                     <a class="btn btn-primary btn-sm text-right" href="{{ url('permohonan/' . $jenis . '/create') }}"><i
-                            class="fa fa-plus-circle"></i> Tambah
+                            class="fa fa-plus-circle"></i> Buat Permohonan
                     </a>
                 </div>
             @endcan

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('title')
-    Berita Detail
+    Detail Berita
 @endsection
 @push('style')
 @endpush
@@ -15,8 +15,8 @@
             <div class="page-title-content">
                 <h1>Detail Berita</h1>
                 <ul>
-                    <li class="item"><a href="index.html">Home</a></li>
-                    <li class="item"><a href="blog-details.html">Detail Berita</a></li>
+                    <li class="item"><a href="/">Beranda</a></li>
+                    <li class="item"><a href="#">Detail Berita</a></li>
                 </ul>
             </div>
         </div>

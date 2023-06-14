@@ -13,10 +13,10 @@
     <div class="page-title-area bg-thin">
         <div class="container">
             <div class="page-title-content">
-                <h1>Blog grid</h1>
+                <h1>Berita</h1>
                 <ul>
-                    <li class="item"><a href="#">Home</a></li>
-                    <li class="item"><a href="#">Blog grid</a></li>
+                    <li class="item"><a href="/">Beranda</a></li>
+                    <li class="item"><a href="#">Berita</a></li>
                 </ul>
             </div>
         </div>

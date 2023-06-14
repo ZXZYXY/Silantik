@@ -7,10 +7,10 @@
     <div class="page-title-area bg-thin">
         <div class="container">
             <div class="page-title-content">
-                <h1>sign in</h1>
+                <h1>Login</h1>
                 <ul>
-                    <li class="item"><a href="index.html">Home</a></li>
-                    <li class="item"><a href="sign-in.html">Sign In</a></li>
+                    <li class="item"><a href="/">Beranda</a></li>
+                    <li class="item"><a href="{{ url('login') }}">Login</a></li>
                 </ul>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="signin-box">
                 <!-- Title Box -->
                 <div class="title-box">
-                    <h2>Sign in</h2>
+                    <h2>Login</h2>
 
                 </div>
 
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="cta-btn">
-                        <button type="submit" class="btn btn-solid">sign in</button>
+                        <button type="submit" class="btn btn-solid">Login</button>
                     </div>
 
                     <div class="form-group col-lg-12">

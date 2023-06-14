@@ -3,6 +3,8 @@
 use App\Models\User;
 use App\Models\Konfigurasiweb;
 use App\Models\Berita;
+use App\Models\Pengaduan;
+use App\Models\Permohonan;
 
 if (!function_exists('setActive')) {
     /**
@@ -162,4 +164,22 @@ function jml_berita($kategori_id)
     $kategori_jml = Berita::where('kategori_id', $kategori_id)->count();
 
     return $kategori_jml;
+}
+
+function jml_permohonan_baru()
+{
+    $permohonan = Permohonan::where('status', 'Permohonan Baru')->count();
+    return $permohonan;
+}
+
+function jml_jenis_permohonan_baru($jenis)
+{
+    $permohonan = Permohonan::where('status', 'Permohonan Baru')->where('jenis_permohonan', $jenis)->count();
+    return $permohonan;
+}
+
+function jml_pengaduan_baru()
+{
+    $pengaduan = Pengaduan::where('status', null)->count();
+    return $pengaduan;
 }
