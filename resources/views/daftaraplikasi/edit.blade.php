@@ -229,7 +229,24 @@
                                                     width="100px"></a>
                                         </p>
                                     @else
-                                        <i class="text-danger">Belum ada File</i>
+                                        <i class="text-danger">Belum ada Gambar</i>
+                                    @endif
+                                </x-forms.input_v>
+
+                                <x-forms.input_v id="gambar_home" type="file" name="gambar_home"
+                                    label="Screenshot Halaman Awal Aplikasi" isRequired="false" value=""
+                                    isReadonly="" placeholder="">
+                                    <i class="text-info">format file : jpeg, jpg, png <br>
+                                        max size : 5mb</i><br>
+                                    @if ($data->gambar_home != null)
+                                        <p class="m-2">
+                                            <a href="{{ asset('images/gambar_home/' . $data->gambar_home) }}"
+                                                target="_blank"><img
+                                                    src="{{ asset('images/gambar_home/' . $data->gambar_home) }}"
+                                                    width="100px"></a>
+                                        </p>
+                                    @else
+                                        <i class="text-danger">Belum ada Gambar</i>
                                     @endif
                                 </x-forms.input_v>
                             </div>

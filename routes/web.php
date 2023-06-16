@@ -48,7 +48,7 @@ Route::post('/daftar/store', [DaftarController::class, 'store']);
 Route::get('/daftar/berhasil/{id}', [DaftarController::class, 'berhasil']);
 Route::get('/reload-captcha', [DaftarController::class, 'reloadCaptcha']);
 
-Route::get('/news', [FrontendController::class, 'news']);
+Route::get('/informasi', [FrontendController::class, 'news']);
 Route::get('/news/{slug}', [FrontendController::class, 'news_detail']);
 
 Route::group(['middleware' => ['auth', 'CheckActive']], function () {
@@ -65,6 +65,9 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::resource('berita', BeritaController::class);
     Route::resource('daftaraplikasi', DaftaraplikasiController::class);
     Route::resource('team', TeamController::class);
+
+    Route::post('/upload/screenshot', [DaftaraplikasiController::class, 'upload_ss'])->name('upload.images');
+
 
     //Permohonan
     Route::group(['prefix' => 'permohonan'], function () {

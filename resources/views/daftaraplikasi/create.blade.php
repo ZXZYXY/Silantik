@@ -191,6 +191,21 @@
                                             max size : 5mb</i>
                                     </x-forms.input_v>
                                 </div>
+
+                                <x-forms.input_v id="logo_aplikasi" type="file" name="logo_aplikasi"
+                                    label="Logo Aplikasi" isRequired="false" value="" isReadonly=""
+                                    placeholder="Logo Aplikasi">
+                                    <i class="text-info">format file : jpeg, jpg, png <br>
+                                        max size : 5mb</i><br>
+
+                                </x-forms.input_v>
+                                <x-forms.input_v id="gambar_home" type="file" name="gambar_home"
+                                    label="Screenshot Halaman Awal Aplikasi" isRequired="false" value=""
+                                    isReadonly="" placeholder="">
+                                    <i class="text-info">format file : jpeg, jpg, png <br>
+                                        max size : 5mb</i><br>
+
+                                </x-forms.input_v>
                             </div>
                         </div>
                         <div class="row">

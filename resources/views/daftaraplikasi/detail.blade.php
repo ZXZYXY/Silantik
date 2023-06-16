@@ -115,7 +115,7 @@
                                                         class="fa fa-eye"></i> Lihat
                                                     Perwal</button>
                                             @else
-                                                <i class="text-danger">Belum ada File</i>
+                                                <i class="text-danger">Belum ada Dokumen</i>
                                             @endif
                                         </td>
                                     </tr>
@@ -133,14 +133,58 @@
                                                         width="100px"></a>
                                             </p>
                                         @else
-                                            <i class="text-danger">Belum ada File</i>
+                                            <i class="text-danger">Belum ada Gambar</i>
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Halaman Awal Aplikasi</th>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($data->gambar_home != null)
+                                            <p class="m-2">
+                                                <a href="{{ asset('images/gambar_home/' . $data->gambar_home) }}"
+                                                    target="_blank"><img
+                                                        src="{{ asset('images/gambar_home/' . $data->gambar_home) }}"
+                                                        width="100px"></a>
+                                            </p>
+                                        @else
+                                            <i class="text-danger">Belum ada Gambar</i>
                                         @endif
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                    </div>
 
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Screenshot Aplikasi</h5>
+                            <button type="button" class="btn btn-secondary btn-sm mt-2 mb-2" data-bs-toggle="modal"
+                                data-bs-target="#tambahScreenshot"><i class="fa fa-plus-circle"></i> Tambah</button>
+
+                            <div class="row g-3">
+                                <div class="col-12 col-lg-3">
+                                    <img src="{{ asset('theme') }}/assets/images/gallery/35.jpg" class="img-thumbnail"
+                                        alt="">
+                                </div>
+                                <div class="col-12 col-lg-3">
+                                    <img src="{{ asset('theme') }}/assets/images/gallery/36.jpg" class="img-thumbnail"
+                                        alt="">
+                                </div>
+                                <div class="col-12 col-lg-3">
+                                    <img src="{{ asset('theme') }}/assets/images/gallery/37.jpg" class="img-thumbnail"
+                                        alt="">
+                                </div>
+                                <div class="col-12 col-lg-3">
+                                    <img src="{{ asset('theme') }}/assets/images/gallery/38.jpg" class="img-thumbnail"
+                                        alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                 </div>
@@ -159,6 +203,30 @@
 
                     <embed src="{{ asset('dokumen/perwal/' . $data->file_perwal) }}" type="application/pdf" frameBorder="0"
                         height="720px" width="100%"></embed>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal screenshoot-->
+    <div class="modal fade" id="tambahScreenshot" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Screenshoot</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('upload.images') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="images[]" multiple>
+                        <button type="submit">Upload</button>
+                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

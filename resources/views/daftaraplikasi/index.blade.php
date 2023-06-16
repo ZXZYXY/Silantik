@@ -66,11 +66,11 @@
                 event.preventDefault();
 
                 var token = $("meta[name='csrf-token']").attr("content");
-                var user_name = $(this).attr('user-name'),
-                    title = user_name.replace(/\w\S*/g, function(txt) {
+                var daftaraplikasi_name = $(this).attr('daftaraplikasi-name'),
+                    title = daftaraplikasi_name.replace(/\w\S*/g, function(txt) {
                         return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
                     });
-                user_id = $(this).attr('user-id');
+                daftaraplikasi_id = $(this).attr('daftaraplikasi-id');
                 swal({
                         title: "Anda Yakin?",
                         text: "Mau Menghapus Data : " + title + "?",
@@ -82,7 +82,7 @@
                         if (result) {
 
                             $.ajax({
-                                url: "/users/" + user_id,
+                                url: "/daftaraplikasi/" + daftaraplikasi_id,
                                 type: "POST",
                                 data: {
                                     _method: "DELETE",

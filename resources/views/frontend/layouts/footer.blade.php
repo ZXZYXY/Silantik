@@ -1,54 +1,15 @@
 <!-- start footer area -->
-{{-- <footer class="footer-area pt-100 pb-70">
+<footer class="footer-area pt-100 pb-70">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-5 col-sm-6 col-12">
+            <div class="col-lg-4 col-md-5 col-sm-6 col-12">
                 <div class="footer-widget">
-                    <div class="navbar-brand">
-                        <a href="index.html">
-                            <img src="assets/img/logos/logo_dark.png" alt="image" />
-                        </a>
-                    </div>
-                    <p>Grursus mal suada faci Lorem to the ipsum dolarorit more ame tion more consectetu.</p>
-                    <div class="social-link">
-                        <a href="#" class="bg-tertiary" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="bg-success" target="_blank"><i class="fab fa-tumblr"></i></a>
-                        <a href="#" class="bg-danger" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="bg-info" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="bg-pink" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-5 col-sm-6 col-12">
-                <div class="footer-widget">
-                    <h5>Our Services</h5>
-                    <ul class="footer-quick-links">
-                        <li><a href="service-details.html">Interface Design</a></li>
-                        <li><a href="service-details.html">SEO Optimizer</a></li>
-                        <li><a href="service-details.html">Digital Marketing</a></li>
-                        <li><a href="service-details.html">Market Monitor</a></li>
-                        <li><a href="service-details.html">Graphic Design</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-5 col-sm-6 col-12">
-                <div class="footer-widget">
-                    <h5>Other Resources</h5>
-                    <ul class="footer-quick-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-5 col-sm-6 col-12">
-                <div class="footer-widget">
-                    <h5>Contact info</h5>
+                    <h5>Kontak Kami</h5>
                     <div class="contact-info">
                         <i class="envy envy-pin"></i>
-                        <p>113 Solit, White House, New Jersey, USA</p>
+                        <p>Diskominfo Kota Jambi <br>
+                            Bidang Aplikasi dan Informatika <br>
+                            Jl. Jend. Basuki Rahmat No.1, Paal Lima, Kec. Kota Baru, Kota Jambi, Jambi 36129</p>
                     </div>
                     <div class="contact-info">
                         <i class="envy envy-call"></i>
@@ -68,9 +29,32 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-4 col-md-5 col-sm-6 col-12">
+                <div class="footer-widget">
+                    <h5>Situs Terkait</h5>
+                    <ul class="footer-quick-links">
+                        <li><a href="https://jambikota.go.id/" target="_blank">JAMBI KOTA</a></li>
+                        <li><a href="https://diskominfo.jambikota.go.id/" target="_blank">DISKOMINFO</a></li>
+                        <li><a href="https://satudata.jambikota.go.id/" target="_blank">Satu Data</a></li>
+                        <li><a href="https://ppid.jambikota.go.id/" target="_blank">PPID</a></li>
+                        <li><a href="https://jdih.jambikota.go.id/" target="_blank">JDIH</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-5 col-sm-6 col-12">
+                <div class="footer-widget">
+                    <h5>Map</h5>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15952.830997771072!2d103.6078129!3d-1.628042!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e25889e0c44110b%3A0xe233cee992a18dea!2sDinas%20Komunikasi%20dan%20Informatika%20Kota%20Jambi%20(DISKOMINFO)!5e0!3m2!1sid!2sid!4v1686793563303!5m2!1sid!2sid"
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
         </div>
     </div>
-</footer> --}}
+</footer>
 <!-- end footer area -->
 
 <!-- start copy right area -->

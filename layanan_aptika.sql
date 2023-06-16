@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Waktu pembuatan: 24 Bulan Mei 2023 pada 09.11
+-- Waktu pembuatan: 16 Jun 2023 pada 03.28
 -- Versi server: 5.7.33
 -- Versi PHP: 8.1.13
 
@@ -47,7 +47,7 @@ CREATE TABLE `berita` (
 
 INSERT INTO `berita` (`id`, `judul`, `slug`, `isi`, `published`, `kategori_id`, `gambar`, `user_id`, `created_at`, `updated_at`, `uuid`) VALUES
 (4, 'Ini adalah judul 1', 'ini-adalah-judul-1', '<p><img src=\"../../storage/photos/1/080b4dffeeea98952b99d2915da0b69c_XL.jpg\" alt=\"\" width=\"570\" height=\"330\"></p>', '1', 3, 'ccc_AJX1K.jpg', 1, '2023-03-28 14:12:18', '2023-03-30 08:30:27', '50bbc62a-4479-4862-9f51-a4a17e7c7ea2'),
-(5, 'PELATIHAN ESURAT', 'pelatihan-esurat', '<p><img src=\"../../storage/photos/1/080b4dffeeea98952b99d2915da0b69c_XL.jpg\" alt=\"\" width=\"570\" height=\"330\">dddd</p>', '1', 3, 'PELATIHAN_ESURAT_7NVPM.png', 1, '2023-03-30 08:30:52', '2023-04-12 07:50:49', 'e24a1b2a-b60d-4179-88a6-fd35c08216b4'),
+(5, 'PELATIHAN ESURAT', 'pelatihan-esurat', '<p><img src=\"../../storage/photos/1/080b4dffeeea98952b99d2915da0b69c_XL.jpg\" alt=\"\" width=\"570\" height=\"330\">dddd</p>', '1', 5, 'PELATIHAN_ESURAT_7NVPM.png', 1, '2023-03-30 08:30:52', '2023-06-05 09:34:31', 'e24a1b2a-b60d-4179-88a6-fd35c08216b4'),
 (6, 'ss', 'ss', '<p>sss</p>', '1', 5, 'ss_Q34AN.png', 1, '2023-05-24 15:31:17', '2023-05-24 15:31:17', 'e85ae6a7-f438-497d-bd25-06b949ad7337');
 
 -- --------------------------------------------------------
@@ -62,9 +62,18 @@ CREATE TABLE `daftaraplikasi` (
   `tahun_pembuatan` varchar(4) NOT NULL,
   `link_app` varchar(255) NOT NULL,
   `opd_id` int(11) NOT NULL,
+  `sektor_id` int(11) NOT NULL,
   `nama_opd` varchar(255) NOT NULL,
+  `nama_konsultan` varchar(255) DEFAULT NULL,
   `jenis_aplikasi` varchar(100) NOT NULL,
   `deskripsi` text,
+  `status_aktif` varchar(50) DEFAULT NULL,
+  `integrasi` varchar(50) DEFAULT NULL,
+  `app_integrasi` varchar(255) DEFAULT NULL,
+  `ada_perwal` varchar(50) DEFAULT NULL,
+  `file_perwal` varchar(200) DEFAULT NULL,
+  `logo_aplikasi` varchar(150) DEFAULT NULL,
+  `gambar_home` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
@@ -74,8 +83,8 @@ CREATE TABLE `daftaraplikasi` (
 -- Dumping data untuk tabel `daftaraplikasi`
 --
 
-INSERT INTO `daftaraplikasi` (`id`, `nama_aplikasi`, `tahun_pembuatan`, `link_app`, `opd_id`, `nama_opd`, `jenis_aplikasi`, `deskripsi`, `created_at`, `updated_at`, `uuid`) VALUES
-(1, 'SIHARKO', '2020', 'https://siharko.jambikota.go.id/', 21, 'DINAS PERTANIAN DAN KETAHANAN PANGAN', 'Aplikasi Android', 'sss', '2023-05-11 08:56:49', '2023-05-11 09:36:43', '7f24f3d1-b137-40e1-ba92-5442239fc5f9');
+INSERT INTO `daftaraplikasi` (`id`, `nama_aplikasi`, `tahun_pembuatan`, `link_app`, `opd_id`, `sektor_id`, `nama_opd`, `nama_konsultan`, `jenis_aplikasi`, `deskripsi`, `status_aktif`, `integrasi`, `app_integrasi`, `ada_perwal`, `file_perwal`, `logo_aplikasi`, `gambar_home`, `created_at`, `updated_at`, `uuid`) VALUES
+(2, 'SIBANGMAN', '2020', 'https://siharko.jambikota.go.id/', 1, 1, 'BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA', 'PT aplikasi', 'WEB,ANDROID', 'ddd', 'Aktif', 'Ya', 'ddd', 'Ya', NULL, 'SIBANGMAN_PERWAL_b3iw8.png', NULL, '2023-05-31 07:38:26', '2023-06-12 09:47:42', '05fb7baf-5fbb-4732-a0b9-604182f80411');
 
 -- --------------------------------------------------------
 
@@ -136,6 +145,59 @@ CREATE TABLE `file_pendukung` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `histori_permohonan`
+--
+
+CREATE TABLE `histori_permohonan` (
+  `id` int(11) NOT NULL,
+  `permohonan_id` int(11) NOT NULL,
+  `petugas_id` int(11) DEFAULT NULL,
+  `status` varchar(100) NOT NULL,
+  `keterangan_status` text,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `histori_permohonan`
+--
+
+INSERT INTO `histori_permohonan` (`id`, `permohonan_id`, `petugas_id`, `status`, `keterangan_status`, `created_at`, `updated_at`) VALUES
+(1, 5, 0, 'Permohonan Baru', NULL, '2023-06-13 10:12:34', '2023-06-13 10:12:34'),
+(2, 5, 1, 'Permohonan Disetujui', 'disetujui', '2023-06-13 10:52:24', '2023-06-13 10:52:24'),
+(3, 5, 1, 'Selesai', 'selesaii', '2023-06-13 11:25:40', '2023-06-13 11:25:40');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jabatan`
+--
+
+CREATE TABLE `jabatan` (
+  `id` int(11) NOT NULL,
+  `nama_jabatan` varchar(100) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `uuid` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `jabatan`
+--
+
+INSERT INTO `jabatan` (`id`, `nama_jabatan`, `created_at`, `updated_at`, `uuid`) VALUES
+(2, 'Kepala Bidang', '2023-06-13 08:00:49', '2023-06-13 08:00:49', '7f6b1e8d-52cb-49e2-93b1-9025a74c1c72'),
+(3, 'Programer', '2023-06-13 08:01:03', '2023-06-13 08:01:03', 'ef09b46d-398c-4d0d-b7cd-a4d3f5dfc99c'),
+(4, 'Teknisi Jaringan', '2023-06-13 08:01:13', '2023-06-13 08:01:13', '926fb950-0286-4e0d-8643-73d15a2194ca'),
+(5, 'Admin Server', '2023-06-13 08:01:28', '2023-06-13 08:01:28', 'c72a9313-e66e-4b1e-a057-39d387e13c98'),
+(6, 'Pranata Komputer', '2023-06-13 11:06:36', '2023-06-13 11:06:36', '68c07d5a-9634-477c-ab34-947ff4407d7a'),
+(7, 'Analis Sistem Informasi', '2023-06-13 11:07:01', '2023-06-13 11:07:01', 'b82a48ff-4a70-4917-a2f2-f798a5d91087'),
+(8, 'Analis Data dan Sistem Informasi', '2023-06-13 11:07:12', '2023-06-13 11:07:12', '26c3c96a-7673-4317-9f41-bbaa748bcb81'),
+(9, 'Pengendali Jaringan Komunikasi', '2023-06-13 11:07:25', '2023-06-13 11:07:25', '5422203e-6b97-491d-92b7-79e7c0677780');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `jenis_aplikasi`
 --
 
@@ -152,10 +214,9 @@ CREATE TABLE `jenis_aplikasi` (
 --
 
 INSERT INTO `jenis_aplikasi` (`id`, `nama_jenis`, `created_at`, `updated_at`, `uuid`) VALUES
-(1, 'Aplikasi Web', '2023-05-03 08:02:24', '2023-05-03 08:03:18', '47864bad-90b8-490c-8576-88f8f1c11e88'),
-(2, 'Aplikasi Android', '2023-05-03 08:02:35', '2023-05-03 08:02:35', '516ca2b2-6a7e-421a-a38c-89f49de941ab'),
-(4, 'Web Profil', '2023-05-03 08:04:42', '2023-05-03 08:04:42', '17a33539-902c-440c-97fa-c6727be80131'),
-(6, 'dd', '2023-05-24 15:21:40', '2023-05-24 15:21:40', '946f4dc3-fb55-4a56-9c63-f986a89f25af');
+(1, 'WEB', '2023-05-03 08:02:24', '2023-05-29 09:38:21', '47864bad-90b8-490c-8576-88f8f1c11e88'),
+(2, 'ANDROID', '2023-05-03 08:02:35', '2023-05-29 09:38:28', '516ca2b2-6a7e-421a-a38c-89f49de941ab'),
+(7, 'IOS', '2023-05-26 09:15:37', '2023-05-29 09:38:44', '93291e30-e193-4890-9bb0-736a164ac4cd');
 
 -- --------------------------------------------------------
 
@@ -335,6 +396,13 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('nanang.ms22@gmail.com', '$2y$10$QfeTuuFhYqiFH6D9Fe.ll./wPUzQYLPvRVm2fEoOM3asz74fu4ZAa', '2023-06-13 20:32:29');
+
 -- --------------------------------------------------------
 
 --
@@ -436,7 +504,7 @@ CREATE TABLE `permohonan` (
   `status` varchar(50) DEFAULT NULL,
   `pemohon_id` int(11) NOT NULL,
   `petugas_id` int(11) DEFAULT NULL,
-  `tanggapan` text,
+  `keterangan_status` text,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
@@ -446,9 +514,10 @@ CREATE TABLE `permohonan` (
 -- Dumping data untuk tabel `permohonan`
 --
 
-INSERT INTO `permohonan` (`id`, `kd_permohonan`, `tanggal`, `jenis_permohonan`, `nama_aplikasi`, `jenis_aplikasi`, `opd_id`, `nama_opd`, `file_surat`, `deskripsi`, `status`, `pemohon_id`, `petugas_id`, `tanggapan`, `created_at`, `updated_at`, `uuid`) VALUES
+INSERT INTO `permohonan` (`id`, `kd_permohonan`, `tanggal`, `jenis_permohonan`, `nama_aplikasi`, `jenis_aplikasi`, `opd_id`, `nama_opd`, `file_surat`, `deskripsi`, `status`, `pemohon_id`, `petugas_id`, `keterangan_status`, `created_at`, `updated_at`, `uuid`) VALUES
 (1, '1683689147', '2023-05-10', 'pembuatan', 'SIBANGMAN', 'Aplikasi Web', 15, 'DINAS KOMUNIKASI DAN INFORMATIKA', NULL, 'Aplikasi tentang Program OPD di kota Jambi', NULL, 1, NULL, NULL, '2023-05-10 10:25:47', '2023-05-15 08:27:40', 'b4991a2a-eb9a-46d6-84d6-399dd227f5a0'),
-(2, '1683689356', '2023-05-10', 'pembaharuan', 'SIAPTENDIK', 'Aplikasi Web', 5, 'DINAS PENDIDIKAN', NULL, 'Pembuatan Fitur Absensi', NULL, 1, NULL, NULL, '2023-05-10 10:29:16', '2023-05-11 08:17:17', '382ded31-ac35-4515-9a1f-3df85d672518');
+(2, '1683689356', '2023-05-10', 'pembaharuan', 'SIAPTENDIK', 'Aplikasi Web', 5, 'DINAS PENDIDIKAN', NULL, 'Pembuatan Fitur Absensi', 'Permohonan Baru', 1, NULL, NULL, '2023-05-10 10:29:16', '2023-05-11 08:17:17', '382ded31-ac35-4515-9a1f-3df85d672518'),
+(5, '1686625954', '2023-06-13', 'pembuatan', 'ddd', 'WEB', 1, 'BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA', NULL, 'dd', 'Selesai', 1, 1, 'selesaii', '2023-06-13 10:12:34', '2023-06-13 11:25:40', '829a89d2-3260-40c3-bc0f-9ae8765c5475');
 
 -- --------------------------------------------------------
 
@@ -585,6 +654,76 @@ CREATE TABLE `screenshoot_app` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `sektor`
+--
+
+CREATE TABLE `sektor` (
+  `id` int(11) NOT NULL,
+  `nama_sektor` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `uuid` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `sektor`
+--
+
+INSERT INTO `sektor` (`id`, `nama_sektor`, `created_at`, `updated_at`, `uuid`) VALUES
+(1, 'Pendidikan', '2023-05-30 07:51:03', '2023-05-30 07:51:03', 'bcca4ef0-9daf-4f5a-938c-92b606bf9b9f');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `status_permohonan`
+--
+
+CREATE TABLE `status_permohonan` (
+  `id` int(11) NOT NULL,
+  `nama_status` varchar(100) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `uuid` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `status_permohonan`
+--
+
+INSERT INTO `status_permohonan` (`id`, `nama_status`, `created_at`, `updated_at`, `uuid`) VALUES
+(2, 'Permohonan Disetujui', '2023-06-13 09:32:36', '2023-06-13 09:44:03', 'a7fa1d2d-2882-48d8-8f40-12cdad8b5cf6'),
+(3, 'Permohonan Ditolak', '2023-06-13 09:44:16', '2023-06-13 09:44:16', '51be91e3-c56a-42ce-a000-62febb4b2e26'),
+(4, 'Dalam Proses Pembuatan', '2023-06-13 09:44:29', '2023-06-13 09:44:29', '73b10918-7511-49aa-a848-b09583500a09'),
+(5, 'Selesai', '2023-06-13 09:44:39', '2023-06-13 09:44:39', 'e65d8907-0a29-4350-8e0d-8dee6ad3ace9'),
+(6, 'Ditunda', '2023-06-13 09:44:45', '2023-06-13 09:44:45', '2080f5fb-4bd2-4bdc-9871-88ab127e70f2');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `teams`
+--
+
+CREATE TABLE `teams` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `jabatan_id` int(11) NOT NULL,
+  `jabatan` varchar(100) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `uuid` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `teams`
+--
+
+INSERT INTO `teams` (`id`, `nama`, `jabatan_id`, `jabatan`, `foto`, `created_at`, `updated_at`, `uuid`) VALUES
+(3, 'Nurdin', 4, 'Teknisi Jaringan', 'Nurdin_jUUoV.png', '2023-06-13 08:25:18', '2023-06-13 08:31:55', 'cd3f9d61-d86c-4ef1-aea6-c8ac1cd0a2d8');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `users`
 --
 
@@ -612,10 +751,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `opd_id`, `uuid`, `username`, `role`, `email`, `email_verified_at`, `password`, `remember_token`, `is_active`, `photo`, `last_login_at`, `last_login_ip`, `created_at`, `updated_at`) VALUES
-(1, 'Nanang Maulana Syarip', NULL, 'f9acc6ec-a304-4a70-adbc-e5a49982dae7', 'nanang', 'superadmin', 'nanang.ms22@gmail.com', NULL, '$2y$10$JcLj19OIGihAxcJLGPJPzu0YYN1t1GLtK6N5XKhzkow6ldZffAoiW', NULL, '1', 'Nanang_Maulana_Syarip_GG9U9.jpg', '2023-05-24 15:08:49', '127.0.0.1', '2022-12-25 20:18:45', '2023-05-24 08:08:49'),
+(1, 'Nanang Maulana Syarip', NULL, 'f9acc6ec-a304-4a70-adbc-e5a49982dae7', 'nanang', 'superadmin', 'nanang.ms22@gmail.com', NULL, '$2y$10$JcLj19OIGihAxcJLGPJPzu0YYN1t1GLtK6N5XKhzkow6ldZffAoiW', NULL, '1', 'Nanang_Maulana_Syarip_GG9U9.jpg', '2023-06-16 09:51:33', '127.0.0.1', '2022-12-25 20:18:45', '2023-06-16 02:51:33'),
 (2, 'admin123', NULL, '2b29931d-9bc5-457f-b60d-c072ee36a6aa', 'admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$7ZYsIdbJslvAjPkzvPgmUO0UIYxkHFIzbFqX8nuLzxQbMPdCXQ7oi', NULL, '1', NULL, NULL, NULL, '2022-12-27 02:11:46', '2023-05-24 08:09:22'),
 (3, 'Harukaa', NULL, 'd9c0f103-7e49-48ab-8a8b-53de719903be', 'haruka', 'admin', 'haruka@gmail.com', NULL, '$2y$10$yisnIHPJmPf1XqwdrzH1huDuBkxobU5NTodhBPj6dgalxxgQ/VjAm', NULL, '1', NULL, NULL, NULL, '2023-03-27 03:27:04', '2023-03-30 01:11:29'),
-(4, 'user', 15, '8f4aad7b-fbc3-4787-9f34-b39f2078d4cb', 'user', 'user', 'user@gmail.com', NULL, '$2y$10$J2mmlE6KfT4UZDmVslUN/.GYtaxt0PNmL4nyzyc47Ut3Rv1VisdBm', NULL, '1', NULL, '2023-05-22 11:20:06', '127.0.0.1', '2023-05-15 01:14:40', '2023-05-22 04:20:06'),
+(4, 'user', 15, '8f4aad7b-fbc3-4787-9f34-b39f2078d4cb', 'user', 'user', 'user@gmail.com', NULL, '$2y$10$J2mmlE6KfT4UZDmVslUN/.GYtaxt0PNmL4nyzyc47Ut3Rv1VisdBm', NULL, '1', NULL, '2023-06-13 09:57:09', '127.0.0.1', '2023-05-15 01:14:40', '2023-06-13 02:57:09'),
 (6, 'Ahmad Zuhdi', 12, '94df5e27-d2ac-418b-8aa1-9a1507cfecc2', 'ahmad', 'user', 'ahmad@gmail.com', NULL, '$2y$10$9lEixArr9DSNBlE5PB51U.tpteC/qNTKtw3kc0zX22duBYGnZXYIK', NULL, '1', NULL, '2023-05-22 11:27:10', '127.0.0.1', '2023-05-22 04:26:36', '2023-05-22 04:27:10');
 
 --
@@ -651,6 +790,18 @@ ALTER TABLE `faq`
 -- Indeks untuk tabel `file_pendukung`
 --
 ALTER TABLE `file_pendukung`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `histori_permohonan`
+--
+ALTER TABLE `histori_permohonan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `jabatan`
+--
+ALTER TABLE `jabatan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -759,6 +910,24 @@ ALTER TABLE `screenshoot_app`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `sektor`
+--
+ALTER TABLE `sektor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `status_permohonan`
+--
+ALTER TABLE `status_permohonan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `teams`
+--
+ALTER TABLE `teams`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
@@ -779,7 +948,7 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT untuk tabel `daftaraplikasi`
 --
 ALTER TABLE `daftaraplikasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -800,16 +969,28 @@ ALTER TABLE `file_pendukung`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `histori_permohonan`
+--
+ALTER TABLE `histori_permohonan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `jabatan`
+--
+ALTER TABLE `jabatan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT untuk tabel `jenis_aplikasi`
 --
 ALTER TABLE `jenis_aplikasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `konfigurasi_web`
@@ -845,7 +1026,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT untuk tabel `permohonan`
 --
 ALTER TABLE `permohonan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -870,6 +1051,24 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `screenshoot_app`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `sektor`
+--
+ALTER TABLE `sektor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `status_permohonan`
+--
+ALTER TABLE `status_permohonan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `teams`
+--
+ALTER TABLE `teams`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

@@ -101,6 +101,14 @@ class DaftaraplikasiController extends Controller
                 $files->move('dokumen/perwal/', $file_name);
                 $data->file_perwal      = $file_name;
             }
+            if ($request->hasFile('logo_aplikasi')) {
+                File::delete('images/logo_aplikasi/' . $data->logo_aplikasi);
+                $foto = $request->file('logo_aplikasi');
+                $image_name = $request->nama_aplikasi . '_PERWAL_' . kode_acak(5) . '.' . $foto->getClientOriginalExtension();
+                $ImageUpload = Image::make($foto->getRealPath());
+                $ImageUpload->save(public_path('images/logo_aplikasi/') . $image_name);
+                $data->logo_aplikasi      = $image_name;
+            }
             $data->save();
 
             DB::commit();
@@ -168,6 +176,17 @@ class DaftaraplikasiController extends Controller
         }
     }
 
+    public function destroy($id)
+    {
+        $model = Daftaraplikasi::where('uuid', $id)->first();
+        $model->delete();
+
+        return response()->json([
+            'status' => 'true',
+            'messages' => 'Data Berhasil dihapus'
+        ]);
+    }
+
     public function dataTable()
     {
         $data = Daftaraplikasi::with('opd')->orderby('id', 'desc');
@@ -199,5 +218,33 @@ class DaftaraplikasiController extends Controller
             ->addIndexColumn()
             ->rawColumns(['action', 'opd', 'status_aktif', 'link'])
             ->make(true);
+    }
+
+    public function upload_ss(Request $request)
+    {
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+
+            // Check if the minimum number of images is uploaded
+            if (count($images) > 5) {
+                return 'Maksimal 5 Gambar';
+            }
+
+            foreach ($images as $image) {
+                // Validate the image file if needed
+
+                // Store the image in the public storage directory
+                $imagePath = $image->store('public/images');
+
+                // You can also store the image path in your database if necessary
+                // $imageModel = new Image();
+                // $imageModel->path = $imagePath;
+                // $imageModel->save();
+            }
+
+            return 'Images uploaded successfully.';
+        }
+
+        return 'No images selected for upload.';
     }
 }
