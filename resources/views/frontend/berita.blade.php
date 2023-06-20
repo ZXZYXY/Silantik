@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('title')
-    Berita
+    Informasi
 @endsection
 @push('style')
 @endpush
@@ -13,10 +13,10 @@
     <div class="page-title-area bg-thin">
         <div class="container">
             <div class="page-title-content">
-                <h1>Berita</h1>
+                <h1>Informasi</h1>
                 <ul>
                     <li class="item"><a href="/">Beranda</a></li>
-                    <li class="item"><a href="#">Berita</a></li>
+                    <li class="item"><a href="#">Informasi</a></li>
                 </ul>
             </div>
         </div>
@@ -50,7 +50,7 @@
                                 </a>
 
                                 <a href="{{ url('news/' . $b->slug) }}" target="_self" class="btn btn-text-only">
-                                    baca selengkapnya
+                                    Baca Selengkapnya
                                     <i class="envy envy-right-arrow"></i>
                                 </a>
                             </div>

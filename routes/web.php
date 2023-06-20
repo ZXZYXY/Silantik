@@ -38,6 +38,8 @@ use App\Http\Controllers\StatuspermohonanController;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/tentang', [FrontendController::class, 'tentang']);
 Route::get('/layanan/pembuatan-aplikasi', [FrontendController::class, 'layanan_pembuatan_aplikasi']);
+Route::get('/layanan/pembaruan-aplikasi', [FrontendController::class, 'layanan_pembaruan_aplikasi']);
+Route::get('/portofolio', [FrontendController::class, 'portofolio']);
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

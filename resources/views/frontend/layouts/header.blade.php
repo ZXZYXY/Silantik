@@ -32,8 +32,9 @@
                                         Aplikasi </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('layanan/pembaruan') }}"
-                                        class="nav-link {{ setActive_frontend('layanan/pembaruan') }}"> Pembaruan
+                                    <a href="{{ url('layanan/pembaruan-aplikasi') }}"
+                                        class="nav-link {{ setActive_frontend('layanan/pembaruan-aplikasi') }}">
+                                        Pembaruan
                                         Aplikasi </a>
                                 </li>
 

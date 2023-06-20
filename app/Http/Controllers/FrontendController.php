@@ -24,9 +24,19 @@ class FrontendController extends Controller
         return view('frontend.layanan_pembuatan_aplikasi');
     }
 
+    public function layanan_pembaruan_aplikasi()
+    {
+        return view('frontend.layanan_pembaruan_aplikasi');
+    }
+
+    public function portofolio()
+    {
+        return view('frontend.portofolio');
+    }
+
     public function news()
     {
-        $berita = Berita::with('kategori')->orderBy('id', 'desc')->paginate(2);
+        $berita = Berita::with('kategori')->orderBy('id', 'desc')->paginate(6);
         return view('frontend.berita', compact('berita'));
     }
 

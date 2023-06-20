@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('title')
-    Detail Berita
+    Detail Informasi
 @endsection
 @push('style')
 @endpush
@@ -13,10 +13,10 @@
     <div class="page-title-area bg-thin">
         <div class="container">
             <div class="page-title-content">
-                <h1>Detail Berita</h1>
+                <h1>Detail Informasi</h1>
                 <ul>
                     <li class="item"><a href="/">Beranda</a></li>
-                    <li class="item"><a href="#">Detail Berita</a></li>
+                    <li class="item"><a href="#">Detail Informasi</a></li>
                 </ul>
             </div>
         </div>
