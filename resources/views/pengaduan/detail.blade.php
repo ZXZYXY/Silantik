@@ -56,14 +56,13 @@
                             <div class="row g-3">
                                 @foreach ($foto as $f)
                                     <div class="col-12 col-lg-3">
-                                        <img src="{{ asset('images/foto_pengaduan/' . $f->nama_foto) }}"
-                                            class="img-thumbnail" alt="">
+                                        <a href="{{ asset('images/foto_pengaduan/' . $f->nama_foto) }}" target="_blank">
+                                            <img src="{{ asset('images/foto_pengaduan/' . $f->nama_foto) }}"
+                                                class="img-thumbnail" alt="">
+                                        </a>
                                     </div>
                                 @endforeach
-                                <div class="col-12 col-lg-3">
-                                    <img src="{{ asset('theme') }}/assets/images/gallery/35.jpg" class="img-thumbnail"
-                                        alt="">
-                                </div>
+
                             </div>
                         </div>
                     </div>
