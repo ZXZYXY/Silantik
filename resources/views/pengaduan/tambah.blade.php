@@ -37,7 +37,7 @@
                 console.log(i);
                 $("#dynamicTable").append(`
                 <tr>
-                    <td><input type="file" name="file_sertifikat[]" placeholder="" class="form-control form-control-sm" /></td>
+                    <td><input type="file" name="foto_pengaduan[]" placeholder="" class="form-control form-control-sm" /></td>
                     <td><button type="button" class="btn btn-danger btn-xs remove-tr" id="remove"><i class="fa fa-trash"></i> Remove</button></td>
                 </tr>`);
             } else {
@@ -80,28 +80,39 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ url('pengaduan/store') }}" method="POST">
+                    <form action="{{ url('pengaduan/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="hidden" name="jenis_pengaduan" value="{{ $jenis }}">
-                                <x-forms.input_v id="judul" type="text" name="judul" label="Judul"
-                                    isRequired="true" value="" isReadonly="" placeholder="Judul" />
+                                <x-forms.input_v id="judul" type="text" name="judul" label="Topik Masalah"
+                                    isRequired="true" value="" isReadonly="" placeholder="Topik Masalah" />
+
+                                @if ($jenis == 'aplikasi')
+                                    <x-forms.select_v id="nama_aplikasi" name="nama_aplikasi" label="Nama Aplikasi"
+                                        isRequired="true" isSelect2="true">
+                                        <option value="" selected disabled>[Pilih]</option>
+                                        @foreach ($daftar_aplikasi as $data)
+                                            <option value="{{ $data->nama_aplikasi }}"
+                                                {{ old('nama_aplikasi') == $data->nama_aplikasi ? ' selected' : '' }}>
+                                                {{ $data->nama_aplikasi }} </option>
+                                        @endforeach
+                                    </x-forms.select_v>
+                                @endif
 
                                 <x-forms.textarea_v id="isi" type="text" name="isi" label="Detail Pengaduan"
                                     isRequired="true" value="" isReadonly="" placeholder="" />
 
                                 <div id="pelatihan_sertifikat">
-
                                     <span class="text-danger">* Format : pdf, jpg, jpeg, png</span><br>
                                     <span class="text-danger">** Ukuran Maksimal : 5mb</span>
                                     <table width="100%" class="" id="dynamicTable" cellpadding="4" cellspacing="0">
                                         <tr>
-                                            <th>Foto</th>
+                                            <th>Foto / Screenshoot Error</th>
                                             <th width="15%">Aksi</th>
                                         </tr>
                                         <tr>
-                                            <td><input type="file" name="file_sertifikat[]" placeholder=""
+                                            <td><input type="file" name="foto_pengaduan[]" placeholder=""
                                                     class="form-control form-control-sm" /></td>
                                             <td><button type="button" name="add" id="add"
                                                     class="btn btn-success btn-sm"><i class="fa fa-plus"></i>

@@ -73,7 +73,10 @@
                                     isRequired="true" value="" isReadonly="" placeholder="Deskripsi Aplikasi" />
 
                                 <x-forms.input_v id="file_surat" type="file" name="file_surat" label="Surat Permohonan"
-                                    isRequired="false" value="" isReadonly="" placeholder="Surat Permohonan" />
+                                    isRequired="false" value="" isReadonly="" placeholder="Surat Permohonan">
+                                    <i class="text-info">format file : pdf <br>
+                                        max size : 5mb</i>
+                                </x-forms.input_v>
 
                                 <button type="submit" class="btn btn-primary"><i class="lni lni-save"></i> Submit</button>
                             </div>

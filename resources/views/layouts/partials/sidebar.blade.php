@@ -47,10 +47,10 @@
             @endcan
 
             @can('permohonan-list')
-                <li class="{{ setActive('permohonan/pembaharuan') }}">
-                    <a href="{{ url('permohonan/pembaharuan') }}"><i class="bx bx-right-arrow-alt"></i>Pembaharuan
+                <li class="{{ setActive('permohonan/pembaruan') }}">
+                    <a href="{{ url('permohonan/pembaruan') }}"><i class="bx bx-right-arrow-alt"></i>Pembaruan
                         Aplikasi
-                        @if (jml_jenis_permohonan_baru('pembaharuan') > '0')
+                        @if (jml_jenis_permohonan_baru('pembaruan') > '0')
                             &nbsp; <span class="text-danger">*
                             </span>
                         @endif

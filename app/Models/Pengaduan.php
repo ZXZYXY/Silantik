@@ -12,4 +12,9 @@ class Pengaduan extends Model
     use HasFactory;
     protected $table = 'pengaduan';
     protected $guard = [];
+
+    public function foto_pengaduan()
+    {
+        return $this->hasMany(Foto_pengaduan::class);
+    }
 }

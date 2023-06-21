@@ -43,7 +43,12 @@
                         data: 'judul',
                         name: 'judul'
                     },
-                    {
+                    @if ($jenis == 'aplikasi')
+                        {
+                            data: 'nama_aplikasi',
+                            name: 'nama_aplikasi'
+                        },
+                    @endif {
                         data: 'isi',
                         name: 'isi'
                     },
@@ -127,7 +132,10 @@
                                 <th>No</th>
                                 <th>Kode Pengaduan</th>
                                 <th>Tanggal</th>
-                                <th>Judul</th>
+                                <th>Topik Masalah</th>
+                                @if ($jenis == 'aplikasi')
+                                    <th>Nama Aplikasi</th>
+                                @endif
                                 <th>Isi Pengaduan</th>
                                 <th>Status</th>
                                 <th>Aksi</th>

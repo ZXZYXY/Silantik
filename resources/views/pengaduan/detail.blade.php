@@ -33,16 +33,38 @@
                                     <td>{{ TanggalAja($data->tanggal) }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Judul</th>
+                                    <th>Topik Masalah</th>
                                     <td>:</td>
                                     <td>{{ $data->judul }}</td>
                                 </tr>
+                                @if ($jenis == 'aplikasi')
+                                    <tr>
+                                        <th>Nama Aplikasi</th>
+                                        <td>:</td>
+                                        <td>{{ $data->nama_aplikasi }}</td>
+                                    </tr>
+                                @endif
                                 <tr>
-                                    <th>Isi Pengaduan</th>
+                                    <th>Detail Masalah</th>
                                     <td>:</td>
                                     <td>{{ $data->isi }}</td>
                                 </tr>
+
+
                             </table>
+                            <h5>Foto / Screnshoot Aplikasi</h5>
+                            <div class="row g-3">
+                                @foreach ($foto as $f)
+                                    <div class="col-12 col-lg-3">
+                                        <img src="{{ asset('images/foto_pengaduan/' . $f->nama_foto) }}"
+                                            class="img-thumbnail" alt="">
+                                    </div>
+                                @endforeach
+                                <div class="col-12 col-lg-3">
+                                    <img src="{{ asset('theme') }}/assets/images/gallery/35.jpg" class="img-thumbnail"
+                                        alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
 
