@@ -130,7 +130,7 @@
                                     @endforeach
                                 </x-forms.select_v>
 
-                                <x-forms.select_v id="sektor_id" name="sektor_id" label="Sektor" isRequired="true"
+                                <x-forms.select_v id="sektor_id" name="sektor_id" label="Sektor" isRequired="false"
                                     isSelect2="true">
                                     <option value="" selected disabled>[Pilih]</option>
                                     @foreach ($sektor as $sk)
@@ -168,6 +168,13 @@
                                         isReadonly="" placeholder="Aplikasi Terintegrasi" />
                                 </div>
 
+                                <x-forms.select_v id="portofolio" name="portofolio" label="Jadikan Portofolio"
+                                    isRequired="false" isSelect2="true">
+                                    <option value="">[Pilih]</option>
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
+                                </x-forms.select_v>
+
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3 {{ $errors->has('ada_perwal') ? ' has-error' : '' }}">
@@ -197,7 +204,6 @@
                                     placeholder="Logo Aplikasi">
                                     <i class="text-info">format file : jpeg, jpg, png <br>
                                         max size : 5mb</i><br>
-
                                 </x-forms.input_v>
                                 <x-forms.input_v id="gambar_home" type="file" name="gambar_home"
                                     label="Screenshot Halaman Awal Aplikasi" isRequired="false" value=""

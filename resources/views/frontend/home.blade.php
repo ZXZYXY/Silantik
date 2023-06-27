@@ -218,45 +218,18 @@
                     Jambi</p>
             </div>
             <div class="gallery-slider owl-carousel">
-                <div class="gallery-item">
-                    <div class="gallery-image"><img src="{{ asset('aset') }}/img/gallery/gallery_1.jpg"
-                            alt="gallery-member" /></div>
-                    <div class="gallery-content">
-                        <h3>
-                            <a href="project-details.html">UI/UX Design</a>
-                        </h3>
+                @foreach ($portofolio as $p)
+                    <div class="gallery-item">
+                        <div class="gallery-image"><img src="{{ asset('images/gambar_home/' . $p->gambar_home) }}"
+                                alt="gallery-member" /></div>
+                        <div class="gallery-content">
+                            <h3>
+                                <a href="{{ url('portofolio/detail/' . $p->id) }}">{{ $p->nama_aplikasi }}</a>
+                            </h3>
+                        </div>
                     </div>
-                </div>
-                <!-- gallery-item -->
-                <div class="gallery-item">
-                    <div class="gallery-image"><img src="{{ asset('aset') }}/img/gallery/gallery_2.jpg"
-                            alt="gallery-member" /></div>
-                    <div class="gallery-content">
-                        <h3>
-                            <a href="project-details.html">Mobile Developing</a>
-                        </h3>
-                    </div>
-                </div>
-                <!-- gallery-item -->
-                <div class="gallery-item">
-                    <div class="gallery-image"><img src="{{ asset('aset') }}/img/gallery/gallery_3.jpg"
-                            alt="gallery-member" /></div>
-                    <div class="gallery-content">
-                        <h3>
-                            <a href="project-details.html">SEO Optimize</a>
-                        </h3>
-                    </div>
-                </div>
-                <!-- gallery-item -->
-                <div class="gallery-item">
-                    <div class="gallery-image"><img src="{{ asset('aset') }}/img/gallery/gallery_4.jpg"
-                            alt="gallery-member" /></div>
-                    <div class="gallery-content">
-                        <h3>
-                            <a href="project-details.html">Web Desiging</a>
-                        </h3>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
             <div class="justify-content-center">
                 <div class="cta-btn">

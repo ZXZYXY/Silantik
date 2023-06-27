@@ -70,7 +70,11 @@
                                 <tr>
                                     <th>Sektor</th>
                                     <td>:</td>
-                                    <td>{{ $data->sektor->nama_sektor }}</td>
+                                    <td>
+                                        @if ($data->sektor_id != null)
+                                            {{ $data->sektor->nama_sektor }}
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Status Aktif</th>

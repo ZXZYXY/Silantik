@@ -40,6 +40,7 @@ Route::get('/tentang', [FrontendController::class, 'tentang']);
 Route::get('/layanan/pembuatan-aplikasi', [FrontendController::class, 'layanan_pembuatan_aplikasi']);
 Route::get('/layanan/pembaruan-aplikasi', [FrontendController::class, 'layanan_pembaruan_aplikasi']);
 Route::get('/portofolio', [FrontendController::class, 'portofolio']);
+Route::get('/portofolio/detail/{id}', [FrontendController::class, 'portofolio_detail']);
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

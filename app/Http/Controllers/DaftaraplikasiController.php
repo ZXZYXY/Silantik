@@ -94,6 +94,7 @@ class DaftaraplikasiController extends Controller
             $data->integrasi            = $request->integrasi;
             $data->app_integrasi        = $request->app_integrasi;
             $data->ada_perwal           = $request->ada_perwal;
+            $data->portofolio           = $request->portofolio;
 
             if ($request->hasFile('file_perwal')) {
                 $files = $request->file('file_perwal');
@@ -108,6 +109,13 @@ class DaftaraplikasiController extends Controller
                 $ImageUpload = Image::make($foto->getRealPath());
                 $ImageUpload->save(public_path('images/logo_aplikasi/') . $image_name);
                 $data->logo_aplikasi      = $image_name;
+            }
+            if ($request->hasFile('gambar_home')) {
+                $foto = $request->file('gambar_home');
+                $image_name = $request->nama_aplikasi . '_SS-Home_' . kode_acak(5) . '.' . $foto->getClientOriginalExtension();
+                $ImageUpload = Image::make($foto->getRealPath());
+                $ImageUpload->save(public_path('images/gambar_home/') . $image_name);
+                $data->gambar_home      = $image_name;
             }
             $data->save();
 
@@ -147,6 +155,7 @@ class DaftaraplikasiController extends Controller
             $data->integrasi            = $request->integrasi;
             $data->app_integrasi        = $request->app_integrasi;
             $data->ada_perwal           = $request->ada_perwal;
+            $data->portofolio           = $request->portofolio;
 
             if ($request->hasFile('file_perwal')) {
                 File::delete('dokumen/perwal/' . $data->file_perwal);
@@ -163,6 +172,15 @@ class DaftaraplikasiController extends Controller
                 $ImageUpload = Image::make($foto->getRealPath());
                 $ImageUpload->save(public_path('images/logo_aplikasi/') . $image_name);
                 $data->logo_aplikasi      = $image_name;
+            }
+
+            if ($request->hasFile('gambar_home')) {
+                File::delete('images/gambar_home/' . $data->gambar_home);
+                $foto = $request->file('gambar_home');
+                $image_name = $request->nama_aplikasi . '_SS-Home_' . kode_acak(5) . '.' . $foto->getClientOriginalExtension();
+                $ImageUpload = Image::make($foto->getRealPath());
+                $ImageUpload->save(public_path('images/gambar_home/') . $image_name);
+                $data->gambar_home      = $image_name;
             }
 
             $data->save();

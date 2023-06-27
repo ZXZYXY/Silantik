@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Daftaraplikasi;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class FrontendController extends Controller
     public function index()
     {
         $berita = Berita::with('kategori')->orderBy('id', 'desc')->limit(3)->get();
-        return view('frontend.home', compact('berita'));
+        $portofolio = Daftaraplikasi::orderBy('id', 'desc')->limit(3)->get();
+        return view('frontend.home', compact('berita', 'portofolio'));
     }
 
     public function tentang()
@@ -32,6 +34,12 @@ class FrontendController extends Controller
     public function portofolio()
     {
         return view('frontend.portofolio');
+    }
+
+    public function portofolio_detail($id)
+    {
+        $data = Daftaraplikasi::where('id', $id)->orderBy('id', 'desc')->first();
+        return view('frontend.portofolio_detail', compact('data'));
     }
 
     public function news()

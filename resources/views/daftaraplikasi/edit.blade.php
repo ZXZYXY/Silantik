@@ -140,7 +140,7 @@
                                     @endforeach
                                 </x-forms.select_v>
 
-                                <x-forms.select_v id="sektor_id" name="sektor_id" label="Sektor" isRequired="true"
+                                <x-forms.select_v id="sektor_id" name="sektor_id" label="Sektor" isRequired="false"
                                     isSelect2="true">
                                     <option value="" selected disabled>[Pilih]</option>
                                     @foreach ($sektor as $sk)
@@ -182,6 +182,14 @@
                                         value="{{ $data->app_integrasi }}" isReadonly=""
                                         placeholder="Aplikasi Terintegrasi" />
                                 </div>
+
+                                <x-forms.select_v id="portofolio" name="portofolio" label="Jadikan Portofolio"
+                                    isRequired="false" isSelect2="true">
+                                    <option value="">[Pilih]</option>
+                                    <option value="1" {{ $data->portofolio == '1' ? ' selected' : '' }}>Ya</option>
+                                    <option value="0" {{ $data->portofolio == '0' ? ' selected' : '' }}>Tidak
+                                    </option>
+                                </x-forms.select_v>
 
                             </div>
                             <div class="col-md-4">
