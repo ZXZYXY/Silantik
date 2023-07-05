@@ -21,6 +21,7 @@ use App\Http\Controllers\SektorController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\StatuspermohonanController;
+use App\Http\Controllers\FaqController;
 
 
 /*
@@ -120,12 +121,12 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
 
     //FAQ
     Route::group(['prefix' => 'faq'], function () {
-        Route::get('/', [App\Http\Controllers\FaqController::class, 'index']);
-        Route::post('/tambah', [App\Http\Controllers\FaqController::class, 'store']);
-        Route::get('/table', [App\Http\Controllers\FaqController::class, 'dataTable'])->name('table.faq');
-        Route::get('/{id}/delete', [App\Http\Controllers\FaqController::class, 'delete']);
-        Route::get('/{id}/edit', [App\Http\Controllers\FaqController::class, 'edit']);
-        Route::post('/{id}/update', [App\Http\Controllers\FaqController::class, 'update']);
+        Route::get('/', [FaqController::class, 'index']);
+        Route::post('/tambah', [FaqController::class, 'store']);
+        Route::get('/table', [FaqController::class, 'dataTable'])->name('table.faq');
+        Route::get('/{id}/delete', [FaqController::class, 'delete']);
+        Route::get('/{id}/edit', [FaqController::class, 'edit']);
+        Route::post('/{id}/update', [FaqController::class, 'update']);
     });
 
     //Tabel

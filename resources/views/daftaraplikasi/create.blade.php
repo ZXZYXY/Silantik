@@ -84,6 +84,16 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-4">
+                                <x-forms.select_v id="team_id" name="team_id" label="Programer" isRequired="true"
+                                    isSelect2="true">
+                                    <option value="" selected disabled>[Pilih]</option>
+                                    @foreach ($team as $data)
+                                        <option value="{{ $data->id }}"
+                                            {{ old('team_id') == $data->id ? ' selected' : '' }}>
+                                            {{ $data->nama }} ({{ $data->jabatan }})</option>
+                                    @endforeach
+                                </x-forms.select_v>
+
                                 <x-forms.input_v id="tahun_pembuatan" type="text" name="tahun_pembuatan"
                                     label="Tahun Pembuatan" isRequired="true" value="" isReadonly=""
                                     placeholder="Tahun Pembuatan" />

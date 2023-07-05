@@ -6,6 +6,7 @@ use App\Models\Daftaraplikasi;
 use App\Models\Jenisaplikasi;
 use App\Models\Opd;
 use App\Models\Sektor;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use DB;
@@ -44,7 +45,8 @@ class DaftaraplikasiController extends Controller
         $jenisaplikasi = Jenisaplikasi::all();
         $sektor = Sektor::all();
         $daftar_app = Daftaraplikasi::select('nama_aplikasi')->get();
-        return view('daftaraplikasi.create', compact('opd', 'jenisaplikasi', 'sektor'));
+        $team = Team::where('jabatan', 'Programer')->get();
+        return view('daftaraplikasi.create', compact('opd', 'jenisaplikasi', 'sektor', 'team'));
     }
 
     public function edit($id)
@@ -53,7 +55,8 @@ class DaftaraplikasiController extends Controller
         $jenisaplikasi = Jenisaplikasi::all();
         $data = Daftaraplikasi::where('uuid', $id)->first();
         $sektor = Sektor::all();
-        return view('daftaraplikasi.edit', compact('opd', 'jenisaplikasi', 'data', 'sektor'));
+        $team = Team::where('jabatan', 'Programer')->get();
+        return view('daftaraplikasi.edit', compact('opd', 'jenisaplikasi', 'data', 'sektor', 'team'));
     }
 
     public function show($id)

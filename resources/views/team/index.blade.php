@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="{{ asset('theme/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <style>
+        .zoom {
+
+
+            transition: transform .2s;
+            /* Animation */
+
+            margin: 0 auto;
+            object-fit: cover;
+            position: relative;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .zoom:hover {
+            transform: scale(2.5);
+            /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+    </style>
 @endpush
 
 @push('script')

@@ -28,14 +28,15 @@
         </div>
     </div>
     <!-- end page title area -->
-
     <!-- Start Blog Details section -->
     <section class="blog-details-section ptb-100 bg-thin">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <div class="blog-details-desc">
-
+                        <div class="image">
+                            <img src="{{ $berita->getThumbnailBerita() }}" alt="image" />
+                        </div>
                         <ul class="post-meta">
                             <li><i class="envy envy-calendar"></i><a
                                     href="#">{{ TanggalAja($berita->created_at) }}</a></li>
@@ -43,31 +44,11 @@
                         </ul>
                         <div class="content">
                             <h2>{{ $berita->judul }}</h2>
-                            <div class="image">
-                                <img src="{{ $berita->getThumbnailBerita() }}" alt="image" />
-                            </div>
                             {!! $berita->isi !!}
                         </div>
 
 
-
-                        {{-- <div class="article-share">
-                            <div class="tags pb-3">
-                                <span>tags:</span>
-                                <a href="#">Design</a>
-                                <a href="#">Development</a>
-                                <a href="#">Technique</a>
-                            </div>
-                            <div class="social-link">
-                                <a href="#" class="bg-tertiary" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="bg-success" target="_blank"><i class="fab fa-tumblr"></i></a>
-                                <a href="#" class="bg-danger" target="_blank"><i class="fab fa-youtube"></i></a>
-                                <a href="#" class="bg-info" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" class="bg-pink" target="_blank"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <hr /> --}}
-
+                        <hr />
 
                     </div>
                 </div>
@@ -83,8 +64,6 @@
                                         <span class="total">{{ jml_berita($k->id) }}</span>
                                     </li>
                                 @endforeach
-
-
                             </ul>
                         </section>
                         <section class="widget widget-article">

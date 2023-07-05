@@ -186,7 +186,7 @@ class TeamController extends Controller
                 }
             })
             ->addColumn('foto', function ($data) {
-                return '<img src="' . $data->getImageTeam() . '" alt="avatar" style="object-fit: cover; position: relative; width: 50px; height: 50px; overflow: hidden; border-radius: 50%;">';
+                return '<img src="' . $data->getImageTeam() . '" class="zoom" alt="avatar" style="">';
             })
             ->addIndexColumn()
             ->rawColumns(['action', 'foto'])
