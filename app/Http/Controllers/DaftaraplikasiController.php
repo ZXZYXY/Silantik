@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Daftaraplikasi;
+use App\Models\File_pendukung;
 use App\Models\Jenisaplikasi;
 use App\Models\Opd;
 use App\Models\Sektor;
@@ -62,7 +63,8 @@ class DaftaraplikasiController extends Controller
     public function show($id)
     {
         $data = Daftaraplikasi::with('opd', 'sektor')->where('uuid', $id)->first();
-        return view('daftaraplikasi.detail', compact('data'));
+        $ss_aplikasi = File_pendukung::where('daftaraplikasi_id', $data->id)->where('kategori', 'ss')->get();
+        return view('daftaraplikasi.detail', compact('data', 'ss_aplikasi'));
     }
 
     /**
@@ -243,29 +245,43 @@ class DaftaraplikasiController extends Controller
 
     public function upload_ss(Request $request)
     {
-        if ($request->hasFile('images')) {
-            $images = $request->file('images');
+        //dd($request->images);
+        DB::beginTransaction();
+        try {
+            $data = Daftaraplikasi::where('id', $request->daftaraplikasi_id)->first();
 
-            // Check if the minimum number of images is uploaded
-            if (count($images) > 5) {
-                return 'Maksimal 5 Gambar';
+            if ($request->hasFile('foto_ss')) {
+                $images = $request->file('foto_ss');
+
+                // Check if the minimum number of images is uploaded
+                if (count($images) > 5) {
+                    return redirect()->back()->with('gagal', 'Maksimal 5 Gambar');
+                }
+
+                foreach ($images as $image) {
+                    // Validate the image file if needed
+                    $this->validate($request, [
+                        'foto_ss[]' => 'image|mimes:jpeg,png,jpg,gif|max:5048'
+                    ]);
+                    // Store the image in the public storage directory
+                    $image_name1 = str_replace(' ', '_', $data->nama_aplikasi) . '_' . kode_acak(5) . '.' . $image->getClientOriginalExtension();
+                    $imagePath = $image->storeAs('public/images/ss', $image_name1);
+
+                    // You can also store the image path in your database if necessary
+                    $imageModel = new File_pendukung();
+                    $imageModel->daftaraplikasi_id = $data->id;
+                    $imageModel->nama_file         = $image_name1;
+                    $imageModel->kategori          = $request->kategori;
+                    $imageModel->save();
+                }
             }
 
-            foreach ($images as $image) {
-                // Validate the image file if needed
-
-                // Store the image in the public storage directory
-                $imagePath = $image->store('public/images');
-
-                // You can also store the image path in your database if necessary
-                // $imageModel = new Image();
-                // $imageModel->path = $imagePath;
-                // $imageModel->save();
-            }
-
-            return 'Images uploaded successfully.';
+            DB::commit();
+            return redirect()->route('daftaraplikasi.index')->with('success', 'Data Berhasil Dirubah');
+        } catch (\Exception $e) {
+            dd($e);
+            DB::rollback();
+            return redirect()->back()->with('gagal', 'Data Gagal Diinput');
         }
-
-        return 'No images selected for upload.';
     }
 }

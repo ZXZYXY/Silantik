@@ -4,6 +4,47 @@
 @endsection
 @push('style')
     <link href="{{ asset('theme') }}/select2/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .foto_ss {
+            position: relative;
+            width: 100%;
+        }
+
+        .image_ss {
+            opacity: 1;
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .foto_ss:hover .img-thumbnail {
+            opacity: 0.3;
+        }
+
+        .foto_ss:hover .middle {
+            opacity: 1;
+        }
+
+        .text {
+            background-color: #04AA6D;
+            color: white;
+            font-size: 16px;
+            padding: 16px 32px;
+        }
+    </style>
 @endpush
 
 @push('script')
@@ -164,29 +205,40 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <h5>Screenshot Aplikasi</h5>
-                            <button type="button" class="btn btn-secondary btn-sm mt-2 mb-2" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-info btn-sm mt-2 mb-2" data-bs-toggle="modal"
                                 data-bs-target="#tambahScreenshot"><i class="fa fa-plus-circle"></i> Tambah</button>
 
                             <div class="row g-3">
-                                <div class="col-12 col-lg-3">
-                                    <img src="{{ asset('theme') }}/assets/images/gallery/35.jpg" class="img-thumbnail"
-                                        alt="">
-                                </div>
-                                <div class="col-12 col-lg-3">
-                                    <img src="{{ asset('theme') }}/assets/images/gallery/36.jpg" class="img-thumbnail"
-                                        alt="">
-                                </div>
-                                <div class="col-12 col-lg-3">
-                                    <img src="{{ asset('theme') }}/assets/images/gallery/37.jpg" class="img-thumbnail"
-                                        alt="">
-                                </div>
-                                <div class="col-12 col-lg-3">
-                                    <img src="{{ asset('theme') }}/assets/images/gallery/38.jpg" class="img-thumbnail"
-                                        alt="">
-                                </div>
+                                @if (count($ss_aplikasi) >= 1)
+                                    @foreach ($ss_aplikasi as $item)
+                                        <div class="col-12 col-lg-3">
+                                            <div class="foto_ss">
+                                                <img src="{{ asset('storage/images/ss/' . $item->nama_file) }}"
+                                                    class="img-thumbnail" alt=""
+                                                    style="object-fit: cover; position: relative; width: 250px; height: 150px; overflow: hidden;">
+                                                <div class="middle">
+                                                    <a href="{{ asset('storage/images/ss/' . $item->nama_file) }}"
+                                                        target="_blank" class="btn btn-info"><i class="lni lni-eye"></i></a>
+                                                    <button class="btn btn-danger"><i class="lni lni-trash"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="m-4">
+                                        Tidak ada Data
+                                    </div>
+                                @endif
+
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Dokumen Pendukung</h5>
+                            <button type="button" class="btn btn-info btn-sm mt-2 mb-2" data-bs-toggle="modal"
+                                data-bs-target="#tambahDokumen"><i class="fa fa-plus-circle"></i> Tambah Dokumen</button>
                         </div>
                     </div>
 
@@ -227,14 +279,51 @@
                 <div class="modal-body">
                     <form action="{{ route('upload.images') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="file" name="images[]" multiple>
-                        <button type="submit">Upload</button>
+                        <input type="text" name="daftaraplikasi_id" value="{{ $data->id }}">
+                        <input type="text" name="kategori" value="ss">
+                        <div class="mb-3">
+                            <label class="form-label">Screenshoot Aplikasi</label>
+                            <input type="file" placeholder="" class="form-control form-control-sm" name="foto_ss[]"
+                                id="foto_ss" multiple />
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Upload</button>
                     </form>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Dokumen-->
+    <div class="modal fade" id="tambahDokumen" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Dokumen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('upload.images') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="daftaraplikasi_id" value="{{ $data->id }}">
+                        <input type="text" name="kategori" value="dokumen">
+
+                        <div class="mb-3">
+                            <label class="form-label">Dokumen</label>
+                            <input type="file" placeholder="" class="form-control form-control-sm" name="foto_ss[]"
+                                id="foto_ss" multiple />
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Upload</button>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
