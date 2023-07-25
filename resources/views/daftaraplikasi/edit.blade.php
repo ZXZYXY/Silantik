@@ -87,6 +87,16 @@
                         @method('PUT')
                         <div class="row">
                             <div class="col-md-4">
+                                <x-forms.select_v id="team_id" name="team_id" label="Programmer" isRequired="true"
+                                    isSelect2="true">
+                                    <option value="" selected disabled>[Pilih]</option>
+                                    @foreach ($team as $t)
+                                        <option value="{{ $t->id }}"
+                                            {{ $data->team_id == $t->id ? ' selected' : '' }}>
+                                            {{ $t->nama }} ({{ $t->jabatan }})</option>
+                                    @endforeach
+                                </x-forms.select_v>
+
                                 <x-forms.input_v id="tahun_pembuatan" type="text" name="tahun_pembuatan"
                                     label="Tahun Pembuatan" isRequired="true" value="{{ $data->tahun_pembuatan }}"
                                     isReadonly="" placeholder="Tahun Pembuatan" />
@@ -104,7 +114,7 @@
                                     placeholder="Link/URL Aplikasi" />
 
                                 <div class="mb-3 {{ $errors->has('jenis_aplikasi') ? ' has-error' : '' }}">
-                                    <label class="form-label">Jenis Aplikasi
+                                    <label class="form-label" style="font-weight: bold;">Jenis Aplikasi
                                         <span class="text-danger">*</span>
                                     </label>
                                     @php $jenis = explode(',', $data->jenis_aplikasi); @endphp
@@ -160,7 +170,7 @@
                                 </x-forms.select_v>
 
                                 <div class="mb-3 {{ $errors->has('integrasi') ? ' has-error' : '' }}">
-                                    <label class="form-label">Integrasi
+                                    <label class="form-label" style="font-weight: bold;">Integrasi
                                         <span class="text-danger">*</span>
                                     </label>
                                     <select name="integrasi" id="integrasi" width="100%"
@@ -194,7 +204,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3 {{ $errors->has('ada_perwal') ? ' has-error' : '' }}">
-                                    <label class="form-label">Ada Perwal</label>
+                                    <label class="form-label" style="font-weight: bold;">Ada Perwal</label>
                                     <select name="ada_perwal" id="ada_perwal" width="100%"
                                         class="form-select form-select-sm" onchange="changePerwal()">
                                         <option value="">[Pilih]</option>

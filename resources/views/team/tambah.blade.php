@@ -31,7 +31,7 @@
                     <form action="{{ route('team.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <x-forms.input_v id="nama" type="text" name="nama" label="Nama"
                                     isRequired="true" value="" isReadonly="" placeholder="Nama" />
 

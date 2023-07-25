@@ -71,7 +71,8 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::resource('team', TeamController::class);
 
     Route::post('/upload/screenshot', [DaftaraplikasiController::class, 'upload_ss'])->name('upload.images');
-
+    Route::post('/upload/dokumen', [DaftaraplikasiController::class, 'upload_dokumen'])->name('upload.dokumen');
+    Route::delete('/file_pendukung/{id}', [DaftaraplikasiController::class, 'hapus_file_pendukung']);
 
     //Permohonan
     Route::group(['prefix' => 'permohonan'], function () {

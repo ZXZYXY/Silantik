@@ -13,6 +13,7 @@ use Yajra\DataTables\Facades\DataTables;
 use DB;
 use File;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
 class DaftaraplikasiController extends Controller
 {
@@ -46,7 +47,7 @@ class DaftaraplikasiController extends Controller
         $jenisaplikasi = Jenisaplikasi::all();
         $sektor = Sektor::all();
         $daftar_app = Daftaraplikasi::select('nama_aplikasi')->get();
-        $team = Team::where('jabatan', 'Programer')->get();
+        $team = Team::where('jabatan', 'Programmer')->get();
         return view('daftaraplikasi.create', compact('opd', 'jenisaplikasi', 'sektor', 'team'));
     }
 
@@ -56,15 +57,17 @@ class DaftaraplikasiController extends Controller
         $jenisaplikasi = Jenisaplikasi::all();
         $data = Daftaraplikasi::where('uuid', $id)->first();
         $sektor = Sektor::all();
-        $team = Team::where('jabatan', 'Programer')->get();
+        $team = Team::where('jabatan', 'Programmer')->get();
+        //dd($data);
         return view('daftaraplikasi.edit', compact('opd', 'jenisaplikasi', 'data', 'sektor', 'team'));
     }
 
     public function show($id)
     {
-        $data = Daftaraplikasi::with('opd', 'sektor')->where('uuid', $id)->first();
+        $data = Daftaraplikasi::with('opd', 'sektor', 'team')->where('uuid', $id)->first();
         $ss_aplikasi = File_pendukung::where('daftaraplikasi_id', $data->id)->where('kategori', 'ss')->get();
-        return view('daftaraplikasi.detail', compact('data', 'ss_aplikasi'));
+        $dok_aplikasi = File_pendukung::where('daftaraplikasi_id', $data->id)->where('kategori', 'dokumen')->get();
+        return view('daftaraplikasi.detail', compact('data', 'ss_aplikasi', 'dok_aplikasi'));
     }
 
     /**
@@ -76,6 +79,7 @@ class DaftaraplikasiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'team_id' => 'required',
             'nama_aplikasi' => 'required',
             'tahun_pembuatan' => 'required',
             'link_app' => 'required',
@@ -86,6 +90,7 @@ class DaftaraplikasiController extends Controller
         DB::beginTransaction();
         try {
             $data = new Daftaraplikasi();
+            $data->team_id              = $request->team_id;
             $data->tahun_pembuatan      = $request->tahun_pembuatan;
             $data->nama_aplikasi        = $request->nama_aplikasi;
             $data->deskripsi            = $request->deskripsi;
@@ -127,7 +132,7 @@ class DaftaraplikasiController extends Controller
             DB::commit();
             return redirect('daftaraplikasi/')->with('success', 'Data Berhasil Ditambah');
         } catch (\Exception $e) {
-            dd($e);
+            //dd($e);
             DB::rollback();
             return redirect()->back()->with('gagal', 'Data Gagal Diinput');
         }
@@ -147,6 +152,7 @@ class DaftaraplikasiController extends Controller
         try {
             $data = Daftaraplikasi::where('uuid', $id)->first();
 
+            $data->team_id              = $request->team_id;
             $data->tahun_pembuatan      = $request->tahun_pembuatan;
             $data->nama_aplikasi        = $request->nama_aplikasi;
             $data->deskripsi            = $request->deskripsi;
@@ -264,7 +270,7 @@ class DaftaraplikasiController extends Controller
                         'foto_ss[]' => 'image|mimes:jpeg,png,jpg,gif|max:5048'
                     ]);
                     // Store the image in the public storage directory
-                    $image_name1 = str_replace(' ', '_', $data->nama_aplikasi) . '_' . kode_acak(5) . '.' . $image->getClientOriginalExtension();
+                    $image_name1 = 'SS_' . str_replace(' ', '_', $data->nama_aplikasi) . '_' . kode_acak(5) . '.' . $image->getClientOriginalExtension();
                     $imagePath = $image->storeAs('public/images/ss', $image_name1);
 
                     // You can also store the image path in your database if necessary
@@ -277,11 +283,70 @@ class DaftaraplikasiController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('daftaraplikasi.index')->with('success', 'Data Berhasil Dirubah');
+            return redirect()->back()->with('success', 'Data Berhasil Ditambah');
         } catch (\Exception $e) {
-            dd($e);
+            //dd($e);
             DB::rollback();
             return redirect()->back()->with('gagal', 'Data Gagal Diinput');
         }
+    }
+
+    public function upload_dokumen(Request $request)
+    {
+        //dd($request->images);
+        DB::beginTransaction();
+        try {
+            $data = Daftaraplikasi::where('id', $request->daftaraplikasi_id)->first();
+
+            if ($request->hasFile('dokumen')) {
+                $images = $request->file('dokumen');
+
+                // Check if the minimum number of images is uploaded
+                if (count($images) > 5) {
+                    return redirect()->back()->with('gagal', 'Maksimal 5 Gambar');
+                }
+
+                foreach ($images as $image) {
+                    // Validate the image file if needed
+                    $this->validate($request, [
+                        'dokumen[]' => 'file|mimes:pdf,docx,xlsx|max:5048'
+                    ]);
+                    // Store the image in the public storage directory
+                    $image_name1 = 'Doc_' . str_replace(' ', '_', $data->nama_aplikasi) . '_' . kode_acak(5) . '.' . $image->getClientOriginalExtension();
+                    $imagePath = $image->storeAs('public/dokumen', $image_name1);
+
+                    // You can also store the image path in your database if necessary
+                    $imageModel = new File_pendukung();
+                    $imageModel->daftaraplikasi_id = $data->id;
+                    $imageModel->nama_file         = $image_name1;
+                    $imageModel->kategori          = $request->kategori;
+                    $imageModel->save();
+                }
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Data Berhasil Ditambah');
+        } catch (\Exception $e) {
+            //dd($e);
+            DB::rollback();
+            return redirect()->back()->with('gagal', 'Data Gagal Diinput');
+        }
+    }
+
+    public function hapus_file_pendukung($id)
+    {
+        $model = File_pendukung::where('uuid', $id)->first();
+
+        $model->delete();
+        if ($model->kategori == 'dokumen') {
+            Storage::delete('public/dokumen/' . $model->nama_file);
+        } elseif ($model->kategori == 'ss') {
+            Storage::delete('public/images/ss/' . $model->nama_file);
+        }
+
+        return response()->json([
+            'status' => 'true',
+            'messages' => 'Data Berhasil dihapus'
+        ]);
     }
 }

@@ -45,6 +45,7 @@
             padding: 16px 32px;
         }
     </style>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 
 @push('script')
@@ -52,6 +53,48 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('.select2').select2();
+
+            $('body').on('click', '.hapus', function(event) {
+                event.preventDefault();
+
+                var token = $("meta[name='csrf-token']").attr("content");
+                var file_name = $(this).attr('file-name'),
+                    title = file_name.replace(/\w\S*/g, function(txt) {
+                        return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
+                    });
+                file_id = $(this).attr('file-id');
+                swal({
+                        title: "Anda Yakin?",
+                        text: "Mau Menghapus Data : " + title + "?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((result) => {
+                        if (result) {
+
+                            $.ajax({
+                                url: "/file_pendukung/" + file_id,
+                                type: "POST",
+                                data: {
+                                    _method: "DELETE",
+                                    _token: token,
+                                },
+                                success: function(response) {
+                                    swal("Berhasil", "Data Berhasil Dihapus", "success");
+                                    setTimeout(() => {
+                                        document.location.reload();
+                                    }, 2000);
+
+                                },
+                                error: function(xhr) {
+                                    swal("Oops...", "Terjadi Kesalahan", "error");
+
+                                }
+                            });
+                        }
+                    });
+            });
         });
     </script>
 @endpush
@@ -67,7 +110,18 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-bordered">
+
+                                <tr>
+                                    <th>Programmer</th>
+                                    <td>:</td>
+                                    <td>
+                                        @if ($data->team_id != null)
+                                            {{ $data->team->nama }}
+                                        @endif
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <th>Tahun Pembuatan</th>
                                     <td>:</td>
@@ -106,7 +160,7 @@
                             </table>
                         </div>
                         <div class="col-md-6">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-bordered">
 
                                 <tr>
                                     <th>Sektor</th>
@@ -145,7 +199,7 @@
                                 @endif
 
                                 <tr>
-                                    <th>Perwal</th>
+                                    <th>Ada Perwal</th>
                                     <td>:</td>
                                     <td>{{ $data->ada_perwal }}</td>
                                 </tr>
@@ -207,10 +261,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h5>Screenshot Aplikasi</h5>
-                            <button type="button" class="btn btn-info btn-sm mt-2 mb-2" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#tambahScreenshot"><i class="fa fa-plus-circle"></i> Tambah</button>
 
-                            <div class="row g-3">
+                            <div class="row g-3 mt-2" id="file_pendukung">
                                 @if (count($ss_aplikasi) >= 1)
                                     @foreach ($ss_aplikasi as $item)
                                         <div class="col-12 col-lg-3">
@@ -221,24 +275,48 @@
                                                 <div class="middle">
                                                     <a href="{{ asset('storage/images/ss/' . $item->nama_file) }}"
                                                         target="_blank" class="btn btn-info"><i class="lni lni-eye"></i></a>
-                                                    <button class="btn btn-danger"><i class="lni lni-trash"></i></button>
+                                                    <button class="btn btn-danger hapus" file-name="{{ $item->nama_file }}"
+                                                        file-id="{{ $item->uuid }}" title="Hapus"><i
+                                                            class="lni lni-trash"></i></button>
                                                 </div>
                                             </div>
 
                                         </div>
                                     @endforeach
                                 @else
-                                    <div class="m-4">
-                                        Tidak ada Data
-                                    </div>
+                                    <div class="text-danger" style="font-weight: bold;">Tidak ada Data</div>
                                 @endif
 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <h5>Dokumen Pendukung</h5>
-                            <button type="button" class="btn btn-info btn-sm mt-2 mb-2" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#tambahDokumen"><i class="fa fa-plus-circle"></i> Tambah Dokumen</button>
+
+                            <div class="row g-3 mt-2" id="file_pendukung">
+                                @if (count($dok_aplikasi) >= 1)
+                                    @foreach ($dok_aplikasi as $dok)
+                                        <div class="col-12 col-lg-3">
+                                            <div class="foto_ss">
+                                                <img src="{{ asset('images/dokumen.png') }}" class="img-thumbnail"
+                                                    alt=""
+                                                    style="object-fit: cover; position: relative; width: 250px; height: 150px; overflow: hidden;">
+                                                <div class="middle">
+                                                    <a href="{{ asset('storage/dokumen/' . $dok->nama_file) }}"
+                                                        target="_blank" class="btn btn-info"><i class="lni lni-eye"></i></a>
+                                                    <button class="btn btn-danger hapus" file-name="{{ $dok->nama_file }}"
+                                                        file-id="{{ $dok->uuid }}" title="Hapus"><i
+                                                            class="lni lni-trash"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="text-danger" style="font-weight: bold;">Tidak ada Data</div>
+                                @endif
+                            </div>
                         </div>
                     </div>
 
@@ -257,12 +335,11 @@
                 </div>
                 <div class="modal-body">
 
-                    <embed src="{{ asset('dokumen/perwal/' . $data->file_perwal) }}" type="application/pdf" frameBorder="0"
-                        height="720px" width="100%"></embed>
+                    <embed src="{{ asset('dokumen/perwal/' . $data->file_perwal) }}" type="application/pdf"
+                        frameBorder="0" height="720px" width="100%"></embed>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -307,15 +384,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('upload.images') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('upload.dokumen') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="text" name="daftaraplikasi_id" value="{{ $data->id }}">
                         <input type="text" name="kategori" value="dokumen">
 
                         <div class="mb-3">
                             <label class="form-label">Dokumen</label>
-                            <input type="file" placeholder="" class="form-control form-control-sm" name="foto_ss[]"
-                                id="foto_ss" multiple />
+                            <input type="file" placeholder="" class="form-control form-control-sm" name="dokumen[]"
+                                id="dokumen" multiple />
                         </div>
 
                         <button class="btn btn-primary" type="submit">Upload</button>

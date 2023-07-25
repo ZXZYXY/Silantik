@@ -22,4 +22,9 @@ class Daftaraplikasi extends Model
     {
         return $this->belongsTo('App\Models\Sektor');
     }
+
+    public function team()
+    {
+        return $this->belongsTo('App\Models\Team');
+    }
 }

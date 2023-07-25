@@ -1,5 +1,5 @@
 <div class="row mb-3 {{ $errors->has($name) ? ' has-error' : '' }}">
-    <label class="col-sm-4 col-form-label">{{ $label }} @if ($isRequired == 'true')
+    <label class="col-sm-4 col-form-label" style="font-weight: bold;">{{ $label }} @if ($isRequired == 'true')
             <span class="text-danger">*</span>
         @endif
     </label>

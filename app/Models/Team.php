@@ -19,4 +19,9 @@ class Team extends Model
         }
         return asset('images/foto_team/' . $this->foto);
     }
+
+    public function daftaraplikasi()
+    {
+        return $this->hasMany('App\Models\Daftaraplikasi');
+    }
 }
