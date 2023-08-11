@@ -97,6 +97,15 @@
                                     @endforeach
                                 </x-forms.select_v>
 
+                                <x-forms.select_v id="jenis_layanan" name="jenis_layanan" label="Jenis Layanan"
+                                    isRequired="true" isSelect2="true">
+                                    <option value="">[Pilih]</option>
+                                    <option value="Internal" {{ $data->jenis_layanan == 'Internal' ? ' selected' : '' }}>
+                                        Internal</option>
+                                    <option value="Publik" {{ $data->jenis_layanan == 'Publik' ? ' selected' : '' }}>Publik
+                                    </option>
+                                </x-forms.select_v>
+
                                 <x-forms.input_v id="tahun_pembuatan" type="text" name="tahun_pembuatan"
                                     label="Tahun Pembuatan" isRequired="true" value="{{ $data->tahun_pembuatan }}"
                                     isReadonly="" placeholder="Tahun Pembuatan" />

@@ -90,8 +90,17 @@
                                     @foreach ($team as $data)
                                         <option value="{{ $data->id }}"
                                             {{ old('team_id') == $data->id ? ' selected' : '' }}>
-                                            {{ $data->nama }} ({{ $data->jabatan }})</option>
+                                            {{ $data->nama }}</option>
                                     @endforeach
+                                </x-forms.select_v>
+
+                                <x-forms.select_v id="jenis_layanan" name="jenis_layanan" label="Jenis Layanan"
+                                    isRequired="true" isSelect2="true">
+                                    <option value="">[Pilih]</option>
+                                    <option value="Internal" {{ old('jenis_layanan') == 'Internal' ? ' selected' : '' }}>
+                                        Internal</option>
+                                    <option value="Publik" {{ old('jenis_layanan') == 'Publik' ? ' selected' : '' }}>Publik
+                                    </option>
                                 </x-forms.select_v>
 
                                 <x-forms.input_v id="tahun_pembuatan" type="text" name="tahun_pembuatan"

@@ -34,29 +34,30 @@
             <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <div class="blog-details-desc">
-                        <div class="image">
-                            <img src="{{ $berita->getThumbnailBerita() }}" alt="image" />
-                        </div>
-                        <ul class="post-meta">
-                            <li><i class="envy envy-calendar"></i><a
-                                    href="#">{{ TanggalAja($berita->created_at) }}</a></li>
 
-                        </ul>
+
                         <div class="content">
                             <h2>{{ $berita->judul }}</h2>
+                            <ul class="post-meta">
+                                <li>
+                                    <i class="envy envy-calendar"></i>
+                                    <a href="#">{{ TanggalAja($berita->created_at) }}</a>
+                                </li>
+
+                            </ul>
+                            <div class="image">
+                                <img src="{{ $berita->getThumbnailBerita() }}" alt="image" style="border-radius:10px;" />
+                                <hr />
+                            </div>
                             {!! $berita->isi !!}
                         </div>
-
-
-                        <hr />
-
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-12">
                     <aside class="widget-area">
                         <section class="widget widget-categories">
-                            <h5 class="widget-title">Categories</h5>
+                            <h5 class="widget-title">Kategori</h5>
                             <ul class="categorie-list">
                                 @foreach ($kategori as $k)
                                     <li>
@@ -67,12 +68,12 @@
                             </ul>
                         </section>
                         <section class="widget widget-article">
-                            <h5 class="widget-title">Recent articles</h5>
+                            <h5 class="widget-title">Berita Terkait</h5>
                             @foreach ($recent_news as $rn)
                                 <article>
                                     <a href="{{ url('news/' . $rn->slug) }}" class="article-img">
                                         <img src="{{ $rn->getThumbnailBerita() }}" alt="blog-image"
-                                            style="object-fit: cover; position: relative; width: 100%; height: 160px; overflow: hidden;" />
+                                            style="object-fit: cover; position: relative; width: 100%; height: 160px; overflow: hidden; border-radius:10px;" />
                                     </a>
                                     <div class="info mt-3">
                                         <span class="time"><i class="envy envy-calendar"></i>

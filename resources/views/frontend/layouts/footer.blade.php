@@ -44,7 +44,7 @@
             </div>
             <div class="col-lg-4 col-md-5 col-sm-6 col-12">
                 <div class="footer-widget">
-                    <h5>Map</h5>
+                    <h5>Peta</h5>
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15952.830997771072!2d103.6078129!3d-1.628042!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e25889e0c44110b%3A0xe233cee992a18dea!2sDinas%20Komunikasi%20dan%20Informatika%20Kota%20Jambi%20(DISKOMINFO)!5e0!3m2!1sid!2sid!4v1686793563303!5m2!1sid!2sid"
                         width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
@@ -62,7 +62,7 @@
     <div class="container">
         <div class="copy-right-content">
             <p>
-                Copyright @2023 Layanan APTIKA. Designed By
+                Copyright @2023 Layanan APTIKA. By
                 <a href="https://diskominfo.jambikota.go.id/" target="_blank">
                     Diskominfo Kota Jambi
                 </a>

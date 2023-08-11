@@ -128,7 +128,7 @@
                             <h4>Histori Permohonan</h4>
                             <ul class="list-group">
                                 @foreach ($histori as $h)
-                                    <div class="list-group">
+                                    <div class="list-group mt-3">
                                         <a href="#" class="list-group-item list-group-item-action bg-light">
                                             <div class="d-flex w-100 justify-content-between ">
                                                 <h5 class="mb-1">{{ $h->status }}</h5>

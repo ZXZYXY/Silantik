@@ -92,6 +92,7 @@ class DaftaraplikasiController extends Controller
             $data = new Daftaraplikasi();
             $data->team_id              = $request->team_id;
             $data->tahun_pembuatan      = $request->tahun_pembuatan;
+            $data->jenis_layanan        = $request->jenis_layanan;
             $data->nama_aplikasi        = $request->nama_aplikasi;
             $data->deskripsi            = $request->deskripsi;
             $data->link_app             = $request->link_app;
@@ -154,6 +155,7 @@ class DaftaraplikasiController extends Controller
 
             $data->team_id              = $request->team_id;
             $data->tahun_pembuatan      = $request->tahun_pembuatan;
+            $data->jenis_layanan        = $request->jenis_layanan;
             $data->nama_aplikasi        = $request->nama_aplikasi;
             $data->deskripsi            = $request->deskripsi;
             $data->link_app             = $request->link_app;
@@ -302,26 +304,26 @@ class DaftaraplikasiController extends Controller
                 $images = $request->file('dokumen');
 
                 // Check if the minimum number of images is uploaded
-                if (count($images) > 5) {
-                    return redirect()->back()->with('gagal', 'Maksimal 5 Gambar');
-                }
+                // if (count($images) > 5) {
+                //     return redirect()->back()->with('gagal', 'Maksimal 5 Gambar');
+                // }
 
-                foreach ($images as $image) {
-                    // Validate the image file if needed
-                    $this->validate($request, [
-                        'dokumen[]' => 'file|mimes:pdf,docx,xlsx|max:5048'
-                    ]);
-                    // Store the image in the public storage directory
-                    $image_name1 = 'Doc_' . str_replace(' ', '_', $data->nama_aplikasi) . '_' . kode_acak(5) . '.' . $image->getClientOriginalExtension();
-                    $imagePath = $image->storeAs('public/dokumen', $image_name1);
 
-                    // You can also store the image path in your database if necessary
-                    $imageModel = new File_pendukung();
-                    $imageModel->daftaraplikasi_id = $data->id;
-                    $imageModel->nama_file         = $image_name1;
-                    $imageModel->kategori          = $request->kategori;
-                    $imageModel->save();
-                }
+                // Validate the image file if needed
+                $this->validate($request, [
+                    'dokumen' => 'file|mimes:pdf,docx,xlsx|max:5048'
+                ]);
+                // Store the image in the public storage directory
+                $image_name1 = 'Dok_' . str_replace(' ', '_', $data->nama_aplikasi) . '_' . kode_acak(5) . '.' . $image->getClientOriginalExtension();
+                $imagePath = $image->storeAs('public/dokumen', $image_name1);
+
+                // You can also store the image path in your database if necessary
+                $imageModel = new File_pendukung();
+                $imageModel->daftaraplikasi_id = $data->id;
+                $imageModel->nama_dokumen      = $request->nama_dokumen;
+                $imageModel->nama_file         = $image_name1;
+                $imageModel->kategori          = $request->kategori;
+                $imageModel->save();
             }
 
             DB::commit();

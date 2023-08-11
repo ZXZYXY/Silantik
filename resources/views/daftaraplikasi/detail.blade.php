@@ -310,7 +310,7 @@
                                                             class="lni lni-trash"></i></button>
                                                 </div>
                                             </div>
-
+                                            <p align="center" class="mt-2">{{ $dok->nama_dokumen }}</p>
                                         </div>
                                     @endforeach
                                 @else
@@ -356,12 +356,13 @@
                 <div class="modal-body">
                     <form action="{{ route('upload.images') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="text" name="daftaraplikasi_id" value="{{ $data->id }}">
-                        <input type="text" name="kategori" value="ss">
+                        <input type="hidden" name="daftaraplikasi_id" value="{{ $data->id }}">
+                        <input type="hidden" name="kategori" value="ss">
                         <div class="mb-3">
                             <label class="form-label">Screenshoot Aplikasi</label>
                             <input type="file" placeholder="" class="form-control form-control-sm" name="foto_ss[]"
-                                id="foto_ss" multiple />
+                                id="foto_ss" multiple required />
+                            <span class="text-info"><i>Format file : jpg,jpeg,png</i> </span>
                         </div>
 
                         <button class="btn btn-primary" type="submit">Upload</button>
@@ -386,16 +387,22 @@
                 <div class="modal-body">
                     <form action="{{ route('upload.dokumen') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="text" name="daftaraplikasi_id" value="{{ $data->id }}">
-                        <input type="text" name="kategori" value="dokumen">
+                        <input type="hidden" name="daftaraplikasi_id" value="{{ $data->id }}">
+                        <input type="hidden" name="kategori" value="dokumen">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Dokumen</label>
+                            <input type="text" placeholder="" class="form-control form-control-sm"
+                                name="nama_dokumen" id="nama_dokumen" required />
 
+                        </div>
                         <div class="mb-3">
                             <label class="form-label">Dokumen</label>
                             <input type="file" placeholder="" class="form-control form-control-sm" name="dokumen[]"
-                                id="dokumen" multiple />
+                                id="dokumen" required />
+                            <span class="text-info"><i>Format file : pdf,docx <br>Max size: 5mb</i> </span>
                         </div>
 
-                        <button class="btn btn-primary" type="submit">Upload</button>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-upload"></i> Upload</button>
                     </form>
 
                 </div>

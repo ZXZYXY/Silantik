@@ -15,9 +15,9 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12">
                     <div class="banner-content">
-                        <h1>Layanan APTIKA</h1>
+                        <h1>SIYANTIK</h1>
                         <p>
-                            LANTIKA adalah Layanan Teknologi Informasi Komunikasi yang disediakan oleh Dinas Komunikasi dan
+                            SIYANTIK adalah Layanan Teknologi Informasi Komunikasi yang disediakan oleh Dinas Komunikasi dan
                             Informatika Kota Jambi
                         </p>
                         <div class="cta-btn">
@@ -41,39 +41,53 @@
 
                 <div class="partner-item">
                     <a href="http://ppid.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/logo_PPID_kota jambi.png" width="150px"
-                            style="height: 5rem;" alt="image" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/logo_PPID_kota jambi.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="image" />
 
-                        <img src="{{ asset('images') }}/logo_aplikasi/logo_PPID_kota jambi.png" width="150px"
-                            style="height: 5rem;" alt="partner" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/logo_PPID_kota jambi.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="partner" />
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="http://sikoja.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/sikoja.png" style="height: 5rem;" alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/sikoja.png" style="height: 5rem;" alt="partner" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/sikoja.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="image" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/sikoja.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="partner" />
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="http://sipadek.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipadek1.png" width="150px" alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipadek1.png" width="150px" alt="partner" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/sipadek1.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="image" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/sipadek1.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="partner" />
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="http://satudata.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/satu-data.png" width="150px" style="height: 5rem;"
-                            alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/satu-data.png" width="150px" style="height: 5rem;"
-                            alt="partner" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/satu-data.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            style="height: 5rem;" alt="image" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/satu-data.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            style="height: 5rem;" alt="partner" />
                     </a>
                 </div>
                 <div class="partner-item">
                     <a href="http://sipaten.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png" width="150px" style="height: 5rem;"
-                            alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png" width="150px" style="height: 5rem;"
-                            alt="partner" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            style="height: 5rem;" alt="image" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            style="height: 5rem;" alt="partner" />
                     </a>
                 </div>
 
@@ -88,7 +102,7 @@
                 <div class="col-lg-6 col-sm-12">
                     <div class="section-title">
                         {{-- <span class="subtitle">top features</span> --}}
-                        <h2>Apa itu Layanan TIK</h2>
+                        <h2>Tentang Layanan TIK</h2>
                     </div>
                     <div class="feature-text-blc">
                         <p>
@@ -160,17 +174,17 @@
         <div class="container">
             <div class="section-title title-dark text-center">
                 <h2>Berita / Informasi</h2>
-                <p>Does any industry face a more complex audience journey and marketing sales process than B2B technology?
-                    Does any industry faces a more complex audience.</p>
+                {{-- <p>Does any industry face a more complex audience journey and marketing sales process than B2B technology?
+                    Does any industry faces a more complex audience.</p> --}}
             </div>
             <div class="row justify-content-center">
                 @foreach ($berita as $b)
                     <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="blog-item-single">
-                            <div class="blog-item-img">
+                        <div class="blog-item-single" style="border-radius:10px;">
+                            <div class="blog-item-img" style="background-color: white;">
                                 <a href="{{ url('news/' . $b->slug) }}">
                                     <img src="{{ $b->getThumbnailBerita() }}" alt="blog-bg-image"
-                                        style="object-fit: cover; position: relative; width: 100%; height: 300px; overflow: hidden;" />
+                                        style="object-fit: contain; position: relative; width: 100%; height: 300px; overflow: hidden;" />
                                 </a>
                                 <p class="tag">{{ $b->kategori->nama_kategori }}</p>
                             </div>
@@ -232,7 +246,7 @@
 
             </div>
             <div class="justify-content-center">
-                <div class="cta-btn">
+                <div class="cta-btn" style="align-content: center;">
                     <a href="{{ url('portofolio') }}" class="btn btn-outline">
                         Lihat Semua
                         <i class="envy envy-right-arrow"></i>

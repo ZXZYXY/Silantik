@@ -35,7 +35,7 @@
             <div class="row justify-content-center">
                 @foreach ($berita as $b)
                     <div class="col-lg-4">
-                        <div class="blog-item-single">
+                        <div class="blog-item-single" style="border-radius:10px;">
                             <div class="blog-item-img">
                                 <a href="{{ url('news/' . $b->slug) }}">
                                     <img src="{{ $b->getThumbnailBerita() }}" alt="blog-bg-image"

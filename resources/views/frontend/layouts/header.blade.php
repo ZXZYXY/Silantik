@@ -2,7 +2,7 @@
 <header class="navbar-area nav-style-two">
     <!-- menu for mobile device -->
     <div class="mobile-nav">
-        <a href="#" class="logo">
+        <a href="/" class="logo">
             <img src="{{ asset('images') }}/logo_aptika_white.png" width="100px" alt="logo_light" />
             <img src="{{ asset('images') }}/logo_aptika_black.png" width="100px" alt="logo-dark" />
         </a>
@@ -12,9 +12,9 @@
     <div class="main-nav">
         <nav class="navbar navbar-expand-md navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="index-2.html">
-                    <img src="{{ asset('images') }}/logo_aptika_white.png" width="150px" alt="logo_light" />
-                    <img src="{{ asset('images') }}/logo_aptika_black.png" width="150px" alt="logo-dark" />
+                <a class="navbar-brand" href="/">
+                    <img src="{{ asset('images') }}/logo_aptika_white.png" width="100px" alt="logo_light" />
+                    <img src="{{ asset('images') }}/logo_aptika_black.png" width="100px" alt="logo-dark" />
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
