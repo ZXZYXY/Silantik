@@ -13,39 +13,39 @@ class FrontendController extends Controller
     {
         $berita = Berita::with('kategori')->orderBy('id', 'desc')->limit(3)->get();
         $portofolio = Daftaraplikasi::orderBy('id', 'desc')->limit(3)->get();
-        return view('frontend.home', compact('berita', 'portofolio'));
+        return view('frontendv2.home', compact('berita', 'portofolio'));
     }
 
     public function tentang()
     {
-        return view('frontend.tentang');
+        return view('frontendv2.tentang');
     }
 
     public function layanan_pembuatan_aplikasi()
     {
-        return view('frontend.layanan_pembuatan_aplikasi');
+        return view('frontendv2.layanan_pembuatan_aplikasi');
     }
 
     public function layanan_pembaruan_aplikasi()
     {
-        return view('frontend.layanan_pembaruan_aplikasi');
+        return view('frontendv2.layanan_pembaruan_aplikasi');
     }
 
     public function portofolio()
     {
-        return view('frontend.portofolio');
+        return view('frontendv2.portofolio');
     }
 
     public function portofolio_detail($id)
     {
         $data = Daftaraplikasi::where('id', $id)->orderBy('id', 'desc')->first();
-        return view('frontend.portofolio_detail', compact('data'));
+        return view('frontendv2.portofolio_detail', compact('data'));
     }
 
     public function news()
     {
         $berita = Berita::with('kategori')->orderBy('id', 'desc')->paginate(6);
-        return view('frontend.berita', compact('berita'));
+        return view('frontendv2.berita', compact('berita'));
     }
 
     public function news_detail($slug)
@@ -53,6 +53,6 @@ class FrontendController extends Controller
         $berita = Berita::where('slug', $slug)->first();
         $kategori = Kategori::all();
         $recent_news = Berita::with('kategori')->whereNotIn('slug', [$berita->slug])->orderBy('id', 'desc')->limit(5)->get();
-        return view('frontend.berita_detail', compact('berita', 'kategori', 'recent_news'));
+        return view('frontendv2.berita_detail', compact('berita', 'kategori', 'recent_news'));
     }
 }

@@ -33,12 +33,13 @@ class DaftarController extends Controller
             $user->opd_id           = $request->opd_id;
             $user->password         = Hash::make($request->password_confirmation);
             $user->role             = 'user';
+            $user->is_active        = 0;
             $user->save();
 
             $user->assignRole('user');
 
             DB::commit();
-            return redirect('/daftar/berhasil/' . $user->uuid)->with('sukses', 'Pendaftaran Berhasil');
+            return redirect('/daftar/berhasil/' . $user->uuid)->with('success', 'Pendaftaran Berhasil');
         } catch (\Exception $e) {
             //dd($e);
             DB::rollback();

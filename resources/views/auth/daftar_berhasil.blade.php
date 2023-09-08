@@ -29,8 +29,10 @@
             <div class="signin-box">
                 <!-- Title Box -->
                 <div class="title-box">
-                    <h2>Pendaftaran Berhasil</h2>
-
+                    <h2><i class="fa fa-check"></i> Pendaftaran Berhasil</h2>
+                    <p>
+                        Akun anda akan diverifikasi oleh Admin dalam waktu 1x24 Jam
+                    </p>
                 </div>
 
                 <!-- signin Form -->

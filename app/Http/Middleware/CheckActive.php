@@ -26,7 +26,7 @@ class CheckActive
 
         if (Auth::check() && Auth::user()->is_active != '1') {
             Auth::logout();
-            return redirect('/login')->withErrors('Akun Dinonaktifkan, Silahkan hubungi Admin!');
+            return redirect('/login')->withErrors('Akun Belum Aktif, Silahkan hubungi Admin!');
         }
 
         return $next($request);

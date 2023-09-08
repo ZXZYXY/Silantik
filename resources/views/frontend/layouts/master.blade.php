@@ -30,6 +30,25 @@
     @include('frontend.layouts.footer')
 
     @include('frontend.layouts.js')
+    <script src="{{ asset('theme/sweetalert/sweetalert.min.js') }}"></script>
+    <script>
+        @if (session()->has('success'))
+            swal({
+                icon: "success",
+                title: "BERHASIL!",
+                text: "{{ session('success') }}",
+                timer: 1500,
+                buttons: false,
+            });
+        @elseif (session()->has('gagal'))
+            swal({
+                icon: "error",
+                title: "GAGAL!",
+                text: "{{ session('gagal') }}",
+            });
+        @else
+        @endif
+    </script>
     @stack('script')
 </body>
 

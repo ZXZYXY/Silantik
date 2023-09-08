@@ -183,3 +183,38 @@ function jml_pengaduan_baru()
     $pengaduan = Pengaduan::where('status', null)->count();
     return $pengaduan;
 }
+
+function sendNotifWA($message, $date, $received)
+{
+
+    $curl = curl_init();
+
+    $headers = [
+        'apikey: a60d2f76e76de6ebff071f36373d243c3ef8fc47',
+        'Accept: application/json'
+    ];
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://starsender.online/api/v2/sendFiles?message=' . rawurlencode($message) . '&tujuan=' . rawurlencode($received . '@s.whatsapp.net') . '&jadwal=' . rawurlencode($date),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        //CURLOPT_POSTFIELDS => array('file' => $file),
+        CURLOPT_HTTPHEADER => $headers,
+    ));
+
+
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+
+    $response = curl_exec($curl);
+
+
+    curl_close($curl);
+    echo $response;
+}

@@ -47,7 +47,7 @@
                 <div class="col-md-9">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit</h4>
+                            <h4>Edit Profil</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ url('profil/' . $data->uuid . '/update') }}" class="form-horizontal"
@@ -59,12 +59,12 @@
                                     isRequired="true" value="{{ $data->username }}" isReadonly="" placeholder="" />
                                 <x-forms.input_h id="email" type="email" name="email" label="E-mail"
                                     isRequired="true" value="{{ $data->email }}" isReadonly="" placeholder="" />
-                                <x-forms.input_h id="photo" type="file" name="photo" label="Foto Profil"
+                                {{-- <x-forms.input_h id="photo" type="file" name="photo" label="Foto Profil"
                                     isRequired="false" value="" isReadonly="" placeholder="">
                                     <span class="text-info"><i>Tipe File : jpeg, jpg, png <br> Ukuran
                                             Maksimal :
                                             5mb</i></span>
-                                </x-forms.input_h>
+                                </x-forms.input_h> --}}
 
                                 <div class="form-group row">
                                     <label class="label-text col-lg-4 col-form-label text-md-right"></label>

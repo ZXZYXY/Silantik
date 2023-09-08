@@ -191,7 +191,7 @@ class UserController extends Controller
 							</div>';
                     } else {
                         return '<div class="form-check form-switch">
-								input class="form-check-input change_status" id="Switch' . $user->id . '" data-id="' . $user->id . '" type="checkbox">
+								<input class="form-check-input change_status" id="Switch' . $user->id . '" data-id="' . $user->id . '" type="checkbox">
 								<label class="form-check-label" for="Switch' . $user->id . '" id="aktif' . $user->id . '">NonAktif</label>
 							</div>';
                     }

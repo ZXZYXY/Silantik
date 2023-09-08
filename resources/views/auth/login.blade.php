@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('frontendv2.layouts.master')
 @section('title')
     Login
 @endsection
