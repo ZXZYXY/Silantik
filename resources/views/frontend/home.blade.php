@@ -15,9 +15,10 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12">
                     <div class="banner-content">
-                        <h1>SIYANTIK</h1>
+                        <h1>SILANTIK</h1>
                         <p>
-                            SIYANTIK adalah Layanan Teknologi Informasi Komunikasi yang disediakan oleh Dinas Komunikasi dan
+                            SILANTIK adalah Sistem Informasi Layanan Teknologi Informasi Komunikasi yang disediakan oleh
+                            Dinas Komunikasi dan
                             Informatika Kota Jambi
                         </p>
                         <div class="cta-btn">
@@ -34,67 +35,7 @@
         </div>
     </div>
     <!--end sero section-->
-    <!-- Start Partner Area -->
-    <div class="partner-area ptb-50">
-        <div class="container">
-            <div class="partner-slider owl-carousel">
 
-                <div class="partner-item">
-                    <a href="http://ppid.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/logo_PPID_kota jambi.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="image" />
-
-                        <img src="{{ asset('images') }}/logo_aplikasi/logo_PPID_kota jambi.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="partner" />
-                    </a>
-                </div>
-                <div class="partner-item">
-                    <a href="http://sikoja.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/sikoja.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/sikoja.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="partner" />
-                    </a>
-                </div>
-                <div class="partner-item">
-                    <a href="http://sipadek.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipadek1.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipadek1.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="partner" />
-                    </a>
-                </div>
-                <div class="partner-item">
-                    <a href="http://satudata.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/satu-data.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            style="height: 5rem;" alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/satu-data.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            style="height: 5rem;" alt="partner" />
-                    </a>
-                </div>
-                <div class="partner-item">
-                    <a href="http://sipaten.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            style="height: 5rem;" alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            style="height: 5rem;" alt="partner" />
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- End Partner Area -->
     <!-- start top feature section -->
     <section class="top-feature-section ptb-100 bg-white" id="layanan_tik">
         <div class="container">
@@ -222,7 +163,7 @@
     <!--end blog section-->
 
     <!-- start gallery section -->
-    <section class="gallery-section ptb-100 bg-white">
+    {{-- <section class="gallery-section ptb-100 bg-white">
         <div class="container">
             <div class="section-title">
                 <h2>Portofolio APTIKA <br>
@@ -254,6 +195,67 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- end gallery section -->
+    <!-- Start Partner Area -->
+    <div class="partner-area bg-white">
+        <div class="container">
+            <div class="partner-slider owl-carousel">
+
+                <div class="partner-item">
+                    <a href="http://ppid.jambikota.go.id" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="image" />
+
+                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="partner" />
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="http://sikoja.jambikota.go.id" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="image" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="partner" />
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="http://sipadek.jambikota.go.id" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="image" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            alt="partner" />
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="http://satudata.jambikota.go.id" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            style="height: 5rem;" alt="image" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            style="height: 5rem;" alt="partner" />
+                    </a>
+                </div>
+                <div class="partner-item">
+                    <a href="http://sipaten.jambikota.go.id" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            style="height: 5rem;" alt="image" />
+                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png"
+                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
+                            style="height: 5rem;" alt="partner" />
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Partner Area -->
 @endsection

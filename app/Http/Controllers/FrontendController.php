@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use App\Models\Daftaraplikasi;
+use App\Models\Jenisaplikasi;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -13,39 +14,39 @@ class FrontendController extends Controller
     {
         $berita = Berita::with('kategori')->orderBy('id', 'desc')->limit(3)->get();
         $portofolio = Daftaraplikasi::orderBy('id', 'desc')->limit(3)->get();
-        return view('frontendv2.home', compact('berita', 'portofolio'));
+        return view('frontend.home', compact('berita', 'portofolio'));
     }
 
     public function tentang()
     {
-        return view('frontendv2.tentang');
+        return view('frontend.tentang');
     }
 
     public function layanan_pembuatan_aplikasi()
     {
-        return view('frontendv2.layanan_pembuatan_aplikasi');
+        return view('frontend.layanan_pembuatan_aplikasi');
     }
 
     public function layanan_pembaruan_aplikasi()
     {
-        return view('frontendv2.layanan_pembaruan_aplikasi');
+        return view('frontend.layanan_pembaruan_aplikasi');
     }
 
     public function portofolio()
     {
-        return view('frontendv2.portofolio');
+        return view('frontend.portofolio');
     }
 
     public function portofolio_detail($id)
     {
         $data = Daftaraplikasi::where('id', $id)->orderBy('id', 'desc')->first();
-        return view('frontendv2.portofolio_detail', compact('data'));
+        return view('frontend.portofolio_detail', compact('data'));
     }
 
     public function news()
     {
         $berita = Berita::with('kategori')->orderBy('id', 'desc')->paginate(6);
-        return view('frontendv2.berita', compact('berita'));
+        return view('frontend.berita', compact('berita'));
     }
 
     public function news_detail($slug)
@@ -53,6 +54,20 @@ class FrontendController extends Controller
         $berita = Berita::where('slug', $slug)->first();
         $kategori = Kategori::all();
         $recent_news = Berita::with('kategori')->whereNotIn('slug', [$berita->slug])->orderBy('id', 'desc')->limit(5)->get();
-        return view('frontendv2.berita_detail', compact('berita', 'kategori', 'recent_news'));
+        return view('frontend.berita_detail', compact('berita', 'kategori', 'recent_news'));
+    }
+
+    public function layanan_aplikasi(Request $request)
+    {
+        $nip = $request->nip;
+        //dd($nip);
+        $getNIP = searchNip($nip);
+        $jenisaplikasi = Jenisaplikasi::all();
+        //dd($getNIP->error);
+        if ($getNIP->error == "true") {
+            return redirect()->back()->with('gagal', 'NIP tidak Ditemukan');
+        } else {
+            return view('frontend.layanan.aplikasi', compact('getNIP', 'jenisaplikasi'));
+        }
     }
 }

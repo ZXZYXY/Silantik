@@ -5,6 +5,7 @@ use App\Models\Konfigurasiweb;
 use App\Models\Berita;
 use App\Models\Pengaduan;
 use App\Models\Permohonan;
+use GuzzleHttp\Client;
 
 if (!function_exists('setActive')) {
     /**
@@ -182,6 +183,36 @@ function jml_pengaduan_baru()
 {
     $pengaduan = Pengaduan::where('status', null)->count();
     return $pengaduan;
+}
+
+function searchNip($nip)
+{
+    try {
+        $server = 'https://siap-koja.jambikota.go.id/api/checkUser?nip=' . $nip;
+        $client = new Client();
+        $res = $client->request('GET', $server, [
+            'auth' => ['client1', 'api-siap-koja'],
+            'timeout' => 10,
+            'connect_timeout' => 10
+
+        ]);
+        $body = $res->getBody()->getContents();
+        return json_decode($body);
+    } catch (Throwable $e) {
+        return null;
+    } catch (ClientException $e) {
+        return null;
+    } catch (BadResponseException $e) {
+        return null;
+    } catch (RequestException $e) {
+        return null;
+    } catch (GuzzleException $e) {
+        return null;
+    } catch (ConnectException $e) {
+        return null;
+    } catch (ServerException $e) {
+        return null;
+    }
 }
 
 function sendNotifWA($message, $date, $received)

@@ -14,8 +14,8 @@
         <div class="owl-carousel owl-theme full-screen">
             <!-- Item 1 -->
             <div class="item">
-                <img src="{{ asset('aset_front') }}/images/dummy-img-1920x900.jpg" alt="Slider">
-                <div class="container d-flex align-items-center h-center">
+                <img src="{{ asset('images/banner_3_bg.png') }}" alt="Slider">
+                <div class="container d-flex align-items-center h-left">
                     <div class="wrap-caption">
                         <h1 class="caption-heading">THINK BUSINESS THINK COXE</h1>
                         <p class="uk24">Be Creative. Innovative. & Inspirative</p>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <!-- Item 2 -->
-            <div class="item">
+            {{-- <div class="item">
                 <img src="images/dummy-img-1920x900-2.jpg" alt="Slider">
                 <div class="container d-flex align-items-center h-center">
                     <div class="wrap-caption">
@@ -35,9 +35,9 @@
                         <a href="#" class="btn btn-primary">PURCHASE NOW</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
-        <div class="custom-nav owl-nav"></div>
+        {{-- <div class="custom-nav owl-nav"></div> --}}
     </div>
 
     <!-- CTA -->

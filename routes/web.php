@@ -55,6 +55,9 @@ Route::get('/reload-captcha', [DaftarController::class, 'reloadCaptcha']);
 Route::get('/informasi', [FrontendController::class, 'news']);
 Route::get('/news/{slug}', [FrontendController::class, 'news_detail']);
 
+//pembuatan aplikasi
+Route::post('/layanan-aplikasi', [FrontendController::class, 'layanan_aplikasi']);
+
 Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/changeStatus', [UserController::class, 'changeStatus']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -44,15 +44,28 @@
                                         <h4 class="mt-4 font-weight-bold">Layanan Pembuatan/Pengembangan Aplikasi</h4>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 0%;"
-                                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                        <div class="progress-bar" role="progressbar" style="width: 25%;"
+                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
                                     </div>
                                     <hr>
 
                                     <div class="">
                                         <div class="form-body">
-                                            <h4>1. Data Pemohon</h4>
-                                            <p>Masukan NIP (Nomor Induk Pegawai) PIC Pemohon Pengajuan Aplikasi</p>
+                                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                                                <strong>Data NIP Ditemukan!</strong> <br>
+                                                NIP : {{ $getNIP->data->nip }}<br>
+                                                Nama : {{ $getNIP->data->nama }}<br>
+                                                Jabatan : {{ $getNIP->data->njab }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="col-12">
+
+                                            </div>
+                                            <hr>
+                                            <h4>2. Data Permohonan</h4>
+                                            <p>Masukan Detail Permohonan</p>
                                             @if ($errors->any())
                                                 <div class="alert alert-danger">
                                                     <ul
@@ -64,22 +77,47 @@
                                                     </ul>
                                                 </div>
                                             @endif
-                                            @if (session()->has('gagal'))
-                                                <div
-                                                    class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
-                                                    <div class="text-white">{{ session('gagal') }}!</div>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                            @endif
-                                            <form action="{{ url('layanan-aplikasi') }}" method="post"
-                                                class="row g-3">
-                                                @csrf
 
-                                                <div class="col-12">
-                                                    <input type="text" name="nip"
-                                                        class="form-control"placeholder="NIP (Nomor Induk Pegawai)">
-                                                </div>
+
+
+                                            <form action="{{ url('layanan-aplikasi') }}" method="get"
+                                                class="row g-3">
+
+
+                                                {{-- <div class="col-12">
+                                                    <label for="">No HP</label>
+                                                    <input type="text" name="no_hp"
+                                                        class="form-control"placeholder="Nomor HP">
+                                                </div> --}}
+
+                                                <x-forms.select_v id="jenis_permohonan" name="jenis_permohonan"
+                                                    label="Jenis Permohonan" isRequired="true" isSelect2="true">
+                                                    <option value="" selected disabled>[Pilih]</option>
+                                                    <option value="pembuatan">Pembuatan Aplikasi Baru</option>
+                                                    <option value="pembaruan">Pembaruan/Pengembangan Aplikasi</option>
+                                                </x-forms.select_v>
+
+                                                <x-forms.input_v id="nama_aplikasi" type="text" name="nama_aplikasi"
+                                                    label="Nama Aplikasi" isRequired="true" value=""
+                                                    isReadonly="" placeholder="Nama Aplikasi" />
+
+                                                <x-forms.select_v id="jenis_aplikasi" name="jenis_aplikasi"
+                                                    label="Jenis Aplikasi" isRequired="true" isSelect2="true">
+                                                    <option value="" selected disabled>[Pilih]</option>
+                                                    @foreach ($jenisaplikasi as $list)
+                                                        <option value="{{ $list->nama_jenis }}"
+                                                            {{ old('roles') == $list->nama_jenis ? ' selected' : '' }}>
+                                                            {{ $list->nama_jenis }} </option>
+                                                    @endforeach
+                                                </x-forms.select_v>
+
+                                                <x-forms.textarea_v id="deskripsi" type="text" name="deskripsi"
+                                                    label="Deskripsi Aplikasi" isRequired="true" value=""
+                                                    isReadonly="" placeholder="Deskripsi Aplikasi" />
+
+                                                <x-forms.input_v id="file_surat" type="file" name="file_surat"
+                                                    label="Surat Permohonan" isRequired="false" value=""
+                                                    isReadonly="" placeholder="Surat Permohonan" />
 
                                                 <div class="col-12">
                                                     <div class="d-grid">
@@ -103,7 +141,7 @@
     </div>
 
     <script src="{{ asset('theme') }}/assets/js/jquery.min.js"></script>
-
+    <script src="{{ asset('theme') }}/assets/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

@@ -1,4 +1,4 @@
-@extends('frontendv2.layouts.master')
+@extends('frontend.layouts.master')
 @section('title')
     Login
 @endsection
@@ -6,13 +6,13 @@
     <!-- start page title area-->
     <div class="page-title-area bg-thin">
         <div class="container">
-            <div class="page-title-content">
+            {{-- <div class="page-title-content">
                 <h1>Login</h1>
                 <ul>
                     <li class="item"><a href="/">Beranda</a></li>
                     <li class="item"><a href="{{ url('login') }}">Login</a></li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
         <div class="shape">
             <span class="shape1"></span>

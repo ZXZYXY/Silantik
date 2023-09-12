@@ -6,17 +6,17 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-sm-4 col-md-2 col-lg-4">
-                    <p class="mb-0"><em>Awesome Template for Business Multipurpose</em></p>
+                    {{-- <p class="mb-0"><em>Awesome Template for Business Multipurpose</em></p> --}}
                 </div>
                 <div class="col-sm-8 col-md-10 col-lg-8">
-                    <div class="info pull-right">
+                    {{-- <div class="info pull-right">
                         <div class="info-item">
                             <i class="fa fa-envelope-o"></i> Mail : support@coxe.com
                         </div>
                         <div class="info-item">
                             <i class="fa fa-phone"></i> Call Us : +62 7100 1234
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -26,8 +26,8 @@
     <div class="navbar-main">
         <div class="container">
             <nav id="navbar-main" class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.png" alt="" />
+                <a class="navbar-brand" href="/">
+                    <img src="{{ asset('images/logo_diskominfo_mini.png') }}" width="200px" alt="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
