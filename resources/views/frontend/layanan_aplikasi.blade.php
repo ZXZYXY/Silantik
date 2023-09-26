@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Layanan Pembuatan Aplikasi - SILANTIK</title>
     <!--favicon-->
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="{{ asset('images/' . konfigurasi()->favicon) }}">
     <!-- loader-->
     <link href="{{ asset('theme') }}/assets/css/pace.min.css" rel="stylesheet" />
     <script src="{{ asset('theme') }}/assets/js/pace.min.js"></script>
@@ -72,18 +72,18 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                             @endif
-                                            <form action="{{ url('layanan-aplikasi') }}" method="post"
-                                                class="row g-3">
-                                                @csrf
+                                            <form action="{{ url('layanan/aplikasi/cek-nip') }}" method="get"
+                                                class="">
+
 
                                                 <div class="col-12">
-                                                    <input type="text" name="nip"
-                                                        class="form-control"placeholder="NIP (Nomor Induk Pegawai)">
+                                                    <input type="text" name="nip" class="form-control"
+                                                        placeholder="NIP (Nomor Induk Pegawai)">
                                                 </div>
 
                                                 <div class="col-12">
                                                     <div class="d-grid">
-                                                        <button type="submit" class="btn btn-primary"><i
+                                                        <button type="submit" class="btn btn-primary mt-2"><i
                                                                 class="fa fa-arrow-right me-1"></i>Lanjut</button>
                                                     </div>
                                                 </div>

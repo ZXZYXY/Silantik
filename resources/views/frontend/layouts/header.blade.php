@@ -26,16 +26,14 @@
                             <a href="#" class="nav-link dropdown-toggle">Layanan</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a href="{{ url('layanan/pembuatan-aplikasi') }}"
-                                        class="nav-link {{ setActive_frontend('layanan/pembuatan-aplikasi') }}">
-                                        Pembuatan
-                                        Aplikasi </a>
+                                    <a href="{{ url('layanan/aplikasi') }}"
+                                        class="nav-link {{ setActive_frontend('layanan/aplikasi') }}">
+                                        Permohonan Aplikasi </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('layanan/pembaruan-aplikasi') }}"
-                                        class="nav-link {{ setActive_frontend('layanan/pembaruan-aplikasi') }}">
-                                        Pembaruan
-                                        Aplikasi </a>
+                                    <a href="{{ url('cek-permohonan') }}"
+                                        class="nav-link {{ setActive_frontend('cek-permohonan') }}">
+                                        Cek Permohonan </a>
                                 </li>
 
                             </ul>

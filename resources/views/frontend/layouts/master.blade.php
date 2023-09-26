@@ -8,6 +8,7 @@
 
     <!-- title -->
     <title>@yield('title') - {{ konfigurasi()->nama_aplikasi }}</title>
+    <link rel="icon" href="{{ asset('images/' . konfigurasi()->favicon) }}">
     @include('frontend.layouts.css')
     @stack('style')
 

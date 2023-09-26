@@ -38,8 +38,8 @@ use App\Http\Controllers\FaqController;
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/tentang', [FrontendController::class, 'tentang']);
-Route::get('/layanan/pembuatan-aplikasi', [FrontendController::class, 'layanan_pembuatan_aplikasi']);
-Route::get('/layanan/pembaruan-aplikasi', [FrontendController::class, 'layanan_pembaruan_aplikasi']);
+
+//Route::get('/layanan/pembaruan-aplikasi', [FrontendController::class, 'layanan_pembaruan_aplikasi']);
 Route::get('/portofolio', [FrontendController::class, 'portofolio']);
 Route::get('/portofolio/detail/{id}', [FrontendController::class, 'portofolio_detail']);
 
@@ -56,7 +56,10 @@ Route::get('/informasi', [FrontendController::class, 'news']);
 Route::get('/news/{slug}', [FrontendController::class, 'news_detail']);
 
 //pembuatan aplikasi
-Route::post('/layanan-aplikasi', [FrontendController::class, 'layanan_aplikasi']);
+Route::get('/layanan/aplikasi', [FrontendController::class, 'layanan_aplikasi']);
+Route::get('/layanan/aplikasi/cek-nip', [FrontendController::class, 'cek_nip']);
+Route::post('/submit-permohonan-aplikasi', [FrontendController::class, 'create_permohonan']);
+Route::get('/permohonan-aplikasi/berhasil/{id}', [FrontendController::class, 'permohonan_berhasil']);
 
 Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/changeStatus', [UserController::class, 'changeStatus']);

@@ -215,7 +215,7 @@ function searchNip($nip)
     }
 }
 
-function sendNotifWA($message, $date, $received)
+function sendNotifWA($message, $received)
 {
 
     $curl = curl_init();
@@ -226,7 +226,7 @@ function sendNotifWA($message, $date, $received)
     ];
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://starsender.online/api/v2/sendFiles?message=' . rawurlencode($message) . '&tujuan=' . rawurlencode($received . '@s.whatsapp.net') . '&jadwal=' . rawurlencode($date),
+        CURLOPT_URL => 'https://starsender.online/api/v2/sendFiles?message=' . rawurlencode($message) . '&tujuan=' . rawurlencode($received . '@s.whatsapp.net'),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

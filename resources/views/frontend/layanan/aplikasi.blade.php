@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Layanan Pembuatan Aplikasi - SILANTIK</title>
     <!--favicon-->
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="{{ asset('images/' . konfigurasi()->favicon) }}">
     <!-- loader-->
     <link href="{{ asset('theme') }}/assets/css/pace.min.css" rel="stylesheet" />
     <script src="{{ asset('theme') }}/assets/js/pace.min.js"></script>
@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{ asset('theme') }}/assets/css/app.css" />
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('theme') }}/plugins/fontawesome-free/css/all.min.css">
+    <link href="{{ asset('theme') }}/assets/plugins/smart-wizard/css/smart_wizard_all.min.css" rel="stylesheet"
+        type="text/css" />
 </head>
 
 <body class="bg-register">
@@ -65,7 +67,7 @@
                                             </div>
                                             <hr>
                                             <h4>2. Data Permohonan</h4>
-                                            <p>Masukan Detail Permohonan</p>
+                                            {{-- <p>Masukan Detail Permohonan</p> --}}
                                             @if ($errors->any())
                                                 <div class="alert alert-danger">
                                                     <ul
@@ -77,36 +79,63 @@
                                                     </ul>
                                                 </div>
                                             @endif
+                                            <form action="{{ url('submit-permohonan-aplikasi') }}" method="post"
+                                                class="" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="nip" value="{{ $getNIP->data->nip }}">
+                                                <input type="hidden" name="nama" value="{{ $getNIP->data->nama }}">
+                                                <input type="hidden" name="jabatan" value="{{ $getNIP->data->njab }}">
 
+                                                <div class="mb-3 {{ $errors->has('no_hp') ? ' has-error' : '' }}">
+                                                    <label class="form-label" style="font-weight: bold;">No.
+                                                        Whatsapp<span class="text-danger">*</span>
+                                                        <a type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleVerticallycenteredModal"><i
+                                                                class="fa fa-info-circle"></i></a>
 
+                                                    </label>
+                                                    <input type="text" placeholder=""
+                                                        class="form-control form-control-sm @error('no_hp') is-invalid @enderror"
+                                                        name="no_hp" id="no_hp" value="{{ old('no_hp') }}" />
 
-                                            <form action="{{ url('layanan-aplikasi') }}" method="get"
-                                                class="row g-3">
-
-
-                                                {{-- <div class="col-12">
-                                                    <label for="">No HP</label>
-                                                    <input type="text" name="no_hp"
-                                                        class="form-control"placeholder="Nomor HP">
-                                                </div> --}}
+                                                    @if ($errors->has('no_hp'))
+                                                        <span class="text-danger">{{ $errors->first('no_hp') }}</span>
+                                                    @endif
+                                                </div>
+                                                <x-forms.select_v id="opd_id" name="opd_id" label="Unit Kerja"
+                                                    isRequired="true" isSelect2="true">
+                                                    <option value="">[Pilih]</option>
+                                                    @foreach ($opd as $list)
+                                                        <option value="{{ $list->id }}"
+                                                            {{ old('opd_id') == $list->id ? ' selected' : '' }}>
+                                                            {{ $list->nama_opd }} ({{ $list->singkatan }})</option>
+                                                    @endforeach
+                                                </x-forms.select_v>
+                                                {{-- <x-forms.input_v id="no_hp" type="text" name="no_hp"
+                                                    label="Nomor WA" isRequired="true" value="" isReadonly=""
+                                                    placeholder="Nomor WA" /> --}}
 
                                                 <x-forms.select_v id="jenis_permohonan" name="jenis_permohonan"
                                                     label="Jenis Permohonan" isRequired="true" isSelect2="true">
                                                     <option value="" selected disabled>[Pilih]</option>
-                                                    <option value="pembuatan">Pembuatan Aplikasi Baru</option>
-                                                    <option value="pembaruan">Pembaruan/Pengembangan Aplikasi</option>
+                                                    <option value="pembuatan"
+                                                        {{ old('jenis_permohonan') == 'pembuatan' ? ' selected' : '' }}>
+                                                        Pembuatan Aplikasi Baru</option>
+                                                    <option value="pembaruan"
+                                                        {{ old('jenis_permohonan') == 'pembaruan' ? ' selected' : '' }}>
+                                                        Pembaruan/Pengembangan Aplikasi</option>
                                                 </x-forms.select_v>
 
-                                                <x-forms.input_v id="nama_aplikasi" type="text" name="nama_aplikasi"
-                                                    label="Nama Aplikasi" isRequired="true" value=""
-                                                    isReadonly="" placeholder="Nama Aplikasi" />
+                                                <x-forms.input_v id="nama_aplikasi" type="text"
+                                                    name="nama_aplikasi" label="Nama Aplikasi" isRequired="true"
+                                                    value="" isReadonly="" placeholder="Nama Aplikasi" />
 
                                                 <x-forms.select_v id="jenis_aplikasi" name="jenis_aplikasi"
                                                     label="Jenis Aplikasi" isRequired="true" isSelect2="true">
                                                     <option value="" selected disabled>[Pilih]</option>
                                                     @foreach ($jenisaplikasi as $list)
                                                         <option value="{{ $list->nama_jenis }}"
-                                                            {{ old('roles') == $list->nama_jenis ? ' selected' : '' }}>
+                                                            {{ old('jenis_aplikasi') == $list->nama_jenis ? ' selected' : '' }}>
                                                             {{ $list->nama_jenis }} </option>
                                                     @endforeach
                                                 </x-forms.select_v>
@@ -117,7 +146,9 @@
 
                                                 <x-forms.input_v id="file_surat" type="file" name="file_surat"
                                                     label="Surat Permohonan" isRequired="false" value=""
-                                                    isReadonly="" placeholder="Surat Permohonan" />
+                                                    isReadonly="" placeholder="Surat Permohonan">
+                                                    <span class="text-danger">maksimal:5mb</span>
+                                                </x-forms.input_v>
 
                                                 <div class="col-12">
                                                     <div class="d-grid">
@@ -126,6 +157,8 @@
                                                     </div>
                                                 </div>
                                             </form>
+
+
                                         </div>
                                     </div>
 
@@ -140,9 +173,33 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Informasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        Pastikan Nomor Whatsapp Aktif untuk mendapatkan Notifikasi Nomor Permohonan
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="{{ asset('theme') }}/assets/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('theme') }}/assets/js/jquery.min.js"></script>
     <script src="{{ asset('theme') }}/assets/js/bootstrap.bundle.min.js"></script>
 
+    <!-- App JS -->
+    <script src="{{ asset('theme') }}/assets/js/app.js"></script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
         id="{{ $id }}"
         @if ($value != null) value="{{ $value }}"
     @else
-        value="{{ old('.$name.') }}" @endif
+        value="{{ old($name) }}" @endif
         @if ($isRequired == 'true') required @endif @if ($isReadonly == 'true') readonly @endif />
     {{ $slot }}
     @if ($errors->has($name))

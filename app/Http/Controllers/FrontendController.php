@@ -6,7 +6,10 @@ use App\Models\Berita;
 use App\Models\Daftaraplikasi;
 use App\Models\Jenisaplikasi;
 use App\Models\Kategori;
+use App\Models\Opd;
+use App\Models\Permohonan;
 use Illuminate\Http\Request;
+use DB;
 
 class FrontendController extends Controller
 {
@@ -22,9 +25,9 @@ class FrontendController extends Controller
         return view('frontend.tentang');
     }
 
-    public function layanan_pembuatan_aplikasi()
+    public function layanan_aplikasi()
     {
-        return view('frontend.layanan_pembuatan_aplikasi');
+        return view('frontend.layanan_aplikasi');
     }
 
     public function layanan_pembaruan_aplikasi()
@@ -57,17 +60,78 @@ class FrontendController extends Controller
         return view('frontend.berita_detail', compact('berita', 'kategori', 'recent_news'));
     }
 
-    public function layanan_aplikasi(Request $request)
+    public function cek_nip(Request $request)
     {
         $nip = $request->nip;
-        //dd($nip);
+
         $getNIP = searchNip($nip);
         $jenisaplikasi = Jenisaplikasi::all();
-        //dd($getNIP->error);
+
+        $opd = Opd::all();
         if ($getNIP->error == "true") {
             return redirect()->back()->with('gagal', 'NIP tidak Ditemukan');
         } else {
-            return view('frontend.layanan.aplikasi', compact('getNIP', 'jenisaplikasi'));
+            return view('frontend.layanan.aplikasi', compact('getNIP', 'jenisaplikasi', 'opd'));
         }
+    }
+
+    public function create_permohonan(Request $request)
+    {
+
+        //dd($surat->getClientOriginalExtension());
+        $this->validate($request, [
+            'opd_id'  => 'required',
+            'jenis_permohonan'  => 'required',
+            'nama_aplikasi'     => 'required',
+            'jenis_aplikasi'    => 'required',
+            'deskripsi'         => 'required',
+            'file_surat'        => 'mimes:pdf|max:5048'
+        ]);
+        $opd = Opd::where('id', $request->opd_id)->first();
+        DB::beginTransaction();
+        try {
+            $data = new Permohonan();
+            $data->kd_permohonan      = time();
+            $data->tanggal            = date('Y-m-d');
+            $data->nip                = $request->nip;
+            $data->nama               = $request->nama;
+            $data->jabatan            = $request->jabatan;
+            $data->opd_id             = $request->opd_id;
+            $data->nama_opd           = $opd->nama_opd;
+            $data->jenis_permohonan   = $request->jenis_permohonan;
+            $data->nama_aplikasi      = $request->nama_aplikasi;
+            $data->jenis_aplikasi     = $request->jenis_aplikasi;
+            $data->deskripsi          = $request->deskripsi;
+            if ($request->hasFile('file_surat')) {
+
+                $surat = $request->file('file_surat');
+                if ($surat->getClientOriginalExtension() == "pdf") {
+                    $filename = kode_acak(7) . '.' . $surat->getClientOriginalExtension();
+                    $surat->move(public_path() . '/storage/file_surat/', $filename);
+                    $data->file_surat = $filename;
+                } else {
+                    return redirect()->back()->with('gagal', 'File Upload Harus Format PDF');
+                }
+            }
+            $data->save();
+
+
+            $url_cek = url('/cek-permohonan');
+            $pesan = "Salam, Bapak/Ibu *$request->nama*\n\nAnda Telah Melakukan Permohonan $request->jenis_permohonan di Website SILANTIK. \n\nNomor Permohonan Anda: *$data->kd_permohonan*\n\nAnda bisa mengecek status progres Permohonan anda melalui link: $url_cek\n\n\n Terima Kasih.";
+            sendNotifWA($pesan, $request->no_hp);
+            DB::commit();
+            return redirect('/permohonan-aplikasi/berhasil/' . $data->uuid)->with('success', 'Data Berhasil Ditambah');
+        } catch (\Exception $e) {
+            dd($e);
+            DB::rollback();
+            return redirect()->back()->with('gagal', 'Data Gagal Diinput');
+        }
+    }
+
+    public function permohonan_berhasil($id)
+    {
+        $permohonan = Permohonan::where('uuid', $id)->first();
+
+        return view('frontend.layanan.permohonan_berhasil', compact('permohonan'));
     }
 }

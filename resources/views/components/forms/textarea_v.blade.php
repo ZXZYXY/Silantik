@@ -4,7 +4,13 @@
             <span class="text-danger">*</span>
         @endif
     </label>
-    <textarea class="form-control form-control-sm" id="{{ $id }}" name="{{ $name }}">{{ $value }}</textarea>
+    <textarea class="form-control form-control-sm" id="{{ $id }}" name="{{ $name }}">
+    @if ($value != null)
+{{ $value }}
+@else
+{{ old($name) }}
+@endif
+    </textarea>
     @if ($errors->has($name))
         <span class="text-danger">{{ $errors->first($name) }}</span>
     @endif
