@@ -82,6 +82,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
 
     //Permohonan
     Route::group(['prefix' => 'permohonan'], function () {
+        Route::get('/', [PermohonanController::class, 'index']);
         Route::post('/store', [PermohonanController::class, 'store']);
         Route::post('/update', [PermohonanController::class, 'update']);
         Route::post('/proses', [PermohonanController::class, 'proses']);
@@ -142,7 +143,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::get('/table/permission', [PermissionController::class, 'dataTable'])->name('table.permission');
     Route::get('/table/berita', [BeritaController::class, 'dataTable'])->name('table.berita');
     Route::get('/table/daftaraplikasi', [DaftaraplikasiController::class, 'dataTable'])->name('table.daftaraplikasi');
-    Route::get('/table/permohonan/{jenis}', [PermohonanController::class, 'dataTable'])->name('table.permohonan');
+    Route::get('/table/permohonan', [PermohonanController::class, 'dataTable'])->name('table.permohonan');
     Route::get('/table/opd', [OpdController::class, 'dataTable'])->name('table.opd');
     Route::get('/table/jenisaplikasi', [JenisaplikasiController::class, 'dataTable'])->name('table.jenisaplikasi');
     Route::get('/table/pengaduan/{jenis}', [PengaduanController::class, 'dataTable']);

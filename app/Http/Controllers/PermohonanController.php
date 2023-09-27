@@ -26,10 +26,10 @@ class PermohonanController extends Controller
         $this->middleware('permission:permohonan-delete', ['only' => ['destroy']]);
     }
 
-    public function index($jenis_permohonan)
+    public function index()
     {
-        $jenis = $jenis_permohonan;
-        return view('permohonan.index', compact('jenis'));
+        //$jenis = $jenis_permohonan;
+        return view('permohonan.index');
     }
 
     public function create($jenis_permohonan)
@@ -187,15 +187,9 @@ class PermohonanController extends Controller
     }
 
 
-    public function dataTable($jenis)
+    public function dataTable()
     {
-        $opd_id = auth()->user()->opd_id;
-        if (auth()->user()->role == 'user') {
-            $data = Permohonan::orderby('id', 'desc')->where([['jenis_permohonan', '=', $jenis], ['opd_id', '=', $opd_id]]);
-        } else {
-            $data = Permohonan::orderby('id', 'desc')->where('jenis_permohonan', $jenis);
-        }
-
+        $data = Permohonan::orderby('id', 'desc');
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
                 return view('permohonan.aksi', [

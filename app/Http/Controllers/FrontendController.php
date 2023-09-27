@@ -79,14 +79,41 @@ class FrontendController extends Controller
     {
 
         //dd($surat->getClientOriginalExtension());
-        $this->validate($request, [
-            'opd_id'  => 'required',
-            'jenis_permohonan'  => 'required',
-            'nama_aplikasi'     => 'required',
-            'jenis_aplikasi'    => 'required',
-            'deskripsi'         => 'required',
-            'file_surat'        => 'mimes:pdf|max:5048'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'no_hp'             => 'required',
+                'opd_id'            => 'required',
+                'jenis_permohonan'  => 'required',
+                'nama_aplikasi'     => 'required',
+                'jenis_aplikasi'    => 'required',
+                'deskripsi'         => 'required',
+                'file_surat'        => 'mimes:pdf|max:5048'
+            ],
+
+            [
+                'no_hp.required'                => ':attribute harus diisi.',
+                'opd_id.required'               => ':attribute harus diisi.',
+                'jenis_permohonan.required'     => ':attribute harus diisi.',
+                'nama_aplikasi.required'        => ':attribute harus diisi.',
+                'jenis_aplikasi.required'       => ':attribute harus diisi.',
+                'deskripsi.required'            => ':attribute harus diisi.',
+                'file_surat.mimes'              => ':attribute harus format pdf.',
+                'file_surat.max'                => ':attribute harus berukuran kurang dari :max kb',
+            ],
+
+            [
+                'no_hp'                         => 'Nomor WA',
+                'opd_id'                        => 'OPD',
+                'jenis_permohonan'              => 'Jenis Permohonan',
+                'nama_aplikasi'                 => 'Nama Aplikasi',
+                'jenis_aplikasi'                => 'Jenis Aplikasi',
+                'deskripsi'                     => 'Deskripsi',
+                'file_surat'                    => 'Surat Permohonan',
+
+            ]
+        );
+
         $opd = Opd::where('id', $request->opd_id)->first();
         DB::beginTransaction();
         try {
@@ -118,7 +145,7 @@ class FrontendController extends Controller
 
             $url_cek = url('/cek-permohonan');
             $pesan = "Salam, Bapak/Ibu *$request->nama*\n\nAnda Telah Melakukan Permohonan $request->jenis_permohonan di Website SILANTIK. \n\nNomor Permohonan Anda: *$data->kd_permohonan*\n\nAnda bisa mengecek status progres Permohonan anda melalui link: $url_cek\n\n\n Terima Kasih.";
-            sendNotifWA($pesan, $request->no_hp);
+            //sendNotifWA($pesan, $request->no_hp);
             DB::commit();
             return redirect('/permohonan-aplikasi/berhasil/' . $data->uuid)->with('success', 'Data Berhasil Ditambah');
         } catch (\Exception $e) {

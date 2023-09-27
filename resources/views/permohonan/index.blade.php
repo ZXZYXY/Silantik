@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Data Permohonan {{ ucfirst($jenis) }} Aplikasi
+    Data Permohonan Aplikasi
 @endsection
 @push('style')
     <!--Data Tables -->
@@ -20,13 +20,13 @@
     <script src="{{ asset('theme/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var jenis = "{{ $jenis }}";
+
             $('#datatable').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
                 autoWidth: false,
-                ajax: "{{ url('table/permohonan') }}" + "/" + jenis,
+                ajax: "{{ url('table/permohonan') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'id'
@@ -36,12 +36,20 @@
                         name: 'kd_permohonan'
                     },
                     {
+                        data: 'jenis_permohonan',
+                        name: 'jenis_permohonan'
+                    },
+                    {
                         data: 'tanggal',
                         name: 'tanggal'
                     },
                     {
                         data: 'nama_aplikasi',
                         name: 'nama_aplikasi'
+                    },
+                    {
+                        data: 'jenis_aplikasi',
+                        name: 'jenis_aplikasi'
                     },
                     {
                         data: 'deskripsi',
@@ -136,14 +144,14 @@
         <div class="page-content">
             @can('permohonan-create')
                 <div class="ms-auto mb-3">
-                    <a class="btn btn-primary btn-sm text-right" href="{{ url('permohonan/' . $jenis . '/create') }}"><i
+                    {{-- <a class="btn btn-primary btn-sm text-right" href="{{ url('permohonan/' . $jenis . '/create') }}"><i
                             class="fa fa-plus-circle"></i> Buat Permohonan
-                    </a>
+                    </a> --}}
                 </div>
             @endcan
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Data Permohonan {{ ucfirst($jenis) }} Aplikasi</h4>
+                    <h4 class="mb-0">Data Permohonan Aplikasi</h4>
                     <hr>
 
                     <table id="datatable" class="table table-hover table-striped" style="width:100%">
@@ -151,10 +159,12 @@
                             <tr>
                                 <th>No</th>
                                 <th>Kode Permohonan</th>
+                                <th>Jenis Permohonan</th>
                                 <th>Tanggal</th>
                                 <th>Nama Aplikasi</th>
+                                <th>Jenis Aplikasi</th>
                                 <th>Deskripsi</th>
-                                <th>OPD</th>
+                                <th>Unit Kerja</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>

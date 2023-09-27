@@ -124,6 +124,9 @@
                                                     <option value="pembaruan"
                                                         {{ old('jenis_permohonan') == 'pembaruan' ? ' selected' : '' }}>
                                                         Pembaruan/Pengembangan Aplikasi</option>
+                                                    <option value="penggunaan_domain"
+                                                        {{ old('jenis_permohonan') == 'penggunaan_domain' ? ' selected' : '' }}>
+                                                        Permintaan Penggunaan Domain</option>
                                                 </x-forms.select_v>
 
                                                 <x-forms.input_v id="nama_aplikasi" type="text"
@@ -144,11 +147,32 @@
                                                     label="Deskripsi Aplikasi" isRequired="true" value=""
                                                     isReadonly="" placeholder="Deskripsi Aplikasi" />
 
-                                                <x-forms.input_v id="file_surat" type="file" name="file_surat"
-                                                    label="Surat Permohonan" isRequired="false" value=""
+                                                {{-- <x-forms.input_v id="file_surat" type="file" name="file_surat"
+                                                    label="Surat Permohonan" isRequired="true" value=""
                                                     isReadonly="" placeholder="Surat Permohonan">
-                                                    <span class="text-danger">maksimal:5mb</span>
-                                                </x-forms.input_v>
+                                                    <span class="text-danger" style="font-style: italic">ukuran
+                                                        maksimal: 5mb <br>format file :
+                                                        pdf</span>
+                                                </x-forms.input_v> --}}
+                                                <div
+                                                    class="mb-3 {{ $errors->has('file_surat') ? ' has-error' : '' }}">
+                                                    <label class="form-label" style="font-weight: bold;">Surat
+                                                        Permohonan<span class="text-danger">*</span>
+                                                        {{-- <a type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#infoSurat"><i
+                                                                class="fa fa-info-circle"></i></a> --}}
+
+                                                    </label>
+                                                    <input type="file" placeholder=""
+                                                        class="form-control form-control-sm @error('file_surat') is-invalid @enderror"
+                                                        name="file_surat" id="file_surat"
+                                                        value="{{ old('file_surat') }}" />
+
+                                                    @if ($errors->has('file_surat'))
+                                                        <span
+                                                            class="text-danger">{{ $errors->first('file_surat') }}</span>
+                                                    @endif
+                                                </div>
 
                                                 <div class="col-12">
                                                     <div class="d-grid">
@@ -193,6 +217,8 @@
             </div>
         </div>
     </div>
+
+
     <!-- Bootstrap JS -->
     <script src="{{ asset('theme') }}/assets/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('theme') }}/assets/js/jquery.min.js"></script>

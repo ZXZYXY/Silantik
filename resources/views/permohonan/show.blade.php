@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Detail {{ ucfirst($jenis) }} Aplikasi
+    Detail Permohonan Aplikasi
 @endsection
 @push('style')
 @endpush
@@ -16,11 +16,44 @@
                 Kembali</button>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Detail Permohonan {{ ucfirst($jenis) }} Aplikasi</h4>
+                    <h4 class="mb-0">Detail Permohonan</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
+                            <table class="table table-hover table-bordered">
+                                <tr>
+                                    <td colspan="3">
+                                        <h4>Data Pemohon</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Nama</th>
+                                    <td>:</td>
+                                    <td>{{ $data->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <th>NIP</th>
+                                    <td>:</td>
+                                    <td>{{ $data->nip }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Jabatan</th>
+                                    <td>:</td>
+                                    <td>{{ $data->jabatan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>No. WA</th>
+                                    <td>:</td>
+                                    <td>{{ $data->no_hp }}</td>
+                                </tr>
+                            </table>
 
+                            <hr>
+
+
+
+                        </div>
+                        <div class="col-md-6">
                             <table class="table table-hover table-bordered">
                                 <tr>
                                     <td colspan="3">
@@ -64,33 +97,11 @@
                                     <td>{{ $data->file_surat }}</td>
                                 </tr>
                             </table>
-                            <hr>
-
-                            <table class="table table-hover table-bordered">
-                                <tr>
-                                    <td colspan="3">
-                                        <h4>Data User Pemohon</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Nama</th>
-                                    <td>:</td>
-                                    <td>{{ $pemohon->name }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Username</th>
-                                    <td>:</td>
-                                    <td>{{ $pemohon->username }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td>:</td>
-                                    <td>{{ $pemohon->email }}</td>
-                                </tr>
-                            </table>
 
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             @if (auth()->user()->role == 'admin' or auth()->user()->role == 'superadmin')
                                 <div class="card bg-info radius-15">
                                     <div class="card-body text-white">
@@ -147,7 +158,6 @@
                             </ul>
                         </div>
                     </div>
-
 
                 </div>
             </div>

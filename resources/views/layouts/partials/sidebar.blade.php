@@ -21,7 +21,17 @@
         </li>
     @endcan
 
-    <li class="{{ openMenu('permohonan') }}">
+    @can('permohonan-list')
+        <li class="{{ setActive('permohonan') }}">
+            <a href="{{ url('permohonan') }}">
+                <div class="parent-icon icon-color-10"><i class="bx bx-comment-edit"></i>
+                </div>
+                <div class="menu-title">Permohonan</div>
+            </a>
+        </li>
+    @endcan
+
+    {{-- <li class="{{ openMenu('permohonan') }}">
         @if (auth()->user()->can('permohonan-list'))
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-10"><i class="bx bx-comment-edit"></i>
@@ -69,7 +79,7 @@
                 </li>
             @endcan
         </ul>
-    </li>
+    </li> --}}
 
     <li class="{{ openMenu('pengaduan') }}">
         @if (auth()->user()->can('pengaduan-list'))
