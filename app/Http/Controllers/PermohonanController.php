@@ -56,7 +56,12 @@ class PermohonanController extends Controller
         $jenis = $jenis_permohonan;
         $pemohon = User::where('id', $data->pemohon_id)->first();
         $status = Statuspermohonan::select('nama_status')->get();
-        $histori = Historipermohonan::where('permohonan_id', $data->id)->orderBy('id', 'desc')->get();
+        //$histori = Historipermohonan::where('permohonan_id', $data->id)->orderBy('id', 'desc')->get();
+        $histori = DB::table('histori_permohonan as a')
+            ->select('a.*', 'b.name')
+            ->leftJoin('users as b', 'a.petugas_id', '=', 'b.id')
+            ->where('a.permohonan_id', $data->id)->orderBy('id', 'desc')
+            ->get();
         return view('permohonan.show', compact('data', 'jenis', 'pemohon', 'status', 'histori'));
     }
 
@@ -82,10 +87,28 @@ class PermohonanController extends Controller
             'file_surat' => 'mimes:pdf|max:2048',
         ]);
         $opd = Opd::where('id', $request->opd_id)->first();
+        //nomor permohonan
+        $no_urut = Permohonan::max('no_urut');
+        $last_record = Permohonan::orderBy('id', 'desc')->first();
+        $no = 1;
+
+        if (!$no_urut) {
+            $format_nopermohonan = date('Ymd') . '' . sprintf("%04s", $no);
+            $no_urut = sprintf("%04s", $no);
+        } elseif (date('Y') != substr($last_record->tanggal, 0, 4)) {
+            $format_nopermohonan = date('Ymd') . '' . sprintf("%04s", $no);
+            $no_urut = sprintf("%04s", $no);
+        } else {
+            $format_nopermohonan = date('Ymd') . '' . sprintf("%04s", abs($last_record->no_urut + 1));
+            $no_urut = sprintf("%04s", abs($last_record->no_urut + 1));
+        }
+        //end nomor permohonan
+
         DB::beginTransaction();
         try {
             $data = new Permohonan();
-            $data->kd_permohonan   = time();
+            $data->no_urut         = $no_urut;
+            $data->kd_permohonan   = $format_nopermohonan;
             $data->opd_id          = $request->opd_id;
             $data->nama_opd        = $opd->nama_opd;
             $data->jenis_permohonan = $request->jenis_permohonan;

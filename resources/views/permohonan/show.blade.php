@@ -94,15 +94,18 @@
                                 <tr>
                                     <th>File Surat Permohonan</th>
                                     <td>:</td>
-                                    <td>{{ $data->file_surat }}</td>
+                                    <td>
+                                        <a href="{{ asset('storage/file_surat/' . $data->file_surat) }}" target="_blank"
+                                            class="btn btn-info"><i class="fa fa-eye"></i> Lihat File</a>
+                                    </td>
                                 </tr>
                             </table>
 
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            @if (auth()->user()->role == 'admin' or auth()->user()->role == 'superadmin')
+                        @if (auth()->user()->role == 'admin' or auth()->user()->role == 'superadmin')
+                            <div class="col-md-6">
                                 <div class="card bg-info radius-15">
                                     <div class="card-body text-white">
                                         <h4>Proses Permohonan</h4>
@@ -122,7 +125,7 @@
 
                                             <x-forms.textarea_v id="keterangan_status" type="text"
                                                 name="keterangan_status" label="Keterangan Status/Tanggapan"
-                                                isRequired="false" value="" isReadonly=""
+                                                isRequired="false" value="{{ $data->keterangan_status }}" isReadonly=""
                                                 placeholder="Keterangan Status" />
 
                                             <button type="submit" class="btn btn-primary btn-block"><i
@@ -134,8 +137,10 @@
                                 </div>
 
                                 <hr>
-                            @endif
 
+                            </div>
+                        @endif
+                        <div class="col-md-6">
                             <h4>Histori Permohonan</h4>
                             <ul class="list-group">
                                 @foreach ($histori as $h)
@@ -147,7 +152,7 @@
                                             </div>
                                             <p class="mb-1">
                                                 Keterangan : {{ $h->keterangan_status }} <br>
-                                                <small>Admin : </small>
+                                                <small>Admin : {{ $h->name }}</small>
                                             </p>
                                         </a>
 
