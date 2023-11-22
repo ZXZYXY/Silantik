@@ -6,9 +6,7 @@
     </label>
     <textarea class="form-control form-control-sm" id="{{ $id }}" name="{{ $name }}">
     @if ($value != null)
-{{ $value }}
-@else
-{{ old($name) }}
+{{ $value }}@else{{ old($name) }}
 @endif
     </textarea>
     @if ($errors->has($name))

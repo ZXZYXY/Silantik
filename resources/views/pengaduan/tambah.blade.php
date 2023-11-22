@@ -38,7 +38,7 @@
                 $("#dynamicTable").append(`
                 <tr>
                     <td><input type="file" name="foto_pengaduan[]" placeholder="" class="form-control form-control-sm" /></td>
-                    <td><button type="button" class="btn btn-danger btn-xs remove-tr" id="remove"><i class="fa fa-trash"></i> Remove</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm remove-tr" id="remove"><i class="fa fa-trash"></i></button></td>
                 </tr>`);
             } else {
                 --i;
@@ -104,11 +104,16 @@
                                     isRequired="true" value="" isReadonly="" placeholder="" />
 
                                 <div id="pelatihan_sertifikat">
-                                    <span class="text-danger">* Format : pdf, jpg, jpeg, png</span><br>
-                                    <span class="text-danger">** Ukuran Maksimal : 5mb</span>
-                                    <table width="100%" class="" id="dynamicTable" cellpadding="4" cellspacing="0">
+
+                                    <table width="100%" class="table-bordered" id="dynamicTable" cellpadding="4"
+                                        cellspacing="0">
                                         <tr>
-                                            <th>Foto / Screenshoot Error</th>
+                                            <th>Foto / Screenshoot Error <br>
+                                                <span class="text-danger" style="font-style: italic;">* Format : pdf, jpg,
+                                                    jpeg, png</span><br>
+                                                <span class="text-danger" style="font-style: italic;">** Ukuran Maksimal :
+                                                    5mb</span>
+                                            </th>
                                             <th width="15%">Aksi</th>
                                         </tr>
                                         <tr>
@@ -116,12 +121,13 @@
                                                     class="form-control form-control-sm" /></td>
                                             <td><button type="button" name="add" id="add"
                                                     class="btn btn-success btn-sm"><i class="fa fa-plus"></i>
-                                                    Tambah</button></td>
+                                                </button></td>
                                         </tr>
                                     </table>
 
                                 </div>
-                                <button type="submit" class="btn btn-primary"><i class="lni lni-save"></i> Submit</button>
+                                <button type="submit" class="btn btn-primary mt-2"><i class="lni lni-save"></i>
+                                    Submit</button>
 
                             </div>
                         </div>

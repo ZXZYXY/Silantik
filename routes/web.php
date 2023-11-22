@@ -138,18 +138,20 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     });
 
     //Tabel
-    Route::get('/table/user', [UserController::class, 'dataTable'])->name('table.user');
-    Route::get('/table/role', [RoleController::class, 'dataTable'])->name('table.role');
-    Route::get('/table/permission', [PermissionController::class, 'dataTable'])->name('table.permission');
-    Route::get('/table/berita', [BeritaController::class, 'dataTable'])->name('table.berita');
-    Route::get('/table/daftaraplikasi', [DaftaraplikasiController::class, 'dataTable'])->name('table.daftaraplikasi');
-    Route::get('/table/permohonan', [PermohonanController::class, 'dataTable'])->name('table.permohonan');
-    Route::get('/table/opd', [OpdController::class, 'dataTable'])->name('table.opd');
-    Route::get('/table/jenisaplikasi', [JenisaplikasiController::class, 'dataTable'])->name('table.jenisaplikasi');
-    Route::get('/table/pengaduan/{jenis}', [PengaduanController::class, 'dataTable']);
-    Route::get('/table/kategori', [KategoriController::class, 'dataTable'])->name('table.kategori');
-    Route::get('/table/sektor', [SektorController::class, 'dataTable'])->name('table.sektor');
-    Route::get('/table/team', [TeamController::class, 'dataTable'])->name('table.team');
-    Route::get('/table/jabatan', [JabatanController::class, 'dataTable'])->name('table.jabatan');
-    Route::get('/table/statuspermohonan', [StatuspermohonanController::class, 'dataTable'])->name('table.statuspermohonan');
+    Route::group(['prefix' => 'table'], function () {
+        Route::get('/user', [UserController::class, 'dataTable'])->name('table.user');
+        Route::get('/role', [RoleController::class, 'dataTable'])->name('table.role');
+        Route::get('/permission', [PermissionController::class, 'dataTable'])->name('table.permission');
+        Route::get('/berita', [BeritaController::class, 'dataTable'])->name('table.berita');
+        Route::get('/daftaraplikasi', [DaftaraplikasiController::class, 'dataTable'])->name('table.daftaraplikasi');
+        Route::get('/permohonan', [PermohonanController::class, 'dataTable'])->name('table.permohonan');
+        Route::get('/opd', [OpdController::class, 'dataTable'])->name('table.opd');
+        Route::get('/jenisaplikasi', [JenisaplikasiController::class, 'dataTable'])->name('table.jenisaplikasi');
+        Route::get('/pengaduan/{jenis}', [PengaduanController::class, 'dataTable']);
+        Route::get('/kategori', [KategoriController::class, 'dataTable'])->name('table.kategori');
+        Route::get('/sektor', [SektorController::class, 'dataTable'])->name('table.sektor');
+        Route::get('/team', [TeamController::class, 'dataTable'])->name('table.team');
+        Route::get('/jabatan', [JabatanController::class, 'dataTable'])->name('table.jabatan');
+        Route::get('/statuspermohonan', [StatuspermohonanController::class, 'dataTable'])->name('table.statuspermohonan');
+    });
 });
