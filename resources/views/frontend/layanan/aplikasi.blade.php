@@ -30,17 +30,16 @@
     <div class="wrapper">
         <div class="section-authentication-register d-flex align-items-center justify-content-center">
             <div class="row">
-                <div class="col-12 col-lg-10 mx-auto">
+                <div class="col-12 col-lg-12 mx-auto">
                     <div class="card radius-15 overflow-hidden">
-                        <div class="row g-0">
-                            <div class="col-xl-6 bg-login-color d-flex align-items-center justify-content-center">
+                        <div class="row">
+                            {{-- <div class="col-xl-6 bg-login-color d-flex align-items-center justify-content-center">
                                 <img src="{{ asset('theme') }}/assets/images/login-images/register-frent-img.jpg"
                                     class="img-fluid" width="700px" alt="...">
-                            </div>
-                            <div class="col-xl-6">
+                            </div> --}}
+                            <div class="col-xl-12">
                                 <div class="card-body p-md-5">
                                     <div class="text-center">
-
                                         <img src="{{ asset('images') }}/logo_diskominfo_warna.png" width="200px"
                                             alt="logo-dark" />
                                         <h4 class="mt-4 font-weight-bold">Layanan Pembuatan/Pengembangan Aplikasi</h4>
@@ -129,9 +128,9 @@
                                                         Permintaan Penggunaan Domain</option>
                                                 </x-forms.select_v>
 
-                                                <x-forms.input_v id="nama_aplikasi" type="text"
-                                                    name="nama_aplikasi" label="Nama Aplikasi" isRequired="true"
-                                                    value="" isReadonly="" placeholder="Nama Aplikasi" />
+                                                <x-forms.input_v id="nama_aplikasi" type="text" name="nama_aplikasi"
+                                                    label="Nama Aplikasi" isRequired="true" value=""
+                                                    isReadonly="" placeholder="Nama Aplikasi" />
 
                                                 <x-forms.select_v id="jenis_aplikasi" name="jenis_aplikasi"
                                                     label="Jenis Aplikasi" isRequired="true" isSelect2="true">
@@ -224,8 +223,7 @@
     <script src="{{ asset('theme') }}/assets/js/jquery.min.js"></script>
     <script src="{{ asset('theme') }}/assets/js/bootstrap.bundle.min.js"></script>
 
-    <!-- App JS -->
-    <script src="{{ asset('theme') }}/assets/js/app.js"></script>
+
 </body>
 
 </html>

@@ -26,7 +26,7 @@
             <a href="{{ url('permohonan') }}">
                 <div class="parent-icon icon-color-10"><i class="bx bx-comment-edit"></i>
                 </div>
-                <div class="menu-title">Permohonan</div>
+                <div class="menu-title">Permohonan Aplikasi</div>
             </a>
         </li>
     @endcan
