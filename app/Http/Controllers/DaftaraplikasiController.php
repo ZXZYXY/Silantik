@@ -351,4 +351,16 @@ class DaftaraplikasiController extends Controller
             'messages' => 'Data Berhasil dihapus'
         ]);
     }
+
+    public function ss_aplikasi($nama)
+    {
+        $nama_ss = $nama;
+        return view('daftaraplikasi.screenshoot', compact('nama_ss'));
+    }
+
+    public function dokumen_aplikasi($nama)
+    {
+        $nama_dokumen = $nama;
+        return view('daftaraplikasi.dokumen', compact('nama_dokumen'));
+    }
 }

@@ -94,6 +94,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
         Route::delete('/delete/{id}', [PermohonanController::class, 'destroy']);
     });
 
+    //Pengaduan
     Route::group(['prefix' => 'pengaduan'], function () {
         Route::get('/{jenis_pengaduan}', [PengaduanController::class, 'index']);
         Route::get('/{jenis_pengaduan}/create', [PengaduanController::class, 'create']);
@@ -104,6 +105,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
         Route::delete('/delete/{id}', [PengaduanController::class, 'destroy']);
     });
 
+    //Setting
     Route::group(['prefix' => 'setting'], function () {
         Route::resource('roles', RoleController::class);
         Route::resource('permission', PermissionController::class);
@@ -154,4 +156,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
         Route::get('/jabatan', [JabatanController::class, 'dataTable'])->name('table.jabatan');
         Route::get('/statuspermohonan', [StatuspermohonanController::class, 'dataTable'])->name('table.statuspermohonan');
     });
+
+    Route::get('/screenshoot/{nama}', [DaftaraplikasiController::class, 'ss_aplikasi']);
+    Route::get('/dokumen/{nama}', [DaftaraplikasiController::class, 'dokumen_aplikasi']);
 });

@@ -14,16 +14,15 @@
         <div class="page-content">
             <button class="btn btn-primary btn-sm mb-3" onclick="window.history.back();"><i class="fa fa-reply"></i>
                 Kembali</button>
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="mb-0">Detail Permohonan</h4>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <table class="table table-hover table-bordered">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Detail</h4>
+                            <table class="table table-hover">
                                 <tr>
                                     <td colspan="3">
-                                        <h4>Data Pemohon</h4>
+                                        <h5>Data Pemohon</h5>
                                     </td>
                                 </tr>
                                 <tr>
@@ -48,16 +47,10 @@
                                 </tr>
                             </table>
 
-                            <hr>
-
-
-
-                        </div>
-                        <div class="col-md-6">
-                            <table class="table table-hover table-bordered">
+                            <table class="table table-hover">
                                 <tr>
                                     <td colspan="3">
-                                        <h4>Data Permohonan</h4>
+                                        <h5>Data Permohonan</h5>
                                     </td>
                                 </tr>
                                 <tr>
@@ -95,20 +88,20 @@
                                     <th>File Surat Permohonan</th>
                                     <td>:</td>
                                     <td>
-                                        <a href="{{ asset('storage/file_surat/' . $data->file_surat) }}" target="_blank"
-                                            class="btn btn-info"><i class="fa fa-eye"></i> Lihat File</a>
+                                        <button type="button" class="btn btn-info btn-sm mt-2 mb-2" data-bs-toggle="modal"
+                                            data-bs-target="#exampleLargeModal"><i class="fa fa-eye"></i> Lihat
+                                            File</button>
+
+
+
                                     </td>
                                 </tr>
                             </table>
 
-                        </div>
-                    </div>
-                    <div class="row">
-                        @if (auth()->user()->role == 'admin' or auth()->user()->role == 'superadmin')
-                            <div class="col-md-6">
+                            @if (auth()->user()->role == 'admin' or auth()->user()->role == 'superadmin')
                                 <div class="card bg-info radius-15">
                                     <div class="card-body text-white">
-                                        <h4>Proses Permohonan</h4>
+                                        <h4>Proses</h4>
 
                                         <form action="{{ url('permohonan/proses') }}" method="post">
                                             @csrf
@@ -135,13 +128,16 @@
                                         </form>
                                     </div>
                                 </div>
+                            @endif
 
-                                <hr>
+                        </div>
 
-                            </div>
-                        @endif
-                        <div class="col-md-6">
-                            <h4>Histori Permohonan</h4>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Riwayat</h4>
                             <ul class="list-group">
                                 @foreach ($histori as $h)
                                     <div class="list-group mt-3">
@@ -163,10 +159,28 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
     <!--end page-content-wrapper-->
+
+    <div class="modal fade" id="exampleLargeModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Surat Permohonan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <embed src="{{ asset('storage/file_surat/' . $data->file_surat) }}" type="application/pdf"
+                        frameBorder="0" height="720px" width="100%"></embed>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

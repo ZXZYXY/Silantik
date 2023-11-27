@@ -95,6 +95,32 @@
                         }
                     });
             });
+
+            $("#ShowScreenshoot").on("show.bs.modal", function(e) {
+                var nama_file = $(e.relatedTarget).data('nama-file');
+
+                $.ajax({
+                    url: "/screenshoot/" + nama_file,
+                    dataType: 'html',
+                    success: function(response) {
+                        $('.isi').html(response);
+                    }
+                });
+
+            });
+
+            $("#ShowDokumen").on("show.bs.modal", function(e) {
+                var nama_file = $(e.relatedTarget).data('nama-dokumen');
+
+                $.ajax({
+                    url: "/dokumen/" + nama_file,
+                    dataType: 'html',
+                    success: function(response) {
+                        $('.isi').html(response);
+                    }
+                });
+
+            });
         });
     </script>
 @endpush
@@ -104,14 +130,12 @@
         <div class="page-content">
             <button class="btn btn-primary btn-sm mb-3" onclick="window.history.back();"><i class="fa fa-reply"></i>
                 Kembali</button>
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="mb-0">Detail Aplikasi</h4>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <table class="table table-hover table-bordered">
-
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="mb-3">Detail Aplikasi</h4>
+                            <table class="table table-hover">
                                 <tr>
                                     <th>Programmer</th>
                                     <td>:</td>
@@ -157,10 +181,6 @@
                                     <td>:</td>
                                     <td>{{ $data->nama_konsultan }}</td>
                                 </tr>
-                            </table>
-                        </div>
-                        <div class="col-md-6">
-                            <table class="table table-hover table-bordered">
 
                                 <tr>
                                     <th>Sektor</th>
@@ -255,26 +275,32 @@
                                 </tr>
                             </table>
                         </div>
-
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
                             <h5>Screenshot Aplikasi</h5>
-                            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
+
+                            <button type="button" class="btn btn-info btn-sm text-right" data-bs-toggle="modal"
                                 data-bs-target="#tambahScreenshot"><i class="fa fa-plus-circle"></i> Tambah</button>
 
                             <div class="row g-3 mt-2" id="file_pendukung">
                                 @if (count($ss_aplikasi) >= 1)
                                     @foreach ($ss_aplikasi as $item)
-                                        <div class="col-12 col-lg-3">
+                                        <div class="col-12 col-lg-6">
                                             <div class="foto_ss">
                                                 <img src="{{ asset('storage/images/ss/' . $item->nama_file) }}"
                                                     class="img-thumbnail" alt=""
                                                     style="object-fit: cover; position: relative; width: 250px; height: 150px; overflow: hidden;">
                                                 <div class="middle">
-                                                    <a href="{{ asset('storage/images/ss/' . $item->nama_file) }}"
-                                                        target="_blank" class="btn btn-info"><i class="lni lni-eye"></i></a>
+                                                    <button data-bs-toggle="modal" data-nama-file="{{ $item->nama_file }}"
+                                                        data-bs-target="#ShowScreenshoot" class="btn btn-info"
+                                                        title="Detail"><i class="lni lni-eye"></i></button>
+
+
+                                                    {{-- <a href="{{ asset('storage/images/ss/' . $item->nama_file) }}"
+                                                        target="_blank" class="btn btn-info"><i class="lni lni-eye"></i></a> --}}
                                                     <button class="btn btn-danger hapus" file-name="{{ $item->nama_file }}"
                                                         file-id="{{ $item->uuid }}" title="Hapus"><i
                                                             class="lni lni-trash"></i></button>
@@ -289,7 +315,10 @@
 
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
                             <h5>Dokumen Pendukung</h5>
                             <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#tambahDokumen"><i class="fa fa-plus-circle"></i> Tambah Dokumen</button>
@@ -297,14 +326,19 @@
                             <div class="row g-3 mt-2" id="file_pendukung">
                                 @if (count($dok_aplikasi) >= 1)
                                     @foreach ($dok_aplikasi as $dok)
-                                        <div class="col-12 col-lg-3">
+                                        <div class="col-12 col-lg-6">
                                             <div class="foto_ss">
                                                 <img src="{{ asset('images/dokumen.png') }}" class="img-thumbnail"
                                                     alt=""
                                                     style="object-fit: cover; position: relative; width: 250px; height: 150px; overflow: hidden;">
                                                 <div class="middle">
-                                                    <a href="{{ asset('storage/dokumen/' . $dok->nama_file) }}"
-                                                        target="_blank" class="btn btn-info"><i class="lni lni-eye"></i></a>
+                                                    <button data-bs-toggle="modal"
+                                                        data-nama-dokumen="{{ $dok->nama_file }}"
+                                                        data-bs-target="#ShowDokumen" class="btn btn-info" title="Detail"><i
+                                                            class="lni lni-eye"></i></button>
+
+                                                    {{-- <a href="{{ asset('storage/dokumen/' . $dok->nama_file) }}"
+                                                        target="_blank" class="btn btn-info"><i class="lni lni-eye"></i></a> --}}
                                                     <button class="btn btn-danger hapus" file-name="{{ $dok->nama_file }}"
                                                         file-id="{{ $dok->uuid }}" title="Hapus"><i
                                                             class="lni lni-trash"></i></button>
@@ -319,13 +353,12 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
+
+    <!-- Modal Preview Perwal -->
     <div class="modal fade" id="exampleLargeModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -345,7 +378,7 @@
         </div>
     </div>
 
-    <!-- Modal screenshoot-->
+    <!-- Modal Tambah screenshoot-->
     <div class="modal fade" id="tambahScreenshot" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -376,7 +409,7 @@
         </div>
     </div>
 
-    <!-- Modal Dokumen-->
+    <!-- Modal Tambah Dokumen-->
     <div class="modal fade" id="tambahDokumen" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -412,4 +445,12 @@
             </div>
         </div>
     </div>
+
+    <x-modallg id="ShowScreenshoot" title="ScreenShoot Aplikasi">
+        <div class="isi"></div>
+    </x-modallg>
+
+    <x-modallg id="ShowDokumen" title="Dokumen Aplikasi">
+        <div class="isi"></div>
+    </x-modallg>
 @endsection
