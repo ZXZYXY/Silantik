@@ -21,6 +21,16 @@
         </li>
     @endcan
 
+    @can('network-list')
+        <li class="{{ setActive('network') }}">
+            <a href="{{ route('network.index') }}">
+                <div class="parent-icon icon-color-5"><i class="bx bx-wifi"></i>
+                </div>
+                <div class="menu-title">Infrastruktur Jaringan</div>
+            </a>
+        </li>
+    @endcan
+
     @can('permohonan-list')
         <li class="{{ setActive('permohonan') }}">
             <a href="{{ url('permohonan') }}">
@@ -81,7 +91,7 @@
         </ul>
     </li> --}}
 
-    <li class="{{ openMenu('pengaduan') }}">
+    {{-- <li class="{{ openMenu('pengaduan') }}">
         @if (auth()->user()->can('pengaduan-list'))
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-11"><i class="bx bx-help-circle"></i>
@@ -106,9 +116,9 @@
                 </li>
             @endcan
         </ul>
-    </li>
+    </li> --}}
 
-    @can('team-list')
+    {{-- @can('team-list')
         <li class="{{ setActive('team') }}">
             <a href="{{ route('team.index') }}">
                 <div class="parent-icon icon-color-1"><i class="bx bx-group"></i>
@@ -116,7 +126,7 @@
                 <div class="menu-title">Team APTIKA</div>
             </a>
         </li>
-    @endcan
+    @endcan --}}
 
     @can('user-list')
         <li class="{{ setActive('users') }}">

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Daftar Aplikasi
+    Infrastruktur Jaringan
 @endsection
 @push('style')
     <!--Data Tables -->
@@ -25,7 +25,7 @@
                 processing: true,
                 serverSide: true,
                 autoWidth: false,
-                ajax: "{{ route('table.daftaraplikasi') }}",
+                ajax: "{{ route('table.network') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'id'
@@ -66,11 +66,11 @@
                 event.preventDefault();
 
                 var token = $("meta[name='csrf-token']").attr("content");
-                var daftaraplikasi_name = $(this).attr('daftaraplikasi-name'),
-                    title = daftaraplikasi_name.replace(/\w\S*/g, function(txt) {
+                var network_name = $(this).attr('network-name'),
+                    title = network_name.replace(/\w\S*/g, function(txt) {
                         return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
                     });
-                daftaraplikasi_id = $(this).attr('daftaraplikasi-id');
+                network_id = $(this).attr('network-id');
                 swal({
                         title: "Anda Yakin?",
                         text: "Mau Menghapus Data : " + title + "?",
@@ -82,7 +82,7 @@
                         if (result) {
 
                             $.ajax({
-                                url: "/daftaraplikasi/" + daftaraplikasi_id,
+                                url: "/network/" + network_id,
                                 type: "POST",
                                 data: {
                                     _method: "DELETE",
@@ -102,27 +102,6 @@
                     });
             });
 
-            $(document).on('change', '.change_status', function() {
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var aktif = $(this).prop('checked') == true ? 'Aktif' : 'NonAktif';
-                var user_id = $(this).data('id');
-                //alert(user_id);
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: '/changeStatus',
-                    data: {
-                        'status': status,
-                        'user_id': user_id
-                    },
-                    success: function(data) {
-                        console.log(data.success)
-                        $('#aktif' + user_id).text(aktif);
-                    }
-                });
-
-            });
-
         });
     </script>
 @endpush
@@ -131,16 +110,15 @@
     <!--page-content-wrapper-->
     <div class="page-content-wrapper">
         <div class="page-content">
-            @can('daftaraplikasi-create')
+            @can('network-create')
                 <div class="ms-auto mb-3">
-                    <a class="btn btn-primary btn-sm" href="{{ route('daftaraplikasi.create') }}"><i
-                            class="fa fa-plus-circle"></i>
+                    <a class="btn btn-primary btn-sm" href="{{ route('network.create') }}"><i class="fa fa-plus-circle"></i>
                         Tambah</a>
                 </div>
             @endcan
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mb-0">Data Aplikasi</h4>
+                    <h4 class="mb-0">Infrastruktur Jaringan</h4>
                     <div style="align-content: right">
                         <p align="right">
                             <button type="button" class="btn btn-secondary btn-sm mt-2 mb-2" data-bs-toggle="modal"
@@ -154,12 +132,12 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tahun Pembuatan</th>
-                                <th>Nama Aplikasi</th>
-                                <th>Link App</th>
                                 <th>Unit Kerja/Perangkat Daerah</th>
-                                <th>Jenis Aplikasi</th>
-                                <th>Aktif</th>
+                                <th>Titik Koordinat (long,lat)</th>
+                                <th>Jarak KAbel</th>
+                                <th>Jumlah Accespoint</th>
+                                <th>Jenis Koneksi</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>

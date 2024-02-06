@@ -19,6 +19,11 @@ class Opd extends Model
         return $this->hasMany('App\Models\Daftaraplikasi');
     }
 
+    public function network()
+    {
+        return $this->hasMany('App\Models\Network');
+    }
+
     public function user()
     {
         return $this->hasMany('App\Models\User');

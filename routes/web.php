@@ -22,6 +22,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\StatuspermohonanController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\NetworkController;
 
 
 /*
@@ -74,6 +75,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
     Route::resource('products', ProductController::class);
     Route::resource('berita', BeritaController::class);
     Route::resource('daftaraplikasi', DaftaraplikasiController::class);
+    Route::resource('network', NetworkController::class);
     Route::resource('team', TeamController::class);
 
     Route::post('/upload/screenshot', [DaftaraplikasiController::class, 'upload_ss'])->name('upload.images');
@@ -155,6 +157,7 @@ Route::group(['middleware' => ['auth', 'CheckActive']], function () {
         Route::get('/team', [TeamController::class, 'dataTable'])->name('table.team');
         Route::get('/jabatan', [JabatanController::class, 'dataTable'])->name('table.jabatan');
         Route::get('/statuspermohonan', [StatuspermohonanController::class, 'dataTable'])->name('table.statuspermohonan');
+        Route::get('/network', [NetworkController::class, 'dataTable'])->name('table.network');
     });
 
     Route::get('/screenshoot/{nama}', [DaftaraplikasiController::class, 'ss_aplikasi']);
