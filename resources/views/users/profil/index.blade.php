@@ -97,7 +97,7 @@
                                     <label class="label-text col-lg-4 col-form-label text-md-right"></label>
                                     <div class="col-lg-6">
                                         <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>
-                                            Ubah</button>
+                                            Simpan</button>
                                     </div>
                                 </div>
 

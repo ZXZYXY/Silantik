@@ -1,95 +1,69 @@
-<!-- Start header Area -->
-<header class="navbar-area nav-style-two">
-    <!-- menu for mobile device -->
-    <div class="mobile-nav">
-        <a href="/" class="logo">
-            <img src="{{ asset('images') }}/logo_diskominfo_putih.png" width="200px" alt="logo_light" />
-            <img src="{{ asset('images') }}/logo_diskominfo_warna.png" width="200px" alt="logo-dark" />
-        </a>
-    </div>
+<!-- Header
+    ============================================= -->
+<header id="home">
 
-    <!-- Menu for desktop device-->
-    <div class="main-nav">
-        <nav class="navbar navbar-expand-md navbar-light">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img src="{{ asset('images') }}/logo_diskominfo_putih.png" width="200px" alt="logo_light" />
-                    <img src="{{ asset('images') }}/logo_diskominfo_warna.png" width="200px" alt="logo-dark" />
-                </a>
-                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a href="{{ url('/') }}" class="nav-link {{ setActive_frontend('/') }}">Beranda</a>
-                        </li>
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-default navbar-fixed dark no-background bootsnav">
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle">Layanan</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="{{ url('layanan/aplikasi') }}"
-                                        class="nav-link {{ setActive_frontend('layanan/aplikasi') }}">
-                                        Permohonan Aplikasi </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('cek-permohonan') }}"
-                                        class="nav-link {{ setActive_frontend('cek-permohonan') }}">
-                                        Cek Permohonan </a>
-                                </li>
+        <div class="container">
 
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{ url('/tentang') }}"
-                                class="nav-link {{ setActive_frontend('tentang') }}">Tentang</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{ url('/informasi') }}"
-                                class="nav-link {{ setActive_frontend('informasi') }}">Informasi</a>
-                        </li>
-
-                        {{-- <li class="nav-item">
-                            <a href="{{ url('/portofolio') }}"
-                                class="nav-link {{ setActive_frontend('portofolio') }}">Portofolio</a>
-                        </li> --}}
-                        <li class="nav-item">
-                            <a href="{{ url('/faq') }}" class="nav-link {{ setActive_frontend('faq') }}">FAQ/Contoh
-                                Surat</a>
-                        </li>
-
-                        {{-- <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle">Galeri</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="{{ url('galeri/foto') }}"
-                                        class="nav-link {{ setActive_frontend('galeri/foto') }}"> Foto </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('galeri/video') }}"
-                                        class="nav-link {{ setActive_frontend('galeri/video') }}"> Video </a>
-                                </li>
-
-                            </ul>
-                        </li> --}}
-
-
-
-                        {{-- <li class="nav-item">
-                            <a href="{{ url('/team') }}" class="nav-link {{ setActive_frontend('team') }}">Team</a>
-                        </li> --}}
-
-                    </ul>
-
-                    <div class="cta-btn">
-                        <a href="{{ url('/login') }}" class="btn btn-outline">
-                            <i class="envy envy-user"></i>
-                            log in
-                        </a>
-                    </div>
-                </div>
+            <!-- Start Atribute Navigation -->
+            <div class="attr-nav button">
+                <ul>
+                    <li>
+                        <a href="{{ url('login') }}">LOGIN</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </div>
+            <!-- End Atribute Navigation -->
+
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="{{ asset('images') }}/logo_aptika_black.png" width="130px" class="logo logo-display"
+                        alt="Logo">
+                    <img src="{{ asset('images') }}/logo_aptika_black.png" width="130px" class="logo logo-scrolled"
+                        alt="Logo">
+                </a>
+            </div>
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
+                    <li>
+                        <a class="smooth-menu" href="#beranda">Beranda</a>
+                    </li>
+                    {{-- <li class="dropdown dropdown-right">
+                        <a href="#layanan" class="dropdown-toggle smooth-menu" data-toggle="dropdown">Layanan</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('layanan/aplikasi') }}">Permohonan Pembuatan Aplikasi</a></li>
+                            <li><a href="{{ url('cek-permohonan') }}">Cek Permohonan</a></li>
+
+                        </ul>
+                    </li> --}}
+                    <li>
+                        <a class="smooth-menu" href="#layanan">Layanan</a>
+                    </li>
+                    <li>
+                        <a class="smooth-menu" href="#tentang">Tentang</a>
+                    </li>
+                    <li>
+                        <a class="smooth-menu" href="#berita">Berita</a>
+                    </li>
+                    <li>
+                        <a class="smooth-menu" href="#faq">FAQ</a>
+                    </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+
+    </nav>
+    <!-- End Navigation -->
+
 </header>
-<!-- end header area -->
+<!-- End Header -->

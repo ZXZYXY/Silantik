@@ -3,68 +3,67 @@
     Reset Password
 @endsection
 @section('content')
-    <!-- start page title area-->
-    <div class="page-title-area bg-thin">
+    <div class="login-area bg-gray">
         <div class="container">
-            <div class="page-title-content">
-                <h1>Reset Password</h1>
-                <ul>
-                    <li class="item"><a href="/">Beranda</a></li>
-                    <li class="item"><a href="{{ url('login') }}">Reset Password</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="shape">
-            <span class="shape1"></span>
-            <span class="shape2"></span>
-            <span class="shape3"></span>
-            <span class="shape4"></span>
-        </div>
-    </div>
-    <!-- end page title area -->
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="login-items">
+                        <div class="login-box">
+                            <div class="login-content">
+                                <div class="col-md-6 info">
+                                    <img src="{{ asset('frontend') }}/img/logo.png" alt="Login">
+                                    <h2>Welcome!</h2>
+                                    <p>
+                                        Position greatest so desirous. So wound stood guest weeks no terms up ought. By so
+                                        these am so rapid blush songs begin. Nor but mean time one over.
+                                    </p>
+                                </div>
+                                <div class="col-md-6 content">
+                                    <h4>Reset Password</h4>
+                                    @if (session('status'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
+                                    <form action="{{ route('password.email') }}" method="POST">
+                                        @csrf
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul style="margin-bottom:0px;list-style-type: none;margin:0px;padding:0px;">
+                                                    @foreach ($errors->all() as $error)
+                                                        <li><i class="fa fa-exclamation"></i> {{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <input class="form-control @error('email') is-invalid @enderror"
+                                                        placeholder="Email" name="email" value="{{ old('email') }}"
+                                                        type="text">
 
-    <!-- signin Section -->
-    <section class="signinup-section ptb-100 bg-thin">
-        <div class="container">
-            <button class="btn btn-primary btn-sm mb-3" onclick="window.history.back();"><i class="fa fa-reply"></i>
-                Kembali</button>
-            <div class="signin-box">
+                                                </div>
+                                            </div>
+                                        </div>
 
-                <!-- Title Box -->
-                <div class="title-box">
-                    <h2>Reset Password</h2>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="row">
+                                                <button type="submit">
+                                                    {{ __('Kirim Link Reset Password') }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
 
-                </div>
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                <form method="POST" action="{{ route('password.email') }}">
-                    @csrf
 
-                    <div class="row mb-3">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" placeholder="Email Address"
-                                    required="required" autocomplete="email" autofocus />
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Kirim Link Reset Password') }}
-                            </button>
                         </div>
                     </div>
-
-
-                </form>
+                </div>
             </div>
         </div>
-    </section>
-    <!-- end signin section -->
+    </div>
+
 @endsection

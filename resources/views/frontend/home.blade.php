@@ -9,253 +9,326 @@
 @endpush
 
 @section('content')
-    <!-- start home banner area -->
-    <div id="home" class="home-banner-area banner-type-two">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12">
-                    <div class="banner-content">
-                        <h1>SILANTIK</h1>
-                        <p>
-                            SILANTIK adalah Sistem Informasi Layanan Teknologi Informasi Komunikasi yang disediakan oleh
-                            Dinas Komunikasi dan
-                            Informatika Kota Jambi
-                        </p>
-                        <div class="cta-btn">
-                            <a href="#layanan_tik" class="btn btn-solid">Layanan TIK</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="banner-image">
-                        <img src="{{ asset('aset') }}/img/banner/banner_2.png" alt="banner" />
-                    </div>
-                </div>
-            </div>
+    <!-- Start Banner ============================================= -->
+    <div id="beranda" class="banner-area fixed-top bg-theme-small bg-cover"
+        style="background-image: url(../frontend/img/shape-bg.jpg);">
+        <!-- Side Bg -->
+        <div class="side-bg">
+            <img src="{{ asset('frontend') }}/img/illustrations/2.png" alt="Thumb">
         </div>
-    </div>
-    <!--end sero section-->
-
-    <!-- start top feature section -->
-    <section class="top-feature-section ptb-100 bg-white" id="layanan_tik">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-sm-12">
-                    <div class="section-title">
-                        {{-- <span class="subtitle">top features</span> --}}
-                        <h2>Tentang Layanan TIK</h2>
-                    </div>
-                    <div class="feature-text-blc">
-                        <p>
-                            Layanan Teknologi Informasi Komunikasi Dinas Kominfo menyediakan beberapa solusi Teknologi
-                            Informasi untuk meningkatkan kinerja OPD pada Pemerintah Kota Jambi, yang mencakup:
-                            Pembuatan Aplikasi, Pembaruan Aplikasi,
-                            Permintaan SubDomain jambikota.go.id.
-                        </p>
-                    </div>
-                    <div class="cta-btn">
-                        <a href="{{ url('tentang') }}" class="btn btn-solid">Selengkapnya <i
-                                class="envy envy-right-arrow"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-12">
+        <!-- End Side Bg -->
+        <div class="box-table">
+            <div class="box-cell">
+                <div class="container">
                     <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="single-feature">
-                                <div class="single-feature-content">
-                                    <i class="envy envy-code2"></i>
-                                    <h3 class="mt-3">Pembuatan <br> Aplikasi</h3>
-                                </div>
+                        <div class="col-md-6 left-info">
+                            <div class="content" data-animation="animated fadeInUpBig">
+                                <h1><span>SILANTIK</span></h1>
+                                <p>
+                                    SILANTIK adalah Sistem Informasi Layanan Teknologi Informasi Komunikasi yang disediakan
+                                    oleh
+                                    Dinas Komunikasi dan
+                                    Informatika Kota Jambi
+                                </p>
+                                {{-- <a class="btn-animation border popup-youtube"
+                                    href="https://www.youtube.com/watch?v=owhuBrGIOsE">
+                                    <i class="fa fa-play"></i> Watch Video
+                                </a> --}}
                             </div>
                         </div>
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="single-feature">
-                                <div class="single-feature-content">
-                                    <i class="envy envy-cloud-computing1"></i>
-                                    <h3 class="mt-3">Pembaruan Aplikasi</h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-sm-12">
-                            <div class="single-feature">
-                                <div class="single-feature-content">
-                                    <i class="envy envy-global"></i>
-                                    <h3 class="mt-3">Permintaan Penggunaan Domain</h3>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- <div class="col-lg-6 col-sm-6">
-                            <div class="single-feature">
-                                <div class="single-feature-content">
-                                    <i class="envy envy-server"></i>
-                                    <h3 class="mt-3">Hosting Apliksi</h3>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="shape">
-            <img src="{{ asset('aset') }}/img/resource/circle_shape.png" alt="circle" />
-            <span class="dot-1"></span>
-            <span class="dot-2"></span>
-            <span class="dot-3"></span>
-            <span class="dot-4"></span>
-            <span class="dot-5"></span>
-        </div>
-    </section>
-    <!-- end feature section -->
-
-
-
-    <!--start blog section-->
-    <section id="blog" class="testimonial-section pt-100 pb-70">
-        <div class="container">
-            <div class="section-title title-dark text-center">
-                <h2>Berita / Informasi</h2>
-                {{-- <p>Does any industry face a more complex audience journey and marketing sales process than B2B technology?
-                    Does any industry faces a more complex audience.</p> --}}
-            </div>
-            <div class="row justify-content-center">
-                @foreach ($berita as $b)
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="blog-item-single" style="border-radius:10px;">
-                            <div class="blog-item-img" style="background-color: white;">
-                                <a href="{{ url('news/' . $b->slug) }}">
-                                    <img src="{{ $b->getThumbnailBerita() }}" alt="blog-bg-image"
-                                        style="object-fit: contain; position: relative; width: 100%; height: 300px; overflow: hidden;" />
-                                </a>
-                                <p class="tag">{{ $b->kategori->nama_kategori }}</p>
-                            </div>
-                            <div class="blog-item-content">
-                                <span> <i class="envy envy-calendar"></i>{{ TanggalAja($b->created_at) }} </span>
-                                <a href="{{ url('news/' . $b->slug) }}">
-                                    <h3>{{ $b->judul }}</h3>
-                                </a>
-                                {{-- <p>Strategy experience and analytical expert is combine to enable. Strate great experience and
-                                analysis the content.</p> --}}
-                                <a href="{{ url('news/' . $b->slug) }}" target="_self" class="btn btn-text-only">
-                                    Baca Selengkapnya
-                                    <i class="envy envy-right-arrow"></i>
-                                </a>
-                            </div>
-                            <!-- blog-item-content -->
-                        </div>
-                        <!-- blog-item-single -->
-                    </div>
-                @endforeach
-
-
-            </div>
-            <!-- row -->
-            <div class="justify-content-center">
-                <div class="cta-btn">
-                    <a href="{{ url('informasi') }}" class="btn btn-outline">
-                        Lihat Semua Berita
-                        <i class="envy envy-right-arrow"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--end blog section-->
-
-    <!-- start gallery section -->
-    {{-- <section class="gallery-section ptb-100 bg-white">
-        <div class="container">
-            <div class="section-title">
-                <h2>Portofolio APTIKA <br>
-                    Diskominfo Kota Jambi</h2>
-                <p>Diskominfo telah membuat serta mengembangkan beberapa aplikasi yang telah digunakan oleh instansi
-                    pemerintahan dan bertujuan untuk memudahkan kinerja pegawai, juga pelayanan terhadap masyarakat kota
-                    Jambi</p>
-            </div>
-            <div class="gallery-slider owl-carousel">
-                @foreach ($portofolio as $p)
-                    <div class="gallery-item">
-                        <div class="gallery-image"><img src="{{ asset('images/gambar_home/' . $p->gambar_home) }}"
-                                alt="gallery-member" /></div>
-                        <div class="gallery-content">
-                            <h3>
-                                <a href="{{ url('portofolio/detail/' . $p->id) }}">{{ $p->nama_aplikasi }}</a>
-                            </h3>
-                        </div>
-                    </div>
-                @endforeach
-
-            </div>
-            <div class="justify-content-center">
-                <div class="cta-btn" style="align-content: center;">
-                    <a href="{{ url('portofolio') }}" class="btn btn-outline">
-                        Lihat Semua
-                        <i class="envy envy-right-arrow"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- end gallery section -->
-    <!-- Start Partner Area -->
-    <div class="partner-area bg-white">
-        <div class="container">
-            <div class="partner-slider owl-carousel">
-
-                <div class="partner-item">
-                    <a href="http://ppid.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="image" />
-
-                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="partner" />
-                    </a>
-                </div>
-                <div class="partner-item">
-                    <a href="http://sikoja.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="partner" />
-                    </a>
-                </div>
-                <div class="partner-item">
-                    <a href="http://sipadek.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            alt="partner" />
-                    </a>
-                </div>
-                <div class="partner-item">
-                    <a href="http://satudata.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            style="height: 5rem;" alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/s_ppid.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            style="height: 5rem;" alt="partner" />
-                    </a>
-                </div>
-                <div class="partner-item">
-                    <a href="http://sipaten.jambikota.go.id" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            style="height: 5rem;" alt="image" />
-                        <img src="{{ asset('images') }}/logo_aplikasi/sipaten.png"
-                            style="object-fit: contain; position: relative; width: 150px; height: 150px; overflow: hidden;"
-                            style="height: 5rem;" alt="partner" />
-                    </a>
-                </div>
-
             </div>
         </div>
     </div>
-    <!-- End Partner Area -->
+    <!-- End Banner -->
+
+    <!-- Start Features Area ============================================= -->
+    <div id="layanan" class="features-area icon-link carousel-shadow default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+                    <div class="site-heading text-center">
+                        <h2>Layanan TIK</h2>
+                        {{-- <p>
+                            Layanan 
+                        </p> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="features-items features-carousel owl-carousel owl-theme">
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <span>01</span>
+                                <i class="flaticon-drag-2"></i>
+                            </div>
+                            <div class="info">
+                                <h4>Pembuatan Aplikasi</h4>
+                                <p>
+                                    Situation perpetual allowance offending as principle.
+                                </p>
+                                <div class="bottom">
+                                    <a href="{{ url('layanan/aplikasi') }}"><i class="fas fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <span>02</span>
+                                <i class="flaticon-software"></i>
+                            </div>
+                            <div class="info">
+                                <h4>Pembaruan Aplikasi</h4>
+                                <p>
+                                    Situation perpetual allowance offending as principle.
+                                </p>
+                                <div class="bottom">
+                                    <a href="#"><i class="fas fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+                        <!-- Single Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <span>03</span>
+                                <i class="flaticon-rgb"></i>
+                            </div>
+                            <div class="info">
+                                <h4>Permintaan Penggunaan Domain</h4>
+                                <p>
+                                    Situation perpetual allowance offending as principle.
+                                </p>
+                                <div class="bottom">
+                                    <a href="#"><i class="fas fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Item -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Features Area -->
+
+    <!-- Start About ============================================= -->
+    <div id="tentang" class="about-area reverse default-padding-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 thumb">
+                    <img src="{{ asset('frontend') }}/img/illustrations/6.png" alt="Thumb">
+                </div>
+                <div class="col-lg-6 col-md-6 info">
+                    <h2>We're Building Modern <br> And High Software</h2>
+                    <p>
+                        Layanan Teknologi Informasi Komunikasi Dinas Kominfo menyediakan beberapa solusi Teknologi
+                        Informasi untuk meningkatkan kinerja OPD pada Pemerintah Kota Jambi, yang mencakup:
+                        Pembuatan Aplikasi, Pembaruan Aplikasi,
+                        Permintaan SubDomain jambikota.go.id.
+                    </p>
+                    <ul>
+                        <li>Chapter too parties its letters</li>
+                        <li>Answered one fat indulged margaret sir shutters together</li>
+                        <li>Conveying or northward offending admitting</li>
+                    </ul>
+                    <div class="fun-facts">
+                        <h3>Total Aplikasi</h3>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 item">
+                                <div class="fun-fact">
+                                    <div class="timer" data-to="75" data-speed="5000">75</div>
+                                    <span class="medium">SELESAI</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 item">
+                                <div class="fun-fact">
+                                    <div class="timer" data-to="100" data-speed="5000">100</div>
+                                    <span class="medium">PROSES</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 item">
+                                <div class="fun-fact">
+                                    <div class="timer" data-to="98" data-speed="5000">98</div>
+                                    <span class="medium">MENUNGGU</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About -->
+
+
+
+
+    <!-- Start Blog Area  ============================================= -->
+    <div id="berita" class="blog-area default-padding bottom-less">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+                    <div class="site-heading text-center">
+                        <h2>Recent News</h2>
+                        <p>
+                            Learning day desirous informed expenses material returned six the. She enabled invited
+                            exposed him another. Reasonably conviction solicitude me mr at discretion reasonable. Age
+                            out full gate bed day lose.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="blog-items">
+
+                    @foreach ($berita as $b)
+                        <!-- Single Item -->
+                        <div class="col-md-4 single-item">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{ url('news/' . $b->slug) }}"><img src="{{ $b->getThumbnailBerita() }}"
+                                            alt="Thumb"
+                                            style="object-fit: contain; position: relative; width: 100%; height: 300px; overflow: hidden;"></a>
+                                </div>
+                                <div class="info">
+                                    <div class="content">
+                                        <div class="date">
+                                            {{ TanggalAja($b->created_at) }}
+                                        </div>
+                                        <h4>
+                                            <a href="{{ url('news/' . $b->slug) }}">{{ $b->judul }}</a>
+                                        </h4>
+                                        {{-- <p>
+                                        Pronounce we attention admitting on assurance of suspicion conveying. That his
+                                        west quit had met till.
+                                    </p> --}}
+                                        {{-- <a href="{{ url('news/' . $b->slug) }}">Read More <i
+                                                class="fas fa-angle-right"></i></a> --}}
+                                    </div>
+                                    {{-- <div class="meta">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <img src="assets/img/100x100.png" alt="Author">
+                                                <span>Author</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-comments"></i>
+                                                <span>05</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-share-alt"></i>
+                                                <span>37</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Item -->
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Blog Area -->
+
+    <!-- Start Faq ============================================= -->
+    <div id="faq" class="faq-area bg-gray default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 thumb">
+                    <img src="{{ asset('frontend') }}/img/illustrations/2.svg" alt="Thumb">
+                </div>
+                <div class="col-md-7 faq-items">
+                    <div class="heading">
+                        <h2>Answer & Question</h2>
+                    </div>
+                    <!-- Start Accordion -->
+                    <div class="acd-items acd-arrow">
+                        <div class="panel-group symb" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac1">
+                                            Do I need a business plan?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="ac1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <p>
+                                            Removing welcomed civility or hastened is. Justice elderly but perhaps
+                                            expense six her are another passage. Full her ten open fond walk not
+                                            down.For request general express unknown are. journey greatly or garrets.
+                                            Draw door kept do so come on open mean. Estimating stimulated how reasonably
+                                            precaution diminution she simplicity sir but. Questions am sincerity
+                                            zealously concluded consisted or no gentleman it.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac2">
+                                            How long should a business plan be?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="ac2" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>
+                                            Removing welcomed civility or hastened is. Justice elderly but perhaps
+                                            expense six her are another passage. Full her ten open fond walk not
+                                            down.For request general express unknown are. journey greatly or garrets.
+                                            Draw door kept do so come on open mean. Estimating stimulated how reasonably
+                                            precaution diminution she simplicity sir but. Questions am sincerity
+                                            zealously concluded consisted or no gentleman it.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac3">
+                                            Where do I start?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="ac3" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>
+                                            Removing welcomed civility or hastened is. Justice elderly but perhaps
+                                            expense six her are another passage. Full her ten open fond walk not
+                                            down.For request general express unknown are. journey greatly or garrets.
+                                            Draw door kept do so come on open mean. Estimating stimulated how reasonably
+                                            precaution diminution she simplicity sir but. Questions am sincerity
+                                            zealously concluded consisted or no gentleman it.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Accordion -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Faq  -->
 @endsection

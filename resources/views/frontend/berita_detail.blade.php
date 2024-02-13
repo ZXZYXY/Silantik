@@ -9,53 +9,70 @@
 @endpush
 
 @section('content')
-    <!-- start page title area-->
-    <div class="page-title-area bg-thin">
-        <div class="container">
-            <div class="page-title-content">
-                <h1>Detail Informasi</h1>
-                <ul>
-                    <li class="item"><a href="/">Beranda</a></li>
-                    <li class="item"><a href="#">Detail Informasi</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="shape">
-            <span class="shape1"></span>
-            <span class="shape2"></span>
-            <span class="shape3"></span>
-            <span class="shape4"></span>
-        </div>
-    </div>
-    <!-- end page title area -->
-    <!-- Start Blog Details section -->
-    <section class="blog-details-section ptb-100 bg-thin">
+    <!-- Start Breadcrumb
+                    ============================================= -->
+    <div class="breadcrumb-area shadow dark bg-fixed text-center padding-xl text-light"
+        style="background-image: url(assets/img/2440x1578.png);">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-12">
-                    <div class="blog-details-desc">
-
-
-                        <div class="content">
-                            <h2>{{ $berita->judul }}</h2>
-                            <ul class="post-meta">
-                                <li>
-                                    <i class="envy envy-calendar"></i>
-                                    <a href="#">{{ TanggalAja($berita->created_at) }}</a>
-                                </li>
-
-                            </ul>
-                            <div class="image">
-                                <img src="{{ $berita->getThumbnailBerita() }}" alt="image" style="border-radius:10px;" />
-                                <hr />
+                <div class="col-lg-12 col-md-12">
+                    <h1>Blog Single</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li class="active">Single</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+    <!-- Start Blog ============================================= -->
+    <div id="blog" class="blog-area bg-gray full-width single default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="blog-items">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="item">
+                            <div class="thumb text-center">
+                                <img src="{{ $berita->getThumbnailBerita() }}" width="100%" alt="Thumb">
                             </div>
-                            {!! $berita->isi !!}
+                            <div class="info">
+                                <div class="meta">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <img src="assets/img/100x100.png" alt="Author">
+                                                <span>Author</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-calendar"></i>
+                                                <span>{{ TanggalAja($berita->created_at) }}</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <h3>{{ $berita->judul }}</h3>
+                                {!! $berita->isi !!}
+                                <div class="post-tags">
+                                    <span>Tags: </span>
+                                    <a href="#">Consulting</a>
+                                    <a href="#">Planing</a>
+                                    <a href="#">Business</a>
+                                    <a href="#">Fashion</a>
+                                </div>
+                                <div class="post-pagi-area">
+                                    <a href="#"><i class="fas fa-arrow-left"></i> Previus Post</a>
+                                    <a href="#">Next Post <i class="fas fa-arrow-right"></i></a>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-4 col-md-12">
-                    <aside class="widget-area">
+                    <div class="col-lg-4 col-md-12">
                         <section class="widget widget-categories">
                             <h5 class="widget-title">Kategori</h5>
                             <ul class="categorie-list">
@@ -89,13 +106,10 @@
 
 
                         </section>
-
-
-
-                    </aside>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- End Blog Details Area -->
+    </div>
+    <!-- End Blog -->
 @endsection

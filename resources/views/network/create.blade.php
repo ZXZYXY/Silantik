@@ -246,7 +246,7 @@
                     <form action="{{ route('daftaraplikasi.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <x-forms.select_v id="opd_id" name="opd_id" label="Unit Kerja/Perangkat Daerah"
                                     isRequired="true" isSelect2="true">
                                     <option value="" selected disabled>[Pilih]</option>
@@ -257,7 +257,7 @@
                                     @endforeach
                                 </x-forms.select_v>
                                 <div class="form-group">
-                                    <label class="label-text col-form-label text-md-right">Lokasi</label>
+                                    <label class="form-label" style="font-weight: bold;">Lokasi</label>
 
                                     <input type="text" id="lokasi" name="lokasi" class="form-control form-control-sm"
                                         placeholder="Cari Lokasi"><br>
@@ -275,6 +275,27 @@
                                     </div><br>
                                     <div id="map"></div>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <x-forms.input_v id="jarak_kabel" type="text" name="jarak_kabel"
+                                    label="Jarak Kabel dari ODP" isRequired="false" value="" isReadonly=""
+                                    placeholder="Jarak Kabel" />
+
+                                <x-forms.input_v id="jml_accespoint" type="number" name="jml_accespoint"
+                                    label="Jumlah Accespoint" isRequired="false" value="" isReadonly=""
+                                    placeholder="Jumlah Accespoint" />
+
+                                <x-forms.select_v id="jenis_koneksi" name="jenis_koneksi" label="Jenis Koneksi"
+                                    isRequired="true" isSelect2="true">
+                                    <option value="" selected>[Pilih]</option>
+
+                                    <option value="GPON" {{ old('jenis_koneksi') == 'GPON' ? ' selected' : '' }}>
+                                        GPON</option>
+
+                                    <option value="SFP" {{ old('jenis_koneksi') == 'SFP' ? ' selected' : '' }}>
+                                        SFP</option>
+
+                                </x-forms.select_v>
                             </div>
                         </div>
                     </form>
