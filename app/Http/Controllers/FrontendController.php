@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use App\Models\Daftaraplikasi;
+use App\Models\Faq;
 use App\Models\Jenisaplikasi;
 use App\Models\Kategori;
 use App\Models\Opd;
@@ -23,6 +24,12 @@ class FrontendController extends Controller
     public function tentang()
     {
         return view('frontend.tentang');
+    }
+
+    public function tanya_jawab()
+    {
+        $faq = Faq::where('publish', '1')->orderBy('urutan', 'asc')->get();
+        return view('frontend.tanya_jawab', compact('faq'));
     }
 
     public function layanan_aplikasi()
@@ -48,8 +55,8 @@ class FrontendController extends Controller
 
     public function news()
     {
-        $berita = Berita::with('kategori')->orderBy('id', 'desc')->paginate(6);
-        return view('frontend.berita', compact('berita'));
+        $beritas = Berita::with('kategori')->orderBy('id', 'desc')->paginate(2);
+        return view('frontend.berita', compact('beritas'));
     }
 
     public function news_detail($slug)

@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
                     <div class="site-heading text-center">
-                        <h2>Layanan TIK</h2>
+                        <h2>Layanan</h2>
                         {{-- <p>
                             Layanan 
                         </p> --}}
@@ -59,56 +59,45 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="features-items features-carousel owl-carousel owl-theme">
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="icon">
-                                <span>01</span>
-                                <i class="flaticon-drag-2"></i>
+
+                        <a href="{{ url('layanan/aplikasi') }}">
+                            <div class="item">
+                                <div class="icon">
+                                    <span>01</span>
+                                    <i class="flaticon-drag-2"></i>
+                                </div>
+                                <div class="info">
+                                    <h4>Pembuatan <br>Aplikasi</h4>
+                                </div>
+
                             </div>
-                            <div class="info">
-                                <h4>Pembuatan Aplikasi</h4>
-                                <p>
-                                    Situation perpetual allowance offending as principle.
-                                </p>
-                                <div class="bottom">
-                                    <a href="{{ url('layanan/aplikasi') }}"><i class="fas fa-angle-right"></i></a>
+                        </a>
+
+
+                        <a href="{{ url('layanan/aplikasi') }}">
+                            <div class="item">
+                                <div class="icon">
+                                    <span>02</span>
+                                    <i class="flaticon-software"></i>
+                                </div>
+                                <div class="info">
+                                    <h4>Pembaruan/Pengembangan <br> Aplikasi</h4>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="icon">
-                                <span>02</span>
-                                <i class="flaticon-software"></i>
-                            </div>
-                            <div class="info">
-                                <h4>Pembaruan Aplikasi</h4>
-                                <p>
-                                    Situation perpetual allowance offending as principle.
-                                </p>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-angle-right"></i></a>
+                        </a>
+
+                        <a href="{{ url('layanan/aplikasi') }}">
+                            <div class="item">
+                                <div class="icon">
+                                    <span>03</span>
+                                    <i class="flaticon-rgb"></i>
+                                </div>
+                                <div class="info">
+                                    <h4>Permintaan Penggunaan Domain</h4>
+
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <div class="icon">
-                                <span>03</span>
-                                <i class="flaticon-rgb"></i>
-                            </div>
-                            <div class="info">
-                                <h4>Permintaan Penggunaan Domain</h4>
-                                <p>
-                                    Situation perpetual allowance offending as principle.
-                                </p>
-                                <div class="bottom">
-                                    <a href="#"><i class="fas fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                         <!-- End Single Item -->
 
                     </div>
@@ -126,17 +115,16 @@
                     <img src="{{ asset('frontend') }}/img/illustrations/6.png" alt="Thumb">
                 </div>
                 <div class="col-lg-6 col-md-6 info">
-                    <h2>We're Building Modern <br> And High Software</h2>
+                    <h2>Tentang SILANTIK</h2>
                     <p>
                         Layanan Teknologi Informasi Komunikasi Dinas Kominfo menyediakan beberapa solusi Teknologi
                         Informasi untuk meningkatkan kinerja OPD pada Pemerintah Kota Jambi, yang mencakup:
-                        Pembuatan Aplikasi, Pembaruan Aplikasi,
-                        Permintaan SubDomain jambikota.go.id.
+
                     </p>
                     <ul>
-                        <li>Chapter too parties its letters</li>
-                        <li>Answered one fat indulged margaret sir shutters together</li>
-                        <li>Conveying or northward offending admitting</li>
+                        <li>Pembuatan Aplikasi</li>
+                        <li>Pembaruan/Pengembangan Aplikasi</li>
+                        <li>Permintaan SubDomain jambikota.go.id</li>
                     </ul>
                     <div class="fun-facts">
                         <h3>Total Aplikasi</h3>
@@ -167,21 +155,18 @@
     </div>
     <!-- End About -->
 
-
-
-
     <!-- Start Blog Area  ============================================= -->
     <div id="berita" class="blog-area default-padding bottom-less">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
                     <div class="site-heading text-center">
-                        <h2>Recent News</h2>
-                        <p>
+                        <h2>Informasi</h2>
+                        {{-- <p>
                             Learning day desirous informed expenses material returned six the. She enabled invited
                             exposed him another. Reasonably conviction solicitude me mr at discretion reasonable. Age
                             out full gate bed day lose.
-                        </p>
+                        </p> --}}
                     </div>
                 </div>
             </div>
@@ -205,35 +190,9 @@
                                         <h4>
                                             <a href="{{ url('news/' . $b->slug) }}">{{ $b->judul }}</a>
                                         </h4>
-                                        {{-- <p>
-                                        Pronounce we attention admitting on assurance of suspicion conveying. That his
-                                        west quit had met till.
-                                    </p> --}}
-                                        {{-- <a href="{{ url('news/' . $b->slug) }}">Read More <i
-                                                class="fas fa-angle-right"></i></a> --}}
+
                                     </div>
-                                    {{-- <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img src="assets/img/100x100.png" alt="Author">
-                                                <span>Author</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fas fa-comments"></i>
-                                                <span>05</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fas fa-share-alt"></i>
-                                                <span>37</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div> --}}
+
                                 </div>
                             </div>
                         </div>

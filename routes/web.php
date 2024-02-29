@@ -39,6 +39,7 @@ use App\Http\Controllers\NetworkController;
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/tentang', [FrontendController::class, 'tentang']);
+Route::get('/tanya-jawab', [FrontendController::class, 'tanya_jawab']);
 
 //Route::get('/layanan/pembaruan-aplikasi', [FrontendController::class, 'layanan_pembaruan_aplikasi']);
 Route::get('/portofolio', [FrontendController::class, 'portofolio']);

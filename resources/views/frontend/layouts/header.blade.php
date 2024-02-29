@@ -35,27 +35,25 @@
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
                     <li>
-                        <a class="smooth-menu" href="#beranda">Beranda</a>
+                        <a class="smooth-menu" href="/">Beranda</a>
                     </li>
-                    {{-- <li class="dropdown dropdown-right">
+                    <li class="dropdown dropdown-right">
                         <a href="#layanan" class="dropdown-toggle smooth-menu" data-toggle="dropdown">Layanan</a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('layanan/aplikasi') }}">Permohonan Pembuatan Aplikasi</a></li>
                             <li><a href="{{ url('cek-permohonan') }}">Cek Permohonan</a></li>
 
                         </ul>
-                    </li> --}}
+                    </li>
+
                     <li>
-                        <a class="smooth-menu" href="#layanan">Layanan</a>
+                        <a class="smooth-menu" href="{{ url('tentang') }}">Tentang</a>
                     </li>
                     <li>
-                        <a class="smooth-menu" href="#tentang">Tentang</a>
+                        <a class="smooth-menu" href="{{ url('informasi') }}">Informasi</a>
                     </li>
                     <li>
-                        <a class="smooth-menu" href="#berita">Berita</a>
-                    </li>
-                    <li>
-                        <a class="smooth-menu" href="#faq">FAQ</a>
+                        <a class="smooth-menu" href="{{ url('tanya-jawab') }}">FAQ</a>
                     </li>
 
                 </ul>
