@@ -245,12 +245,17 @@
                                     <td>:</td>
                                     <td>
                                         @if ($data->logo_aplikasi != null)
-                                            <p class="m-2">
-                                                <a href="{{ asset('images/logo_aplikasi/' . $data->logo_aplikasi) }}"
-                                                    target="_blank"><img
-                                                        src="{{ asset('images/logo_aplikasi/' . $data->logo_aplikasi) }}"
-                                                        width="100px"></a>
-                                            </p>
+                                            <div class="foto_ss">
+                                                <img src="{{ asset('images/logo_aplikasi/' . $data->logo_aplikasi) }}"
+                                                    class="img-thumbnail" alt=""
+                                                    style="object-fit: cover; position: relative; width: 250px; height: 150px; overflow: hidden;">
+                                                <div class="middle">
+                                                    <button data-bs-toggle="modal" data-bs-target="#Showlogo"
+                                                        class="btn btn-info" title="Detail"><i
+                                                            class="lni lni-eye"></i></button>
+
+                                                </div>
+                                            </div>
                                         @else
                                             <i class="text-danger">Belum ada Gambar</i>
                                         @endif
@@ -262,12 +267,16 @@
                                     <td>:</td>
                                     <td>
                                         @if ($data->gambar_home != null)
-                                            <p class="m-2">
-                                                <a href="{{ asset('images/gambar_home/' . $data->gambar_home) }}"
-                                                    target="_blank"><img
-                                                        src="{{ asset('images/gambar_home/' . $data->gambar_home) }}"
-                                                        width="100px"></a>
-                                            </p>
+                                            <div class="foto_ss">
+                                                <img src="{{ asset('images/gambar_home/' . $data->gambar_home) }}"
+                                                    class="img-thumbnail" alt=""
+                                                    style="object-fit: cover; position: relative; width: 250px; height: 150px; overflow: hidden;">
+                                                <div class="middle">
+                                                    <button data-bs-toggle="modal" data-bs-target="#ShowHalamanAwal"
+                                                        class="btn btn-info" title="Detail"><i
+                                                            class="lni lni-eye"></i></button>
+                                                </div>
+                                            </div>
                                         @else
                                             <i class="text-danger">Belum ada Gambar</i>
                                         @endif
@@ -339,9 +348,9 @@
 
                                                     {{-- <a href="{{ asset('storage/dokumen/' . $dok->nama_file) }}"
                                                         target="_blank" class="btn btn-info"><i class="lni lni-eye"></i></a> --}}
-                                                    <button class="btn btn-danger hapus" file-name="{{ $dok->nama_file }}"
-                                                        file-id="{{ $dok->uuid }}" title="Hapus"><i
-                                                            class="lni lni-trash"></i></button>
+                                                    <button class="btn btn-danger hapus"
+                                                        file-name="{{ $dok->nama_file }}" file-id="{{ $dok->uuid }}"
+                                                        title="Hapus"><i class="lni lni-trash"></i></button>
                                                 </div>
                                             </div>
                                             <p align="center" class="mt-2">{{ $dok->nama_dokumen }}</p>
@@ -452,5 +461,14 @@
 
     <x-modallg id="ShowDokumen" title="Dokumen Aplikasi">
         <div class="isi"></div>
+    </x-modallg>
+
+    <x-modallg id="Showlogo" title="Logo Aplikasi">
+        <img src="{{ asset('images/logo_aplikasi/' . $data->logo_aplikasi) }}" class="img-thumbnail" alt=""
+            width="100%">
+    </x-modallg>
+    <x-modallg id="ShowHalamanAwal" title="Halaman Awal Aplikasi">
+        <img src="{{ asset('images/gambar_home/' . $data->gambar_home) }}" class="img-thumbnail" alt=""
+            width="100%">
     </x-modallg>
 @endsection

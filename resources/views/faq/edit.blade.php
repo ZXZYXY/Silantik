@@ -51,6 +51,12 @@
                             <option value="Umum" @if ($faq->kategori == 'Umum') selected @endif>Umum</option>
                         </x-forms.select_v>
 
+                        <x-forms.select_v id="publish" name="publish" label="Publish" isRequired="true" isSelect2="false">
+                            <option value="">[Pilih]</option>
+                            <option value="1" @if ($faq->publish == '1') selected @endif>Ya</option>
+                            <option value="0" @if ($faq->publish == '0') selected @endif>Tidak</option>
+                        </x-forms.select_v>
+
                         <x-forms.input_v id="urutan" type="number" name="urutan" label="Urutan" isRequired="true"
                             value="{{ $faq->urutan }}" isReadonly="" placeholder="Urutan" />
 

@@ -18,7 +18,8 @@ class FrontendController extends Controller
     {
         $berita = Berita::with('kategori')->orderBy('id', 'desc')->limit(3)->get();
         $portofolio = Daftaraplikasi::orderBy('id', 'desc')->limit(3)->get();
-        return view('frontend.home', compact('berita', 'portofolio'));
+        $faq = Faq::where('publish', '1')->orderBy('urutan', 'asc')->limit(3)->get();
+        return view('frontend.home', compact('berita', 'portofolio', 'faq'));
     }
 
     public function tentang()

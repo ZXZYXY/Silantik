@@ -22,6 +22,12 @@
             <option value="Umum">Umum</option>
         </x-forms.select_v>
 
+        <x-forms.select_v id="publish" name="publish" label="Publish" isRequired="true" isSelect2="false">
+            <option value="">[Pilih]</option>
+            <option value="1">Ya</option>
+            <option value="0">Tidak</option>
+        </x-forms.select_v>
+
         <x-forms.input_v id="urutan" type="number" name="urutan" label="Urutan" isRequired="true" value=""
             isReadonly="" placeholder="Urutan" />
         <button type="submit" class="btn btn-primary waves-effect waves-light"><i class="fa fa-save"></i>

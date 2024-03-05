@@ -36,6 +36,7 @@
                                 <th>Jawaban</th>
                                 <th>Kategori</th>
                                 <th>Urutan</th>
+                                <th>Publish</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -87,6 +88,9 @@
                     },
                     {
                         data: 'urutan'
+                    },
+                    {
+                        data: 'publish'
                     },
                     {
                         data: 'action'

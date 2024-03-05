@@ -35,8 +35,15 @@ class FaqController extends Controller
             ->addColumn('jawaban', function ($faq) {
                 return $faq->jawaban;
             })
+            ->addColumn('publish', function ($faq) {
+                if ($faq->publish == 1) {
+                    return '<span class="badge bg-success">YA</span>';
+                } else {
+                    return '<span class="badge bg-danger">TIDAK</span>';
+                }
+            })
             ->addIndexColumn()
-            ->rawColumns(['action', 'jawaban'])
+            ->rawColumns(['action', 'jawaban', 'publish'])
             ->make(true);
     }
 
@@ -46,6 +53,7 @@ class FaqController extends Controller
             'pertanyaan' => 'required',
             'jawaban' => 'required',
             'kategori' => 'required',
+            'publish' => 'required',
             'urutan' => 'required'
         ]);
 
@@ -56,6 +64,7 @@ class FaqController extends Controller
             $faq->pertanyaan    = $request->pertanyaan;
             $faq->jawaban       = $request->jawaban;
             $faq->kategori      = $request->kategori;
+            $faq->publish      = $request->publish;
             $faq->urutan        = $request->urutan;
             $faq->save();
 
@@ -81,6 +90,7 @@ class FaqController extends Controller
             'pertanyaan' => 'required',
             'jawaban' => 'required',
             'kategori' => 'required',
+            'publish' => 'required',
             'urutan' => 'required'
         ]);
 
@@ -90,6 +100,7 @@ class FaqController extends Controller
             $faq->pertanyaan    = $request->pertanyaan;
             $faq->jawaban       = $request->jawaban;
             $faq->kategori      = $request->kategori;
+            $faq->publish      = $request->publish;
             $faq->urutan        = $request->urutan;
             $faq->save();
 

@@ -219,69 +219,25 @@
                     <!-- Start Accordion -->
                     <div class="acd-items acd-arrow">
                         <div class="panel-group symb" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac1">
-                                            Do I need a business plan?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac1" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <p>
-                                            Removing welcomed civility or hastened is. Justice elderly but perhaps
-                                            expense six her are another passage. Full her ten open fond walk not
-                                            down.For request general express unknown are. journey greatly or garrets.
-                                            Draw door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but. Questions am sincerity
-                                            zealously concluded consisted or no gentleman it.
-                                        </p>
+                            @foreach ($faq as $f)
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion"
+                                                href="#ac{{ $f->id }}">
+                                                {{ $f->pertanyaan }}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="ac{{ $f->id }}"
+                                        class="panel-collapse collapse @if ($f->id == 1) in @endif">
+                                        <div class="panel-body">
+                                            {!! $f->jawaban !!}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac2">
-                                            How long should a business plan be?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac2" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>
-                                            Removing welcomed civility or hastened is. Justice elderly but perhaps
-                                            expense six her are another passage. Full her ten open fond walk not
-                                            down.For request general express unknown are. journey greatly or garrets.
-                                            Draw door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but. Questions am sincerity
-                                            zealously concluded consisted or no gentleman it.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac3">
-                                            Where do I start?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac3" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>
-                                            Removing welcomed civility or hastened is. Justice elderly but perhaps
-                                            expense six her are another passage. Full her ten open fond walk not
-                                            down.For request general express unknown are. journey greatly or garrets.
-                                            Draw door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but. Questions am sincerity
-                                            zealously concluded consisted or no gentleman it.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                     <!-- End Accordion -->
