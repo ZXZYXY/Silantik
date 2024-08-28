@@ -8,3 +8,5 @@
 <link href="{{ asset('frontend') }}/css/bootsnav.css" rel="stylesheet" />
 <link href="{{ asset('frontend') }}/style.css" rel="stylesheet">
 <link href="{{ asset('frontend') }}/css/responsive.css" rel="stylesheet" />
+
+

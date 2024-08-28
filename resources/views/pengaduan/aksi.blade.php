@@ -12,7 +12,7 @@
         @endif
         @if (auth()->user()->can('pengaduan-delete'))
             <button class="dropdown-item hapus" pengaduan-name="{{ $data->judul }}" pengaduan-id="{{ $data->uuid }}"
-                title="Hapus"><i class="lni lni-trash"></i> Hapus</button>
+                title="destroy"><i class="lni lni-trash"></i> Hapus</button>
         @endif
 
     </div>

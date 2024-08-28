@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Daftaraplikasi;
 use App\Models\Foto_pengaduan;
+use App\Models\Network;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -76,7 +77,7 @@ class PengaduanController extends Controller
             foreach ($request->file('foto_pengaduan') as $key => $val) {
                 $file = $request->file('foto_pengaduan');
                 $files = $file[$key];
-                $file_name = str_replace(' ', '_', $request->judul) . '_' . kode_acak(5) . '.' . $files->getClientOriginalExtension();
+                $file_name = str_replace(' ', '', $request->judul) . '' . kode_acak(5) . '.' . $files->getClientOriginalExtension();
                 $files->move('images/foto_pengaduan', $file_name);
 
                 $doc = new Foto_pengaduan;
@@ -99,6 +100,7 @@ class PengaduanController extends Controller
         $this->validate($request, [
             'judul' => 'required',
             'isi' => 'required',
+            'status' => 'required'
 
         ]);
 
@@ -108,6 +110,7 @@ class PengaduanController extends Controller
 
             $data->judul            = $request->judul;
             $data->isi              = $request->isi;
+            $data->status           = $request->status;
             $data->save();
 
             DB::commit();
@@ -118,16 +121,14 @@ class PengaduanController extends Controller
             return redirect()->back()->with('gagal', 'Data Gagal Diinput');
         }
     }
+    
 
-    public function dataTable($jenis)
+    public function dataTable()
     {
-        $opd_id = auth()->user()->opd_id;
-        if ($opd_id == null) {
-            $data = Pengaduan::where('jenis_pengaduan', '=', $jenis)->get();
-        } else {
-            $data = Pengaduan::where([['opd_id', '=', $opd_id], ['jenis_pengaduan', '=', $jenis]])->get();
-        }
+        $data = Pengaduan::with('opd')->orderby('tanggal', 'desc');
+        
         return DataTables::of($data)
+            
             ->addColumn('action', function ($data) {
                 return view('pengaduan.aksi', [
                     'data' => $data

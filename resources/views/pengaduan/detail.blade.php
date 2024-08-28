@@ -27,6 +27,18 @@
                                     <td>:</td>
                                     <td>{{ $data->kd_pengaduan }}</td>
                                 </tr>
+                                @if ($jenis == 'aplikasi')
+                                    <tr>
+                                        <th>Nama Pengadu</th>
+                                        <td>:</td>
+                                        <td>{{ $data->nama_aplikasi }}</td>
+                                    </tr>
+                                @endif
+                                <tr>
+                                    <th>No Whatsapp</th>
+                                    <td>:</td>
+                                    <td>{{ ($data->no_wa) }}</td>
+                                </tr>
                                 <tr>
                                     <th>Tanggal</th>
                                     <td>:</td>
@@ -37,13 +49,7 @@
                                     <td>:</td>
                                     <td>{{ $data->judul }}</td>
                                 </tr>
-                                @if ($jenis == 'aplikasi')
-                                    <tr>
-                                        <th>Nama Aplikasi</th>
-                                        <td>:</td>
-                                        <td>{{ $data->nama_aplikasi }}</td>
-                                    </tr>
-                                @endif
+                                
                                 <tr>
                                     <th>Detail Masalah</th>
                                     <td>:</td>

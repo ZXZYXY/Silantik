@@ -1092,6 +1092,11 @@ progress {
 		flex: 0 0 auto;
 		width: 100%
 	}
+
+	.col-lg-13 {
+		flex: 0 0 auto;
+		width: 700px
+	}
 	.offset-lg-0 {
 		margin-left: 0
 	}
@@ -4281,7 +4286,7 @@ textarea.form-control-lg {
 	color: #fff;
 	text-align: center;
 	white-space: nowrap;
-	background-color: #0d6efd;
+	background-color: #2568EF;
 	transition: width .6s ease
 }
 @media (prefers-reduced-motion:reduce) {

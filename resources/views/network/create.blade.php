@@ -72,6 +72,7 @@
                 center: myLatLng,
                 zoom: 7,
             });
+
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
@@ -83,31 +84,33 @@
 
                         map.setCenter(pos);
                         map.setZoom(14);
-                        $('#latitude').val(position.coords.latitude)
-                        $('#longitude').val(position.coords.longitude)
+                        $('#latitude').val(position.coords.latitude);
+                        $('#longitude').val(position.coords.longitude);
                     },
                     () => {
                         handleLocationError(true, infoWindow, map.getCenter());
                     }
                 );
             } else {
-                // Browser doesn't support Geolocation
                 handleLocationError(false, infoWindow, map.getCenter());
             }
+
             map.addListener("click", (e) => {
-                myLatLng = e.latLng.toJSON()
+                myLatLng = e.latLng.toJSON();
                 mapClick(e.latLng.toJSON(), map);
             });
+
             var input = document.getElementById('lokasi');
             var autocomplete = new google.maps.places.Autocomplete(input);
             autocomplete.bindTo('bounds', map);
             var infoWindow = new google.maps.InfoWindow();
+
             const locationButton = document.createElement("span");
             locationButton.textContent = "Pilih lokasi saya sekarang";
             locationButton.classList.add("custom-map-control-button");
             map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+
             locationButton.addEventListener("click", () => {
-                // Try HTML5 geolocation.
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
@@ -115,35 +118,35 @@
                                 lat: position.coords.latitude,
                                 lng: position.coords.longitude,
                             };
-                            marker.setPosition(pos);
+                            marker.position = pos;
                             map.setCenter(pos);
                             map.setZoom(14);
-                            $('#latitude').val(position.coords.latitude)
-                            $('#longitude').val(position.coords.longitude)
+                            $('#latitude').val(position.coords.latitude);
+                            $('#longitude').val(position.coords.longitude);
                         },
                         () => {
                             handleLocationError(true, infoWindow, map.getCenter());
                         }
                     );
                 } else {
-                    // Browser doesn't support Geolocation
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
             });
+
             autocomplete.addListener('place_changed', function() {
                 infoWindow.close();
-                marker.setVisible(false);
                 var place = autocomplete.getPlace();
-                /* If the place has a geometry, then present it on a map. */
+
                 if (place.geometry.viewport) {
                     map.fitBounds(place.geometry.viewport);
                 } else {
                     map.setCenter(place.geometry.location);
                     map.setZoom(18);
                 }
+
                 myLatLng = place.geometry.location;
-                marker.setPosition(myLatLng);
-                marker.setVisible(true);
+                marker.position = myLatLng;
+
                 var address = '';
                 if (place.address_components) {
                     address = [
@@ -152,31 +155,30 @@
                         (place.address_components[2] && place.address_components[2].short_name || '')
                     ].join(' ');
                 }
+
                 infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
                 infoWindow.open(map, marker);
-                $('#latitude').val(place.geometry.location.lat())
-                $('#longitude').val(place.geometry.location.lng())
+                $('#latitude').val(place.geometry.location.lat());
+                $('#longitude').val(place.geometry.location.lng());
             });
         }
 
         function setupMap(latLng, map) {
+            $('#latitude').val(latLng.lat);
+            $('#longitude').val(latLng.lng);
 
-            $('#latitude').val(latLng.lat)
-            $('#longitude').val(latLng.lng)
             marker = new google.maps.Marker({
-                animation: google.maps.Animation.DROP,
-                anchorPoint: new google.maps.Point(0, -29),
                 position: latLng,
-                draggable: true,
                 map: map,
+                title: "Your Location",
+                draggable: true,
             });
-            marker.setPosition(latLng);
-            marker.setVisible(true);
             marker.addListener("click", toggleBounce);
-            google.maps.event.addListener(marker, 'dragend', function(marker) {
-                myLatLng = marker.latLng;
-                $('#latitude').val(marker.latLng.lat())
-                $('#longitude').val(marker.latLng.lng())
+
+            marker.addListener('dragend', function(event) {
+                myLatLng = event.latLng.toJSON();
+                $('#latitude').val(myLatLng.lat);
+                $('#longitude').val(myLatLng.lng);
             });
         }
 
@@ -188,10 +190,10 @@
             }
         }
 
-        function mapClick(latLng, map, radius) {
-            $('#latitude').val(latLng.lat)
-            $('#longitude').val(latLng.lng)
-            marker.setPosition(latLng);
+        function mapClick(latLng, map) {
+            $('#latitude').val(latLng.lat);
+            $('#longitude').val(latLng.lng);
+            marker.position = latLng;
             map.panTo(latLng);
         }
 
@@ -207,16 +209,19 @@
     </script>
 
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNt-6cPhU80v9oM2k27Wafg7OUAOny94w&libraries=places&callback=initMap&v=weekly"
-        async></script>
+    src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAbXF62gVyhJOVkRiTHcVp_BkjPYDQfH5w"
+
+
+    async
+    defer onload="initMap()"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('.select2').select2();
 
             $('.multiple-select').select2({
                 theme: 'bootstrap4',
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style',
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
                 placeholder: $(this).data('placeholder'),
                 allowClear: Boolean($(this).data('allow-clear')),
             });
@@ -243,8 +248,8 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ route('daftaraplikasi.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                    <form action="{{ route('network.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf                    
                         <div class="row">
                             <div class="col-md-6">
                                 <x-forms.select_v id="opd_id" name="opd_id" label="Unit Kerja/Perangkat Daerah"
@@ -281,7 +286,9 @@
                                     label="Jarak Kabel dari ODP" isRequired="false" value="" isReadonly=""
                                     placeholder="Jarak Kabel" />
 
-                                <x-forms.input_v id="jml_accespoint" type="number" name="jml_accespoint"
+                                
+
+                                <x-forms.input_v id="jumlah_aksespoint" type="number" name="jumlah_aksespoint"
                                     label="Jumlah Accespoint" isRequired="false" value="" isReadonly=""
                                     placeholder="Jumlah Accespoint" />
 
@@ -296,8 +303,19 @@
                                         SFP</option>
 
                                 </x-forms.select_v>
+                                <x-forms.select_v id="status" name="status" label="Status"
+                                    isRequired="true" isSelect2="true">
+                                    <option value="" selected>[Pilih]</option>
+
+                                    <option value="Diproses" {{ old('jenis_koneksi') == 'Diproses' ? ' selected' : '' }}>
+                                        Diproses</option>
+
+                                    <option value="Selesai" {{ old('jenis_koneksi') == 'Selesai' ? ' selected' : '' }}>
+                                        Selesai</option>
+                                </x-forms.select_v>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                     </form>
                 </div>
             </div>

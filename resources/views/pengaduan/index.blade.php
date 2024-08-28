@@ -26,7 +26,14 @@
                 processing: true,
                 serverSide: true,
                 autoWidth: false,
-                ajax: "{{ url('table/pengaduan') }}" + "/" + jenis,
+                ajax: {
+        url: "{{ url('table/pengaduan') }}" + "/" + jenis,
+        type: "GET",
+        dataSrc: function(json) {
+            console.log("Data dikirim dari server:", json); // Log seluruh data yang diterima
+            return json.data; // Pastikan data di sini sesuai dengan yang diharapkan
+        }
+    },
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'id'
@@ -43,12 +50,17 @@
                         data: 'judul',
                         name: 'judul'
                     },
-                    @if ($jenis == 'aplikasi')
+                    
                         {
                             data: 'nama_aplikasi',
                             name: 'nama_aplikasi'
                         },
-                    @endif {
+                        { data: 'jenis_pengaduan', name: 'jenis_pengaduan' },
+                    {
+                        data: 'no_wa',
+                        name: 'no_wa'
+                    },
+                    {
                         data: 'isi',
                         name: 'isi'
                     },
@@ -83,20 +95,18 @@
                         if (result) {
 
                             $.ajax({
-                                url: "/pengaduan/delete/" + pengaduan_id,
+                                url: "{{ route('pengaduan.destroy', ':id') }}".replace(':id', pengaduan_id),
                                 type: "POST",
                                 data: {
                                     _method: "DELETE",
                                     _token: token,
                                 },
-
                                 success: function(response) {
                                     $('#datatable').DataTable().ajax.reload();
                                     swal("Berhasil", "Data Berhasil Dihapus", "success");
                                 },
                                 error: function(xhr) {
-                                    swal("Oops...", "Terjadi Kesalahan", "error");
-
+                                    swal("Oops...", "Terjadi Kesalahan: " + xhr.responseJSON.messages, "error");
                                 }
                             });
                         }
@@ -105,6 +115,7 @@
 
         });
     </script>
+    
 @endpush
 
 @section('content')
@@ -133,9 +144,10 @@
                                 <th>Kode Pengaduan</th>
                                 <th>Tanggal</th>
                                 <th>Topik Masalah</th>
-                                @if ($jenis == 'aplikasi')
-                                    <th>Nama Aplikasi</th>
-                                @endif
+                                
+                                <th>Nama Pengadu</th>
+                                <th>Jenis Pengaduan</th>
+                                <th>No Whatsapp</th>
                                 <th>Isi Pengaduan</th>
                                 <th>Status</th>
                                 <th>Aksi</th>

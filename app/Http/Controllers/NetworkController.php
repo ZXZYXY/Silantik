@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Network;
 use App\Models\Opd;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class NetworkController extends Controller
 {
@@ -57,4 +58,102 @@ class NetworkController extends Controller
             ->rawColumns(['action', 'opd', 'status_aktif'])
             ->make(true);
     }
+    public function store(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'opd_id' => 'required|integer|exists:opd,id', // Ganti dengan nama tabel dan kolom yang sesuai
+            'lokasi' => 'required|string',
+            'latitude' => 'required|numeric',
+            'status' => 'required|string',
+            'longitude' => 'required|numeric',
+            'jarak_kabel' => 'nullable|string',
+            'jumlah_aksespoint' => 'required|integer',
+            'jenis_koneksi' => 'required|string|in:GPON,SFP', // Validasi jenis koneksi
+            // Tambahkan validasi untuk field lain jika diperlukan
+        ]);
+
+        // Simpan data ke database
+        $network = new Network(); // Ganti dengan nama model yang sesuai
+        $network->uuid = Str::uuid(); // Generate UUID secara acak
+        $network->opd_id = $request->opd_id;
+        $network->alamat = $request->input('lokasi');
+        $network->status = $request->status;
+        $network->latitude = $request->latitude;
+        $network->longitude = $request->longitude;
+        $network->jarak_kabel = $request->jarak_kabel;
+        $network->jumlah_aksespoint = $request->jumlah_aksespoint;
+        $network->jenis_koneksi = $request->jenis_koneksi;
+
+        // Simpan data ke database
+        $network->save();
+
+        // Redirect atau tampilkan pesan sukses
+        return redirect()->route('network.index', ['uuid' => $network->uuid]) // Ganti dengan route yang sesuai
+                         ->with('success', 'Data infrastruktur jaringan berhasil ditambahkan.');
+    }
+
+    public function show($uuid)
+    {
+        $network = Network::where('uuid', $uuid)->firstOrFail();
+        return view('network.detail', compact('network'));
+    }
+
+    public function edit($uuid)
+    {
+        // Temukan data network berdasarkan UUID
+        $network = Network::where('uuid', $uuid)->firstOrFail();
+        
+        // Ambil daftar OPD dari database
+        $opd = Opd::all();
+
+        // Kirim data network dan opd ke view
+        return view('network.edit', compact('network', 'opd'));
+    }
+
+    public function update(Request $request, $uuid)
+    {
+        // Validasi input
+        $request->validate([
+            'opd_id' => 'required|integer|exists:opd,id',
+            'lokasi' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'jarak_kabel' => 'nullable|string',
+            'jumlah_aksespoint' => 'required|integer',
+            'jenis_koneksi' => 'required|string|in:GPON,SFP',
+        ]);
+
+        // Cari data network berdasarkan UUID
+        $network = Network::where('uuid', $uuid)->firstOrFail();
+
+        // Update data di database
+        $network->opd_id = $request->opd_id;
+        $network->alamat = $request->input('lokasi');
+        $network->latitude = $request->latitude;
+        $network->longitude = $request->longitude;
+        $network->jarak_kabel = $request->jarak_kabel;
+        $network->jumlah_aksespoint = $request->jumlah_aksespoint;
+        $network->jenis_koneksi = $request->jenis_koneksi;
+
+        // Simpan perubahan
+        $network->save();
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('network.index')->with('success', 'Data infrastruktur jaringan berhasil diperbarui.');
+    }
+
+    public function destroy($id)
+    {
+        $model = Network::where('uuid', $id);
+        $model->delete();
+
+        return response()->json([
+            'status' => 'true',
+            'messages' => 'Data Berhasil dihapus'
+        ]);
+    }
+
+
+
 }

@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 class Network extends Model
 {
     use HasFactory;
-    use Uuid;
+
     protected $table = 'network';
-    protected $guard = [];
+    protected $guarded = []; // Pastikan menggunakan guarded yang benar
 
     public function opd()
     {
-        return $this->belongsTo('App\Models\Opd');
+        return $this->belongsTo(Opd::class, 'opd_id'); // Sesuaikan nama foreign key jika perlu
     }
 }

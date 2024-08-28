@@ -31,28 +31,31 @@
                         name: 'id'
                     },
                     {
-                        data: 'tahun_pembuatan',
-                        name: 'tahun_pembuatan'
-                    },
-                    {
-                        data: 'nama_aplikasi',
-                        name: 'nama_aplikasi'
-                    },
-                    {
-                        data: 'link',
-                        name: 'link'
-                    },
-                    {
                         data: 'opd',
                         name: 'opd'
                     },
                     {
-                        data: 'jenis_aplikasi',
-                        name: 'jenis_aplikasi'
+                        data: 'latitude',
+                        name: 'latitude',
+                        render: function (data, type, row) {
+                            return row.latitude + ', ' + row.longitude;
+                        }
                     },
                     {
-                        data: 'status_aktif',
-                        name: 'status_aktif'
+                        data: 'jarak_kabel',
+                        name: 'jarak_kabel'
+                    },
+                    {
+                        data: 'jumlah_aksespoint',
+                        name: 'jumlah_aksespoint'
+                    },
+                    {
+                        data: 'jenis_koneksi',
+                        name: 'jenis_koneksi'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
                     },
 
                     {
@@ -120,12 +123,12 @@
                 <div class="card-body">
                     <h4 class="mb-0">Infrastruktur Jaringan</h4>
                     <div style="align-content: right">
-                        <p align="right">
+                        <!--<p align="right">
                             <button type="button" class="btn btn-secondary btn-sm mt-2 mb-2" data-bs-toggle="modal"
                                 data-bs-target="#laporan"><i
                                     class="fa fa-print                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  "></i>
                                 Laporan</button>
-                        </p>
+                        </p>-->
                     </div>
                     <hr>
                     <table id="datatable" class="table table-hover table-bordered table-striped" style="width:100%">

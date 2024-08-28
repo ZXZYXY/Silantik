@@ -14,6 +14,5 @@
             <button class="dropdown-item hapus" daftaraplikasi-name="{{ $data->nama_aplikasi }}"
                 daftaraplikasi-id="{{ $data->uuid }}" title="Delete"><i class="lni lni-trash"></i> Hapus</button>
         @endif
-
     </div>
 </div>

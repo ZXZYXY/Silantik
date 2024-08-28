@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3307
--- Generation Time: Nov 10, 2023 at 02:05 AM
--- Server version: 5.7.33
--- PHP Version: 7.4.19
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 28 Agu 2024 pada 06.11
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `berita`
+-- Struktur dari tabel `berita`
 --
 
 CREATE TABLE `berita` (
@@ -39,21 +39,22 @@ CREATE TABLE `berita` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `berita`
+-- Dumping data untuk tabel `berita`
 --
 
 INSERT INTO `berita` (`id`, `judul`, `slug`, `isi`, `published`, `kategori_id`, `gambar`, `user_id`, `created_at`, `updated_at`, `uuid`) VALUES
-(4, 'Ini adalah judul 1', 'ini-adalah-judul-1', '<p><img src=\"../../storage/photos/1/080b4dffeeea98952b99d2915da0b69c_XL.jpg\" alt=\"\" width=\"570\" height=\"330\"></p>', '1', 3, 'ccc_AJX1K.jpg', 1, '2023-03-28 14:12:18', '2023-03-30 08:30:27', '50bbc62a-4479-4862-9f51-a4a17e7c7ea2'),
-(5, 'PELATIHAN ESURAT', 'pelatihan-esurat', '<p><img src=\"../../storage/photos/1/080b4dffeeea98952b99d2915da0b69c_XL.jpg\" alt=\"\" width=\"570\" height=\"330\">dddd</p>', '1', 5, 'PELATIHAN_ESURAT_7NVPM.png', 1, '2023-03-30 08:30:52', '2023-06-05 09:34:31', 'e24a1b2a-b60d-4179-88a6-fd35c08216b4'),
-(6, 'ss', 'ss', '<p>sss</p>', '1', 5, 'ss_Q34AN.png', 1, '2023-05-24 15:31:17', '2023-05-24 15:31:17', 'e85ae6a7-f438-497d-bd25-06b949ad7337');
+(5, 'PELATIHAN ESURAT', 'pelatihan-esurat', '<p>Pelatihan ini dirancang untuk meningkatkan pemahaman dan keterampilan dalam penggunaan sistem eSurat, yang merupakan solusi penting untuk efisiensi pengelolaan surat menyurat secara elektronik. Adapun agenda pelatihan mencakup:</p>\r\n<ol>\r\n<li>\r\n<p><strong>Pengenalan Sistem eSurat:</strong> Peserta akan mempelajari dasar-dasar sistem eSurat, termasuk fungsi dan manfaatnya dalam pengelolaan administrasi surat elektronik.</p>\r\n</li>\r\n<li>\r\n<p><strong>Praktik Penggunaan:</strong> Melalui sesi praktik langsung, peserta akan diajarkan cara mengakses, membuat, mengelola, dan mengarsipkan surat elektronik menggunakan sistem eSurat.</p>\r\n</li>\r\n<li>\r\n<p><strong>Manajemen dan Keamanan Data:</strong> Sesi ini akan membahas tentang pengelolaan data surat elektronik serta langkah-langkah untuk menjaga keamanan informasi dan privasi.</p>\r\n</li>\r\n<li>\r\n<p><strong>Tanya Jawab dan Diskusi:</strong> Peserta akan memiliki kesempatan untuk bertanya langsung kepada para ahli dan berdiskusi mengenai tantangan serta solusi dalam implementasi eSurat di masing-masing OPD.</p>\r\n</li>\r\n</ol>\r\n<p>Pelatihan ini bertujuan untuk memastikan bahwa seluruh staf OPD dapat memanfaatkan sistem eSurat secara efektif, meningkatkan produktivitas dan mengurangi penggunaan dokumen fisik. Kami berharap pelatihan ini akan membantu dalam memperlancar proses administrasi dan mempercepat pengolahan surat menyurat di lingkungan pemerintahan.</p>\r\n<p>Untuk mendaftar atau mendapatkan informasi lebih lanjut mengenai pelatihan ini, silakan menghubungi panitia melalui email <a rel=\"noopener\">pelatihan@kotajambi.go.id</a> atau telepon di (0741) 7654321. Pendaftaran ditutup pada 15 September 2024.</p>\r\n<p>Kami menantikan kehadiran Anda untuk bersama-sama memajukan pengelolaan surat elektronik di Kota Jambi!</p>', '1', 5, 'PELATIHAN_ESURAT_7NVPM.png', 1, '2023-03-30 08:30:52', '2024-08-28 09:39:55', 'e24a1b2a-b60d-4179-88a6-fd35c08216b4'),
+(9, 'Pemindahan Server', 'pemindahan-server-2', '<p>Dalam upaya untuk meningkatkan kualitas layanan dan kapasitas infrastruktur, perusahaan kami saat ini sedang melakukan proses pemindahan server. Proses ini merupakan langkah penting untuk memastikan bahwa kami dapat terus memberikan layanan yang handal dan cepat bagi semua pengguna kami di masa mendatang. Namun, karena kompleksitas dari pekerjaan ini, pemindahan server diperkirakan akan memakan waktu beberapa hari.</p>\r\n<p>Proses pemindahan server ini melibatkan berbagai tahapan teknis yang rumit, termasuk pemindahan data, konfigurasi ulang sistem, dan pengujian untuk memastikan semua fungsi berjalan dengan baik. Oleh karena itu, meskipun tim teknis kami bekerja keras untuk menyelesaikan pemindahan ini secepat mungkin, hingga saat ini kami belum dapat memastikan kapan proses ini akan selesai. Kami memahami bahwa ketidakpastian ini dapat menyebabkan ketidaknyamanan bagi para pengguna, dan kami meminta maaf atas hal tersebut.</p>\r\n<p>Selama proses pemindahan berlangsung, beberapa layanan mungkin akan mengalami gangguan atau penurunan performa. Kami telah mengupayakan berbagai langkah mitigasi untuk meminimalkan dampak tersebut, namun beberapa pengguna mungkin tetap merasakan dampaknya. Kami menghargai kesabaran dan pengertian dari para pengguna selama masa ini.</p>\r\n<p>Kami berkomitmen untuk memberikan pembaruan secara berkala terkait perkembangan proses pemindahan ini. Para pengguna dapat memantau informasi terbaru melalui saluran komunikasi resmi kami, termasuk situs web dan media sosial. Setiap perkembangan penting akan segera kami sampaikan agar pengguna dapat merencanakan aktivitas mereka dengan lebih baik.</p>\r\n<p>Sekali lagi, kami meminta maaf atas ketidaknyamanan yang ditimbulkan oleh pemindahan server ini. Kami berterima kasih atas pengertian dan dukungan dari semua pengguna selama proses ini berlangsung. Kami yakin bahwa setelah proses ini selesai, pengguna akan dapat menikmati layanan yang lebih baik dan lebih handal.</p>', '1', 3, 'Pemindahan_Server_E0w2H.png', 1, '2024-08-28 09:28:44', '2024-08-28 09:29:28', '4a045626-d876-4c4b-92a1-e717a9313b36'),
+(10, 'Peningkatan Kapasitas dan Inovasi bagi OPD', 'peningkatan-kapasitas-dan-inovasi-bagi-opd', '<p>Kami dengan hormat mengundang seluruh Organisasi Perangkat Daerah (OPD) Kota Jambi untuk berpartisipasi dalam seminar bertajuk \"Peningkatan Kapasitas dan Inovasi dalam Pelayanan Publik\" yang akan dilaksanakan pada:</p>\r\n<p><strong>Tanggal:</strong> 15 September 2024<br><strong>Waktu:</strong> 09:00 - 16:00 WIB<br><strong>Tempat:</strong> Zoom Meeting</p>\r\n<p>Seminar ini bertujuan untuk membekali peserta dengan pengetahuan dan keterampilan terbaru dalam mengelola dan meningkatkan kualitas pelayanan publik. Dalam acara ini, para peserta akan mendapatkan kesempatan untuk:</p>\r\n<ol>\r\n<li>\r\n<p><strong>Mendengarkan Presentasi dari Ahli:</strong> Kami akan menghadirkan sejumlah narasumber berpengalaman di bidang manajemen pelayanan publik dan inovasi teknologi yang akan membagikan wawasan dan strategi terkini.</p>\r\n</li>\r\n<li>\r\n<p><strong>Diskusi Panel:</strong> Sesi diskusi panel akan membahas tantangan dan peluang dalam implementasi kebijakan publik serta bagaimana cara menghadapi perubahan dengan efektif.</p>\r\n</li>\r\n<li>\r\n<p><strong>Workshop Interaktif:</strong> Peserta akan terlibat dalam workshop praktis yang dirancang untuk memperdalam pemahaman dan keterampilan dalam penerapan metode baru dalam pelayanan publik.</p>\r\n</li>\r\n<li>\r\n<p><strong>Networking:</strong> Seminar ini juga menyediakan kesempatan untuk bertemu dan berdialog dengan rekan-rekan dari OPD lain serta berbagai stakeholder terkait, yang dapat membuka peluang kerjasama dan pertukaran pengalaman.</p>\r\n</li>\r\n</ol>\r\n<p>Kami berharap kegiatan ini akan memberikan manfaat besar bagi semua OPD di Kota Jambi, serta membantu dalam upaya peningkatan kualitas pelayanan publik yang lebih efisien dan inovatif. Kehadiran dan partisipasi aktif dari setiap OPD sangat kami harapkan untuk suksesnya acara ini.</p>\r\n<p>Untuk mendaftar atau mendapatkan informasi lebih lanjut, silakan menghubungi panitia melalui email <a rel=\"noopener\">seminar@kotajambi.go.id</a> atau telepon di (0741) 1234567. Pendaftaran dibuka hingga 10 September 2024.</p>\r\n<p>Mari bersama-sama kita tingkatkan kualitas pelayanan publik untuk kemajuan Kota Jambi!</p>', '1', 5, 'Peningkatan_Kapasitas_dan_Inovasi_bagi_OPD_7Sn9r.png', 1, '2024-08-28 09:36:42', '2024-08-28 09:44:54', 'f87f13d5-0521-405b-88f5-aeb5a83cb6ad'),
+(11, 'Proses Pemindahan Server Telah Selesai', 'proses-pemindahan-server-telah-selesai', '<p>Kami dengan gembira mengumumkan bahwa proses pemindahan server yang telah kami lakukan beberapa hari terakhir ini telah berhasil diselesaikan. Seluruh sistem telah dikonfigurasi ulang dan diuji secara menyeluruh, memastikan bahwa semua layanan kini kembali beroperasi dengan normal. Proses ini merupakan bagian dari upaya kami untuk meningkatkan kualitas dan kapasitas infrastruktur, demi memberikan pengalaman terbaik bagi para pengguna.</p>\r\n<p>Pemindahan server ini telah melibatkan berbagai tahapan teknis yang cukup kompleks, mulai dari pemindahan data dalam jumlah besar, penyesuaian konfigurasi, hingga serangkaian pengujian untuk memastikan bahwa semua fitur berfungsi dengan optimal. Kami senang dapat melaporkan bahwa seluruh proses tersebut telah berhasil diselesaikan sesuai dengan harapan kami.</p>\r\n<p>Kami menyadari bahwa selama proses pemindahan berlangsung, beberapa pengguna mungkin telah mengalami gangguan atau penurunan kualitas layanan. Untuk itu, kami ingin menyampaikan apresiasi yang sebesar-besarnya atas kesabaran dan pengertian yang telah diberikan oleh para pengguna. Kami juga berterima kasih atas dukungan dan kepercayaan yang terus Anda berikan kepada kami.</p>\r\n<p>Dengan selesainya pemindahan server ini, kami berkomitmen untuk terus memberikan layanan yang lebih baik dan handal di masa mendatang. Peningkatan kapasitas server ini memungkinkan kami untuk menangani lebih banyak permintaan pengguna serta mengimplementasikan fitur-fitur baru yang akan meningkatkan kenyamanan dan pengalaman penggunaan layanan kami.</p>\r\n<p>Kami mengundang para pengguna untuk kembali menggunakan layanan kami dan menikmati peningkatan yang telah kami lakukan. Jika Anda mengalami masalah atau memiliki pertanyaan terkait dengan layanan, jangan ragu untuk menghubungi tim dukungan pelanggan kami. Kami siap membantu Anda dengan segala kebutuhan.</p>', '1', 3, 'Proses_Pemindahan_Server_Telah_Selesai_E5UZh.png', 1, '2024-08-28 09:41:06', '2024-08-28 09:41:06', '236ae3cc-568c-463c-9627-9cc302aa6fb8');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `daftaraplikasi`
+-- Struktur dari tabel `daftaraplikasi`
 --
 
 CREATE TABLE `daftaraplikasi` (
@@ -68,7 +69,7 @@ CREATE TABLE `daftaraplikasi` (
   `nama_konsultan` varchar(255) DEFAULT NULL,
   `jenis_aplikasi` varchar(100) NOT NULL,
   `jenis_layanan` varchar(20) NOT NULL,
-  `deskripsi` text,
+  `deskripsi` text DEFAULT NULL,
   `status_aktif` varchar(50) DEFAULT NULL,
   `integrasi` varchar(50) DEFAULT NULL,
   `app_integrasi` varchar(255) DEFAULT NULL,
@@ -80,37 +81,44 @@ CREATE TABLE `daftaraplikasi` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `daftaraplikasi`
+-- Dumping data untuk tabel `daftaraplikasi`
 --
 
 INSERT INTO `daftaraplikasi` (`id`, `team_id`, `nama_aplikasi`, `tahun_pembuatan`, `link_app`, `opd_id`, `sektor_id`, `nama_opd`, `nama_konsultan`, `jenis_aplikasi`, `jenis_layanan`, `deskripsi`, `status_aktif`, `integrasi`, `app_integrasi`, `ada_perwal`, `file_perwal`, `logo_aplikasi`, `gambar_home`, `portofolio`, `created_at`, `updated_at`, `uuid`) VALUES
 (2, 6, 'SIBANGMAN', '2022', 'https://sibangman.jambikota.go.id/', 22, 1, 'Badan Perencanaan Pembangunan Daerah', NULL, 'WEB', '', 'SIBANGMAN merupakan kepanjangan dari Sistem Pembangunan Manusia yang bertujuan untuk pemetaan Program/Kegiatan/Sub Kegiatan Perangkat Daerah', 'Aktif', 'Tidak', 'ddd', 'Tidak', NULL, 'SIBANGMAN_PERWAL_b3iw8.png', 'SIBANGMAN_SS-Home_SXo0g.png', 1, '2023-05-31 07:38:26', '2023-06-27 10:39:49', '05fb7baf-5fbb-4732-a0b9-604182f80411'),
 (3, 4, 'SIHARKO', '2021', 'https://siharko.jambikota.go.id/', 19, NULL, 'DINAS PERDAGANGAN DAN PERINDUSTRIAN', NULL, 'WEB', '', 'SIHARKO merupakan kepanjangan dari Sistem Informasi Harga Sembako', 'Aktif', 'Tidak', NULL, NULL, NULL, NULL, 'SIHARKO_SS-Home_8Ml66.png', 1, '2023-06-27 10:42:07', '2023-07-25 08:24:40', '022adca4-83a0-405a-a022-36185099d5a4'),
-(4, 4, 'SIAPTENDIK', '2020', 'https://siharko.jambikota.go.id/', 1, NULL, 'BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA', 'adad', 'WEB', 'Internal', 'sada', 'Aktif', 'Ya', 'sada', 'Ya', 'SIAPTENDIK_PERWAL_HEcYZ.pdf', 'SIAPTENDIK_PERWAL_I9pzI.png', 'SIAPTENDIK_SS-Home_Ax7VR.jpg', NULL, '2023-07-25 08:20:54', '2023-08-10 10:55:24', 'def29596-6c33-4787-ba07-492f10720643');
+(4, 4, 'SIAPTENDIK', '2020', 'https://siharko.jambikota.go.id/', 1, NULL, 'BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA', 'adad', 'WEB', 'Internal', 'sada', 'Aktif', 'Ya', 'sada', 'Ya', 'SIAPTENDIK_PERWAL_HEcYZ.pdf', 'SIAPTENDIK_PERWAL_I9pzI.png', 'SIAPTENDIK_SS-Home_Ax7VR.jpg', NULL, '2023-07-25 08:20:54', '2023-08-10 10:55:24', 'def29596-6c33-4787-ba07-492f10720643'),
+(5, 8, 'SI REKIPNAKES', '2023', 'https://sirekipnakes.jambikota.go.id/', 6, NULL, 'DINAS KESEHATAN', NULL, 'WEB,ANDROID', 'Internal', NULL, 'Aktif', 'Tidak', NULL, NULL, NULL, NULL, NULL, 1, '2024-08-28 09:11:45', '2024-08-28 09:11:45', '875f4289-f827-4633-b833-ebaf705f69e6'),
+(6, 8, 'SIPEKAD', '2023', 'https://sipekad.jambikota.go.id/', 2, NULL, 'BADAN PENGELOLA KEUANGAN DAN ASET DAERAH', NULL, 'WEB', 'Internal', NULL, 'Aktif', 'Tidak', NULL, NULL, NULL, NULL, NULL, 1, '2024-08-28 09:12:54', '2024-08-28 09:12:54', 'ae167c5c-656c-4026-a6eb-a849dca0e54b'),
+(7, 8, 'Aplikasi SiBanjir Kota Jambi', '2023', 'https://play.google.com/store/apps/details?id=jambikota.go.id.sibanjir&hl=id-ID', 7, NULL, 'DINAS PEKERJAAN UMUM DAN PENATAAN RUANG', NULL, 'ANDROID', 'Internal', NULL, 'Aktif', 'Tidak', NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-28 09:14:18', '2024-08-28 09:14:18', 'c38e204c-a2e5-487b-a84d-1977ad5aacdb'),
+(8, 8, 'SIKAP MANIS', '2023', 'https://sikapmanis.jambikota.go.id/', 21, NULL, 'DINAS PERTANIAN DAN KETAHANAN PANGAN', NULL, 'WEB', 'Internal', NULL, 'Tidak Aktif', 'Tidak', NULL, NULL, NULL, NULL, NULL, 1, '2024-08-28 09:16:02', '2024-08-28 09:16:02', 'c2bf0904-a353-443c-bb5c-e79cece265ba'),
+(9, 9, 'KOTA JAMBI SATU, Satu Data Satu Peta Kota Jambi', '2023', 'https://kotajambisatu.jambikota.go.id/', 15, NULL, 'DINAS KOMUNIKASI DAN INFORMATIKA', NULL, 'WEB', 'Internal', NULL, 'Aktif', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-28 09:17:19', '2024-08-28 09:17:19', '13f4712f-abf5-43e3-a7f1-e042bf936cea'),
+(10, 8, 'Sistem Cuti Pegawai DPMPPA', '2023', 'https://bit.ly/simcupdpmppa', 11, NULL, 'DINAS PEMBERDAYAAN MASYARAKAT, PEREMPUAN DAN PERLINDUNGAN ANAK', NULL, 'WEB', 'Internal', NULL, 'Aktif', 'Tidak', NULL, NULL, NULL, NULL, NULL, 1, '2024-08-28 09:18:09', '2024-08-28 09:18:09', '9cddb0ea-d631-4e30-9455-50f601919490'),
+(11, 8, 'Sistem Cuti Pegawai DPPKB', '2023', 'https://bit.ly/simcupdppkb', 10, NULL, 'DINAS PENGENDALIAN PENDUDUK DAN KELUARGA BERENCANA', NULL, 'WEB', 'Internal', NULL, 'Aktif', 'Tidak', NULL, NULL, NULL, NULL, NULL, 1, '2024-08-28 09:18:55', '2024-08-28 09:18:55', '6403f454-76f7-4c8c-a2e3-1ef7d413f937');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Struktur dari tabel `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `faq`
+-- Struktur dari tabel `faq`
 --
 
 CREATE TABLE `faq` (
@@ -119,22 +127,29 @@ CREATE TABLE `faq` (
   `kategori` varchar(50) NOT NULL,
   `pertanyaan` text NOT NULL,
   `jawaban` text NOT NULL,
+  `publish` int(2) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `faq`
+-- Dumping data untuk tabel `faq`
 --
 
-INSERT INTO `faq` (`id`, `urutan`, `kategori`, `pertanyaan`, `jawaban`, `created_at`, `updated_at`, `uuid`) VALUES
-(1, 2, 'Umum', '123', '<p>123</p>', '2023-05-23 08:47:01', '2023-05-23 09:25:29', 'd4d491d9-7b4d-4a38-9e40-f3b948de4130');
+INSERT INTO `faq` (`id`, `urutan`, `kategori`, `pertanyaan`, `jawaban`, `publish`, `created_at`, `updated_at`, `uuid`) VALUES
+(3, 1, 'Umum', 'Apa tujuan dari website ini?', 'Website ini dirancang untuk menyediakan solusi Teknologi Informasi bagi OPD di Kota Jambi, termasuk layanan pembuatan aplikasi, pembaruan aplikasi, dan permintaan subdomain.', 1, '2024-08-28 08:44:43', '2024-08-28 08:46:39', 'c9f319d8-4481-471b-b80f-14cf8c447243'),
+(4, 2, 'Umum', 'Siapa yang bisa menggunakan website ini?', 'Website ini terutama ditujukan untuk OPD di Kota Jambi. Pengguna harus memiliki Nomor Induk Pegawai (NIP) untuk mengakses fitur-fitur tertentu.', 1, '2024-08-28 08:45:18', '2024-08-28 08:45:18', '1b89aca3-6234-499b-973c-e2521e510531'),
+(5, 3, 'Umum', 'Bagaimana cara saya mengajukan pengaduan jika terjadi permasalahan pada aplikasi atau jaringan di OPD saya?', 'Untuk mengajukan pengaduan, Anda bisa menuju ke bagian yang beranda di website dan scroll ke bagian pengaduan lalu klik tombol buat pengaduan,dan mengisi formulir yang disediakan, dan mengirimkannya untuk diproses.', 1, '2024-08-28 08:47:09', '2024-08-28 08:47:09', '91f54750-2454-4b00-82c0-056b3e309502'),
+(6, 4, 'Umum', 'Layanan apa saja yang ditawarkan melalui website ini?', 'Kami menawarkan berbagai layanan seperti pembuatan aplikasi, pembaruan aplikasi, dan permintaan subdomain di bawah jambikota.go.id.', 1, '2024-08-28 08:48:06', '2024-08-28 08:48:06', '5969dd70-9675-433b-bcef-ff970b2d1bd6'),
+(7, 5, 'Umum', 'Bagaimana cara melacak status permohonan saya?', 'Anda dapat melacak status permohonan dengan masuk ke halaman cek permohonan yang berada pada bagian layanan, lalu masukkan koce permohonan yang sudah diberikan pada proses permohonan aplikasi selesai dilakukan.', 1, '2024-08-28 08:49:58', '2024-08-28 08:49:58', '7d80206c-807d-45b7-8ad1-4cbc0501d17c'),
+(8, 6, 'Umum', 'pa yang harus saya lakukan jika mengalami kesalahan saat menggunakan website?', 'Jika Anda mengalami kesalahan, segera laporkan melalui formulir pengaduan di website atau hubungi tim dukungan kami untuk bantuan lebih lanjut.', 1, '2024-08-28 08:50:25', '2024-08-28 08:50:25', '01887f85-5073-4d2e-bdf9-a1c2eb532a54'),
+(10, 7, 'Umum', 'Apakah tersedia panduan pengguna untuk navigasi website ini?', 'ya, tersedia panduan pengguna yang lengkap. Anda bisa mengaksesnya dihalaman tentang dengan melihat bagian tata cara layanan pembuatan/pengembangan aplikasi', 1, '2024-08-28 08:52:16', '2024-08-28 08:52:16', '77394a65-6103-4a76-8a4a-966b686b155b');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `file_pendukung`
+-- Struktur dari tabel `file_pendukung`
 --
 
 CREATE TABLE `file_pendukung` (
@@ -146,10 +161,10 @@ CREATE TABLE `file_pendukung` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `file_pendukung`
+-- Dumping data untuk tabel `file_pendukung`
 --
 
 INSERT INTO `file_pendukung` (`id`, `daftaraplikasi_id`, `nama_dokumen`, `nama_file`, `kategori`, `created_at`, `updated_at`, `uuid`) VALUES
@@ -158,47 +173,56 @@ INSERT INTO `file_pendukung` (`id`, `daftaraplikasi_id`, `nama_dokumen`, `nama_f
 (4, 3, NULL, 'SIHARKO_oO2h1.jpg', 'ss', '2023-07-24 15:15:53', '2023-07-24 15:15:53', 'df973d2e-6077-4028-86d5-73dafa55cc30'),
 (5, 4, NULL, 'SS_SIAPTENDIK_tZ5Op.png', 'ss', '2023-08-10 10:43:42', '2023-08-10 10:43:42', '37900e4b-cc5e-4eba-944a-c3cdd508d96f'),
 (6, 4, NULL, 'SS_SIAPTENDIK_F4TLK.jpg', 'ss', '2023-08-10 10:43:42', '2023-08-10 10:43:42', '9852198f-2eb5-44e5-9540-f1daba8572e8'),
-(7, 4, 'SKPL', 'Doc_SIAPTENDIK_XoIYQ.pdf', 'dokumen', '2023-08-10 10:44:02', '2023-08-10 10:44:02', '4ab79082-1473-4530-880f-b592ad0788c6'),
-(8, 4, 'SOP', 'Doc_SIAPTENDIK_W31A9.pdf', 'dokumen', '2023-08-10 10:44:02', '2023-08-10 10:44:02', 'aedd19cc-b4bd-4b73-ae2f-5d53db713b81');
+(7, 4, 'SKPL', 'Doc_SIAPTENDIK_XoIYQ.pdf', 'dokumen', '2023-08-10 10:44:02', '2023-08-10 10:44:02', '4ab79082-1473-4530-880f-b592ad0788c6');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto_pengaduan`
+-- Struktur dari tabel `foto_pengaduan`
 --
 
 CREATE TABLE `foto_pengaduan` (
   `id` int(11) NOT NULL,
   `pengaduan_id` int(11) NOT NULL,
   `nama_foto` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `foto_pengaduan`
+-- Dumping data untuk tabel `foto_pengaduan`
 --
 
 INSERT INTO `foto_pengaduan` (`id`, `pengaduan_id`, `nama_foto`) VALUES
 (1, 3, 'ddd_Y9Z7w.png'),
-(2, 3, 'ddd_JN8XA.png');
+(2, 3, 'ddd_JN8XA.png'),
+(3, 4, 'Hantu_DlZgU.png'),
+(4, 5, 'Hantu_0FEmU.png'),
+(5, 6, 'tugu_keris_Rtbij.png'),
+(6, 7, 'yyy_p9NQX.png'),
+(7, 8, 'Hantu_V3HOo.png'),
+(8, 9, 'Kesalahan_Nama_HsMY2.png'),
+(9, 10, 'Jaringan_Terganggu_leDMK.png'),
+(10, 11, 'Jaringan_Terganggu_Bkn83.png'),
+(11, 12, 'Jaringan_Terganggu_trm4k.png'),
+(12, 13, 'Jaringan_Terganggu_vtnfG.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `histori_permohonan`
+-- Struktur dari tabel `histori_permohonan`
 --
 
 CREATE TABLE `histori_permohonan` (
   `id` int(11) NOT NULL,
   `permohonan_id` int(11) NOT NULL,
   `petugas_id` int(11) DEFAULT NULL,
-  `status` varchar(100) NOT NULL,
-  `keterangan_status` text,
+  `status` varchar(100) DEFAULT NULL,
+  `keterangan_status` text DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `histori_permohonan`
+-- Dumping data untuk tabel `histori_permohonan`
 --
 
 INSERT INTO `histori_permohonan` (`id`, `permohonan_id`, `petugas_id`, `status`, `keterangan_status`, `created_at`, `updated_at`) VALUES
@@ -206,12 +230,41 @@ INSERT INTO `histori_permohonan` (`id`, `permohonan_id`, `petugas_id`, `status`,
 (2, 5, 1, 'Permohonan Disetujui', 'disetujui', '2023-06-13 10:52:24', '2023-06-13 10:52:24'),
 (3, 5, 1, 'Selesai', 'selesaii', '2023-06-13 11:25:40', '2023-06-13 11:25:40'),
 (4, 5, 1, 'Ditunda', 'dd', '2023-08-09 10:44:41', '2023-08-09 10:44:41'),
-(5, 18, 1, 'Permohonan Disetujui', 'ff', '2023-09-29 09:39:18', '2023-09-29 09:39:18');
+(5, 18, 1, 'Permohonan Disetujui', 'ff', '2023-09-29 09:39:18', '2023-09-29 09:39:18'),
+(6, 18, 1, 'Dalam Proses Pembuatan', 'Dalam proses Pembuatan oleh progrmaer', '2023-11-27 10:16:56', '2023-11-27 10:16:56'),
+(7, 5, 1, 'Permohonan Ditolak', NULL, '2024-07-08 09:05:31', '2024-07-08 09:05:31'),
+(8, 8, 1, 'Selesai', 'aowkoawkowk', '2024-07-09 08:31:46', '2024-07-09 08:31:46'),
+(9, 8, 1, 'Selesai', 'aowkoawkowk', '2024-07-09 08:32:12', '2024-07-09 08:32:12'),
+(10, 9, 1, 'Permohonan Disetujui', NULL, '2024-07-10 08:25:45', '2024-07-10 08:25:45'),
+(11, 9, 1, 'Selesai', NULL, '2024-07-10 08:26:39', '2024-07-10 08:26:39'),
+(12, 11, 1, 'Selesai', 'mm', '2024-07-10 09:36:17', '2024-07-10 09:36:17'),
+(13, 15, 1, 'Permohonan Disetujui', 'Permohonan baru', '2024-07-10 10:33:40', '2024-07-10 10:33:40'),
+(14, 15, 1, 'Permohonan Disetujui', NULL, '2024-07-10 11:05:09', '2024-07-10 11:05:09'),
+(15, 15, 1, 'Selesai', NULL, '2024-07-10 11:05:20', '2024-07-10 11:05:20'),
+(16, 15, 1, 'Selesai', NULL, '2024-07-10 11:07:13', '2024-07-10 11:07:13'),
+(17, 15, 1, 'Selesai', 'gggg', '2024-07-10 11:14:54', '2024-07-10 11:14:54'),
+(18, 20, 1, 'Dalam Proses Pembuatan', NULL, '2024-07-10 13:32:26', '2024-07-10 13:32:26'),
+(19, 30, 1, 'Permohonan Disetujui', NULL, '2024-07-10 14:13:29', '2024-07-10 14:13:29'),
+(20, 32, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-07-15 01:20:47', '2024-07-15 01:20:47'),
+(21, 33, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-07-15 01:28:44', '2024-07-15 01:28:44'),
+(22, 33, 1, 'Permohonan Disetujui', 'menurut kami aplikasi ini keren', '2024-07-15 08:56:07', '2024-07-15 08:56:07'),
+(23, 33, 1, 'Dalam Proses Pembuatan', 'lagi di bikin', '2024-07-15 08:56:59', '2024-07-15 08:56:59'),
+(24, 34, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-07-17 03:06:18', '2024-07-17 03:06:18'),
+(25, 35, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-07-17 03:53:04', '2024-07-17 03:53:04'),
+(26, 36, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-07-24 02:25:41', '2024-07-24 02:25:41'),
+(27, 37, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-07-25 10:14:48', '2024-07-25 10:14:48'),
+(28, 38, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-07-26 02:04:28', '2024-07-26 02:04:28'),
+(29, 39, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-08-23 00:46:47', '2024-08-23 00:46:47'),
+(30, 40, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-08-23 03:04:53', '2024-08-23 03:04:53'),
+(31, 41, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-08-28 02:21:15', '2024-08-28 02:21:15'),
+(32, 42, NULL, 'Pending', 'Permohonan baru telah diajukan', '2024-08-28 02:22:35', '2024-08-28 02:22:35'),
+(33, 39, 1, 'Selesai', NULL, '2024-08-28 09:23:32', '2024-08-28 09:23:32'),
+(34, 41, 1, 'Permohonan Disetujui', NULL, '2024-08-28 09:23:50', '2024-08-28 09:23:50');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jabatan`
+-- Struktur dari tabel `jabatan`
 --
 
 CREATE TABLE `jabatan` (
@@ -220,10 +273,10 @@ CREATE TABLE `jabatan` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `jabatan`
+-- Dumping data untuk tabel `jabatan`
 --
 
 INSERT INTO `jabatan` (`id`, `nama_jabatan`, `created_at`, `updated_at`, `uuid`) VALUES
@@ -239,7 +292,7 @@ INSERT INTO `jabatan` (`id`, `nama_jabatan`, `created_at`, `updated_at`, `uuid`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis_aplikasi`
+-- Struktur dari tabel `jenis_aplikasi`
 --
 
 CREATE TABLE `jenis_aplikasi` (
@@ -248,10 +301,10 @@ CREATE TABLE `jenis_aplikasi` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `jenis_aplikasi`
+-- Dumping data untuk tabel `jenis_aplikasi`
 --
 
 INSERT INTO `jenis_aplikasi` (`id`, `nama_jenis`, `created_at`, `updated_at`, `uuid`) VALUES
@@ -262,7 +315,7 @@ INSERT INTO `jenis_aplikasi` (`id`, `nama_jenis`, `created_at`, `updated_at`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -272,10 +325,10 @@ CREATE TABLE `kategori` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`id`, `nama_kategori`, `kategori_seo`, `created_at`, `updated_at`, `uuid`) VALUES
@@ -285,7 +338,7 @@ INSERT INTO `kategori` (`id`, `nama_kategori`, `kategori_seo`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Table structure for table `konfigurasi_web`
+-- Struktur dari tabel `konfigurasi_web`
 --
 
 CREATE TABLE `konfigurasi_web` (
@@ -315,10 +368,10 @@ CREATE TABLE `konfigurasi_web` (
   `no_telp` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `konfigurasi_web`
+-- Dumping data untuk tabel `konfigurasi_web`
 --
 
 INSERT INTO `konfigurasi_web` (`id`, `nama_aplikasi`, `singkatan`, `keterangan_aplikasi`, `slogan`, `logo_aplikasi`, `favicon`, `warna_template`, `mode`, `sidebar_color`, `navbar_color`, `brandlogo_color`, `tahun_pembuatan`, `versi`, `logo_kecil`, `gambar_sidebar`, `meta_deskripsi`, `meta_keyword`, `youtube`, `instagram`, `facebook`, `email`, `alamat`, `no_telp`, `created_at`, `updated_at`) VALUES
@@ -327,17 +380,17 @@ INSERT INTO `konfigurasi_web` (`id`, `nama_aplikasi`, `singkatan`, `keterangan_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data untuk tabel `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -351,43 +404,74 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `model_has_permissions`
+-- Struktur dari tabel `model_has_permissions`
 --
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `model_has_roles`
+-- Struktur dari tabel `model_has_roles`
 --
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `model_has_roles`
+-- Dumping data untuk tabel `model_has_roles`
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (6, 'App\\Models\\User', 1),
 (7, 'App\\Models\\User', 2),
 (7, 'App\\Models\\User', 3),
+(7, 'App\\Models\\User', 8),
+(7, 'App\\Models\\User', 10),
 (8, 'App\\Models\\User', 4),
 (8, 'App\\Models\\User', 6),
-(8, 'App\\Models\\User', 7);
+(8, 'App\\Models\\User', 9);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opd`
+-- Struktur dari tabel `network`
+--
+
+CREATE TABLE `network` (
+  `id` int(11) NOT NULL,
+  `opd_id` int(11) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `longitude` varchar(100) NOT NULL,
+  `latitude` varchar(100) NOT NULL,
+  `jarak_kabel` varchar(50) NOT NULL,
+  `jumlah_aksespoint` int(11) NOT NULL,
+  `jenis_koneksi` varchar(50) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `uuid` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data untuk tabel `network`
+--
+
+INSERT INTO `network` (`id`, `opd_id`, `alamat`, `longitude`, `latitude`, `jarak_kabel`, `jumlah_aksespoint`, `jenis_koneksi`, `status`, `created_at`, `updated_at`, `uuid`) VALUES
+(2, 2, 'Kopi Ketje Jelutung', '103.61587233179934', '-1.6203645225934311', '5000', 3, 'GPON', 'Selesai', '2024-08-23 09:12:32', '2024-08-23 09:12:32', '6dbe7d3a-2d52-4467-933e-b0e94832b030'),
+(3, 3, 'dsds', '103.6025856', '-1.622016', '200', 3, 'SFP', 'Diproses', '2024-08-26 08:02:54', '2024-08-26 08:02:54', 'a1fc2e85-0a31-4c22-9a83-7a7d0deaedf9');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `opd`
 --
 
 CREATE TABLE `opd` (
@@ -397,10 +481,10 @@ CREATE TABLE `opd` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `uuid` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `opd`
+-- Dumping data untuk tabel `opd`
 --
 
 INSERT INTO `opd` (`id`, `nama_opd`, `singkatan`, `created_at`, `updated_at`, `uuid`) VALUES
@@ -445,76 +529,83 @@ INSERT INTO `opd` (`id`, `nama_opd`, `singkatan`, `created_at`, `updated_at`, `u
 (39, 'Kecamatan Pasar Jambi', 'Kec. Pasar Jambi', '2023-06-26 09:29:33', '2023-06-26 09:29:33', '786282cf-ba04-49b9-be2b-eeb97369d464'),
 (40, 'Kecamatan Pelayangan', 'Kec. Pelayangan', '2023-06-26 09:30:22', '2023-06-26 09:30:22', 'a8a84bbf-4906-42ce-8ad0-1f649673a76c'),
 (41, 'Kecamatan Telanaipura', 'Kec. Telanaipura', '2023-06-26 09:31:03', '2023-06-26 09:31:03', '3a7ff442-d88d-4d13-9b9b-94ef5171d32c'),
-(42, 'SEKRETARIAT DAERAH', 'SEKDA', '2023-07-11 15:57:30', '2023-07-11 15:57:30', '6041f22f-2c97-496a-9b8d-13ab8f7be37c');
+(42, 'SEKRETARIAT DAERAH', 'SEKDA', '2023-07-11 15:57:30', '2023-07-11 15:57:30', '6041f22f-2c97-496a-9b8d-13ab8f7be37c'),
+(43, 'BADAN PERBAGIAN UANG RAKYAT', 'BAPAK', '2024-07-26 07:28:45', '2024-07-26 07:28:45', '48d4fc1c-4c37-4fd5-9962-6385108990ce');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Struktur dari tabel `password_resets`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `password_resets`
+-- Dumping data untuk tabel `password_resets`
 --
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('nanang.ms22@gmail.com', '$2y$10$QfeTuuFhYqiFH6D9Fe.ll./wPUzQYLPvRVm2fEoOM3asz74fu4ZAa', '2023-06-13 20:32:29'),
+('nanang.ms22@gmail.com', '$2y$10$QfeTuuFhYqiFH6D9Fe.ll./wPUzQYLPvRVm2fEoOM3asz74fu4ZAa', '2023-06-13 20:32:29'),
+('nanang.ms22@gmail.com', '$2y$10$QfeTuuFhYqiFH6D9Fe.ll./wPUzQYLPvRVm2fEoOM3asz74fu4ZAa', '2023-06-13 20:32:29'),
+('nanang.ms22@gmail.com', '$2y$10$QfeTuuFhYqiFH6D9Fe.ll./wPUzQYLPvRVm2fEoOM3asz74fu4ZAa', '2023-06-13 20:32:29'),
+('nanang.ms22@gmail.com', '$2y$10$QfeTuuFhYqiFH6D9Fe.ll./wPUzQYLPvRVm2fEoOM3asz74fu4ZAa', '2023-06-13 20:32:29'),
 ('nanang.ms22@gmail.com', '$2y$10$QfeTuuFhYqiFH6D9Fe.ll./wPUzQYLPvRVm2fEoOM3asz74fu4ZAa', '2023-06-13 20:32:29');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengaduan`
+-- Struktur dari tabel `pengaduan`
 --
 
 CREATE TABLE `pengaduan` (
   `id` int(11) NOT NULL,
   `kd_pengaduan` varchar(10) NOT NULL,
-  `pelapor_id` int(11) NOT NULL,
+  `pelapor_id` int(11) DEFAULT NULL,
   `petugas_id` int(11) DEFAULT NULL,
   `opd_id` int(11) DEFAULT NULL,
   `tanggal` date NOT NULL,
   `jenis_pengaduan` varchar(100) NOT NULL,
   `nama_aplikasi` varchar(100) DEFAULT NULL,
+  `no_wa` varchar(50) NOT NULL,
   `judul` varchar(255) NOT NULL,
   `isi` text NOT NULL,
   `status` varchar(100) DEFAULT NULL,
-  `tanggapan` text,
+  `tanggapan` text DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `pengaduan`
+-- Dumping data untuk tabel `pengaduan`
 --
 
-INSERT INTO `pengaduan` (`id`, `kd_pengaduan`, `pelapor_id`, `petugas_id`, `opd_id`, `tanggal`, `jenis_pengaduan`, `nama_aplikasi`, `judul`, `isi`, `status`, `tanggapan`, `created_at`, `updated_at`, `uuid`) VALUES
-(1, '1683768301', 1, NULL, 15, '2023-05-11', 'aplikasi', NULL, 'aaa', 'aaaaaaa', NULL, NULL, '2023-05-11 01:25:01', '2023-05-11 01:25:01', 'd09aea74-fcf1-4141-a8d5-30fbd9ee69e7'),
-(3, '1687319052', 1, NULL, NULL, '2023-06-21', 'aplikasi', 'SIBANGMAN', 'ddd', 'ddd', NULL, NULL, '2023-06-21 03:44:12', '2023-06-21 03:44:12', 'bc0f88b0-346b-4408-b0d6-f3c184028e9c');
+INSERT INTO `pengaduan` (`id`, `kd_pengaduan`, `pelapor_id`, `petugas_id`, `opd_id`, `tanggal`, `jenis_pengaduan`, `nama_aplikasi`, `no_wa`, `judul`, `isi`, `status`, `tanggapan`, `created_at`, `updated_at`, `uuid`) VALUES
+(9, '1724807712', NULL, NULL, NULL, '2024-08-28', 'aplikasi', 'Muhammad Hasyim, S.H.', '08124567896', 'Kesalahan Nama', 'Kesalahan Nama Aplikasi', NULL, NULL, '2024-08-28 01:15:13', '2024-08-28 01:15:13', 'bd9a2a88-9e12-4466-b335-ef5418f0ec07'),
+(13, '1724809164', 1, NULL, NULL, '2024-08-28', 'jaringan', 'Dinda Saputri, S.sos.', '08124567896', 'Jaringan Terganggu', 'Terjadi Gangguan Pada Jaringan yang terhubung ke OPD kami', NULL, NULL, '2024-08-28 01:39:24', '2024-08-28 01:39:24', '7f2160b6-9d39-4eea-b0a9-bd43773e3263');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Struktur dari tabel `permissions`
 --
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `group` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
+  `group` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `permissions`
+-- Dumping data untuk tabel `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group`, `created_at`, `updated_at`) VALUES
@@ -552,7 +643,7 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permohonan`
+-- Struktur dari tabel `permohonan`
 --
 
 CREATE TABLE `permohonan` (
@@ -570,48 +661,38 @@ CREATE TABLE `permohonan` (
   `opd_id` int(11) NOT NULL,
   `nama_opd` varchar(100) NOT NULL,
   `file_surat` varchar(255) DEFAULT NULL,
-  `deskripsi` text,
-  `status` varchar(50) DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `status` varchar(50) DEFAULT 'Belum Diverifikasi',
   `pemohon_id` int(11) DEFAULT NULL,
   `petugas_id` int(11) DEFAULT NULL,
-  `keterangan_status` text,
+  `keterangan_status` text DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `permohonan`
+-- Dumping data untuk tabel `permohonan`
 --
 
 INSERT INTO `permohonan` (`id`, `no_urut`, `kd_permohonan`, `nip`, `nama`, `jabatan`, `no_hp`, `tanggal`, `jenis_permohonan`, `nama_aplikasi`, `jenis_aplikasi`, `opd_id`, `nama_opd`, `file_surat`, `deskripsi`, `status`, `pemohon_id`, `petugas_id`, `keterangan_status`, `created_at`, `updated_at`, `uuid`) VALUES
-(5, 0000, '1686625954', '', '', '', '', '2023-06-13', 'pembuatan', 'ddd', 'WEB', 1, 'BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA', NULL, 'dd', 'Ditunda', 1, 1, 'dd', '2023-06-13 10:12:34', '2023-08-09 10:44:41', '829a89d2-3260-40c3-bc0f-9ae8765c5475'),
-(6, 0000, '1695699235', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'ssss', 'WEB', 3, 'BADAN PENGELOLA PAJAK DAN RETRIBUSI DAERAH', 'osE6L60.pdf', 'fffqqqq', NULL, NULL, NULL, NULL, '2023-09-26 03:33:55', '2023-09-26 03:33:55', 'e5d65c3f-dfad-4322-ad36-0b6ae7e87136'),
-(7, 0000, '1695699527', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 3, 'BADAN PENGELOLA PAJAK DAN RETRIBUSI DAERAH', 'jCMchpj.pdf', 'ssss', NULL, NULL, NULL, NULL, '2023-09-26 03:38:47', '2023-09-26 03:38:47', '74af0c5b-7271-4713-b0bf-6105d647f8d2'),
-(8, 0000, '1695699620', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 3, 'BADAN PENGELOLA PAJAK DAN RETRIBUSI DAERAH', 'bfV1pqg.pdf', 'ssss', NULL, NULL, NULL, NULL, '2023-09-26 03:40:20', '2023-09-26 03:40:20', 'f5bd52cb-e1c0-40bd-ab41-43b2a0afc9e2'),
-(9, 0000, '1695699721', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 3, 'BADAN PENGELOLA PAJAK DAN RETRIBUSI DAERAH', '9YSX97R.pdf', 'ssss', NULL, NULL, NULL, NULL, '2023-09-26 03:42:02', '2023-09-26 03:42:02', '6cc4df35-9c89-41df-8463-771464d0f9fb'),
-(11, 0000, '1695700179', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 3, 'BADAN PENGELOLA PAJAK DAN RETRIBUSI DAERAH', 'i6A4kaa.pdf', 'ssss', NULL, NULL, NULL, NULL, '2023-09-26 03:49:39', '2023-09-26 03:49:39', '4167fecc-445d-4b5f-b805-c81f048e375c'),
-(12, 0000, '1695700586', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 3, 'BADAN PENGELOLA PAJAK DAN RETRIBUSI DAERAH', 'clSrCUV.pdf', 'ssss', NULL, NULL, NULL, NULL, '2023-09-26 03:56:26', '2023-09-26 03:56:26', '0765da05-d9b5-400a-9945-45f0fd2dfe5e'),
-(13, 0000, '1695703282', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'FUNBIKE Merdeka78', 'WEB', 3, 'BADAN PENGELOLA PAJAK DAN RETRIBUSI DAERAH', 'QSPnBlZ.pdf', 'aaaa', NULL, NULL, NULL, NULL, '2023-09-26 04:41:22', '2023-09-26 04:41:22', '6446ba24-0fab-4edd-b1aa-55ce708082cc'),
-(14, 0000, '1695708669', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 5, 'DINAS PENDIDIKAN', '44u3Fcy.pdf', 'aaa', NULL, NULL, NULL, NULL, '2023-09-26 06:11:09', '2023-09-26 06:11:09', '45b563d6-0b7f-4ba3-974a-18e956157858'),
-(15, 0000, '1695710467', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 5, 'DINAS PENDIDIKAN', 'V0sdaqH.pdf', 'qqqq', NULL, NULL, NULL, NULL, '2023-09-26 06:41:07', '2023-09-26 06:41:07', '1a44d9bb-8ac4-4697-9825-06fdcad75964'),
-(16, 0000, '1695710642', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 5, 'DINAS PENDIDIKAN', '8PiXhsW.pdf', 'qqqq', NULL, NULL, NULL, NULL, '2023-09-26 06:44:02', '2023-09-26 06:44:02', 'b480e6b5-b9d4-415f-9be5-660b84e8ef45'),
-(17, 0000, '1695710867', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 5, 'DINAS PENDIDIKAN', 'LDyVoRE.pdf', 'qqqq', NULL, NULL, NULL, NULL, '2023-09-26 06:47:47', '2023-09-26 06:47:47', '4d4ce5ee-9304-4c4e-a425-3d56445ddf53'),
-(18, 0000, '1695711192', '197005252000121004', 'ABU BAKAR', 'KEPALA DINAS', '', '2023-09-26', 'pembuatan', 'Siharko', 'WEB', 5, 'DINAS PENDIDIKAN', 'uwmKFcB.pdf', 'qqqq', 'Permohonan Disetujui', NULL, 1, 'ff', '2023-09-26 06:53:12', '2023-09-29 09:39:18', '3a3b2b0c-efa4-4981-8b9f-d526dddd4551');
+(39, 0039, '1724374007', '196806061992031006', 'SUDIRMAN', 'KABID. APLIKASI INFORMATIKA', '081515468459', '2024-08-23', 'pembaruan', 'Sikembang', 'WEB', 1, 'BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA', '5j3fEEa.pdf', 'Aplikasi untuk pengembangan UMKM', 'Selesai', NULL, 1, NULL, '2024-08-23 00:46:47', '2024-08-28 09:23:32', '50ba48aa-fbd2-4d5d-aac5-78e6d2a71416'),
+(41, 0040, '1724811675', '196806061992031006', 'SUDIRMAN', 'KABID. APLIKASI INFORMATIKA', '081515468459', '2024-08-28', 'pembuatan', 'Sikadek', 'WEB', 15, 'DINAS KOMUNIKASI DAN INFORMATIKA', 'm8slI1E.pdf', 'Aplikasi untuk pencatatan desa', 'Permohonan Disetujui', NULL, 1, NULL, '2024-08-28 02:21:15', '2024-08-28 09:23:50', 'fbc2b97a-2406-49c9-807d-e5123f399006'),
+(42, 0041, '1724811755', '196806061992031006', 'SUDIRMAN', 'KABID. APLIKASI INFORMATIKA', '081515468458', '2024-08-28', 'penggunaan_domain', 'Simali', 'ANDROID', 15, 'DINAS KOMUNIKASI DAN INFORMATIKA', 'ptibPpJ.pdf', 'Aplikasi untuk masyarakat sekeliling', 'Belum Diverifikasi', NULL, NULL, NULL, '2024-08-28 02:22:35', '2024-08-28 02:22:35', '61cb437c-96cf-4f8e-87c1-6e2a4d91e060');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personal_access_tokens`
+-- Struktur dari tabel `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -621,13 +702,13 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Struktur dari tabel `products`
 --
 
 CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `detail` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `detail` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -635,19 +716,19 @@ CREATE TABLE `products` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Struktur dari tabel `roles`
 --
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `roles`
+-- Dumping data untuk tabel `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -658,7 +739,7 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_has_permissions`
+-- Struktur dari tabel `role_has_permissions`
 --
 
 CREATE TABLE `role_has_permissions` (
@@ -667,7 +748,7 @@ CREATE TABLE `role_has_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `role_has_permissions`
+-- Dumping data untuk tabel `role_has_permissions`
 --
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
@@ -680,15 +761,16 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (11, 6),
 (12, 6),
 (13, 6),
+(13, 7),
 (14, 6),
 (15, 6),
-(16, 6),
-(17, 6),
-(18, 6),
-(13, 7),
 (15, 7),
+(15, 8),
+(16, 6),
 (16, 7),
+(17, 6),
 (17, 7),
+(18, 6),
 (19, 7),
 (20, 7),
 (21, 7),
@@ -698,27 +780,26 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (25, 7),
 (26, 7),
 (27, 7),
-(28, 7),
-(29, 7),
-(30, 7),
-(31, 7),
-(32, 7),
-(33, 7),
-(34, 7),
-(15, 8),
 (27, 8),
+(28, 7),
 (28, 8),
+(29, 7),
 (29, 8),
+(30, 7),
 (30, 8),
+(31, 7),
 (31, 8),
+(32, 7),
 (32, 8),
+(33, 7),
 (33, 8),
+(34, 7),
 (34, 8);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `screenshoot_app`
+-- Struktur dari tabel `screenshoot_app`
 --
 
 CREATE TABLE `screenshoot_app` (
@@ -729,12 +810,12 @@ CREATE TABLE `screenshoot_app` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sektor`
+-- Struktur dari tabel `sektor`
 --
 
 CREATE TABLE `sektor` (
@@ -743,10 +824,10 @@ CREATE TABLE `sektor` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `sektor`
+-- Dumping data untuk tabel `sektor`
 --
 
 INSERT INTO `sektor` (`id`, `nama_sektor`, `created_at`, `updated_at`, `uuid`) VALUES
@@ -755,7 +836,7 @@ INSERT INTO `sektor` (`id`, `nama_sektor`, `created_at`, `updated_at`, `uuid`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status_permohonan`
+-- Struktur dari tabel `status_permohonan`
 --
 
 CREATE TABLE `status_permohonan` (
@@ -764,10 +845,10 @@ CREATE TABLE `status_permohonan` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `status_permohonan`
+-- Dumping data untuk tabel `status_permohonan`
 --
 
 INSERT INTO `status_permohonan` (`id`, `nama_status`, `created_at`, `updated_at`, `uuid`) VALUES
@@ -780,7 +861,7 @@ INSERT INTO `status_permohonan` (`id`, `nama_status`, `created_at`, `updated_at`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teams`
+-- Struktur dari tabel `teams`
 --
 
 CREATE TABLE `teams` (
@@ -792,10 +873,10 @@ CREATE TABLE `teams` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `uuid` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `teams`
+-- Dumping data untuk tabel `teams`
 --
 
 INSERT INTO `teams` (`id`, `nama`, `jabatan_id`, `jabatan`, `foto`, `created_at`, `updated_at`, `uuid`) VALUES
@@ -812,167 +893,175 @@ INSERT INTO `teams` (`id`, `nama`, `jabatan_id`, `jabatan`, `foto`, `created_at`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   `opd_id` int(11) DEFAULT NULL,
-  `uuid` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_hp` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `uuid` varchar(100) DEFAULT NULL,
+  `username` varchar(50) NOT NULL,
+  `role` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `no_hp` varchar(20) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_active` enum('1','0') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photo` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `is_active` enum('1','0') DEFAULT NULL,
+  `photo` varchar(100) DEFAULT NULL,
   `last_login_at` datetime DEFAULT NULL,
-  `last_login_ip` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_login_ip` varchar(30) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `opd_id`, `uuid`, `username`, `role`, `email`, `no_hp`, `email_verified_at`, `password`, `remember_token`, `is_active`, `photo`, `last_login_at`, `last_login_ip`, `created_at`, `updated_at`) VALUES
-(1, 'Nanang Maulana Syarip', NULL, 'f9acc6ec-a304-4a70-adbc-e5a49982dae7', 'nanang', 'superadmin', 'nanang.ms22@gmail.com', NULL, NULL, '$2y$10$JcLj19OIGihAxcJLGPJPzu0YYN1t1GLtK6N5XKhzkow6ldZffAoiW', NULL, '1', 'Nanang_Maulana_Syarip_GG9U9.jpg', '2023-10-02 07:50:57', '127.0.0.1', '2022-12-25 20:18:45', '2023-10-02 00:50:57'),
+(1, 'Nanang Maulana Syarip', NULL, 'f9acc6ec-a304-4a70-adbc-e5a49982dae7', 'nanang', 'superadmin', 'nanang.ms22@gmail.com', NULL, NULL, '$2y$10$JcLj19OIGihAxcJLGPJPzu0YYN1t1GLtK6N5XKhzkow6ldZffAoiW', NULL, '1', 'Nanang_Maulana_Syarip_GG9U9.jpg', '2024-08-28 10:28:43', '127.0.0.1', '2022-12-25 20:18:45', '2024-08-28 03:28:43'),
 (2, 'admin123', NULL, '2b29931d-9bc5-457f-b60d-c072ee36a6aa', 'admin', 'admin', 'admin@gmail.com', NULL, NULL, '$2y$10$7ZYsIdbJslvAjPkzvPgmUO0UIYxkHFIzbFqX8nuLzxQbMPdCXQ7oi', NULL, '1', NULL, NULL, NULL, '2022-12-27 02:11:46', '2023-05-24 08:09:22'),
 (3, 'Harukaa', NULL, 'd9c0f103-7e49-48ab-8a8b-53de719903be', 'haruka', 'admin', 'haruka@gmail.com', NULL, NULL, '$2y$10$yisnIHPJmPf1XqwdrzH1huDuBkxobU5NTodhBPj6dgalxxgQ/VjAm', NULL, '1', NULL, NULL, NULL, '2023-03-27 03:27:04', '2023-03-30 01:11:29'),
-(4, 'User', 15, '8f4aad7b-fbc3-4787-9f34-b39f2078d4cb', 'user', 'user', 'user@gmail.com', NULL, NULL, '$2y$10$J2mmlE6KfT4UZDmVslUN/.GYtaxt0PNmL4nyzyc47Ut3Rv1VisdBm', NULL, '1', NULL, '2023-09-07 08:40:29', '127.0.0.1', '2023-05-15 01:14:40', '2023-09-07 01:42:05'),
+(4, 'User', 15, '8f4aad7b-fbc3-4787-9f34-b39f2078d4cb', 'user', 'user', 'user@gmail.com', NULL, NULL, '$2y$10$J2mmlE6KfT4UZDmVslUN/.GYtaxt0PNmL4nyzyc47Ut3Rv1VisdBm', NULL, '1', NULL, '2023-11-15 10:30:14', '127.0.0.1', '2023-05-15 01:14:40', '2023-11-15 03:30:14'),
 (6, 'Ahmad Zuhdi', 12, '94df5e27-d2ac-418b-8aa1-9a1507cfecc2', 'ahmad', 'user', 'ahmad@gmail.com', NULL, NULL, '$2y$10$9lEixArr9DSNBlE5PB51U.tpteC/qNTKtw3kc0zX22duBYGnZXYIK', NULL, '1', NULL, '2023-05-22 11:27:10', '127.0.0.1', '2023-05-22 04:26:36', '2023-09-07 02:05:42'),
-(7, 'Nurdin', 2, '6eca8674-8984-4646-913e-78ae6bf31411', 'nurdin', 'user', 'nurdin@gmail.com', NULL, NULL, '$2y$10$zUby.kOAnT8V6WKViYhxdOynpoaLQoI9dcaEI4z4BnbLimo.9tLpG', NULL, '0', NULL, '2023-09-07 09:09:09', '127.0.0.1', '2023-09-07 01:48:22', '2023-09-07 02:09:09');
+(8, 'bon', NULL, '36668ceb-72cc-4efb-8923-987ff8da2c75', 'bon', 'admin', 'bon@gmail.com', NULL, NULL, '$2y$10$dDZcVO0Ji7U8FPozUxxR6umZrYqPsmTjycLvJWU/Vz3/XZpxz131u', NULL, '1', NULL, '2024-08-14 14:33:37', '127.0.0.1', '2024-07-26 01:25:14', '2024-08-14 07:33:37'),
+(9, 'boy', NULL, '1ed3b5d4-cd59-499e-b503-862e448bbe4a', 'boy', 'user', 'boy@gmail.com', NULL, NULL, '$2y$10$nrjh.ERkk01F3d4OZE3waeXHcenafmI2N.adOeEkGei2DwB3Llh/.', NULL, '1', NULL, '2024-08-14 14:33:00', '127.0.0.1', '2024-08-01 00:33:22', '2024-08-14 07:33:00'),
+(10, 'candra', NULL, 'd0424434-183a-40d4-a186-5bcedb7e0367', 'candra', 'admin', 'candra@mail.com', NULL, NULL, '$2y$10$/0EMTTHIPKwyA6vL5CHHm.7MONSVZDmY6My.hnvzAae7Yyh/YA5we', NULL, '1', NULL, '2024-08-28 09:03:08', '127.0.0.1', '2024-08-28 02:02:52', '2024-08-28 02:03:08');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `berita`
+-- Indeks untuk tabel `berita`
 --
 ALTER TABLE `berita`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `daftaraplikasi`
+-- Indeks untuk tabel `daftaraplikasi`
 --
 ALTER TABLE `daftaraplikasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `failed_jobs`
+-- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `faq`
+-- Indeks untuk tabel `faq`
 --
 ALTER TABLE `faq`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `file_pendukung`
+-- Indeks untuk tabel `file_pendukung`
 --
 ALTER TABLE `file_pendukung`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `foto_pengaduan`
+-- Indeks untuk tabel `foto_pengaduan`
 --
 ALTER TABLE `foto_pengaduan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `histori_permohonan`
+-- Indeks untuk tabel `histori_permohonan`
 --
 ALTER TABLE `histori_permohonan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jabatan`
+-- Indeks untuk tabel `jabatan`
 --
 ALTER TABLE `jabatan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jenis_aplikasi`
+-- Indeks untuk tabel `jenis_aplikasi`
 --
 ALTER TABLE `jenis_aplikasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kategori`
+-- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `konfigurasi_web`
+-- Indeks untuk tabel `konfigurasi_web`
 --
 ALTER TABLE `konfigurasi_web`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `model_has_permissions`
+-- Indeks untuk tabel `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
   ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indexes for table `model_has_roles`
+-- Indeks untuk tabel `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
   ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indexes for table `opd`
+-- Indeks untuk tabel `network`
+--
+ALTER TABLE `network`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `opd`
 --
 ALTER TABLE `opd`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Indeks untuk tabel `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `pengaduan`
+-- Indeks untuk tabel `pengaduan`
 --
 ALTER TABLE `pengaduan`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `kd_pengaduan` (`kd_pengaduan`);
 
 --
--- Indexes for table `permissions`
+-- Indeks untuk tabel `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Indexes for table `permohonan`
+-- Indeks untuk tabel `permohonan`
 --
 ALTER TABLE `permohonan`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `kd_permohonan` (`kd_permohonan`);
 
 --
--- Indexes for table `personal_access_tokens`
+-- Indeks untuk tabel `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -980,222 +1069,228 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `products`
+-- Indeks untuk tabel `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `roles`
+-- Indeks untuk tabel `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Indexes for table `role_has_permissions`
+-- Indeks untuk tabel `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `screenshoot_app`
+-- Indeks untuk tabel `screenshoot_app`
 --
 ALTER TABLE `screenshoot_app`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sektor`
+-- Indeks untuk tabel `sektor`
 --
 ALTER TABLE `sektor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `status_permohonan`
+-- Indeks untuk tabel `status_permohonan`
 --
 ALTER TABLE `status_permohonan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `teams`
+-- Indeks untuk tabel `teams`
 --
 ALTER TABLE `teams`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `berita`
+-- AUTO_INCREMENT untuk tabel `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `daftaraplikasi`
+-- AUTO_INCREMENT untuk tabel `daftaraplikasi`
 --
 ALTER TABLE `daftaraplikasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `faq`
+-- AUTO_INCREMENT untuk tabel `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `file_pendukung`
+-- AUTO_INCREMENT untuk tabel `file_pendukung`
 --
 ALTER TABLE `file_pendukung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `foto_pengaduan`
+-- AUTO_INCREMENT untuk tabel `foto_pengaduan`
 --
 ALTER TABLE `foto_pengaduan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `histori_permohonan`
+-- AUTO_INCREMENT untuk tabel `histori_permohonan`
 --
 ALTER TABLE `histori_permohonan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `jabatan`
+-- AUTO_INCREMENT untuk tabel `jabatan`
 --
 ALTER TABLE `jabatan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `jenis_aplikasi`
+-- AUTO_INCREMENT untuk tabel `jenis_aplikasi`
 --
 ALTER TABLE `jenis_aplikasi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `kategori`
+-- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `konfigurasi_web`
+-- AUTO_INCREMENT untuk tabel `konfigurasi_web`
 --
 ALTER TABLE `konfigurasi_web`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `opd`
+-- AUTO_INCREMENT untuk tabel `network`
 --
-ALTER TABLE `opd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
---
--- AUTO_INCREMENT for table `pengaduan`
---
-ALTER TABLE `pengaduan`
+ALTER TABLE `network`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `permissions`
+-- AUTO_INCREMENT untuk tabel `opd`
+--
+ALTER TABLE `opd`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT untuk tabel `pengaduan`
+--
+ALTER TABLE `pengaduan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `permohonan`
+-- AUTO_INCREMENT untuk tabel `permohonan`
 --
 ALTER TABLE `permohonan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `personal_access_tokens`
+-- AUTO_INCREMENT untuk tabel `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `screenshoot_app`
+-- AUTO_INCREMENT untuk tabel `screenshoot_app`
 --
 ALTER TABLE `screenshoot_app`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sektor`
+-- AUTO_INCREMENT untuk tabel `sektor`
 --
 ALTER TABLE `sektor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `status_permohonan`
+-- AUTO_INCREMENT untuk tabel `status_permohonan`
 --
 ALTER TABLE `status_permohonan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `teams`
+-- AUTO_INCREMENT untuk tabel `teams`
 --
 ALTER TABLE `teams`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `model_has_permissions`
+-- Ketidakleluasaan untuk tabel `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `model_has_roles`
+-- Ketidakleluasaan untuk tabel `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `role_has_permissions`
+-- Ketidakleluasaan untuk tabel `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,

@@ -46,6 +46,9 @@
                                 <x-forms.textarea_v id="isi" type="text" name="isi" label="Detail Pengaduan"
                                     isRequired="true" value="{{ $data->isi }}" isReadonly="" placeholder="" />
 
+                                <x-forms.input_v id="status" type="status" name="status" label="status"
+                                    isRequired="true" value="{{ $data->status }}" isReadonly="" placeholder="" />
+
                                 <button type="submit" class="btn btn-primary"><i class="lni lni-save"></i> Submit</button>
 
                             </div>

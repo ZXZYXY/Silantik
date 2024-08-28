@@ -21,12 +21,19 @@
     <link rel="stylesheet" href="{{ asset('theme') }}/assets/css/app.css" />
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('theme') }}/plugins/fontawesome-free/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap');
+        .font-weight-bold{
+            font-weight: bold;
+            font-family: "Montserrat", Sans-serif;
+        }
+    </style>
 </head>
 
 <body class="bg-register">
     <!-- wrapper -->
     <div class="wrapper">
-        <div class="section-authentication-register d-flex align-items-center justify-content-center">
+        <div class="section-authentication-register2 d-flex align-items-center justify-content-center">
             <div class="row">
                 <div class="col-12 col-lg-12 mx-auto">
                     <div class="card radius-15 overflow-hidden">
@@ -41,16 +48,16 @@
 
                                         <img src="{{ asset('images') }}/logo_diskominfo_warna.png" width="200px"
                                             alt="logo-dark" />
-                                        <h4 class="mt-4 font-weight-bold">Layanan Pembuatan/Pengembangan Aplikasi</h4>
+                                        <h4 class="mt-4 font-weight-bold">Layanan Pembuatan/Pengembangan Aplikasi </h4>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 0%;"
+                                        <div class="progress-bar" role="progressbar" style="width: 25%;"
                                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
                                     </div>
                                     <hr>
 
                                     <div class="">
-                                        <div class="form-body">
+                                        <div class="form-body font-weight-bold">
                                             <h4>1. Data Pemohon</h4>
                                             <p>Masukan NIP (Nomor Induk Pegawai) PIC Pemohon Pengajuan Aplikasi</p>
                                             @if ($errors->any())

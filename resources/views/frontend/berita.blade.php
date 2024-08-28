@@ -3,6 +3,20 @@
     Informasi
 @endsection
 @push('style')
+    <style>
+        .custom-cta-btn {
+            color: white; /* Button text color */
+            padding: 10px 20px; /* Button padding */
+            font-size: 16px; /* Button font size */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        .custom-cta-btn:hover {
+            background-color: #0056b3; /* Background color on hover */
+        }
+    </style>
 @endpush
 
 @push('script')
@@ -10,12 +24,10 @@
 
 @section('content')
     <!-- Start Blog Area  ============================================= -->
-    <div id="berita" class="blog-area bg-gray default-padding bottom-less" style="padding-top: 150px;">
+    <div id="berita" class="blog-area default-padding bottom-less" style="padding-top: 150px;">
         <div class="container">
-
             <div class="row">
                 <div class="blog-items">
-
                     @foreach ($beritas as $b)
                         <!-- Single Item -->
                         <div class="col-md-4 single-item">
@@ -33,23 +45,20 @@
                                         <h4>
                                             <a href="{{ url('news/' . $b->slug) }}">{{ $b->judul }}</a>
                                         </h4>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                         <!-- Single Item -->
                     @endforeach
-
                 </div>
                 <!-- row -->
-                <div class="cta-btn text-center">
+                <div class="text-center">
                     {!! $beritas->links('vendor.pagination.bootstrap-4') !!}
-
                 </div>
             </div>
         </div>
     </div>
     <!-- End Blog Area -->
 @endsection
+

@@ -82,22 +82,21 @@
                         if (result) {
 
                             $.ajax({
-                                url: "/daftaraplikasi/" + daftaraplikasi_id,
+                                url: "{{ route('daftaraplikasi.destroy', ':id') }}".replace(':id', daftaraplikasi_id),
                                 type: "POST",
                                 data: {
                                     _method: "DELETE",
                                     _token: token,
                                 },
-
                                 success: function(response) {
                                     $('#datatable').DataTable().ajax.reload();
                                     swal("Berhasil", "Data Berhasil Dihapus", "success");
                                 },
                                 error: function(xhr) {
-                                    swal("Oops...", "Terjadi Kesalahan", "error");
-
+                                    swal("Oops...", "Terjadi Kesalahan: " + xhr.responseJSON.messages, "error");
                                 }
                             });
+
                         }
                     });
             });
@@ -142,12 +141,12 @@
                 <div class="card-body">
                     <h4 class="mb-0">Data Aplikasi</h4>
                     <div style="align-content: right">
-                        <p align="right">
+                        <!--<p align="right">
                             <button type="button" class="btn btn-secondary btn-sm mt-2 mb-2" data-bs-toggle="modal"
                                 data-bs-target="#laporan"><i
                                     class="fa fa-print                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  "></i>
                                 Laporan</button>
-                        </p>
+                        </p>-->
                     </div>
                     <hr>
                     <table id="datatable" class="table table-hover table-bordered table-striped" style="width:100%">

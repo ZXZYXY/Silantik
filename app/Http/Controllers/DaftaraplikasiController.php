@@ -10,10 +10,12 @@ use App\Models\Sektor;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-use DB;
-use File;
+
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 
 class DaftaraplikasiController extends Controller
 {
@@ -116,10 +118,10 @@ class DaftaraplikasiController extends Controller
             if ($request->hasFile('logo_aplikasi')) {
                 File::delete('images/logo_aplikasi/' . $data->logo_aplikasi);
                 $foto = $request->file('logo_aplikasi');
-                $image_name = $request->nama_aplikasi . '_PERWAL_' . kode_acak(5) . '.' . $foto->getClientOriginalExtension();
+                $image_name = $request->nama_aplikasi . '_LOGO_' . kode_acak(5) . '.' . $foto->getClientOriginalExtension();
                 $ImageUpload = Image::make($foto->getRealPath());
                 $ImageUpload->save(public_path('images/logo_aplikasi/') . $image_name);
-                $data->logo_aplikasi      = $image_name;
+                $data->logo_aplikasi = $image_name;
             }
             if ($request->hasFile('gambar_home')) {
                 $foto = $request->file('gambar_home');

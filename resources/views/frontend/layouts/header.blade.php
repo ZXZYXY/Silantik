@@ -1,5 +1,26 @@
 <!-- Header
     ============================================= -->
+<style>
+    .logo {
+    max-width: 100%; /* Ensure the logo doesn't exceed its container */
+    height: auto; /* Maintain aspect ratio */
+    }
+
+    /* For screens larger than 768px, set the logo width to 170px */
+    @media (min-width: 772px) {
+        .logo {
+            width: 100px;
+        }
+    }
+
+    /* For screens smaller than 768px, adjust the logo width */
+    @media (max-width: 767px) {
+        .logo {
+            width: 100px; /* Example smaller size */
+        }
+    }
+
+</style>
 <header id="home">
 
     <!-- Start Navigation -->
@@ -23,10 +44,8 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img src="{{ asset('images') }}/logo_aptika_black.png" width="130px" class="logo logo-display"
-                        alt="Logo">
-                    <img src="{{ asset('images') }}/logo_aptika_black.png" width="130px" class="logo logo-scrolled"
-                        alt="Logo">
+                    <img src="{{ asset('frontend') }}/img/illustrations/logo3.png" class="logo logo-display" alt="Logo">
+                    <img src="{{ asset('frontend') }}/img/illustrations/logo3.png" class="logo logo-scrolled" alt="Logo">
                 </a>
             </div>
             <!-- End Header Navigation -->
@@ -41,7 +60,9 @@
                         <a href="#layanan" class="dropdown-toggle smooth-menu" data-toggle="dropdown">Layanan</a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('layanan/aplikasi') }}">Permohonan Pembuatan Aplikasi</a></li>
+                            <!--<li><a href="{{ url('jaringan') }}">Jaringan Infrastruktur</a></li>-->
                             <li><a href="{{ url('cek-permohonan') }}">Cek Permohonan</a></li>
+
 
                         </ul>
                     </li>

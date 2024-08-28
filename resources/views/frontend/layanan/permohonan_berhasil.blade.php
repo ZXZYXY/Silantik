@@ -21,14 +21,22 @@
     <link rel="stylesheet" href="{{ asset('theme') }}/assets/css/app.css" />
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('theme') }}/plugins/fontawesome-free/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap');
+        .font-weight-bold{
+            font-weight: bold;
+            font-family: "Montserrat", Sans-serif;
+        }
+    </style>
+
 </head>
 
 <body class="bg-register">
     <!-- wrapper -->
     <div class="wrapper">
-        <div class="section-authentication-register d-flex align-items-center justify-content-center">
+        <div class="section-authentication-register2 d-flex align-items-center justify-content-center">
             <div class="row">
-                <div class="col-12 col-lg-10 mx-auto">
+                <div class="col-12 col-lg-8 mx-auto">
                     <div class="card radius-15 overflow-hidden">
                         <div class="row g-0">
                             <div class="col-xl-6 bg-login-color d-flex align-items-center justify-content-center">
@@ -41,7 +49,7 @@
 
                                         <img src="{{ asset('images') }}/logo_diskominfo_warna.png" width="200px"
                                             alt="logo-dark" />
-                                        <h4 class="mt-4 font-weight-bold">Layanan Pembuatan/Pembaruan Aplikasi</h4>
+                                        <h4 class="mt-4">Layanan Pembuatan/Pembaruan Aplikasi</h4>
                                     </div>
 
                                     <hr>
@@ -53,9 +61,11 @@
                                             <h5 class="text-center">Nomor Permohonan anda :
                                                 <strong>{{ $permohonan->kd_permohonan }}</strong>
                                             </h5>
-                                            <p class="text-center">untuk mengecek status permohonan dapat dilakukan pada
-                                                link <br><a href="{{ url('cek-permohonan') }}" target="_blank">
-                                                    {{ url('cek-permohonan') }}</a></p>
+                                            <p class="text-center">Mohon untuk menunggu konfimasi dari admin melalui nomor whatsapp atau anda bisa mengeceknya dengan nomor permohonan anda. <br></p>
+                                            <div class="text-center mt-5">
+                                                <a href="{{ url('/') }}" class="btn btn-primary font-weight-bold">Kembali ke Beranda</a>
+                                                <a href="{{ url('cek-permohonan') }}" class="btn btn-primary font-weight-bold">Cek Permohonan</a>
+                                            </div>
                                         </div>
                                     </div>
 
